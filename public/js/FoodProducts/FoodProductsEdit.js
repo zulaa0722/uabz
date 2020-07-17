@@ -1,0 +1,76 @@
+$(document).ready(function(){
+  $("#btnEditModalOpen").click(function(e){
+    e.preventDefault();
+    if(dataRow == ""){
+        alertify.error('Та ЗАСАХ мөрөө дарж сонгоно уу!!!');
+        return;
+    }
+
+    $("#rowID").val(dataRow['id']);
+    $("#eproductName").val(dataRow['productName']);
+    $("#efoodQntt").val(dataRow['foodQntt']);
+    $("#efoodProtein").val(dataRow['foodProtein']);
+    $("#efoodFat").val(dataRow['foodFat']);
+    $("#efoodCarbon").val(dataRow['foodCarbon']);
+    $("#efoodCkal").val(dataRow['foodCkal']);
+
+    $("#modalFoodProductsEdit").modal("show");
+
+  });
+
+  $("#btnFoodProductsUpdate").click(function(e){
+    e.preventDefault();
+    editCode();
+  });
+
+});
+
+function editCode()
+{
+  var isInsert = true;
+  if($("#eproductName").val()==""){
+    alertify.error("Та заавал ХҮНСНИЙ БҮТЭЭГДЭХҮҮН оруулана уу!!!");
+    isInsert = false;
+  }
+  if($("#efoodQntt").val()==""){
+    alertify.error("Та заавал ХЭМЖЭЭ оруулана уу!!!");
+    isInsert = false;
+  }
+  if($("#efoodProtein").val()==""){
+    alertify.error("Та заавал УУРАГ оруулана уу!!!");
+    isInsert = false;
+  }
+
+  if($("#efoodFat").val()==""){
+    alertify.error("Та заавал ТОС оруулана уу!!!");
+    isInsert = false;
+  }
+
+  if($("#efoodCarbon").val()==""){
+    alertify.error("Та заавал НҮҮРС УС оруулана уу!!!");
+    isInsert = false;
+  }
+
+  if($("#efoodCkal").val()==""){
+    alertify.error("Та заавал ККАЛ оруулана уу!!!");
+    isInsert = false;
+  }
+  if(isInsert == false){return;}
+
+  $.ajax({
+      type: 'post',
+      url: foodProductsEditUrl,
+      data:$("#frmFoodProductsEdit").serialize(),
+      success:function(response){
+          alertify.alert(response);
+          FoodProductsTableRefresh();
+          emptyForm();
+          dataRow = "";
+          $("#modalFoodProductsEdit").modal("hide");
+
+      },
+      error: function(XMLHttpRequest, textStatus, errorThrown) {
+          alertify.error("Status: " + textStatus); alertify.error("Error: " + errorThrown);
+      }
+  })
+}

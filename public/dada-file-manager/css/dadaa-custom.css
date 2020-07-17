@@ -1,0 +1,16 @@
+.dadaa-title{
+  background: blue;
+  color: white;
+}
+.clickable{
+  cursor: pointer;
+}
+.clickableImage{
+  cursor: pointer;
+}
+.right-item{
+  padding-top: 10px;
+}
+.right-item-image{
+  padding-top: 20px;
+}
