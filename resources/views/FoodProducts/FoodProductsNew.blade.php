@@ -19,28 +19,34 @@
                     <input class="form-control" type="text" id="productName" name="productName">
                   </div>
                   <div class="col-md-3">
-                    <label>Хэмжээ /гр/</label>
+                    <label>Хэмжээ /kг/</label>
                     <input class="form-control" type="number" id="foodQntt" name="foodQntt">
                   </div>
+
+                  <div class="col-md-12">
+                    <label>ккал</label>
+                    <input class="form-control" type="number" id="foodCkal" name="foodCkal">
+                  </div>
                 </div>
+
                 <div class="form-group row">
                   <div class="col-md-6">
-                    <label>Уураг</label>
+                    <label>Уураг /гр/</label>
                     <input class="form-control" type="number" id="foodProtein" name="foodProtein">
                   </div>
                   <div class="col-md-6">
-                    <label>Тос</label>
+                    <label>Тос /гр/</label>
                     <input class="form-control" type="number" id="foodFat" name="foodFat">
                   </div>
 
                   <div class="col-md-6">
-                    <label>Нүүрс ус</label>
+                    <label>Нүүрс ус /гр/</label>
                     <input class="form-control" type="number" id="foodCarbon" name="foodCarbon">
                   </div>
 
-                  <div class="col-md-6">
-                    <label>ккал</label>
-                    <input class="form-control" type="number" id="foodCkal" name="foodCkal">
+                  <div class="col-md-12">
+                    <label>ккал /Томъёогоор бодогдсон/</label>
+                    <input class="form-control" type="number" id="foodTomCkal" name="foodTomCkal">
                   </div>
                 </div>
 

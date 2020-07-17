@@ -16,7 +16,7 @@ class CreateFoodProductsTable extends Migration
         Schema::create('tb_food_products', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('productName');
-            $table->integer('foodQntt');
+            $table->double('foodQntt');
             $table->double('foodProtein')->nullable();
             $table->double('foodFat')->nullable();
             $table->double('foodCarbon')->nullable();

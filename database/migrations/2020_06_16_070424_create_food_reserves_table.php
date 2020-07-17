@@ -17,7 +17,7 @@ class CreateFoodReservesTable extends Migration
             $table->bigIncrements('id');
             $table->integer('provID');
             $table->integer('symID');
-            $table->integer('producID');
+            $table->integer('productID');
             $table->string('measurement');
             $table->double('mainQntt');
             $table->date('fReseverDate');

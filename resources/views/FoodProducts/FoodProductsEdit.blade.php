@@ -5,7 +5,7 @@
       {{-- modal-lg --}}
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title mt-0">Авч хэрэгжүүлэх арга хэмжээ нэмэх</h5>
+                <h5 class="modal-title mt-0">Хүнсний бүтээгдэхүүн засах</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -15,16 +15,21 @@
                 @csrf
                 <input type="hidden" name="rowID" id="rowID">
                 <div class="form-group row">
-                  <div class="col-md-12">
+                  <div class="col-md-9">
                     <label>Хүнсний бүтээгдэхүүн</label>
                     <input class="form-control" type="text" id="eproductName" name="productName">
                   </div>
-                </div>
-                <div class="form-group row">
-                  <div class="col-md-8">
-                    <label>Хэмжээ</label>
+                  <div class="col-md-3">
+                    <label>Хэмжээ /кг/</label>
                     <input class="form-control" type="number" id="efoodQntt" name="foodQntt">
                   </div>
+                  <div class="col-md-12">
+                    <label>ккал</label>
+                    <input class="form-control" type="number" id="efoodCkal" name="foodCkal">
+                  </div>
+                </div>
+                <div class="form-group row">
+
                   <div class="col-md-4">
                     <label>Уураг</label>
                     <input class="form-control" type="number" id="efoodProtein" name="foodProtein">
@@ -38,11 +43,11 @@
                     <label>Нүүрс ус</label>
                     <input class="form-control" type="number" id="efoodCarbon" name="foodCarbon">
                   </div>
-
-                  <div class="col-md-4">
-                    <label>ккал</label>
-                    <input class="form-control" type="number" id="efoodCkal" name="foodCkal">
+                  <div class="col-md-12">
+                    <label>ккал /Томъёогоор бодогдсон/</label>
+                    <input class="form-control" type="number" id="efoodTomCkal" name="foodTomCkal">
                   </div>
+
                 </div>
 
                 <div class="clearfix"></div>

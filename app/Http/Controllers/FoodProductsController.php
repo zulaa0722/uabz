@@ -44,6 +44,7 @@ class FoodProductsController extends Controller
       $insertFoodProducts->foodFat = $req->foodFat;
       $insertFoodProducts->foodCarbon = $req->foodCarbon;
       $insertFoodProducts->foodCkal = $req->foodCkal;
+      $insertFoodProducts->foodTomCkal = $req->foodTomCkal;
       $insertFoodProducts->save();
       return "Амжилттай хадгаллаа";
     }catch(\Exception $e){
@@ -61,6 +62,8 @@ class FoodProductsController extends Controller
       $updateFoodProducts->foodFat = $req->foodFat;
       $updateFoodProducts->foodCarbon = $req->foodCarbon;
       $updateFoodProducts->foodCkal = $req->foodCkal;
+      $updateFoodProducts->foodTomCkal = $req->foodTomCkal;
+
       $updateFoodProducts->save();
       return "Амжилттай заслаа";
     }catch(\Exception $e){
