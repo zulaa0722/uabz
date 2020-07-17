@@ -136,3 +136,9 @@ Route::post('/dada/file/manager/delete/image', 'dadaaFileManagerController@delet
 //test
 Route::get("/test/get", "SymController@getSymByProvinceID");
 //test end
+
+
+
+// NORM START
+Route::get("/norm/show", 'NormController@show');
+// NORM END
