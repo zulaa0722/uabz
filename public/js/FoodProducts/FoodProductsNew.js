@@ -1,12 +1,37 @@
 $(document).ready(function(){
-    $("#btnAddModalOpen").click(function(){
-        $("#modalFoodProductsNew").modal("show");
-    });
+  $("#btnAddModalOpen").click(function(){
+      $("#modalFoodProductsNew").modal("show");
+  });
 
   $("#btnFoodProductsAdd").click(function(e){
         e.preventDefault();
         mainCode();
-    });
+  });
+
+  var uurag = 0;
+  var nuursus = 0;
+  var tos = 0;
+  $("#foodProtein").keyup(function(){
+    if($("#foodProtein").val() != "")
+      uurag = $("#foodProtein").val() * 4;
+    else
+      uurag = 0;
+    $("#foodTomCkal").val(uurag + nuursus + tos);
+  });
+  $("#foodFat").keyup(function(){
+    if($("#foodFat").val() != "")
+      tos = $("#foodFat").val() * 9;
+    else
+      tos = 0;
+    $("#foodTomCkal").val(uurag + nuursus + tos);
+  });
+  $("#foodCarbon").keyup(function(){
+    if($("#foodCarbon").val() != "")
+      nuursus = $("#foodCarbon").val() * 4;
+    else
+      nuursus = 0;
+    $("#foodTomCkal").val(uurag + nuursus + tos);
+  });
 
 });
 
@@ -22,20 +47,20 @@ function mainCode()
     alertify.error("Та заавал ХЭМЖЭЭ оруулана уу!!!");
     isInsert = false;
   }
-  if($("#foodProtein").val()==""){
-    alertify.error("Та заавал УУРАГ оруулана уу!!!");
-    isInsert = false;
-  }
-
-  if($("#foodFat").val()==""){
-    alertify.error("Та заавал ТОС оруулана уу!!!");
-    isInsert = false;
-  }
-
-  if($("#foodCarbon").val()==""){
-    alertify.error("Та заавал НҮҮРС УС оруулана уу!!!");
-    isInsert = false;
-  }
+  // if($("#foodProtein").val()==""){
+  //   alertify.error("Та заавал УУРАГ оруулана уу!!!");
+  //   isInsert = false;
+  // }
+  //
+  // if($("#foodFat").val()==""){
+  //   alertify.error("Та заавал ТОС оруулана уу!!!");
+  //   isInsert = false;
+  // }
+  //
+  // if($("#foodCarbon").val()==""){
+  //   alertify.error("Та заавал НҮҮРС УС оруулана уу!!!");
+  //   isInsert = false;
+  // }
 
   if($("#foodCkal").val()==""){
     alertify.error("Та заавал ККАЛ оруулана уу!!!");
@@ -72,6 +97,7 @@ function emptyForm()
   $("#foodFat").val("");
   $("#foodCarbon").val("");
   $("#foodCkal").val("");
+  $("#foodTomCkal").val("");
 }
 
 function FoodProductsTableRefresh()

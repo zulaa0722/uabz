@@ -264,6 +264,13 @@
                         <span>Монгол Улс</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{url("/foodReserve")}}" class="waves-effect">
+                        <i class="ti-location-pin"></i>
+                        {{-- <span class="badge badge-pill badge-primary float-right">2</span> --}}
+                        <span>Хүнсний нөөц</span>
+                    </a>
+                </li>
 
                 <li class="menu-title">Бүртгэлийн хэсэг</li>
 

@@ -7,18 +7,17 @@
           <div class="col-xl-12">
               <div class="card">
                 <div  class="card-body">
-                  <h4 Class="text-center">Хүнсний бүтээгдэхүүн</h4>
+                  <h4 Class="text-center">Хүнсний нөөц</h4>
                   <table id="foodProductsDB" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                       <thead>
                         <tr>
                           <th>№</th>
-                          <th>Хүнсний нэр</th>
+                          <th>Аймаг</th>
+                          <th>Сум</th>
+                          <th>Хүнсний бүтээгдэхүүн</th>
+                          <th>Хэмжих нэгж</th>
                           <th>Тоо хэмжээ</th>
-                          <th>Уураг</th>
-                          <th>Тос</th>
-                          <th>Нүүрс ус</th>
-                          <th>ккал</th>
-                          <th>Бодогдсон ккал</th>
+                          <th>Огноо</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -34,8 +33,8 @@
         </div>
       </div>
     </div>
-@include('FoodProducts.FoodProductsNew')
-@include('FoodProducts.FoodProductsEdit')
+@include('FoodReserve.FoodReserveNew')
+@include('FoodReserve.FoodReserveEdit')
 @endsection
 
 @section('css')
@@ -98,16 +97,14 @@
                       }
                  },
           "columns": [
-            { data: "id", name: "id",  render: function (data, type, row, meta) {
-          return meta.row + meta.settings._iDisplayStart + 1;
-      }  },
+            { data: "id", name: "id",  render: function (data, type, row, meta) {return meta.row + meta.settings._iDisplayStart + 1;}},
+            { data: "provinceName", name: "provinceName"},
+            { data: "symName", name: "symName"},
             { data: "productName", name: "productName"},
-            { data: "foodQntt", name: "foodQntt"},
-            { data: "foodProtein", name: "foodProtein"},
-            { data: "foodFat", name: "foodFat"},
-            { data: "foodCarbon", name: "foodCarbon"},
-            { data: "foodCkal", name: "foodCkal"},
-            { data: "foodTomCkal", name: "foodTomCkal"}
+            { data: "measurement", name: "measurement"},
+            { data: "mainQntt", name: "mainQntt"},
+            { data: "fReserveDate", name: "fReserveDate"},
+
             ]
         });
 
