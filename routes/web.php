@@ -24,8 +24,10 @@ Route::get('/template', function(){
 Route::get("/mongolia/maps", "mongolianMapsController@mongolianMapsShow");
 Route::get("/mongolian/sumd", "mongolianMapsController@mongolianSumd");
 Route::get("/get/name", "mongolianMapsController@getName");
+
+//FoodReserve begin
 Route::get("/foodReserve", "FoodReserveController@foodReserveShow");
-Route::get("/forms/form1", "mongolianMapsController@form1");
+//FoodReserve end
 
 // forms start
 Route::get("/sector/show", "SectorController@sectoreShow");
