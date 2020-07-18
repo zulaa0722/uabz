@@ -141,4 +141,5 @@ Route::get("/test/get", "SymController@getSymByProvinceID");
 
 // NORM START
 Route::get("/norm/show", 'NormController@show');
+Route::post("/norm/new", 'NormController@store');
 // NORM END
