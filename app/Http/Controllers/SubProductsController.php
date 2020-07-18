@@ -47,7 +47,7 @@ class SubProductsController extends Controller
       $insertSubProducts->save();
       return "Амжилттай хадгаллаа";
     }catch(\Exception $e){
-      return "Серверийн алдаа!!! Веб мастерт хандана уу";
+      return $e;
     }
   }
 

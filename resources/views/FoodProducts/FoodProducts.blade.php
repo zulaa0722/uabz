@@ -3,35 +3,32 @@
 @section('content')
   <div class="row">
     <div class="col-md-12">
-      <div class="row">
-          <div class="col-xl-12">
-              <div class="card">
-                <div  class="card-body">
-                  <h4 Class="text-center">Хүнсний бүтээгдэхүүн</h4>
-                  <table id="foodProductsDB" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                      <thead>
-                        <tr>
-                          <th>№</th>
-                          <th>Хүнсний нэр</th>
-                          <th>Тоо хэмжээ</th>
-                          <th>Уураг</th>
-                          <th>Тос</th>
-                          <th>Нүүрс ус</th>
-                          <th>ккал</th>
-                          <th>Бодогдсон ккал</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <td></td>
-                      </tbody>
-                    </table>
-                    <button class="btn btn-primary" type="button" name="button" id="btnAddModalOpen">Нэмэх</button>
-                    <button class="btn btn-warning" type="button" name="button" id="btnEditModalOpen">Засах</button>
-                    <button class="btn btn-danger" type="button" name="button" id="btnFoodProductsDelete">Устгах</button>
-                  </div>
-                </div>
+
+        <div class="card">
+          <div  class="card-body">
+            <h4 Class="text-center">Хүнсний бүтээгдэхүүн</h4>
+            <table id="foodProductsDB" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                <thead>
+                  <tr>
+                    <th>№</th>
+                    <th>Хүнсний нэр</th>
+                    <th>Тоо хэмжээ</th>
+                    <th>Уураг</th>
+                    <th>Тос</th>
+                    <th>Нүүрс ус</th>
+                    <th>ккал</th>
+                    <th>Бодогдсон ккал</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <td></td>
+                </tbody>
+              </table>
+              <button class="btn btn-primary" type="button" name="button" id="btnAddModalOpen">Нэмэх</button>
+              <button class="btn btn-warning" type="button" name="button" id="btnEditModalOpen">Засах</button>
+              <button class="btn btn-danger" type="button" name="button" id="btnFoodProductsDelete">Устгах</button>
             </div>
-        </div>
+          </div>
       </div>
     </div>
 @include('FoodProducts.FoodProductsNew')

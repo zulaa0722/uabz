@@ -47,21 +47,6 @@ function mainCode()
     alertify.error("Та заавал ХЭМЖЭЭ оруулана уу!!!");
     isInsert = false;
   }
-  // if($("#foodProtein").val()==""){
-  //   alertify.error("Та заавал УУРАГ оруулана уу!!!");
-  //   isInsert = false;
-  // }
-  //
-  // if($("#foodFat").val()==""){
-  //   alertify.error("Та заавал ТОС оруулана уу!!!");
-  //   isInsert = false;
-  // }
-  //
-  // if($("#foodCarbon").val()==""){
-  //   alertify.error("Та заавал НҮҮРС УС оруулана уу!!!");
-  //   isInsert = false;
-  // }
-
   if($("#foodCkal").val()==""){
     alertify.error("Та заавал ККАЛ оруулана уу!!!");
     isInsert = false;
