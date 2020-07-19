@@ -67,6 +67,7 @@ $(document).ready(function(){
             success:function(res){
                 if(res.status == 'success'){
                     alertify.alert(res.msg);
+                    $("#cmbNorms").append(new Option($("#txtNormName").val() + ' /' + $("#hideSumKcal").val() + 'ккал/', res.normID));
                     emtpyAfterPost();
                 }
                 else if(res.status == 'exist'){
