@@ -7,22 +7,42 @@
           <div class="col-xl-8">
               <div class="card">
                 <div  class="card-body">
-                  <h4 Class="text-center">Малын махны хэмжээ /кг/</h4>
-                  <table id="cattleQnttDB" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                  <h4 Class="text-center">Малын махны хэмжээ /тоо толгой/</h4>
+                  <table id="cattleQnttDB" class="table table-striped table-bordered wrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                       <thead>
                         <tr>
                           <th>№</th>
                           <th>Аймаг</th>
                           <th>Сум</th>
-                          <th>Махны төрөл</th>
-                          <th>Махны жин /кг/</th>
-                          <th></th>
-                          <th></th>
-                          <th></th>
+                          @foreach ($cattles as $cattle)
+                              <th>{{$cattle->cattleName}}</th>
+                          @endforeach
                         </tr>
                       </thead>
                       <tbody>
-                        <td></td>
+                        @php
+                          $i=1;
+                        @endphp
+                          @foreach ($syms as $sym)
+                            <tr>
+                              <td>{{$i}}</td>
+                              <td>{{$sym->provName}}</td>
+                              <td>{{$sym->symName}}</td>
+                              @foreach ($cattles as $cattle)
+                                  <td>
+                                  @php
+                                      $cattleCounts = App\Http\Controllers\CattleQnttController::getCattleCountBySymID($sym->id, $cattle->id);
+                                      foreach ($cattleCounts as $cattleCount) {
+                                          echo $cattleCount->cattQntt;
+                                      }
+                                  @endphp
+                                  </td>
+                              @endforeach
+                            </tr>
+                            @php
+                              $i++;
+                            @endphp
+                          @endforeach
                       </tbody>
                     </table>
                     <button class="btn btn-primary" type="button" name="button" id="btnAddModalOpen">Нэмэх</button>
@@ -66,6 +86,26 @@ cursor: pointer;
   var cattleQnttDeleteUrl = "{{url("/cattleQntt/delete")}}";
 
   $(document).ready(function(){
+
+    $('#cattleQnttDB thead tr').clone(true).appendTo( '#cattleQnttDB thead' );
+
+    var filterIndex = 0;
+      $('#cattleQnttDB thead tr:eq(1) th').each( function (i) {
+        if(filterIndex == 1 || filterIndex == 2)
+        {
+          $(this).html( '<input type="text" style="width:110%;" placeholder="Хайх..." />' );
+          $( 'input', this ).on( 'keyup change', function () {
+              if ( table.column(i).search() !== this.value ) {
+                  table.column(i).search( this.value ).draw();
+              }
+          });
+        }
+        else {
+          $(this).html('');
+        }
+        filterIndex++;
+      });
+
     var table = $('#cattleQnttDB').DataTable({
       "language": {
               "lengthMenu": "_MENU_ мөрөөр харах",
@@ -85,29 +125,10 @@ cursor: pointer;
           select: {
             style: 'single'
         },
-          "processing": true,
-          "serverSide": true,
           "stateSave": true,
-          "ajax":{
-                   "url": getCattleQntt,
-                   "dataType": "json",
-                   "type": "POST",
-                   "data":{
-                        _token: csrf
-                      }
-                 },
-          "columns": [
-            { data: "id", name: "id",  render: function (data, type, row, meta) {
-          return meta.row + meta.settings._iDisplayStart + 1;
-      }  },
-            { data: "provName", name: "provName"},
-            { data: "symName", name: "symName"},
-            { data: "cattleName", name: "cattleName"},
-            { data: "cattQntt", name: "cattQntt"},
-            { data: "provID", name: "provID", visible:false},
-            { data: "symID", name: "symID", visible:false},
-            { data: "cattleID", name: "cattleID", visible:false}
-            ]
+          "orderCellsTop": true,
+          "fixedHeader": true,
+          "scrollX":true
         });
 
         $('#cattleQnttDB tbody').on( 'click', 'tr', function () {

@@ -9,6 +9,15 @@
   stroke:white;
   stroke-width:8;
 }
+
+.aimag1{
+  /* fill:transparent; */
+  fill:#ff0c00;
+  fill-opacity:0.7;
+  stroke:white;
+  stroke-width:8;
+}
+
 .aimag:hover{
   fill:transparent;
 
@@ -52,6 +61,7 @@ fill:transparent;
           <div class="col-xl-12">
               <div class="card">
                   <div id="changeBlade" class="card-body">
+                      <input type="button" class="btn btn-danger" name="" id="btnDeclareDanger" value="Онц байдал зарлах">
                       <div class="col-md-6">
                         <div class="page-title-box">
                             <ol class="breadcrumb mb-0">
@@ -5045,7 +5055,7 @@ fill:transparent;
   				c-1.28-1.612-7.784,1.544-8.273,3.889c-0.197,0.941,0.08,2.341-1.178,2.322c-0.763-0.012-1.688-1.01-2.235-1.782
   				c-4.91-6.923-11.077-12.591-17.633-17.881C301.887,432.697,300.983,430.786,298.448,431.899z"/>
   </g>
-  <path class="aimag" name="Увс" data-toggle="tooltip" data-placement="right" title="Увс" fill-rule="evenodd" clip-rule="evenodd" fill="#1313E2" stroke="#6A93CD" stroke-width="2" stroke-miterlimit="10" d="
+  <path class="aimag" name="Uvs" data-toggle="tooltip" data-placement="right" title="Увс" fill-rule="evenodd" clip-rule="evenodd" fill="#1313E2" stroke="#6A93CD" stroke-width="2" stroke-miterlimit="10" d="
 			M847.745,611.232c-7.977-0.074-15.891,0.206-23.73,2.085c-5.309,1.273-6.337,0.264-6.618-5.014
 			c-0.144-2.701-1.604-3.767-4.141-3.515c-20.175,2.007-39.612-0.128-57.445-10.604c-3.624-2.129-6.366-1.739-9.877,0.473
 			c-10.12,6.374-20.594,12.169-31.396,17.341c-0.918,0.44-1.896,1.048-2.838,0.691c-5.271-1.994-7.978,2.144-11.205,4.735
@@ -6288,4 +6298,6 @@ fill:transparent;
 
       });
   </script>
+
+  <script src="{{url('public/js/mongolianMap/test.js')}}"></script>
 @endsection
