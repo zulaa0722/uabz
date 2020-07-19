@@ -73,11 +73,63 @@ class NormController extends Controller
 
     public function update(Request $req)
     {
-        //
+        try{
+            Norm::where('normID',$req->normID)->delete();
+            $normName = NormName::find($req->normID);
+            $normName->sumKcal = $req->sumKcal;
+            $normName->save();
+            foreach ($req->norms as $key => $value) {
+                $norm = new Norm;
+                $norm->producID = $value['productID'];
+                $norm->normQntt = $value['normQntt'];
+                $norm->normCkal = $value['normCkal'];
+                $norm->normID = $req->normID;
+                $norm->save();
+            }
+            $array = array(
+                'status' => 'success',
+                'msg' => 'Амжилттай хадгаллаа!!!'
+            );
+            return $array;
+        }catch(\Exception $e){
+            $array = array(
+                'status' => 'error',
+                'msg' => 'Серверийн алдаа!!! Веб мастерт хандана уу!!!'
+            );
+            return $array;
+        }
     }
 
-    public function destroy($id)
+    public function destroy(Request $req)
     {
-        //
+        try{
+            NormName::where('id',$req->normID)->delete();
+            Norm::where('normID',$req->normID)->delete();
+            $array = array(
+                'status' => 'success',
+                'msg' => 'Амжилттай устгалаа!!!'
+            );
+            return $array;
+        }catch(\Exception $e){
+            $array = array(
+                'status' => 'error',
+                'msg' => 'Серверийн алдаа!!! Веб мастерт хандана уу!!!'
+            );
+            return $array;
+        }
+    }
+
+    public function getNormsByNormID(Request $req){
+        try{
+            $norms = DB::table('tb_norms')
+                ->join('tb_food_products', 'tb_norms.producID', '=', 'tb_food_products.id')
+                ->select('tb_food_products.productName', 'tb_norms.*')
+                ->where('tb_norms.normID', '=', $req->id)
+                ->get();
+            return DataTables::of($norms)
+              ->make(true);
+        }catch(\Exception $e){
+            return "Серверийн алдаа!!! Веб мастерт хандана уу";
+        }
     }
 }
