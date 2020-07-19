@@ -6,7 +6,6 @@
 
       <div class="card">
         <div  class="card-body">
-            <div class="card-body">
               <h4 class="text-center">Аймаг сумдын хүнсний норм</h4>
               <div class="form-group">
                 <div class="row">
@@ -48,7 +47,6 @@
               </table>
               <button class="btn btn-primary" type="button" name="button" id="btnAddModalOpen">Шинэ норм нэмэх</button>
 
-            </div>
           </div>
         </div>
     </div>
