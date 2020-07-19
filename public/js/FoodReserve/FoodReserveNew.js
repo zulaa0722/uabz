@@ -46,19 +46,17 @@ $(document).ready(function(){
 
   function mainCode()
   {
-    // if($("#provName").val() == -1){ alertify.error("Аймаг сонгоно уу!"); return;}
-    // if($("#symName").val() == -1){ alertify.error("Сум сонгоно уу!"); return;}
     if($("#foodReserveDate").val() == ""){ alertify.error("Огноог оруулна уу!"); return;}
-    var isEmpty = true;
+    var isEmpty = 0;
 
     $(".foodProductFields").each(function(){
-      if($(".foodProductFields").val() == "")
-        isEmpty = true;
-      else
-        isEmpty = false;
+      if($(this).val() != "")
+      {
+        isEmpty++;
+      }
     });
 
-    if(isEmpty == true){ alertify.error("Та нөөцийн тоо хэмжээг оруулна уу!"); return; }
+    if(isEmpty == 0){ alertify.error("Та нөөцийн тоо хэмжээг оруулна уу!"); return; }
 
     jsonObj = [];
     $(".foodProductFields").each(function(){
@@ -75,28 +73,50 @@ $(document).ready(function(){
       url:foodReserveNewUrl,
       data:{
         _token: $('meta[name="csrf-token"]').attr('content'),
-        provID: $("#provName").val(),
-        symID: $("#symName").val(),
+        provID: dataRow[1],
+        symID: dataRow[2],
         reserveDate: $("#foodReserveDate").val(),
         qntt: jsonObj
       },
       success:function(response){
           if(response.status == 'success'){
+
             var table = $("#FoodReserveTable").DataTable();
-            last_row = table.row(':last').data();
 
             var rowData = [];
-            rowData[0] = parseInt(last_row[0])+1;
-            rowData[1] = $("#provName").val();
-            rowData[2] = $("#symName").val();
-            rowData[3] = $('#provName option:selected').text();
-            rowData[4] = $('#symName option:selected').text();
-            var index = 5;
+            var index = 0;
             $(".foodProductFields").each(function(){
               rowData[index] = $(this).val();
               index++;
             });
-            table.row.add( rowData ).draw( false );
+
+            //songogdson moriin nudnii utgiig oorchilj bn
+            table.rows({ selected: true })
+            .every(function (rowIdx, tableLoop, rowLoop){
+              for(var i=0; i<index; i++)
+                table.cell(rowIdx, i+5).data(rowData[i]);
+            }).draw();
+
+//             var table = $("#FoodReserveTable").DataTable().rows({ selected: true }).every(function (rowIdx, tableLoop, rowLoop) {
+// table.row(this).cell(rowIdx,2).data("").draw()
+// table.row(this).cell(rowIdx, 3).data("").draw()
+// });
+            // var table = $("#FoodReserveTable").DataTable();
+            // last_row = table.row(':last').data();
+            //
+            // var rowData = [];
+            // rowData[0] = parseInt(last_row[0])+1;
+            // rowData[1] = $("#provName").val();
+            // rowData[2] = $("#symName").val();
+            // rowData[3] = $('#provName option:selected').text();
+            // rowData[4] = $('#symName option:selected').text();
+            // var index = 5;
+            // $(".foodProductFields").each(function(){
+            //   rowData[index] = $(this).val();
+            //   index++;
+            // });
+            // table.row.add( rowData ).draw( false );
+            $("#modalFoodReserveNew").modal("hide");
             alertify.alert(response.msg);
           }
           else{
@@ -119,7 +139,4 @@ $(document).ready(function(){
       }
     });
   }
-
-
-
 });
