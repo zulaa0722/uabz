@@ -62,7 +62,7 @@ function emptyForm()
   $("#cattleQntt").val("");
 
 }
-function cattleQnttTableRefresh()
+function cattleQnttTableRefresh1()
 {
   $('#cattleQnttDB').DataTable().destroy();
   var table = $('#cattleQnttDB').DataTable({
