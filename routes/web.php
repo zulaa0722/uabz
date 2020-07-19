@@ -27,6 +27,8 @@ Route::get("/get/name", "mongolianMapsController@getName");
 
 //FoodReserve begin
 Route::get("/foodReserve", "FoodReserveController@foodReserveShow");
+Route::post('foodReserve/insert', "FoodReserveController@store");
+Route::post('foodReserve/delete', "FoodReserveController@delete");
 //FoodReserve end
 
 // forms start
