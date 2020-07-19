@@ -18,10 +18,10 @@ function mainCode()
     alertify.error("Та заавал БҮСИЙН НЭР бичнэ үү!!!");
     isInsert = false;
   }
-  if($("#sectorCode").val()==""){
-    alertify.error("Та заавал БҮСИЙН КОД бичнэ үү!!!");
-    isInsert = false;
-  }
+  // if($("#sectorCode").val()==""){
+  //   alertify.error("Та заавал БҮСИЙН КОД бичнэ үү!!!");
+  //   isInsert = false;
+  // }
   if(isInsert == false){return;}
 
   $.ajax({
