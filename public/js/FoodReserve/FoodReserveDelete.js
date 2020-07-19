@@ -8,26 +8,38 @@ $(document).ready(function(){
 
     alertify.confirm( "Та устгахдаа итгэлтэй байна уу?", function (e) {
       if (e) {
-        //console.log(dataRow);
-        // $.ajax({
-        //     type: 'post',
-        //     url: foodReserveDeleteUrl,
-        //     data: {
-        //       _token: csrf,
-        //       symID : dataRow[2],
-        //       provID: dataRow[1]
-        //     }
-        //     success:function(response){
-        //         alertify.alert(response);
-        //
-        //
-        //         // FoodReserveTableRefresh();
-        //         dataRow = "";
-        //     },
-        //     error: function(XMLHttpRequest, textStatus, errorThrown) {
-        //         alertify.error("Status: " + textStatus); alertify.error("Error: " + errorThrown);
-        //     }
-        // });
+        $.ajax({
+          type:'post',
+          url:foodReserveDeleteUrl,
+          data:{
+            _token: $('meta[name="csrf-token"]').attr('content'),
+            provID: dataRow[1],
+            symID: dataRow[2]
+          },
+          success:function(response){
+              if(response.status == 'success'){
+
+                var table = $("#FoodReserveTable").DataTable();
+
+                alert(table.columns().count());
+                //songogdson moriin nudnii utgiig oorchilj bn
+
+                table.rows({ selected: true })
+                .every(function (rowIdx, tableLoop, rowLoop){
+                  for(var i=0; i<table.columns().count(); i++)
+                    table.cell(rowIdx, i+5).data(" ");
+                    // console.log(i);
+                }).draw();
+
+                $("#modalFoodReserveNew").modal("hide");
+                alertify.alert(response.msg);
+              }
+              else{
+                alertify.error(response.msg);
+              }
+
+          },
+        });
       } else {
           alertify.error('Устгах үйлдэл цуцлагдлаа.');
       }

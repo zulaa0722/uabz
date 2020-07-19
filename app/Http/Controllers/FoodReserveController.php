@@ -15,6 +15,10 @@ use App\FoodProducts;
 
 class FoodReserveController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     //
     public function foodReserveShow()
     {
@@ -34,7 +38,7 @@ class FoodReserveController extends Controller
 
     public function store(Request $req)
     {
-      
+      FoodReserve::where('symID',$req->symID)->delete();
       try{
         foreach ($req->qntt as $key => $value) {
             $insertFoodReserve = new FoodReserve;
@@ -55,14 +59,27 @@ class FoodReserveController extends Controller
       }catch(\Exception $e){
         $arrayMsg = array(
             'status' => 'error',
-            'msg' => 'Серверийн алдаа!!! Веб мастерт хандана уу'
+            'msg' => "Серверийн алдаа!!! Веб мастерт хандана уу"
         );
         return $arrayMsg;
       }
     }
     public function delete(Request $req)
     {
-
+      try{
+        FoodReserve::where('symID',$req->symID)->delete();
+        $arrayMsg = array(
+            'status' => 'success',
+            'msg' => 'Амжилттай устгалаа...'
+        );
+        return $arrayMsg;
+      }catch(\Exception $e){
+        $arrayMsg = array(
+            'status' => 'error',
+            'msg' => "Серверийн алдаа!!! Веб мастерт хандана уу"
+        );
+        return $arrayMsg;
+      }
     }
     public static function selectReserveFootQnttByProvSym($provID, $symID, $productID)
     {
