@@ -148,3 +148,12 @@ Route::post("/norm/new", 'NormController@store');
 Route::post("/norm/update", 'NormController@update');
 Route::post("/norm/delete", 'NormController@destroy');
 // NORM END
+
+
+
+// ADMIN START
+Route::get('/show/users', "UserController@showUsers");
+Route::post('/get/users', "UserController@getUsers");
+Route::post('/delete/users', "UserController@deleteUsers");
+Route::post('/change/password/users', "UserController@changePassword");
+// ADMIN END

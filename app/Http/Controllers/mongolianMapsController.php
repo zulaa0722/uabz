@@ -10,10 +10,10 @@ use DB;
 
 class mongolianMapsController extends Controller
 {
-  // public function __construct()
-  // {
-  //     $this->middleware('auth');
-  // }
+  public function __construct()
+  {
+      $this->middleware('auth');
+  }
   public function mongolianMapsShow(){
     return view("mongolianMap.mongolianMap");
   }

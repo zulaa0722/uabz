@@ -1,18 +1,19 @@
-@extends('layouts.app')
+@extends('layouts.layout_master')
 
 @section('content')
-<div class="container">
+
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <h4 class="text-center"><strong>Хэрэглэгч нэмэх</strong></h4>
+                    <form id="frmNewUser" method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Хэрэглэгчийн нэр:</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -26,7 +27,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">Нэвтрэх цахим хаяг:</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
@@ -40,7 +41,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">Нууц үг:</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
@@ -54,17 +55,42 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Нууц үгээ давтана уу:</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Хэрэглэгчийн төвшин:</label>
+
+                            <div class="col-md-6">
+                                <select class="form-control" id="cmbPermission" name="permission">
+                                    <option value="0">Сонгоно уу</option>
+                                    <option value="1">Бүрэн эрх</option>
+                                    <option value="2">Аймгийн эрх</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Аймаг:</label>
+
+                            <div class="col-md-6">
+                                <select class="form-control" id="cmbProvince" name="province">
+                                    <option value="0">Сонгоно уу</option>
+                                    @foreach ($provinces as $province)
+                                        <option value="{{$province->provCode}}">{{$province->provName}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                                <button id="btnSaveUser" type="submit" class="btn btn-primary">
+                                    Хадгалах
                                 </button>
                             </div>
                         </div>
@@ -73,5 +99,8 @@
             </div>
         </div>
     </div>
-</div>
+@endsection
+
+@section('js')
+  <script src="{{url("public/js/users/userNew.js")}}"></script>
 @endsection

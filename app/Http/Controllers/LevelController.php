@@ -15,6 +15,11 @@ use DB;
 
 class LevelController extends Controller
 {
+  public function __construct()
+  {
+      $this->middleware('auth');
+  }
+  
   public function levelShow()
   {
     try{

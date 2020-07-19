@@ -15,6 +15,11 @@ use DB;
 
 class CattleQnttController extends Controller
 {
+  public function __construct()
+  {
+      $this->middleware('auth');
+  }
+  
   public function cattleQnttShow()
   {
     try{
