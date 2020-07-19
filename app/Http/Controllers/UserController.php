@@ -21,10 +21,15 @@ class UserController extends Controller
     }
 
     public function showUsers(){
-        $provinces = DB::table('tb_province')
-            ->orderBy('provName', 'ASC')
-            ->get();
-        return view('User.userShow', compact('provinces'));
+        if(Auth::user()->permission != 1){
+            return 'Хандах эрх байхгүй!!!';
+        }
+        else{
+            $provinces = DB::table('tb_province')
+                ->orderBy('provName', 'ASC')
+                ->get();
+            return view('User.userShow', compact('provinces'));
+        }
     }
 
     public function getUsers(){

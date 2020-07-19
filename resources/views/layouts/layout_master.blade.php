@@ -335,10 +335,24 @@
                 <span>Туслах сан</span>
             </a>
             <ul class="sub-menu" aria-expanded="false">
+                <li><a href="{{url("/norm/show")}}">Хүнсний норм</a></li>
                 <li><a href="{{url("/status/show")}}">Төлөв</a></li>
                 <li><a href="{{url("/level/show")}}">Зэрэгүүд</a></li>
             </ul>
             </li>
+
+            @if(Auth::user()->permission == 1)
+            <li>
+            <a href="javascript: void(0);" class="has-arrow waves-effect">
+                <i class="ti-package"></i>
+                <span>Админ хэрэглэгч</span>
+            </a>
+            <ul class="sub-menu" aria-expanded="false">
+                <li><a href="{{url("/register")}}">Админ хэрэглэгч нэмэх</a></li>
+                <li><a href="{{url("/show/users")}}">Админ хэрэглэгч засах</a></li>
+            </ul>
+            </li>
+            @endif
 
             </ul>
         </div>

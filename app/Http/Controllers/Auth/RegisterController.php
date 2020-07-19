@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -40,15 +41,20 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('auth');
     }
 
     public function showRegistrationForm()
     {
-        $provinces = DB::table('tb_province')
-            ->orderBy('provName', 'ASC')
-            ->get();
-        return view('auth.register', compact('provinces'));
+        if(Auth::user()->permission != 1){
+            return 'Хандах эрх байхгүй!!!';
+        }
+        else{
+            $provinces = DB::table('tb_province')
+                ->orderBy('provName', 'ASC')
+                ->get();
+            return view('auth.register', compact('provinces'));
+        }
     }
 
     /**
