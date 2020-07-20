@@ -25,7 +25,7 @@
                     @foreach ($cattles as $cattle)
                       <div class="col-md-3">
                       <label style="margin-bottom:-20px;">{{$cattle->cattleName}}</label>
-                      <input style="margin-bottom:10px;" class="form-control cattleQnttFields" type="number" name="cattleQntt" id="cattleQntt">
+                      <input style="margin-bottom:10px;" class="form-control cattleQnttFields" type="number" name="" id="{{$cattle->id}}">
                       <label style="margin-bottom:-20px; font-size:12px;">Хонин толгойд шилжүүлэхэд:</label>
                       <label style="margin-bottom:-20px; font-size:12px;">Нийт ккал:</label>
                       </div>

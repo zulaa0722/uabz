@@ -38,8 +38,8 @@ class FoodReserveController extends Controller
 
     public function store(Request $req)
     {
-      FoodReserve::where('symID',$req->symID)->delete();
       try{
+        FoodReserve::where('symID',$req->symID)->delete();
         foreach ($req->qntt as $key => $value) {
             $insertFoodReserve = new FoodReserve;
             $insertFoodReserve->provID = $req->provID;

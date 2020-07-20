@@ -12,6 +12,8 @@
                       <thead>
                         <tr>
                           <th>№</th>
+                          <th></th>
+                          <th></th>
                           <th>Аймаг</th>
                           <th>Сум</th>
                           @foreach ($cattles as $cattle)
@@ -26,6 +28,8 @@
                           @foreach ($syms as $sym)
                             <tr>
                               <td>{{$i}}</td>
+                              <td>{{$sym->provID}}</td>
+                              <td>{{$sym->id}}</td>
                               <td>{{$sym->provName}}</td>
                               <td>{{$sym->symName}}</td>
                               @foreach ($cattles as $cattle)
@@ -79,9 +83,7 @@ cursor: pointer;
   <script type="text/javascript">
   var dataRow = "";
   var csrf = "{{ csrf_token() }}";
-  var getCattleQntt = "{{url("/getCattleQntt")}}";
   var cattleQnttNew = "{{url("/cattleQntt/insert")}}";
-  var cattleQnttEditUrl = "{{url("/cattleQntt/edit")}}";
   var cattleQnttDeleteUrl = "{{url("/cattleQntt/delete")}}";
 
   $(document).ready(function(){
@@ -90,7 +92,7 @@ cursor: pointer;
 
     var filterIndex = 0;
       $('#cattleQnttDB thead tr:eq(1) th').each( function (i) {
-        if(filterIndex == 1 || filterIndex == 2)
+        if(filterIndex == 3 || filterIndex == 4)
         {
           $(this).html( '<input type="text" style="width:110%;" placeholder="Хайх..." />' );
           $( 'input', this ).on( 'keyup change', function () {
@@ -104,31 +106,31 @@ cursor: pointer;
         }
         filterIndex++;
       });
-
-    var table = $('#cattleQnttDB').DataTable({
-      "language": {
-              "lengthMenu": "_MENU_ мөрөөр харах",
-              "zeroRecords": "Хайлт илэрцгүй байна",
-              "info": "Нийт _PAGES_ -аас _PAGE_-р хуудас харж байна ",
-              "infoEmpty": "Хайлт илэрцгүй",
-              "infoFiltered": "(_MAX_ мөрөөс хайлт хийлээ)",
-              "sSearch": "Хайх: ",
-              "paginate": {
-                "previous": "Өмнөх",
-                "next": "Дараахи"
-              },
-              "select": {
-                  rows: ""
-              }
+      var table = $('#cattleQnttDB').DataTable({
+        "language": {
+          "lengthMenu": "_MENU_ мөрөөр харах",
+          "zeroRecords": "Хайлт илэрцгүй байна",
+          "info": "Нийт _PAGES_ -аас _PAGE_-р хуудас харж байна ",
+          "infoEmpty": "Хайлт илэрцгүй",
+          "infoFiltered": "(_MAX_ мөрөөс хайлт хийлээ)",
+          "sSearch": "Хайх: ",
+          "paginate": {
+            "previous": "Өмнөх",
+            "next": "Дараахи"
           },
-          select: {
-            style: 'single'
+          "select": {
+            rows: ""
+          }
         },
-          "stateSave": true,
-          "orderCellsTop": true,
-          "fixedHeader": true,
-          "scrollX":true
-        });
+        select: {
+          style: 'single'
+        },
+        "stateSave": true,
+        "orderCellsTop": true,
+        "fixedHeader": true,
+        "scrollX":true
+      });
+
         table.column( 1 ).visible( false );
         table.column( 2 ).visible( false );
 

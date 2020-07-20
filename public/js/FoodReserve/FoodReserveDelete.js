@@ -21,9 +21,7 @@ $(document).ready(function(){
 
                 var table = $("#FoodReserveTable").DataTable();
 
-                alert(table.columns().count());
                 //songogdson moriin nudnii utgiig oorchilj bn
-
                 table.rows({ selected: true })
                 .every(function (rowIdx, tableLoop, rowLoop){
                   for(var i=0; i<table.columns().count(); i++)
@@ -44,11 +42,5 @@ $(document).ready(function(){
           alertify.error('Устгах үйлдэл цуцлагдлаа.');
       }
     });
-
   });
-
 });
-function FoodReserveTableRefresh()
-{
-
-}

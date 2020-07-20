@@ -127,14 +127,6 @@ $(document).ready(function(){
           // FoodProductsTableRefresh();
           // emptyForm();
           // dataRow = "";
-      },
-      error: function(jqXhr, json, errorThrown){// this are default for ajax errors
-        var errors = jqXhr.responseJSON;
-        var errorsHtml = '';
-        $.each(errors['errors'], function (index, value) {
-            errorsHtml += '<ul class="list-group"><li class="list-group-item alert alert-danger">' + value + '</li></ul>';
-        });
-        alert(errorsHtml);
       }
     });
   }

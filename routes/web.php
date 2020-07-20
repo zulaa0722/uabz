@@ -70,9 +70,7 @@ Route::post("/cattle/edit", "CattleController@update");
 Route::post("/cattle/delete", "CattleController@delete");
 
 Route::get("/cattleQntt/show", "CattleQnttController@cattleQnttShow");
-Route::post("/getCattleQntt", "CattleQnttController@getCattleQnttData");
 Route::post("/cattleQntt/insert", "CattleQnttController@store");
-Route::post("/cattleQntt/edit", "CattleQnttController@update");
 Route::post("/cattleQntt/delete", "CattleQnttController@delete");
 
 Route::get("/axax/show", "AxaxController@axaxShow");
