@@ -13,10 +13,13 @@
                         <tr>
                           <th>№</th>
                           <th>Махны төрөл</th>
+                          <th>Хонин толгойд шилжүүлэх коффициент</th>
                         </tr>
                       </thead>
                       <tbody>
                         <td></td>
+                        <td></td>
+
                       </tbody>
                     </table>
                     <button class="btn btn-primary" type="button" name="button" id="btnSectorAdd">Нэмэх</button>
@@ -94,7 +97,9 @@ cursor: pointer;
             { data: "id", name: "id",  render: function (data, type, row, meta) {
           return meta.row + meta.settings._iDisplayStart + 1;
       }  },
-            { data: "cattleName", name: "cattleName"}
+            { data: "cattleName", name: "cattleName"},
+            { data: "ratio", name: "ratio"}
+
             ]
         });
 

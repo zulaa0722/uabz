@@ -302,7 +302,7 @@
             </a>
             <ul class="sub-menu" aria-expanded="false">
                 <li><a href="{{url("/cattle/show")}}">Малын төрөл</a></li>
-                <li><a href="{{url("/cattleQntt/show")}}">Малын махны хэмжээ</a></li>
+                <li><a href="{{url("/cattleQntt/show")}}">Малын тоо толгой</a></li>
             </ul>
             </li>
 

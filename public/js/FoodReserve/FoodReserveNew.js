@@ -55,7 +55,6 @@ $(document).ready(function(){
         isEmpty++;
       }
     });
-
     if(isEmpty == 0){ alertify.error("Та нөөцийн тоо хэмжээг оруулна уу!"); return; }
 
     jsonObj = [];

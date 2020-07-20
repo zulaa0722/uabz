@@ -12,7 +12,6 @@
               <form id="frmFoodReserveNew" action="" method="post">
                 @csrf
                 <div class="form-group row justify-content-center">
-                  <label id="names"></label>
                     <label id="provName" style="color:blue; font-size:16px;"> </label>
                     <label style="font-size:16px;">&nbsp аймгийн &nbsp</label>
                     <label style="color:blue; font-size:16px;" id="symName"></label>

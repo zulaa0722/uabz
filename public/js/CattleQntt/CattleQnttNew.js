@@ -1,6 +1,21 @@
 $(document).ready(function(){
     $("#btnAddModalOpen").click(function(){
-        $("#modalCattleQnttNew").modal("show");
+      if(dataRow == "")
+      {
+        alertify.error('Та НЭМЭХ мөрөө сонгоно уу!!!');
+        return;
+      }
+
+      $("#modalCattleQnttNew").modal("show");
+      $("#provName").text(dataRow[1]);
+      $("#symName").text(dataRow[2]);
+
+      var i=3;
+      $(".cattleQnttFields").each(function(){
+        $(this).val(dataRow[i]);
+        i++;
+      });
+
     });
 
     $("#btnCattleQnttAdd").click(function(e){
@@ -12,45 +27,60 @@ $(document).ready(function(){
 
 function mainCode()
 {
-  var isInsert = true;
+  var isEmpty = 0;
+  $(".cattleQnttFields").each(function(){
+    if($(this).val() != "")
+    {
+      isEmpty++;
+    }
+  });
+  if(isEmpty == 0){ alertify.error("Та малын тоо толгойг оруулна уу!"); return; }
 
-  if($("#provID").val()=="-1"){
-    alertify.error("Та заавал АЙМГИЙН НЭР сонгоно уу!!!");
-    isInsert = false;
-  }
-  if($("#symID").val()=="-1"){
-    alertify.error("Та заавал СУМЫН НЭР сонгоно уу!!!");
-    isInsert = false;
-  }
-  if($("#cattleID").val()=="-1"){
-    alertify.error("Та заавал МАХНЫ ТӨРӨЛ сонгоно уу!!!");
-    isInsert = false;
-  }
-
-  if($("#cattleQntt").val()=="-1"){
-    alertify.error("Та заавал МАХНЫ ТӨРӨЛ сонгоно уу!!!");
-    isInsert = false;
-  }
-
-  if(isInsert == false){return;}
+  jsonObj = [];
+  $(".foodProductFields").each(function(){
+      if($(this).val() != "" ){
+          item = {}
+          item ["productID"] = $(this).attr('id');
+          item ["foodQntt"] = $(this).val();
+          jsonObj.push(item);
+      }
+  });
 
   $.ajax({
     type:'post',
-    url:cattleQnttNew,
-    data:$("#frmCattleQnttNew").serialize(),
-    success:function(response){
-        alertify.alert( response);
-        cattleQnttTableRefresh();
-        emptyForm();
-        dataRow = "";
+    url:foodReserveNewUrl,
+    data:{
+      _token: $('meta[name="csrf-token"]').attr('content'),
+      provID: dataRow[1],
+      symID: dataRow[2],
+      reserveDate: $("#foodReserveDate").val(),
+      qntt: jsonObj
     },
-    error: function(jqXhr, json, errorThrown){// this are default for ajax errors
-      var errors = jqXhr.responseJSON;
-      var errorsHtml = '';
-      $.each(errors['errors'], function (index, value) {
-          errorsHtml += '<ul class="list-group"><li class="list-group-item alert alert-danger">' + value + '</li></ul>';
-      });
-      alert(errorsHtml);
+    success:function(response){
+        if(response.status == 'success'){
+
+          var table = $("#FoodReserveTable").DataTable();
+
+          var rowData = [];
+          var index = 0;
+          $(".foodProductFields").each(function(){
+            rowData[index] = $(this).val();
+            index++;
+          });
+
+          //songogdson moriin nudnii utgiig oorchilj bn
+          table.rows({ selected: true })
+          .every(function (rowIdx, tableLoop, rowLoop){
+            for(var i=0; i<index; i++)
+              table.cell(rowIdx, i+5).data(rowData[i]);
+          }).draw();
+
+          $("#modalFoodReserveNew").modal("hide");
+          alertify.alert(response.msg);
+        }
+        else{
+          alertify.error(response.msg);
+        }
     }
   });
 }

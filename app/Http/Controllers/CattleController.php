@@ -41,10 +41,11 @@ class CattleController extends Controller
         try{
           $insertCattle = new Cattle;
           $insertCattle->cattleName = $req->cattleName;
+          $insertCattle->ratio = $req->ratioToSheep;
           $insertCattle->save();
           return "Амжилттай хадгаллаа";
         }catch(\Exception $e){
-          return "Серверийн алдаа!!! Веб мастерт хандана уу";
+          return $e;
         }
     }
 
@@ -53,6 +54,7 @@ class CattleController extends Controller
         try{
             $updateCattle = Cattle::find($req->rowID);
             $updateCattle->cattleName = $req->cattleName;
+            $updateCattle->ratio = $req->ratioToSheep;
             $updateCattle->save();
             return "Амжилттай заслаа";
         }catch(\Exception $e){

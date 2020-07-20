@@ -45,8 +45,7 @@
                           @endforeach
                       </tbody>
                     </table>
-                    <button class="btn btn-primary" type="button" name="button" id="btnAddModalOpen">Нэмэх</button>
-                    <button class="btn btn-warning" type="button" name="button" id="btnEditModalOpen">Засах</button>
+                    <button class="btn btn-warning" type="button" name="button" id="btnAddModalOpen">Тоо толгой нэмэх</button>
                     <button class="btn btn-danger" type="button" name="button" id="btnCattleQnttDelete">Устгах</button>
                   </div>
                 </div>
@@ -130,6 +129,8 @@ cursor: pointer;
           "fixedHeader": true,
           "scrollX":true
         });
+        table.column( 1 ).visible( false );
+        table.column( 2 ).visible( false );
 
         $('#cattleQnttDB tbody').on( 'click', 'tr', function () {
           if ( $(this).hasClass('selected') ) {
