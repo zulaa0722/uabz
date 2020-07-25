@@ -28,7 +28,9 @@
                   @foreach ($products as $product)
                     <div class="col-md-3">
                       <label style="margin-bottom:-20px;">{{$product->productName}}</label><label style="color:red;font-style:bold;">&nbsp /тонн/</label>
-                      <input class="form-control foodProductFields" type="number" id="{{$product->id}}" name="{{$product->productName}}" style="margin-bottom:10px;">
+                      <input class="form-control foodProductFields" type="number" id="{{$product->id}}" name="{{$product->productName}}"
+                        style="margin-bottom:10px;">
+                        <label id="foodTotalKcal"></label>
                     </div>
                   @endforeach
                 </div>

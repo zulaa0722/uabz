@@ -1,6 +1,4 @@
-
-
-<div id="modalCattleQnttNew" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
+  <div id="modalCattleQnttNew" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
       {{-- modal-lg --}}
         <div class="modal-content">
@@ -23,11 +21,16 @@
 
                 <div class="form-group row">
                     @foreach ($cattles as $cattle)
-                      <div class="col-md-3">
-                      <label style="margin-bottom:-20px;">{{$cattle->cattleName}}</label>
-                      <input style="margin-bottom:10px;" class="form-control cattleQnttFields" type="number" name="" id="{{$cattle->id}}">
-                      <label style="margin-bottom:-20px; font-size:12px;">Хонин толгойд шилжүүлэхэд:</label>
-                      <label style="margin-bottom:-20px; font-size:12px;">Нийт ккал:</label>
+                      <div class="col-md-4">
+                        <label style="margin-bottom:-20px;">{{$cattle->cattleName}}</label>
+                        <input style="margin-bottom:10px;" class="form-control cattleQnttFields"
+                          type="number" id="{{$cattle->id}}" ratio="{{$cattle->ratio}}">
+                        <input type="hidden" name="" id="cattle{{$cattle->id}}" value="{{$cattle->ratio}}">
+                        <label style="margin-bottom:-20px; font-size:12px;color:#400513">Хонин толгойд шилжүүлэхэд:</label>&nbsp
+                        <label id="sheep{{$cattle->id}}"></label>
+                        <label style="margin-bottom:-20px; font-size:12px;color:#400513">Нийт махны кг:</label>&nbsp
+                        <label id="sheepKg{{$cattle->id}}"></label>
+
                       </div>
                     @endforeach
                 </div>

@@ -45,6 +45,9 @@ class CattleQnttController extends Controller
             $insertCattleQntt->symID = $req->symID;
             $insertCattleQntt->cattleID = $value['cattleID'];
             $insertCattleQntt->cattQntt = $value['cattleQntt'];
+            $insertCattleQntt->toSheep = $value['toSheepQntt'];
+            $insertCattleQntt->sheepKg = $value['toSheepKg'];
+
             $insertCattleQntt->save();
         }
 

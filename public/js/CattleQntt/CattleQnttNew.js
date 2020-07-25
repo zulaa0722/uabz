@@ -1,5 +1,14 @@
 $(document).ready(function(){
     $("#btnAddModalOpen").click(function(){
+
+      $(".cattleQnttFields").keyup(function(){
+        var qntt = $(this).val();
+        var toSheep = $(this).attr("ratio");
+        $("#sheep"+$(this).attr("id")).text((toSheep * qntt).toFixed(2));
+        var allSheep = parseFloat($("#sheep"+$(this).attr("id")).text());
+        $("#sheepKg"+$(this).attr("id")).text((allSheep * 18.7).toFixed(2));
+      });
+
       if(dataRow == "")
       {
         alertify.error('Та НЭМЭХ мөрөө сонгоно уу!!!');
@@ -13,9 +22,13 @@ $(document).ready(function(){
       var i=5;
       $(".cattleQnttFields").each(function(){
         $(this).val(dataRow[i]);
+        var qntt = dataRow[i];
+        var toSheep = $(this).attr("ratio");
+        $("#sheep"+$(this).attr("id")).text((toSheep * qntt).toFixed(2));
+        var allSheep = parseFloat($("#sheep"+$(this).attr("id")).text());
+        $("#sheepKg"+$(this).attr("id")).text((allSheep * 18.7).toFixed(2));
         i++;
       });
-
     });
 
     $("#btnCattleQnttAdd").click(function(e){
@@ -42,6 +55,8 @@ function mainCode()
           item = {}
           item ["cattleID"] = $(this).attr('id');
           item ["cattleQntt"] = $(this).val();
+          item ["toSheepQntt"] = $("#sheep"+$(this).attr('id')).text();
+          item ["toSheepKg"] = $("#sheepKg"+$(this).attr('id')).text();
           jsonObj.push(item);
       }
   });

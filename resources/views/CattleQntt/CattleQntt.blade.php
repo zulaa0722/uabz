@@ -58,7 +58,6 @@
       </div>
     </div>
 @include('CattleQntt.CattleQnttNew')
-@include('CattleQntt.CattleQnttEdit')
 @endsection
 
 @section('css')
@@ -149,9 +148,5 @@ cursor: pointer;
   </script>
 
 <script src="{{url("public/js/CattleQntt/CattleQnttNew.js")}}"></script>
-<script src="{{url("public/js/CattleQntt/CattleQnttEdit.js")}}"></script>
 <script src="{{url("public/js/CattleQntt/CattleQnttDelete.js")}}"></script>
-
-
-
 @endsection
