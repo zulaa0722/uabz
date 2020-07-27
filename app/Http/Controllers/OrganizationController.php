@@ -14,6 +14,11 @@ use DB;
 
 class OrganizationController extends Controller
 {
+  public function __construct()
+  {
+      $this->middleware('auth');
+  }
+  
   public function orgShow()
   {
     try{

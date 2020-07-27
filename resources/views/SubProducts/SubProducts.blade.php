@@ -7,7 +7,7 @@
           <div class="col-xl-12">
               <div class="card">
                 <div  class="card-body">
-                  <h4 Class="text-center">Орлох бүтээгдэхүүн</h4>
+                  <h4 Class="text-center">Орлуулах хүнсний бүтээгдэхүүн</h4>
                   <table id="subProductsDB" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                       <thead>
                         <tr>

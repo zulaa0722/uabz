@@ -218,23 +218,24 @@
 
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <!-- item-->
-                                    <a class="dropdown-item" href="#"><i class="mdi mdi-account-circle font-size-17 align-middle mr-1"></i> Profile</a>
+                                    {{-- <a class="dropdown-item" href="#"><i class="mdi mdi-account-circle font-size-17 align-middle mr-1"></i> Profile</a>
                                     <a class="dropdown-item" href="#"><i class="mdi mdi-wallet font-size-17 align-middle mr-1"></i> My Wallet</a>
                                     <a class="dropdown-item d-block" href="#"><span class="badge badge-success float-right">11</span><i class="mdi mdi-settings font-size-17 align-middle mr-1"></i> Settings</a>
-                                    <a class="dropdown-item" href="#"><i class="mdi mdi-lock-open-outline font-size-17 align-middle mr-1"></i> Lock screen</a>
+                                    <a class="dropdown-item" href="#"><i class="mdi mdi-lock-open-outline font-size-17 align-middle mr-1"></i> Lock screen</a> --}}
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item text-danger" href="javascript:void();" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         <i class="bx bx-power-off font-size-17 align-middle mr-1 text-danger"></i>
                                         Logout
                                     </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        <input type="hidden" name="_token" value="ntob89TieMptUFN2YxrS8gX6Xl84gIG0MVFebsoQ">                                </form>
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    </form>
                                 </div>
                             </div>
                             <div class="d-inline-block">
                               <button type="button" disabled class="btn header-item waves-effect">
-                                  {{-- <h4>{{ Auth::user()->name }}</h4> --}}
-                                  <h4>davaanyam</h4>
+                                  <h4>{{ Auth::user()->name }}</h4>
+                                  {{-- <h4>davaanyam</h4> --}}
                               </button>
                             </div>
 
@@ -301,7 +302,7 @@
             </a>
             <ul class="sub-menu" aria-expanded="false">
                 <li><a href="{{url("/cattle/show")}}">Малын төрөл</a></li>
-                <li><a href="{{url("/cattleQntt/show")}}">Малын махны хэмжээ</a></li>
+                <li><a href="{{url("/cattleQntt/show")}}">Малын тоо толгой</a></li>
             </ul>
             </li>
 
@@ -334,10 +335,24 @@
                 <span>Туслах сан</span>
             </a>
             <ul class="sub-menu" aria-expanded="false">
+                <li><a href="{{url("/norm/show")}}">Хүнсний норм</a></li>
                 <li><a href="{{url("/status/show")}}">Төлөв</a></li>
                 <li><a href="{{url("/level/show")}}">Зэрэгүүд</a></li>
             </ul>
             </li>
+
+            @if(Auth::user()->permission == 1)
+            <li>
+            <a href="javascript: void(0);" class="has-arrow waves-effect">
+                <i class="ti-package"></i>
+                <span>Админ хэрэглэгч</span>
+            </a>
+            <ul class="sub-menu" aria-expanded="false">
+                <li><a href="{{url("/register")}}">Админ хэрэглэгч нэмэх</a></li>
+                <li><a href="{{url("/show/users")}}">Админ хэрэглэгч засах</a></li>
+            </ul>
+            </li>
+            @endif
 
             </ul>
         </div>

@@ -11,29 +11,26 @@
             <div class="modal-body">
               <form id="frmFoodReserveNew" action="" method="post">
                 @csrf
-                <div class="form-group row">
+                <div class="form-group row justify-content-center">
+                    <label id="provName" style="color:blue; font-size:16px;"> </label>
+                    <label style="font-size:16px;">&nbsp аймгийн &nbsp</label>
+                    <label style="color:blue; font-size:16px;" id="symName"></label>
+                    <label style="font-size:16px;">&nbsp сум </label>
+                </div>
+                  <div class="form-group row">
                   <div class="col-md-3">
-                    <label>Аймаг сонгоно уу</label>
-                    <select class="form-control" name="provID" id="provName" getSymUrl="{{url("/sym/get/by/provID")}}">
-                      <option value="-1">Сонгоно уу</option>
-                      @foreach ($provinces as $province)
-                      <option value="{{$province->id}}">{{$province->provName}}</option>
-                      @endforeach
-                    </select>
-                  </div>
-                  <div class="col-md-3">
-                    <label>Сум сонгоно уу</label>
-                    <select class="form-control" name="symID" id="symName">
-                      <option value="-1">Сонгоно уу</option>
-                    </select>
+                    <label>Огноо:</label>
+                    <input type="date" name="foodReserveDate" id="foodReserveDate" value="" class="form-control">
                   </div>
                 </div>
 
                 <div class="form-group row">
                   @foreach ($products as $product)
                     <div class="col-md-3">
-                      <label style="margin-bottom:-20px;">{{$product->productName}}</label>
-                      <input class="form-control foodProductFields" type="number" id="{{$product->id}}" name="foodProducsts" style="margin-bottom:10px;">
+                      <label style="margin-bottom:-20px;">{{$product->productName}}</label><label style="color:red;font-style:bold;">&nbsp /тонн/</label>
+                      <input class="form-control foodProductFields" type="number" id="{{$product->id}}" name="{{$product->productName}}"
+                        style="margin-bottom:10px;">
+                        <label id="foodTotalKcal"></label>
                     </div>
                   @endforeach
                 </div>

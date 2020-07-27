@@ -7,26 +7,49 @@
           <div class="col-xl-8">
               <div class="card">
                 <div  class="card-body">
-                  <h4 Class="text-center">Малын махны хэмжээ /кг/</h4>
-                  <table id="cattleQnttDB" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                  <h4 Class="text-center">Малын махны хэмжээ /тоо толгой/</h4>
+                  <table id="cattleQnttDB" class="table table-striped table-bordered wrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                       <thead>
                         <tr>
                           <th>№</th>
+                          <th></th>
+                          <th></th>
                           <th>Аймаг</th>
                           <th>Сум</th>
-                          <th>Махны төрөл</th>
-                          <th>Махны жин /кг/</th>
-                          <th></th>
-                          <th></th>
-                          <th></th>
+                          @foreach ($cattles as $cattle)
+                              <th>{{$cattle->cattleName}}</th>
+                          @endforeach
                         </tr>
                       </thead>
                       <tbody>
-                        <td></td>
+                        @php
+                          $i=1;
+                        @endphp
+                          @foreach ($syms as $sym)
+                            <tr>
+                              <td>{{$i}}</td>
+                              <td>{{$sym->provID}}</td>
+                              <td>{{$sym->id}}</td>
+                              <td>{{$sym->provName}}</td>
+                              <td>{{$sym->symName}}</td>
+                              @foreach ($cattles as $cattle)
+                                  <td>
+                                  @php
+                                      $cattleCounts = App\Http\Controllers\CattleQnttController::getCattleCountBySymID($sym->id, $cattle->id);
+                                      foreach ($cattleCounts as $cattleCount) {
+                                          echo $cattleCount->cattQntt;
+                                      }
+                                  @endphp
+                                  </td>
+                              @endforeach
+                            </tr>
+                            @php
+                              $i++;
+                            @endphp
+                          @endforeach
                       </tbody>
                     </table>
-                    <button class="btn btn-primary" type="button" name="button" id="btnAddModalOpen">Нэмэх</button>
-                    <button class="btn btn-warning" type="button" name="button" id="btnEditModalOpen">Засах</button>
+                    <button class="btn btn-warning" type="button" name="button" id="btnAddModalOpen">Тоо толгой нэмэх</button>
                     <button class="btn btn-danger" type="button" name="button" id="btnCattleQnttDelete">Устгах</button>
                   </div>
                 </div>
@@ -35,7 +58,6 @@
       </div>
     </div>
 @include('CattleQntt.CattleQnttNew')
-@include('CattleQntt.CattleQnttEdit')
 @endsection
 
 @section('css')
@@ -60,55 +82,56 @@ cursor: pointer;
   <script type="text/javascript">
   var dataRow = "";
   var csrf = "{{ csrf_token() }}";
-  var getCattleQntt = "{{url("/getCattleQntt")}}";
   var cattleQnttNew = "{{url("/cattleQntt/insert")}}";
-  var cattleQnttEditUrl = "{{url("/cattleQntt/edit")}}";
   var cattleQnttDeleteUrl = "{{url("/cattleQntt/delete")}}";
 
   $(document).ready(function(){
-    var table = $('#cattleQnttDB').DataTable({
-      "language": {
-              "lengthMenu": "_MENU_ мөрөөр харах",
-              "zeroRecords": "Хайлт илэрцгүй байна",
-              "info": "Нийт _PAGES_ -аас _PAGE_-р хуудас харж байна ",
-              "infoEmpty": "Хайлт илэрцгүй",
-              "infoFiltered": "(_MAX_ мөрөөс хайлт хийлээ)",
-              "sSearch": "Хайх: ",
-              "paginate": {
-                "previous": "Өмнөх",
-                "next": "Дараахи"
-              },
-              "select": {
-                  rows: ""
+
+    $('#cattleQnttDB thead tr').clone(true).appendTo( '#cattleQnttDB thead' );
+
+    var filterIndex = 0;
+      $('#cattleQnttDB thead tr:eq(1) th').each( function (i) {
+        if(filterIndex == 3 || filterIndex == 4)
+        {
+          $(this).html( '<input type="text" style="width:110%;" placeholder="Хайх..." />' );
+          $( 'input', this ).on( 'keyup change', function () {
+              if ( table.column(i).search() !== this.value ) {
+                  table.column(i).search( this.value ).draw();
               }
+          });
+        }
+        else {
+          $(this).html('');
+        }
+        filterIndex++;
+      });
+      var table = $('#cattleQnttDB').DataTable({
+        "language": {
+          "lengthMenu": "_MENU_ мөрөөр харах",
+          "zeroRecords": "Хайлт илэрцгүй байна",
+          "info": "Нийт _PAGES_ -аас _PAGE_-р хуудас харж байна ",
+          "infoEmpty": "Хайлт илэрцгүй",
+          "infoFiltered": "(_MAX_ мөрөөс хайлт хийлээ)",
+          "sSearch": "Хайх: ",
+          "paginate": {
+            "previous": "Өмнөх",
+            "next": "Дараахи"
           },
-          select: {
-            style: 'single'
+          "select": {
+            rows: ""
+          }
         },
-          "processing": true,
-          "serverSide": true,
-          "stateSave": true,
-          "ajax":{
-                   "url": getCattleQntt,
-                   "dataType": "json",
-                   "type": "POST",
-                   "data":{
-                        _token: csrf
-                      }
-                 },
-          "columns": [
-            { data: "id", name: "id",  render: function (data, type, row, meta) {
-          return meta.row + meta.settings._iDisplayStart + 1;
-      }  },
-            { data: "provName", name: "provName"},
-            { data: "symName", name: "symName"},
-            { data: "cattleName", name: "cattleName"},
-            { data: "cattQntt", name: "cattQntt"},
-            { data: "provID", name: "provID", visible:false},
-            { data: "symID", name: "symID", visible:false},
-            { data: "cattleID", name: "cattleID", visible:false}
-            ]
-        });
+        select: {
+          style: 'single'
+        },
+        "stateSave": true,
+        "orderCellsTop": true,
+        "fixedHeader": true,
+        "scrollX":true
+      });
+
+        table.column( 1 ).visible( false );
+        table.column( 2 ).visible( false );
 
         $('#cattleQnttDB tbody').on( 'click', 'tr', function () {
           if ( $(this).hasClass('selected') ) {
@@ -125,9 +148,5 @@ cursor: pointer;
   </script>
 
 <script src="{{url("public/js/CattleQntt/CattleQnttNew.js")}}"></script>
-<script src="{{url("public/js/CattleQntt/CattleQnttEdit.js")}}"></script>
 <script src="{{url("public/js/CattleQntt/CattleQnttDelete.js")}}"></script>
-
-
-
 @endsection

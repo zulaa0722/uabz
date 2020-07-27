@@ -10,7 +10,7 @@
         <div class="card">
           <div id="changeBlade" class="card-body">
             <h4 class="text-center">Хүнсний нөөцийн судалгаа</h4>
-            <table id="FoodReserveTable" class="table table-bordered dt-responsive wrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+            <table id="FoodReserveTable" class="table table-bordered wrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead>
                   <tr>
                     <th>№</th>
@@ -18,7 +18,7 @@
                     <th></th>
 
                     <th>Аймаг, нийслэл</th>
-                    <th>Сум, Дүүрэг</th>
+                    <th style="width:18%;">Сум, Дүүрэг</th>
                     @foreach ($products as $product)
                       <th>{{$product->productName}}</th>
                     @endforeach
@@ -38,7 +38,15 @@
                     <td>{{$sym->provName}}</td>
                     <td>{{$sym->symName}}</td>
                     @foreach ($products as $product)
-                      <td>{{120}}</td>
+                      <td>
+                      @php
+                        $qntts = App\Http\Controllers\FoodReserveController::selectReserveFootQnttByProvSym($sym->provID, $sym->id, $product->id);
+
+                        foreach ($qntts as $qntt) {
+                          echo $qntt->mainQntt;
+                        }
+                      @endphp
+                    </td>
                     @endforeach
                   </tr>
                   @php
@@ -48,17 +56,14 @@
 
                 </tbody>
             </table>
-            <button class="btn btn-primary" type="button" name="button" id="btnAddModalOpen">Нэмэх</button>
-            <button class="btn btn-warning" type="button" name="button" id="btnEditModalOpen">Засах</button>
+            <button class="btn btn-warning" type="button" name="button" id="btnAddModalOpen">Нөөц бүрдүүлэх</button>
             <button class="btn btn-danger" type="button" name="button" id="btnFoodReserveDelete">Устгах</button>
           </div>
         </div>
     </div>
   </div>
-  @include('FoodReserve.FoodReserveNew')
-  @include('FoodReserve.FoodReserveEdit')
 
-
+@include('FoodReserve.FoodReserveNew')
 @endsection
 
 @section('css')
@@ -81,18 +86,32 @@
 
   <script type="text/javascript">
     var dataRow = "";
-    var table = "";
-    var csrf = "{{ csrf_token() }}";
-    var getFoodProducts = "{{url("/getFoodProducts")}}";
-    var foodProductsNew = "{{url("/foodProducts/insert")}}";
-    var foodProductsEditUrl = "{{url("/foodProducts/edit")}}";
-    var foodProductsDeleteUrl = "{{url("/foodProducts/delete")}}";
+    var foodReserveNewUrl = "{{url("/foodReserve/insert")}}";
+    var foodReserveDeleteUrl = "{{url("/foodReserve/delete")}}";
   </script>
 
 
 
 <script type="text/javascript">
 $(document).ready(function(){
+  $('#FoodReserveTable thead tr').clone(true).appendTo( '#FoodReserveTable thead' );
+
+  var filterIndex = 0;
+    $('#FoodReserveTable thead tr:eq(1) th').each( function (i) {
+      if(filterIndex == 4 || filterIndex == 3)
+      {
+        $(this).html( '<input type="text" style="width:110%;" placeholder="Хайх..." />' );
+        $( 'input', this ).on( 'keyup change', function () {
+            if ( table.column(i).search() !== this.value ) {
+                table.column(i).search( this.value ).draw();
+            }
+        });
+      }
+      else {
+        $(this).html('');
+      }
+      filterIndex++;
+    });
   var table = $('#FoodReserveTable').DataTable( {
     "language": {
             "lengthMenu": "_MENU_ мөрөөр харах",
@@ -112,7 +131,10 @@ $(document).ready(function(){
       select: {
         style: 'single'
       },
-      "stateSave": true
+      "orderCellsTop": true,
+      "fixedHeader": true,
+      "scrollX": true
+      // "stateSave": true
       });
       table.column( 1 ).visible( false );
       table.column( 2 ).visible( false );
@@ -127,7 +149,7 @@ $(document).ready(function(){
             var currow = $(this).closest('tr');
             dataRow = $('#FoodReserveTable').DataTable().row(currow).data();
         }
-        console.log(dataRow );
+
         });
 
 });
@@ -139,6 +161,5 @@ $(document).ready(function(){
 
 <script src="{{url('public/uaBCssJs/dropzone/dropzone.min.js')}}"></script>
 <script src="{{url("public/js/FoodReserve/FoodReserveNew.js")}}"></script>
-<script src="{{url("public/js/FoodReserve/FoodReserveEdit.js")}}"></script>
 <script src="{{url("public/js/FoodReserve/FoodReserveDelete.js")}}"></script>
 @endsection

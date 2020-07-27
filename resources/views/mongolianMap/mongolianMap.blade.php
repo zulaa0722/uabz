@@ -7,6 +7,15 @@
   stroke:white;
   stroke-width:8;
 }
+
+.aimag1{
+  /* fill:transparent; */
+  fill:#ff0c00;
+  fill-opacity:0.7;
+  stroke:white;
+  stroke-width:8;
+}
+
 .aimag:hover{
   fill:transparent;
 }
@@ -74,9 +83,7 @@ stroke-width:2;
                         @include('mongolianMap.allMaps')
 
                     </div>
-                    <div class="" style="display:none">
-                      @include('mongolianMap.Tuv')
-                    </div>
+                    
 
 
     <style media="screen">
@@ -236,4 +243,6 @@ stroke-width:2;
 
       });
   </script>
+
+  <script src="{{url('public/js/mongolianMap/test.js')}}"></script>
 @endsection

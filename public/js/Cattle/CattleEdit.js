@@ -6,6 +6,7 @@ $(document).ready(function(){
         return;
     }
     $("#ecattleName").val(dataRow['cattleName']);
+    $("#eratioToSheep").val(dataRow['ratio']);
     $("#modalCattleEdit").modal("show");
   });
 
@@ -26,7 +27,7 @@ function editCode()
   $.ajax({
       type: 'post',
       url: cattleEditUrl,
-      data: {_token: csrf, rowID : dataRow['id'],  cattleName: $("#ecattleName").val() },
+      data: {_token: csrf, rowID : dataRow['id'],  cattleName: $("#ecattleName").val(), ratioToSheep: $("#eratioToSheep").val() },
       success:function(response){
           alertify.alert(response);
           cattleTableRefresh();

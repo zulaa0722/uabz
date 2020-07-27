@@ -21,6 +21,8 @@ function mainCode()
 
   if(isInsert == false){return;}
 
+  console.log($("#frmCattleNew").serialize());
+
   $.ajax({
     type:'post',
     url:cattleNew,
@@ -45,6 +47,7 @@ function mainCode()
 function emptyForm()
 {
   $("#cattleName").val("");
+  $("#ratioToSheep").val("");
 }
 function cattleTableRefresh()
 {
@@ -83,7 +86,8 @@ function cattleTableRefresh()
           { data: "id", name: "id",  render: function (data, type, row, meta) {
         return meta.row + meta.settings._iDisplayStart + 1;
     }  },
-          { data: "cattleName", name: "cattleName"}
+          { data: "cattleName", name: "cattleName"},
+          { data: "ratio", name: "ratio"}
           ]
       }).ajax.reload();
 }

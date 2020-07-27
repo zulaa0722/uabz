@@ -57,6 +57,8 @@ Route::get("/mongolia/Zavkhan", "mongolianMapsController@Zavkhan");
 
 //FoodReserve begin
 Route::get("/foodReserve", "FoodReserveController@foodReserveShow");
+Route::post('foodReserve/insert', "FoodReserveController@store");
+Route::post('foodReserve/delete', "FoodReserveController@delete");
 //FoodReserve end
 
 // forms start
@@ -98,9 +100,7 @@ Route::post("/cattle/edit", "CattleController@update");
 Route::post("/cattle/delete", "CattleController@delete");
 
 Route::get("/cattleQntt/show", "CattleQnttController@cattleQnttShow");
-Route::post("/getCattleQntt", "CattleQnttController@getCattleQnttData");
 Route::post("/cattleQntt/insert", "CattleQnttController@store");
-Route::post("/cattleQntt/edit", "CattleQnttController@update");
 Route::post("/cattleQntt/delete", "CattleQnttController@delete");
 
 Route::get("/axax/show", "AxaxController@axaxShow");
@@ -178,3 +178,12 @@ Route::post("/norm/new", 'NormController@store');
 Route::post("/norm/update", 'NormController@update');
 Route::post("/norm/delete", 'NormController@destroy');
 // NORM END
+
+
+
+// ADMIN START
+Route::get('/show/users', "UserController@showUsers");
+Route::post('/get/users', "UserController@getUsers");
+Route::post('/delete/users', "UserController@deleteUsers");
+Route::post('/change/password/users', "UserController@changePassword");
+// ADMIN END
