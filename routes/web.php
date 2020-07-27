@@ -138,7 +138,7 @@ Route::post('/dada/file/manager/delete/image', 'dadaaFileManagerController@delet
 
 
 //test
-Route::get("/test/get", "SymController@getSymByProvinceID");
+Route::get("/test/get", "mongolianMapsController@getBaliarArray");
 //test end
 
 
