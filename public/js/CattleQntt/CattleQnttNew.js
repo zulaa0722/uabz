@@ -1,6 +1,34 @@
 $(document).ready(function(){
     $("#btnAddModalOpen").click(function(){
-        $("#modalCattleQnttNew").modal("show");
+
+      $(".cattleQnttFields").keyup(function(){
+        var qntt = $(this).val();
+        var toSheep = $(this).attr("ratio");
+        $("#sheep"+$(this).attr("id")).text((toSheep * qntt).toFixed(2));
+        var allSheep = parseFloat($("#sheep"+$(this).attr("id")).text());
+        $("#sheepKg"+$(this).attr("id")).text((allSheep * 18.7).toFixed(2));
+      });
+
+      if(dataRow == "")
+      {
+        alertify.error('Та НЭМЭХ мөрөө сонгоно уу!!!');
+        return;
+      }
+
+      $("#modalCattleQnttNew").modal("show");
+      $("#provName").text(dataRow[3]);
+      $("#symName").text(dataRow[4]);
+
+      var i=5;
+      $(".cattleQnttFields").each(function(){
+        $(this).val(dataRow[i]);
+        var qntt = dataRow[i];
+        var toSheep = $(this).attr("ratio");
+        $("#sheep"+$(this).attr("id")).text((toSheep * qntt).toFixed(2));
+        var allSheep = parseFloat($("#sheep"+$(this).attr("id")).text());
+        $("#sheepKg"+$(this).attr("id")).text((allSheep * 18.7).toFixed(2));
+        i++;
+      });
     });
 
     $("#btnCattleQnttAdd").click(function(e){
@@ -12,100 +40,62 @@ $(document).ready(function(){
 
 function mainCode()
 {
-  var isInsert = true;
+  var isEmpty = 0;
+  $(".cattleQnttFields").each(function(){
+    if($(this).val() != "")
+    {
+      isEmpty++;
+    }
+  });
+  if(isEmpty == 0){ alertify.error("Та малын тоо толгойг оруулна уу!"); return; }
 
-  if($("#provID").val()=="-1"){
-    alertify.error("Та заавал АЙМГИЙН НЭР сонгоно уу!!!");
-    isInsert = false;
-  }
-  if($("#symID").val()=="-1"){
-    alertify.error("Та заавал СУМЫН НЭР сонгоно уу!!!");
-    isInsert = false;
-  }
-  if($("#cattleID").val()=="-1"){
-    alertify.error("Та заавал МАХНЫ ТӨРӨЛ сонгоно уу!!!");
-    isInsert = false;
-  }
-
-  if($("#cattleQntt").val()=="-1"){
-    alertify.error("Та заавал МАХНЫ ТӨРӨЛ сонгоно уу!!!");
-    isInsert = false;
-  }
-
-  if(isInsert == false){return;}
+  jsonObj = [];
+  $(".cattleQnttFields").each(function(){
+      if($(this).val() != "" ){
+          item = {}
+          item ["cattleID"] = $(this).attr('id');
+          item ["cattleQntt"] = $(this).val();
+          item ["toSheepQntt"] = $("#sheep"+$(this).attr('id')).text();
+          item ["toSheepKg"] = $("#sheepKg"+$(this).attr('id')).text();
+          jsonObj.push(item);
+      }
+  });
 
   $.ajax({
     type:'post',
     url:cattleQnttNew,
-    data:$("#frmCattleQnttNew").serialize(),
-    success:function(response){
-        alertify.alert( response);
-        cattleQnttTableRefresh();
-        emptyForm();
-        dataRow = "";
+    data:{
+      _token: $('meta[name="csrf-token"]').attr('content'),
+      provID: dataRow[1],
+      symID: dataRow[2],
+      qntt: jsonObj
     },
-    error: function(jqXhr, json, errorThrown){// this are default for ajax errors
-      var errors = jqXhr.responseJSON;
-      var errorsHtml = '';
-      $.each(errors['errors'], function (index, value) {
-          errorsHtml += '<ul class="list-group"><li class="list-group-item alert alert-danger">' + value + '</li></ul>';
-      });
-      alert(errorsHtml);
+    success:function(response){
+        if(response.status == 'success'){
+
+          var table = $("#cattleQnttDB").DataTable();
+
+          var rowData = [];
+          var index = 0;
+          $(".cattleQnttFields").each(function(){
+            rowData[index] = $(this).val();
+            index++;
+          });
+
+          //songogdson moriin nudnii utgiig oorchilj bn
+          table.rows({ selected: true })
+          .every(function (rowIdx, tableLoop, rowLoop){
+            for(var i=0; i<index; i++)
+              table.cell(rowIdx, i+5).data(rowData[i]);
+          }).draw();
+
+          $("#modalCattleQnttNew").modal("hide");
+          alertify.alert(response.msg);
+        }
+        else{
+          console.log(response.msg);
+          alertify.error(response.msg);
+        }
     }
   });
-}
-function emptyForm()
-{
-  $("#provID").val("-1");
-  $("#symID").val("-1");
-  $("#cattleID").val("-1");
-  $("#cattleQntt").val("");
-
-}
-function cattleQnttTableRefresh1()
-{
-  $('#cattleQnttDB').DataTable().destroy();
-  var table = $('#cattleQnttDB').DataTable({
-    "language": {
-            "lengthMenu": "_MENU_ мөрөөр харах",
-            "zeroRecords": "Хайлт илэрцгүй байна",
-            "info": "Нийт _PAGES_ -аас _PAGE_-р хуудас харж байна ",
-            "infoEmpty": "Хайлт илэрцгүй",
-            "infoFiltered": "(_MAX_ мөрөөс хайлт хийлээ)",
-            "sSearch": "Хайх: ",
-            "paginate": {
-              "previous": "Өмнөх",
-              "next": "Дараахи"
-            },
-            "select": {
-                rows: ""
-            }
-        },
-        select: {
-          style: 'single'
-      },
-        "processing": true,
-        "serverSide": true,
-        "stateSave": true,
-        "ajax":{
-                 "url": getCattleQntt,
-                 "dataType": "json",
-                 "type": "POST",
-                 "data":{
-                      _token: csrf
-                    }
-               },
-        "columns": [
-          { data: "id", name: "id",  render: function (data, type, row, meta) {
-        return meta.row + meta.settings._iDisplayStart + 1;
-    }  },
-          { data: "provName", name: "provName"},
-          { data: "symName", name: "symName"},
-          { data: "cattleName", name: "cattleName"},
-          { data: "cattQntt", name: "cattQntt"},
-          { data: "provID", name: "provID", visible:false},
-          { data: "symID", name: "symID", visible:false},
-          { data: "cattleID", name: "cattleID", visible:false}
-          ]
-      }).ajax.reload();
 }

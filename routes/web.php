@@ -25,6 +25,36 @@ Route::get("/mongolia/maps", "mongolianMapsController@mongolianMapsShow");
 Route::get("/mongolian/sumd", "mongolianMapsController@mongolianSumd");
 Route::get("/get/name", "mongolianMapsController@getName");
 
+Route::get("/mongolian/province", "mongolianMapsController@showProvince");
+Route::get("/mongolian/allMaps", "mongolianMapsController@allMapsShow");
+
+Route::get("/mongolia/arkhangai", "mongolianMapsController@arkhangai");
+Route::get("/mongolia/Bayan-Ulgii", "mongolianMapsController@BayanUlgii");
+Route::get("/mongolia/Bayankhongor", "mongolianMapsController@Bayankhongor");
+
+Route::get("/mongolia/Bulgan", "mongolianMapsController@Bulgan");
+Route::get("/mongolia/Darkhan-Uul", "mongolianMapsController@DarkhanUul");
+Route::get("/mongolia/Dornod", "mongolianMapsController@Dornod");
+Route::get("/mongolia/Dornogovi", "mongolianMapsController@Dornogovi");
+Route::get("/mongolia/Dundgovi", "mongolianMapsController@Dundgovi");
+Route::get("/mongolia/Govi-Altai", "mongolianMapsController@GoviAltai");
+Route::get("/mongolia/Govisumber", "mongolianMapsController@Govisumber");
+Route::get("/mongolia/Khentii", "mongolianMapsController@Khentii");
+Route::get("/mongolia/Khovd", "mongolianMapsController@Khovd");
+Route::get("/mongolia/Khuvsgul", "mongolianMapsController@Khuvsgul");
+Route::get("/mongolia/Orkhon", "mongolianMapsController@Orkhon");
+Route::get("/mongolia/Selenge", "mongolianMapsController@Selenge");
+Route::get("/mongolia/Sukhbaatar", "mongolianMapsController@Sukhbaatar");
+Route::get("/mongolia/Tuv", "mongolianMapsController@Tuv");
+Route::get("/mongolia/Ulaanbaatar", "mongolianMapsController@Ulaanbaatar");
+Route::get("/mongolia/Umnugovi", "mongolianMapsController@Umnugovi");
+Route::get("/mongolia/Uvs", "mongolianMapsController@Uvs");
+Route::get("/mongolia/Uvurkhangai", "mongolianMapsController@Uvurkhangai");
+Route::get("/mongolia/Zavkhan", "mongolianMapsController@Zavkhan");
+
+
+
+
 //FoodReserve begin
 Route::get("/foodReserve", "FoodReserveController@foodReserveShow");
 Route::post('foodReserve/insert', "FoodReserveController@store");
@@ -70,9 +100,7 @@ Route::post("/cattle/edit", "CattleController@update");
 Route::post("/cattle/delete", "CattleController@delete");
 
 Route::get("/cattleQntt/show", "CattleQnttController@cattleQnttShow");
-Route::post("/getCattleQntt", "CattleQnttController@getCattleQnttData");
 Route::post("/cattleQntt/insert", "CattleQnttController@store");
-Route::post("/cattleQntt/edit", "CattleQnttController@update");
 Route::post("/cattleQntt/delete", "CattleQnttController@delete");
 
 Route::get("/axax/show", "AxaxController@axaxShow");

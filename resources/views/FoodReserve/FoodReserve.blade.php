@@ -133,7 +133,7 @@ $(document).ready(function(){
       },
       "orderCellsTop": true,
       "fixedHeader": true,
-      "scrollX":true
+      "scrollX": true
       // "stateSave": true
       });
       table.column( 1 ).visible( false );
@@ -161,6 +161,5 @@ $(document).ready(function(){
 
 <script src="{{url('public/uaBCssJs/dropzone/dropzone.min.js')}}"></script>
 <script src="{{url("public/js/FoodReserve/FoodReserveNew.js")}}"></script>
-<script src="{{url("public/js/FoodReserve/FoodReserveEdit.js")}}"></script>
 <script src="{{url("public/js/FoodReserve/FoodReserveDelete.js")}}"></script>
 @endsection

@@ -12,7 +12,6 @@
               <form id="frmFoodReserveNew" action="" method="post">
                 @csrf
                 <div class="form-group row justify-content-center">
-                  <label id="names"></label>
                     <label id="provName" style="color:blue; font-size:16px;"> </label>
                     <label style="font-size:16px;">&nbsp аймгийн &nbsp</label>
                     <label style="color:blue; font-size:16px;" id="symName"></label>
@@ -29,7 +28,9 @@
                   @foreach ($products as $product)
                     <div class="col-md-3">
                       <label style="margin-bottom:-20px;">{{$product->productName}}</label><label style="color:red;font-style:bold;">&nbsp /тонн/</label>
-                      <input class="form-control foodProductFields" type="number" id="{{$product->id}}" name="{{$product->productName}}" style="margin-bottom:10px;">
+                      <input class="form-control foodProductFields" type="number" id="{{$product->id}}" name="{{$product->productName}}"
+                        style="margin-bottom:10px;">
+                        <label id="foodTotalKcal"></label>
                     </div>
                   @endforeach
                 </div>

@@ -1,11 +1,9 @@
-
-
-<div id="modalCattleQnttNew" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
-    <div class="modal-dialog " role="document">
+  <div id="modalCattleQnttNew" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
       {{-- modal-lg --}}
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title mt-0">Малын махны төрөл нэмэх</h5>
+                <h5 class="modal-title justify-content-center" style="text-align:center;">Малын тоо толгой нэмэх</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -13,44 +11,28 @@
             <div class="modal-body">
               <form id="frmCattleQnttNew" action="" method="post">
                 @csrf
-                <div class="form-group row">
-                  <div class="col-md-6">
-                    <label>Аймгийн нэр:</label>
-                    <select class="form-control" name="provID" id="provID">
-                        <option value="-1">Сонгоно уу</option>
-                      @foreach ($provinces as $province)
-                        <option value="{{$province->id}}">{{$province->provName}}</option>
-                      @endforeach
-                    </select>
-                  </div>
-                  <div class="col-md-6">
-                    <label>Сумын нэр:</label>
-                    <select class="form-control" name="symID" id="symID">
-                        <option value="-1">Сонгоно уу</option>
-                      @foreach ($syms as $sym)
-                        <option value="{{$sym->id}}">{{$sym->symName}}</option>
-                      @endforeach
-                    </select>
-                  </div>
+                <div class="form-group row justify-content-center">
+                  <label id="provName" style="color:blue; font-size:16px;"> </label>
+                  <label style="font-size:16px;">&nbsp аймгийн &nbsp</label>
+                  <label style="color:blue; font-size:16px;" id="symName"></label>
+                  <label style="font-size:16px;">&nbsp сум </label>
                 </div>
                 <div class="clearfix"></div>
 
                 <div class="form-group row">
-                  <div class="col-md-6">
-                    <label>Малын махны төрөл:</label>
-                    <select class="form-control" name="cattleID" id="cattleID">
-                        <option value="-1">Сонгоно уу</option>
-                      @foreach ($cattles as $cattle)
-                        <option value="{{$cattle->id}}">{{$cattle->cattleName}}</option>
-                      @endforeach
-                    </select>
-                  </div>
-                  <div class="col-md-6">
-                    <label>Жин /кг/:</label>
-                    <input class="form-control" type="number" name="cattleQntt" id="cattleQntt">
-                  </div>
-                </div>
+                    @foreach ($cattles as $cattle)
+                      <div class="col-md-4">
+                        <label style="margin-bottom:-20px;">{{$cattle->cattleName}}</label>
+                        <input style="margin-bottom:10px;" class="form-control cattleQnttFields"
+                          type="number" id="{{$cattle->id}}" ratio="{{$cattle->ratio}}">
+                        <input type="hidden" name="" id="cattle{{$cattle->id}}" value="{{$cattle->ratio}}">
+                        <label style="margin-bottom:-20px; font-size:12px;color:#400513">Хонин толгойд шилжүүлэхэд:</label>&nbsp
+                        <label id="sheep{{$cattle->id}}"></label>
+                        <label style="margin-bottom:-20px; font-size:12px;color:#400513">Нийт махны кг:</label>&nbsp
+                        <label id="sheepKg{{$cattle->id}}"></label>
 
+                      </div>
+                    @endforeach
                 </div>
                 <div class="modal-footer">
                     <button type="submit" id="btnCattleQnttAdd" class="btn btn-primary">Хадгалах</button>

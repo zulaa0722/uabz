@@ -17,6 +17,10 @@
                     <label>Малын махны төрөл:</label>
                     <input class="form-control" type="text" name="cattleName" id="cattleName" value="">
                   </div>
+                  <div class="col-md-12">
+                    <label>Хонин толгойд шилжүүлэх коффициент:</label>
+                    <input class="form-control" type="text" name="ratioToSheep" id="ratioToSheep" value="">
+                  </div>
 
                   </div>
                   <div class="modal-footer">
