@@ -121,7 +121,7 @@ public function showProvince(Request $req)
 }
 
 
-public function form1(Request $req){
-  return view("forms.nootsiinSudalgaa");
-}
+// public function form1(Request $req){
+//   return view("forms.nootsiinSudalgaa");
+// }
 }
