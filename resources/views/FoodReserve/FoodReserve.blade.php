@@ -45,7 +45,7 @@
                         $qntts = App\Http\Controllers\FoodReserveController::selectReserveFootQnttByProvSym($sym->provID, $sym->id, $product->id);
 
                         foreach ($qntts as $qntt) {
-                          echo $qntt->mainQntt;
+                          echo $qntt->mainQntt." тн";
                         }
                       @endphp
                     </td>

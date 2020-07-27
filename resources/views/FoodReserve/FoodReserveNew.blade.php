@@ -29,8 +29,8 @@
                     <div class="col-md-3">
                       <label style="margin-bottom:-20px;">{{$product->productName}}</label><label style="color:red;font-style:bold;">&nbsp /тонн/</label>
                       <input class="form-control foodProductFields" type="number" id="{{$product->id}}" name="{{$product->productName}}"
-                        style="margin-bottom:10px;">
-                        {{-- <label>Нийт Ккал: </label><label id="foodTotalKcal"></label> --}}
+                        foodQntt="{{$product->foodQntt}}" foodKcal="{{$product->foodCkal}}">
+                      <label style="margin-bottom: 20px; font-size:12px;color:#400513">Нийт Ккал: &nbsp</label><label id="foodTotalKcal{{$product->id}}">&nbsp</label>
                     </div>
                   @endforeach
                 </div>

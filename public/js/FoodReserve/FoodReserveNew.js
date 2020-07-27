@@ -7,14 +7,29 @@ $(document).ready(function(){
       return;
     }
 
-      $("#modalFoodReserveNew").modal("show");
-      $("#provName").text(dataRow[3]);
-      $("#symName").text(dataRow[4]);
+    $(".foodProductFields").keyup(function(){
 
-    var i=5;
+      var qntt = $(this).val();
+      var foodQntt = $(this).attr("foodQntt");
+      var foodKcal = $(this).attr("foodKcal");
+      var foodTotalKcal = qntt*1000*foodKcal/foodQntt;
+      $("#foodTotalKcal"+$(this).attr("id")).text(foodTotalKcal.toFixed(2) + " Ккал");
+    });
+
+    $("#modalFoodReserveNew").modal("show");
+    $("#provName").text(dataRow[3]);
+    $("#symName").text(dataRow[4]);
+// console.log(parseFloat(dataRow[6]));
+    var i=6;
     $(".foodProductFields").each(function(){
-      $(this).val(dataRow[i]);
-      i++;
+      if($(this).val != "")
+        $(this).val(parseFloat(dataRow[i]));
+        var qntt = parseFloat(dataRow[i]);
+        var foodQntt = $(this).attr("foodQntt");
+        var foodKcal = $(this).attr("foodKcal");
+        var foodTotalKcal = qntt*1000*foodKcal/foodQntt;
+        $("#foodTotalKcal"+$(this).attr("id")).text(foodTotalKcal.toFixed(2) + " Ккал");
+        i++;
     });
 
   });
@@ -63,6 +78,9 @@ $(document).ready(function(){
             item = {}
             item ["productID"] = $(this).attr('id');
             item ["foodQntt"] = $(this).val();
+            item ["totalKcal"] = $("#foodTotalKcal"+$(this).attr('id')).text();
+            // if(item ["totalKcal"] == "NaN")
+
             jsonObj.push(item);
         }
     });
@@ -93,7 +111,7 @@ $(document).ready(function(){
             table.rows({ selected: true })
             .every(function (rowIdx, tableLoop, rowLoop){
               for(var i=0; i<index; i++)
-                table.cell(rowIdx, i+5).data(rowData[i]);
+                table.cell(rowIdx, i+6).data(rowData[i]);
             }).draw();
 
 //             var table = $("#FoodReserveTable").DataTable().rows({ selected: true }).every(function (rowIdx, tableLoop, rowLoop) {
@@ -119,7 +137,8 @@ $(document).ready(function(){
             alertify.alert(response.msg);
           }
           else{
-            alertify.error(response.msg);
+            // alertify.error(response.msg);
+            console.log(response.msg);
           }
 
 
