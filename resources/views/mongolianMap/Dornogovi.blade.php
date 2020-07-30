@@ -211,7 +211,7 @@
 					<text class="symTextName" transform="matrix(1 0 0 1 2629.3252 869.7163)"  font-size="14.531">Алтанширээ</text>
 					<text class="symTextName" transform="matrix(1 0 0 1 2741.3252 811.0493)"  font-size="14.531">Дэлгэрэх</text>
 					<text class="symTextName" transform="matrix(1 0 0 1 2715.9932 947.7163)"  font-size="14.531">Өргөн</text>
-					<text class="symTextName" transform="matrix(1 0 0 1 2567.9932 1020.6997)"  font-size="12">*САЙНШАНД</text>
+					<text class="symTextName" transform="matrix(1 0 0 1 2567.9932 1020.6997)"  font-size="15">*САЙНШАНД</text>
 					<text class="symTextName" transform="matrix(1 0 0 1 2484.9932 977.6997)"  font-size="14.531">Сайндулаан</text>
 					<text class="symTextName" transform="matrix(1 0 0 1 2391.9932 1106.3667)"  font-size="14.531">Мандах</text>
 					<text class="symTextName" transform="matrix(1 0 0 1 2575.9932 1116.3667)"  font-size="14.531">Улаанбадрах</text>

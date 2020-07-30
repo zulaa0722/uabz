@@ -228,11 +228,14 @@
          c-1.674,1.628-3.673,2.393-6.01,2.254l-0.368-0.023l-0.368,0.016c-1.998,3.556-5.313,1.704-7.898,1.531
          C1805.539,123.651,1802.602,123.087,1799.775,122.313z"/>
 
+         <path class="syms" id="63080" name="Булган" title="Булган" data-toggle="tooltip" data-placement="right" fill="#164A9F" stroke="#000000" stroke-miterlimit="10" d="M1854.467,268.165c0,4.409-3.574,7.983-7.983,7.983l0,0
+         	c-4.409,0-7.983-3.574-7.983-7.983v-5.682c0-4.407,3.574-7.983,7.983-7.983l0,0c4.409,0,7.983,3.576,7.983,7.983V268.165z"/>
 
+         <text class="symTextName" transform="matrix(1 0 0 1 1850 270.1719)" fill="#164A9F" font-family="'ArialMT'" font-size="12">*БУЛГАН</text>
         <text class="symTextName" transform="matrix(1 0 0 1 1772.666 75.3892)"  font-size="12">Тэшиг</text>
         <text class="symTextName" transform="matrix(1 0 0 1 1921.9434 120.8311)"  font-size="12">Сэлэнгэ</text>
         <text class="symTextName" transform="matrix(1 0 0 1 1830.1621 233.1431)"  font-size="12">Бугат</text>
-        <text class="symTextName" transform="matrix(1 0 0 1 1937.4951 184.4766)"  font-size="12">Хангал</text>
+        <text class="symTextName" transform="matrix(1 0 0 1 1937.4951 184.4766)"  font-size="10">Хангал</text>
         <text class="symTextName" transform="matrix(1 0 0 1 1660.8281 234.0708)"  font-size="12">Баян-Агт</text>
         <text class="symTextName" transform="matrix(1 0 0 1 1714.1611 302.0703)"  font-size="12">Сайхан</text>
         <text class="symTextName" transform="matrix(1 0 0 1 1759.4951 363.8281)"  font-size="12">Могод</text>
@@ -243,6 +246,5 @@
         <text class="symTextName" transform="matrix(1 0 0 1 1932.9365 452.3594)"  font-size="12">Баяннуур</text>
         <text class="symTextName" transform="matrix(1 0 0 1 1871.6025 537.1406)"  font-size="12">Рашаант</text>
         <text class="symTextName" transform="matrix(1 0 0 1 1817.4961 369.8379)"  font-size="12">Хишиг-Өндөр</text>
-        <text class="symTextName" transform="matrix(1 0 0 1 1844.2695 281.1714)"  font-size="12">*БУЛГАН</text>
         <text class="symTextName" transform="matrix(1 0 0 1 1754.2773 168.9165)"  font-size="12">Хутаг-Өндөр</text>
 </svg>
