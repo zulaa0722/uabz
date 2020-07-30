@@ -19,6 +19,7 @@
 
                     <th>Аймаг, нийслэл</th>
                     <th style="width:18%;">Сум, Дүүрэг</th>
+                    <th>Амьд малын жин</th>
                     @foreach ($products as $product)
                       <th>{{$product->productName}}</th>
                     @endforeach
@@ -37,13 +38,14 @@
 
                     <td>{{$sym->provName}}</td>
                     <td>{{$sym->symName}}</td>
+                    <td>sdfd</td>
                     @foreach ($products as $product)
                       <td>
                       @php
                         $qntts = App\Http\Controllers\FoodReserveController::selectReserveFootQnttByProvSym($sym->provID, $sym->id, $product->id);
 
                         foreach ($qntts as $qntt) {
-                          echo $qntt->mainQntt;
+                          echo $qntt->mainQntt." тн";
                         }
                       @endphp
                     </td>

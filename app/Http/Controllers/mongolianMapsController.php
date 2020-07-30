@@ -11,21 +11,23 @@ use App\Province;
 
 class mongolianMapsController extends Controller
 {
+
     public function __construct()
     {
         $this->middleware('auth');
     }
+
     public function mongolianMapsShow(){
-      return view("mongolianMap.mongolianMap");
+        return view("mongolianMap.mongolianMap");
     }
 
     public function mongolianSumd(Request $req){
-      $aimagNam = $req->name;
-      return view("mongolianMap.sumduud", compact("aimagNam"));
+        $aimagNam = $req->name;
+        return view("mongolianMap.sumduud", compact("aimagNam"));
     }
 
     public function getName(Request $req){
-       return $req->name;
+        return $req->name;
     }
 
   public function form1(Request $req){
@@ -121,7 +123,5 @@ public function showProvince(Request $req)
 }
 
 
-// public function form1(Request $req){
-//   return view("forms.nootsiinSudalgaa");
-// }
+
 }

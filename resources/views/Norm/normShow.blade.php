@@ -28,8 +28,8 @@
                 </div>
                 <div class="row">
                     <div class="text-right">
-                        <button class="btn btn-warning" type="button" name="button" id="btnEditModalOpen">Сонгосон норм засах</button>
-                        <button class="btn btn-danger" type="button" name="button" post-url="{{url('/norm/delete')}}" id="btnNormDelete">Сонгосон норм устгах</button>
+                        <button class="btn btn-warning pull-right" type="button" name="button" id="btnEditModalOpen">Сонгосон норм засах</button>
+                        <button class="btn btn-danger pull-right" type="button" name="button" post-url="{{url('/norm/delete')}}" id="btnNormDelete">Сонгосон норм устгах</button>
                     </div>
                 </div>
               </div>
