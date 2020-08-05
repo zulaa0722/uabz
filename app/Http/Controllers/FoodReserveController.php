@@ -60,8 +60,8 @@ class FoodReserveController extends Controller
       }catch(\Exception $e){
         $arrayMsg = array(
             'status' => 'error',
-            // 'msg' => "Серверийн алдаа!!! Веб мастерт хандана уу"
-            'msg' => $e
+            'msg' => "Серверийн алдаа!!! Веб мастерт хандана уу"
+            // 'msg' => $e
 
         );
         return $arrayMsg;

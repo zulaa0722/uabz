@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use App\Sector;
 use App\Province;
 use DB;
+use App\Population;
 
 class ProvinceController extends Controller
 {
@@ -17,7 +18,7 @@ class ProvinceController extends Controller
   {
       $this->middleware('auth');
   }
-  
+
   public function provinceShow()
   {
     try{
@@ -78,4 +79,5 @@ class ProvinceController extends Controller
       return "Серверийн алдаа!!! Веб мастерт хандана уу";
     }
   }
+
 }

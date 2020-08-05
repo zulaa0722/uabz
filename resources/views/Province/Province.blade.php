@@ -39,14 +39,14 @@
 @section('css')
   <link rel="stylesheet" href="{{url("public/uaBCssJs/datatableCss/datatables.min.css")}}">
   <style media="screen">
-#provinceDB tbody tr.selected {
-  color: white;
-  background-color: #8893f2;
-}
-#provinceDB tbody tr{
-cursor: pointer;
-}
-</style>
+    #provinceDB tbody tr.selected {
+      color: white;
+      background-color: #8893f2;
+    }
+    #provinceDB tbody tr{
+    cursor: pointer;
+    }
+  </style>
 @endsection
 
 @section('js')

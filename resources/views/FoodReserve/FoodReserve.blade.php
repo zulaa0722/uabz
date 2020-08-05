@@ -10,7 +10,7 @@
         <div class="card">
           <div id="changeBlade" class="card-body">
             <h4 class="text-center">Хүнсний нөөцийн судалгаа</h4>
-            <table id="FoodReserveTable" class="table table-bordered wrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+            <table id="FoodReserveTable" class="table table-striped table-bordered wrap " style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead>
                   <tr>
                     <th>№</th>
@@ -45,7 +45,7 @@
                         $qntts = App\Http\Controllers\FoodReserveController::selectReserveFootQnttByProvSym($sym->provID, $sym->id, $product->id);
 
                         foreach ($qntts as $qntt) {
-                          echo $qntt->mainQntt." тн";
+                          echo ($qntt->mainQntt/1000)." тн";
                         }
                       @endphp
                     </td>
@@ -71,14 +71,14 @@
 @section('css')
   <link rel="stylesheet" href="{{url("public/uaBCssJs/datatableCss/datatables.min.css")}}">
   <style media="screen">
-#FoodReserveTable tbody tr.selected {
-  color: white;
-  background-color: #8893f2;
-}
-#FoodReserveTable tbody tr{
-  cursor: pointer;
-}
-</style>
+    #FoodReserveTable tbody tr.selected {
+      color: white;
+      background-color: #8893f2;
+    }
+    #FoodReserveTable tbody tr{
+      cursor: pointer;
+    }
+  </style>
 @endsection
 @section('js')
   <script type="text/javascript" src="{{url("public/uaBCssJs/datatableJs/datatables.min.js")}}"></script>
@@ -152,16 +152,10 @@ $(document).ready(function(){
             dataRow = $('#FoodReserveTable').DataTable().row(currow).data();
         }
 
-        });
+      });
 
 });
 </script>
-<script type="text/javascript" src="{{url("public/uaBCssJs/datatableJs/datatables.min.js")}}"></script>
-<script type="text/javascript" src="{{url("public/uaBCssJs/datatableJs/jszip.min.js")}}"></script>
-<script type="text/javascript" src="{{url("public/uaBCssJs/datatableJs/pdfmake.min.js")}}"></script>
-<script type="text/javascript" src="{{url("public/uaBCssJs/datatableJs/datatables.init.js")}}"></script>
-
-<script src="{{url('public/uaBCssJs/dropzone/dropzone.min.js')}}"></script>
 <script src="{{url("public/js/FoodReserve/FoodReserveNew.js")}}"></script>
 <script src="{{url("public/js/FoodReserve/FoodReserveDelete.js")}}"></script>
 @endsection
