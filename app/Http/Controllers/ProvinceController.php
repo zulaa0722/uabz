@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use App\Sector;
 use App\Province;
 use DB;
+use App\Population;
 
 class ProvinceController extends Controller
 {

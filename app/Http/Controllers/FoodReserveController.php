@@ -47,6 +47,7 @@ class FoodReserveController extends Controller
             $insertFoodReserve->fReseverDate = $req->reserveDate;
             $insertFoodReserve->productID = $value['productID'];
             $insertFoodReserve->mainQntt = $value['foodQntt'];
+            $insertFoodReserve->totalKcal = $value['totalKcal'];
             $insertFoodReserve->measurement = "тн";
             $insertFoodReserve->save();
         }
@@ -60,6 +61,8 @@ class FoodReserveController extends Controller
         $arrayMsg = array(
             'status' => 'error',
             'msg' => "Серверийн алдаа!!! Веб мастерт хандана уу"
+            // 'msg' => $e
+
         );
         return $arrayMsg;
       }

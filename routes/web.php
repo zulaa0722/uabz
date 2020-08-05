@@ -23,7 +23,7 @@ Route::get('/template', function(){
 
 Route::get("/mongolia/maps", "mongolianMapsController@mongolianMapsShow");
 Route::get("/mongolian/sumd", "mongolianMapsController@mongolianSumd");
-Route::get("/get/name", "mongolianMapsController@getName");
+// Route::get("/get/name", "mongolianMapsController@getName");
 
 Route::get("/mongolian/province", "mongolianMapsController@showProvince");
 Route::get("/mongolian/allMaps", "mongolianMapsController@allMapsShow");
@@ -96,6 +96,7 @@ Route::post("/getPop", "PopulationController@getPopData");
 Route::post("/pop/insert", "PopulationController@store");
 Route::post("/pop/edit", "PopulationController@update");
 Route::post("/pop/delete", "PopulationController@delete");
+Route::get("/get/getAimagInfo", "Sides@getAimagInfo");
 
 Route::get("/cattle/show", "CattleController@cattleShow");
 Route::post("/getCattle", "CattleController@getCattleData");

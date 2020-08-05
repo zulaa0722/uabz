@@ -245,6 +245,10 @@
  				c3.239,1.771,6.681,3.058,10.186,3.082c3.873,0.026,4.489,2.268,5.073,5.047c0.053,0.233,0.114,0.466,0.185,0.694
  				C3004.213,264.927,3004.33,266.725,3004.85,268.335z"/>
 
+        <path class="syms" id="21060" name="Хэрлэн" title="Хэрлэн" data-toggle="tooltip" data-placement="right" fill="#164A9F" stroke="#000000" stroke-miterlimit="10" d="M3153.467,414.165c0,4.409-3.574,7.983-7.983,7.983l0,0
+        	c-4.409,0-7.983-3.574-7.983-7.983v-5.682c0-4.407,3.574-7.983,7.983-7.983l0,0c4.409,0,7.983,3.576,7.983,7.983V414.165z"/>
+
+        <text class="symTextName" transform="matrix(1 0 0 1 3148.2881 417.3242)" font-size="15" >*ХЭРЛЭН</text>
         <text class="symTextName" transform="matrix(1 0 0 1 3057.8633 137.999)"  font-size="14.531">Дашбалбар</text>
         <text class="symTextName" transform="matrix(1 0 0 1 3199.8633 107.999)"  font-size="14.531">Чулуунхороот</text>
         <text class="symTextName" transform="matrix(1 0 0 1 2890.3633 222.499)"  font-size="14.531">Баян-Уул</text>
@@ -252,7 +256,7 @@
         <text class="symTextName" transform="matrix(1 0 0 1 2957.3633 348.7759)"  font-size="14.531">Цагаан-Овоо</text>
         <text class="symTextName" transform="matrix(1 0 0 1 3144.3145 232.7148)"  font-size="14.531">Гурванзагал</text>
         <text class="symTextName" transform="matrix(1 0 0 1 3219.8145 289.4917)"  font-size="14.531">Чойбалсан</text>
-        <text class="symTextName" transform="matrix(1 0 0 1 3164.3145 424.9922)"  font-size="14.531">Баянтүмэн</text>
+        <text class="symTextName" transform="matrix(1 0 0 1 3209.4814 372.6592)"  font-size="14.531">Баянтүмэн</text>
         <text class="symTextName" transform="matrix(1 0 0 1 3068.8145 481.9922)"  font-size="14.531">Булган</text>
         <text class="symTextName" transform="matrix(1 0 0 1 2940.8398 469.9922)"  font-size="14.531">Хөлөнбуйр</text>
         <text class="symTextName" transform="matrix(1 0 0 1 3255.2422 588.9922)"  font-size="14.531">Матад</text>

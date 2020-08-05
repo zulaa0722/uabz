@@ -232,7 +232,10 @@ enable-background="new 1919.194 -8.572 521.794 338.854" xml:space="preserve">
 								c1.936-2.719,3.609-5.63,5.271-8.531c0.949-1.654,1.928-4.493,3.635-3.809c2.512,1.008,5.775,1.35,8.023,0.25
 								C2209.174,139.504,2211.266,142.129,2213.022,142.677z"/>
 
+				<path class="syms" id="43080" name="Сүхбаатар" title="Сүхбаатар" data-toggle="tooltip" data-placement="right" fill="#164A9F" stroke="#000000" stroke-miterlimit="10" d="M2170.541,29.378c0,3.187-2.583,5.771-5.771,5.771l0,0
+									c-3.187,0-5.771-2.583-5.771-5.771V25.27c0-3.186,2.584-5.771,5.771-5.771l0,0c3.188,0,5.771,2.585,5.771,5.771V29.378z"/>
 
+				<text class="symTextName" transform="matrix(1 0 0 1 2166.9414 30.2883)" fill="#164A9F" font-family="'ArialMT'" font-size="9">*СҮХБААТАР</text>
 
 				<text class="symTextName" transform="matrix(1 0 0 1 2102.0278 85.1018)"  font-size="9">Зүүнбүрэн</text>
 				<text class="symTextName" transform="matrix(1 0 0 1 2150.7935 70.4353)"  font-size="9">Шаамар</text>
@@ -248,7 +251,6 @@ enable-background="new 1919.194 -8.572 521.794 338.854" xml:space="preserve">
 				<text class="symTextName" transform="matrix(1 0 0 1 1981.9136 190.3879)"  font-size="9">Баруунбүрэн</text>
 				<text class="symTextName" transform="matrix(1 0 0 1 2085.731 205.7219)"  font-size="9">Сайхан</text>
 				<text class="symTextName" transform="matrix(1 0 0 1 2150.7935 183.4836)"  font-size="9">*ДАРХАН-УУЛ</text>
-				<text class="symTextName" transform="matrix(1 0 0 1 2163.6079 32.8005)"  font-size="9">*СҮХБААТАР</text>
 				<text class="symTextName" transform="matrix(1 0 0 1 2196.1274 49.1023)"  font-size="9">Алтанбулаг</text>
 				<text class="symTextName" transform="matrix(1 0 0 1 2029.4604 67.1023)"  font-size="9">Цагааннуур</text>
 				<text class="symTextName" transform="matrix(1 0 0 1 2019.4604 26.4612)"  font-size="9">Түшиг</text>

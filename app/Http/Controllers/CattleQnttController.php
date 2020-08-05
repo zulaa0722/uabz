@@ -44,9 +44,9 @@ class CattleQnttController extends Controller
             $insertCattleQntt->provID = $req->provID;
             $insertCattleQntt->symID = $req->symID;
             $insertCattleQntt->cattleID = $value['cattleID'];
-            $insertCattleQntt->cattQntt = $value['cattleQntt'];
-            $insertCattleQntt->toSheep = $value['toSheepQntt'];
-            $insertCattleQntt->sheepKg = $value['toSheepKg'];
+            $insertCattleQntt->cattQntt = $value['cattleQntt']*1000;
+            $insertCattleQntt->toSheep = $value['toSheepQntt']*1000;
+            $insertCattleQntt->sheepKg = $value['toSheepKg']*1000;
 
             $insertCattleQntt->save();
         }

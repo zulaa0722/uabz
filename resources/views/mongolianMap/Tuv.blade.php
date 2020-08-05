@@ -353,7 +353,10 @@ xml:space="preserve">
 				c-3.132-2.565-6.005-5.118-7.624-8.855c-1.127-2.603-2.995-4.626-5.395-5.906c-3.914-2.095-4.555-5.647-4.501-9.395
 				c0.04-2.771-0.551-5.413-0.876-8.104c-0.256-2.111-1.815-3.394-3.607-4.336c-2.159-1.14-4.347-2.229-7.184-3.679
 				C1920.985,545.108,1923.357,544.203,1925.73,543.298z"/>
+				<path class="syms" id="41100" name="Зуунмод" title="Зуунмод" data-toggle="tooltip"  data-placement="right" fill="#164A9F" stroke="#000000" stroke-miterlimit="10" d="M2260.982,486.944c0,4.409-3.574,7.983-7.983,7.983l0,0
+					c-4.409,0-7.983-3.574-7.983-7.983v-5.682c0-4.407,3.574-7.983,7.983-7.983l0,0c4.409,0,7.983,3.576,7.983,7.983V486.944z"/>
 
+				<text class="symTextName" transform="matrix(1 0 0 1 2254.8037 498.1035)" fill="#F2672C" font-family="'tahoma'" font-size="12" >*ЗУУНМОД</text>
 				<text class="symTextName" transform="matrix(1 0 0 1 2413.5645 321.4316)" font-size="9">Мөнгөнморьт</text>
 				<text class="symTextName" transform="matrix(1 0 0 1 2335.7734 369.0273)" font-size="9">Эрдэнэ</text>
 				<text class="symTextName" transform="matrix(1 0 0 1 2379.7734 473.2764)" font-size="9">Баяндэлгэр</text>

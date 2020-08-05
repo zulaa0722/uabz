@@ -221,19 +221,22 @@ xml:space="preserve">
 				c0.195,1.751,0.281,3.444,1.231,4.974c9.283,11.775,18.699,23.465,25.463,36.97
 				C1684.532,1230.271,1686.293,1231.832,1686.645,1234.139z"/>
 
-				<text class="symTextName" transform="matrix(1 0 0 1 1489.0703 1244.1934)"  font-size="14">Гурвантэс</text>
-				<text class="symTextName" transform="matrix(1 0 0 1 1681.0703 1173.6621)"  font-size="14">Сэврэй</text>
-				<text class="symTextName" transform="matrix(1 0 0 1 1702.0703 1337.9805)"  font-size="14">Ноён</text>
-				<text class="symTextName" transform="matrix(1 0 0 1 1815.0703 1211.5664)"  font-size="14">Баяндалай</text>
-				<text class="symTextName" transform="matrix(1 0 0 1 1833.1016 1109.5664)"  font-size="14">Булган</text>
-				<text class="symTextName" transform="matrix(1 0 0 1 1884.1016 1015.5664)"  font-size="14">Мандал-Овоо</text>
-				<text class="symTextName" transform="matrix(1 0 0 1 2012.1016 1071.8184)"  font-size="14">Цогт-Овоо</text>
-				<text class="symTextName" transform="matrix(1 0 0 1 1956.1016 1161.8184)"  font-size="14">Ханхонгор</text>
-				<text class="symTextName" transform="matrix(1 0 0 1 1952.1016 1198.2422)"  font-size="14">*ДАЛАНЗАДГАД</text>
-				<text class="symTextName" transform="matrix(1 0 0 1 1874.1016 1425.6152)"  font-size="14">Хүрмэн</text>
-				<text class="symTextName" transform="matrix(1 0 0 1 2011.7627 1389.3691)"  font-size="14">Номгон</text>
-				<text class="symTextName" transform="matrix(1 0 0 1 2117.7627 1286.3691)"  font-size="14">Баян-Овоо</text>
-				<text class="symTextName" transform="matrix(1 0 0 1 2100.7627 1173.6621)"  font-size="14">Цогтцэций</text>
-				<text class="symTextName" transform="matrix(1 0 0 1 2248.7627 1139.6621)"  font-size="14">Манлай</text>
-				<text class="symTextName" transform="matrix(1 0 0 1 2266.7627 1300.6621)"  font-size="14">Ханбогд</text>
+				<path class="syms" id="46080" name="Даланзадгад" title="Даланзадгад" data-toggle="tooltip" data-placement="right" fill="#164A9F" stroke="#000000" stroke-miterlimit="10" d="M1992.594,1213.03c0,4.409-3.574,7.983-7.983,7.983l0,0
+					c-4.409,0-7.983-3.574-7.983-7.983v-5.682c0-4.407,3.574-7.983,7.983-7.983l0,0c4.409,0,7.983,3.576,7.983,7.983V1213.03z"/>
+
+				<text class="symTextName" transform="matrix(1 0 0 1 1986.4148 1208.1887)" fill="#F2672C" font-family="'tahoma'" font-size="16" >*ДАЛАНЗАДГАД</text>
+				<text class="symTextName" transform="matrix(1 0 0 1 1489.0703 1244.1934)"  font-size="15">Гурвантэс</text>
+				<text class="symTextName" transform="matrix(1 0 0 1 1681.0703 1173.6621)"  font-size="15">Сэврэй</text>
+				<text class="symTextName" transform="matrix(1 0 0 1 1702.0703 1337.9805)"  font-size="15">Ноён</text>
+				<text class="symTextName" transform="matrix(1 0 0 1 1815.0703 1211.5664)"  font-size="15">Баяндалай</text>
+				<text class="symTextName" transform="matrix(1 0 0 1 1833.1016 1109.5664)"  font-size="15">Булган</text>
+				<text class="symTextName" transform="matrix(1 0 0 1 1884.1016 1015.5664)"  font-size="15">Мандал-Овоо</text>
+				<text class="symTextName" transform="matrix(1 0 0 1 2012.1016 1071.8184)"  font-size="15">Цогт-Овоо</text>
+				<text class="symTextName" transform="matrix(1 0 0 1 1956.1016 1161.8184)"  font-size="15">Ханхонгор</text>
+				<text class="symTextName" transform="matrix(1 0 0 1 1874.1016 1425.6152)"  font-size="15">Хүрмэн</text>
+				<text class="symTextName" transform="matrix(1 0 0 1 2011.7627 1389.3691)"  font-size="15">Номгон</text>
+				<text class="symTextName" transform="matrix(1 0 0 1 2117.7627 1286.3691)"  font-size="15">Баян-Овоо</text>
+				<text class="symTextName" transform="matrix(1 0 0 1 2100.7627 1173.6621)"  font-size="15">Цогтцэций</text>
+				<text class="symTextName" transform="matrix(1 0 0 1 2248.7627 1139.6621)"  font-size="15">Манлай</text>
+				<text class="symTextName" transform="matrix(1 0 0 1 2266.7627 1300.6621)"  font-size="15">Ханбогд</text>
 </svg>

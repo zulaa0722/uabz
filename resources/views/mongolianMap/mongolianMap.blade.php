@@ -140,6 +140,59 @@
               <div class="card">
                   <div class="card-body">
                       <h4 class="card-title mb-12" id="changeName">Монгол Улсын хэмжээнд</h4>
+                      <div class="form-group row border border-success rounded-left" style="">
+                        <div class="col-md-12">
+                          Нийт хүн ам:
+                        </div>
+                        <div class="col-md-3">
+                          <img src="{{url('\public\images\icons\cattleIcon.png')}}" width="35" alt="" style="padding-bottom:4px;">
+                        </div>
+                        <div id="totalPop" class="col-md-9 text-left" style="font-size:22px;">
+                          2237812
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                      <div class="form-group row border border-success rounded-left" style="">
+                        <div class="col-md-12">
+                          Жишсэн хүн ам:
+                        </div>
+                        <div class="col-md-3">
+                          <img src="{{url('\public\images\icons\cattleIcon.png')}}" width="35" alt="" style="padding-bottom:4px;">
+                        </div>
+                        <div id="standardPop" class="col-md-9 text-left" style="font-size:22px;">
+                          1737812
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                      <div class="form-group row border border-success rounded-left" style="">
+                        <div class="col-md-12">
+                          Нийт малын тоо толгой:
+                        </div>
+                        <div class="col-md-3 col-xm-3">
+                          <img src="{{url('\public\images\icons\cattleIcon.png')}}" width="35" alt="" style="padding-bottom:4px;">
+                        </div>
+                        <div id="totalCattle" class="col-md-9 col-xm-9 text-left" style="font-size:22px;">
+                          52037812
+                        </div>
+                      </div>
+
+                      <div class="clearfix"></div>
+                      <div class="form-group row border border-success rounded-left" style="">
+                        <div class="col-md-12">
+                          Нийт хоногийн нөөц
+                        </div>
+                        <div id="reserveDay" class="col-md-12 text-center text-success border border-success rounded-circle" style="font-size:45px;">
+                          56234
+                        </div>
+                        <div class="col-md-12 text-center">
+                          Хоног
+                        </div>
+                      </div>
+
+
+
                   </div>
               </div>
           </div>
@@ -151,6 +204,14 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-body">
+          <h4 class="card-title mb-12" id="changeName">Тухайн хүнсний бүтээгдэхүүний үлдсэн хоног</h4>
+          <div class="form-group row" id="bottom">
+            {{-- <div class="form-group row col-md-3">
+              <div class="col-md-12" id="productName">Гурил:</div>
+              <div class="col-md-12">Үлдсэн хоног: <label id="leftDays">3</label></div>
+            </div> --}}
+          </div>
+
         </div>
       </div>
 
@@ -164,7 +225,7 @@
 
   <script type="text/javascript">
   var csrf = "{{ csrf_token() }}";
-  var changeUrl = "{{url("/get/name")}}";
+  var getAimagInfo = "{{url("/get/getAimagInfo")}}";
   var allMongolianMap = "{{url("/mongolian/allMaps")}}";
   var changeBladeProvince = "{{url("/mongolian/province")}}";
   var getAlertedProvJson = "{{url("/test/get")}}";
@@ -216,19 +277,6 @@
                 $("#changeName").html("");
                 $("#changeName").html(response);
 
-                $("#nameID").html("");
-                $("#nameID").html(response);
-              },
-            error: function(jqXhr, json, errorThrown){// this are default for ajax errors
-              var errors = jqXhr.responseJSON;
-              var errorsHtml = '';
-              $.each(errors['errors'], function (index, value) {
-                  errorsHtml += '<ul class="list-group"><li class="list-group-item alert alert-danger">' + value + '</li></ul>';
-              });
-              alert(errorsHtml);
-            }
-          });
-        });
 
         $("#toSum").click(function(){
           if(aimagName != ""){
@@ -263,4 +311,5 @@
   </script>
 
   <script src="{{url('public/js/mongolianMap/test.js')}}"></script>
+  <script src="{{url('public/js/mongolianMap/RightPanel.js')}}"></script>
 @endsection
