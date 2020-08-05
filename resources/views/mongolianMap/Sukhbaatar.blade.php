@@ -156,9 +156,11 @@ xml:space="preserve">
 				c0.571,5.179,4.388,7.225,7.896,9.445c2.51,1.588,3.455,3.633,3.844,6.204c1.047,6.932,2.296,13.852,2.908,20.823
 				c0.42,4.795-1.067,9.551-1.687,14.324c-0.063,0.484-0.397,0.951-0.392,1.423c0.051,3.673-1.295,6.406-4.33,8.768
 				C2844.148,789.21,2832.539,798.627,2820.648,808.121z"/>
+				<path id="22070" name="Баруун-Урт" title="Баруун-Урт" class="syms" data-toggle="tooltip" data-placement="right" fill="#164A9F" stroke="#000000" stroke-miterlimit="10" d="M3038.467,648.165c0,4.409-3.574,7.983-7.983,7.983l0,0
+					c-4.409,0-7.983-3.574-7.983-7.983v-5.682c0-4.407,3.574-7.983,7.983-7.983l0,0c4.409,0,7.983,3.576,7.983,7.983V648.165z"/>
 
-				<text class="symTextName" transform="matrix(1 0 0 1 3008.8633 617.999)"  font-size="14.531">Сүхбаатар</text>
-				<text class="symTextName" transform="matrix(1 0 0 1 3019.5293 661.1699)"  font-size="14.531">*БАРУУН-УРТ</text>
+				<text class="symTextName" transform="matrix(1 0 0 1 3033.2881 650.4365)"  font-size="15.5">*БАРУУН-УРТ</text>
+				<text class="symTextName" transform="matrix(1 0 0 1 3012.7207 577.999)"  font-size="14.531">Сүхбаатар</text>
 				<text class="symTextName" transform="matrix(1 0 0 1 2842.8633 584.999)"  font-size="14.531">Мөнххаан</text>
 				<text class="symTextName" transform="matrix(1 0 0 1 2858.8633 526.999)"  font-size="14.531">Түмэнцогт</text>
 				<text class="symTextName" transform="matrix(1 0 0 1 2865.8633 665.6855)"  font-size="14.531">Уулбаян</text>

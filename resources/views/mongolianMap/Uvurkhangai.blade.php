@@ -242,6 +242,9 @@
  				c-4.192,2.188-8.563,4.033-12.813,6.113c-5.614,2.744-9.449,1.971-13.564-2.698c-8.907-10.107-14.847-22.022-20.752-33.955
  				c-1.1-2.223,2.16-7.104,5.296-8.725C1606.465,622.962,1611.123,624.053,1616.446,623.648z"/>
 
+        <path class="syms" id="62160" name="Арвайхээр" title="Арвайхээр" data-toggle="tooltip" data-placement="right" fill="#164A9F" stroke="#000000" stroke-miterlimit="10" d="M1780.723,735.591c0,4.409-3.574,7.983-7.983,7.983l0,0
+        	c-4.409,0-7.983-3.574-7.983-7.983v-5.682c0-4.407,3.574-7.983,7.983-7.983l0,0c4.409,0,7.983,3.576,7.983,7.983V735.591z"/>
+        <text class="symTextName" transform="matrix(1 0 0 1 1774.5439 730.75)" >*АРВАЙХЭЭР</text>
         <text class="symTextName" transform="matrix(1 0 0 1 1772.7393 582.3242)"  font-size="12">Хархорин</text>
         <text class="symTextName" transform="matrix(1 0 0 1 1883.4063 590.9902)"  font-size="12">Бүрд</text>
         <text class="symTextName" transform="matrix(1 0 0 1 1837.0039 705.4043)"  font-size="12">Өлзийт</text>
@@ -256,7 +259,6 @@
         <text class="symTextName" transform="matrix(1 0 0 1 1582.9492 918.5957)"  font-size="12">Баруунбаян-Улаан</text>
         <text class="symTextName" transform="matrix(1 0 0 1 1813.6719 807.5391)"  font-size="12">Баянгол</text>
         <text class="symTextName" transform="matrix(1 0 0 1 1666.0049 799.2109)"  font-size="12">Хайрхандулаан</text>
-        <text class="symTextName" transform="matrix(1 0 0 1 1723.9844 740.3896)"  font-size="12">*АРВАЙХЭЭР</text>
         <text class="symTextName" transform="matrix(1 0 0 1 1917.1904 708.9893)"  font-size="12">Баян-Өндөр</text>
         <text class="symTextName" transform="matrix(1 0 0 1 1746.0527 626.9326)"  font-size="12">Хужирт</text>
         <text class="symTextName" transform="matrix(1 0 0 1 1728.7197 681.0703)"  font-size="12">Зүүнбаян-Улаан</text>

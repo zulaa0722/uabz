@@ -310,7 +310,10 @@
          				c3.924,0.162,4.608,1.141,3.522,4.876c-0.969,3.336-1.846,6.701-2.823,10.035c-0.257,0.872-0.646,1.662,0.38,2.274
          				c0.52,0.521,1.04,1.045,1.56,1.567c1.409,0.846,0.939,2.259,1.061,3.493c1.188,1.345,0.267,3.19,1.098,4.62
          				C1319.807,538.459,1322.617,541.212,1325.15,544.24z"/>
+                <path class="syms" id="64090" name="Баянхонгор" title="Баянхонгор" data-toggle="tooltip" data-placement="right" fill="#164A9F" stroke="#000000" stroke-miterlimit="10" d="M1497.477,774.586c0,4.409-3.574,7.983-7.983,7.983l0,0
+                	c-4.409,0-7.983-3.574-7.983-7.983v-5.682c0-4.407,3.574-7.983,7.983-7.983l0,0c4.409,0,7.983,3.576,7.983,7.983V774.586z"/>
 
+          <text class="symTextName" transform="matrix(1 0 0 1 1489.9707 777.75)" fill="#F2672C" font-family="'tahoma'" font-size="12" font-weight="bold">*БАЯНХОНГОР</text>
          <text class="symTextName" transform="matrix(1 0 0 1 1188.7402 633.5234)"  font-size="12">Баянбулаг</text>
          <text class="symTextName" transform="matrix(1 0 0 1 1245.9434 551.5234)"  font-size="12">Гурванбулаг</text>
          <text class="symTextName" transform="matrix(1 0 0 1 1344.2402 545.0234)"  font-size="12">Жаргалант</text>
@@ -330,5 +333,4 @@
          <text class="symTextName" transform="matrix(1 0 0 1 1529.9678 1068.9209)"  font-size="12">Баянлиг</text>
          <text class="symTextName" transform="matrix(1 0 0 1 1332.9678 1071.9209)"  font-size="12">Шинэжинст</text>
          <text class="symTextName" transform="matrix(1 0 0 1 1248.9824 1007.4209)"  font-size="12">Баян-Өндөр</text>
-         <text class="symTextName" transform="matrix(1 0 0 1 1493.9121 773.6133)"  font-size="12">*БАЯНХОНГОР</text>
        </svg>

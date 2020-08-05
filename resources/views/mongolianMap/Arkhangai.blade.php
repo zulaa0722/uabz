@@ -287,7 +287,7 @@
 					 <text class="symTextName" transform="matrix(1 0 0 1 1352.6172 467.9092)"  font-size="12">Хангай</text>
 					 <text class="symTextName" transform="matrix(1 0 0 1 1263.9502 431.2422)"  font-size="12">Цахир</text>
 					 <text class="symTextName" transform="matrix(1 0 0 1 1563.7764 363.2285)"  font-size="12">Эрдэнэмандал</text>
-					 <text class="symTextName" transform="matrix(1 0 0 1 1617.7754 518.6465)"  font-size="12" style="stroke: #FD3B0C; stroke-width: 1;">*ЭРДЭНЭБУЛГАН</text>
+					 <text class="symTextName" transform="matrix(1 0 0 1 1617.7754 518.6465)"  font-size="12" >*ЭРДЭНЭБУЛГАН</text>
 
 
 

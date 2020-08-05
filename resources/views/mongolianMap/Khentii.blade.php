@@ -269,7 +269,10 @@ xml:space="preserve">
 				c5.352,3.616,10.651,7.307,15.942,11.01c2.347,1.642,5.3,2.444,7.433,3.966c3.668,2.617,7.625,5.351,10.037,9.402
 				c5.914,9.932,13.694,18.337,21.824,26.386c3.768,3.729,6.42,7.837,7.914,12.812
 				C2621.977,379.855,2622.467,381.498,2624.025,382.968z"/>
+				<path class="syms" id="23220" name="Бор-Өндөр" title="Бор-Өндөр" data-toggle="tooltip" data-placement="right" fill="#164A9F" stroke="#000000" stroke-miterlimit="10" d="M2555.898,726.856c0,4.409-3.574,7.983-7.983,7.983l0,0
+					c-4.409,0-7.983-3.574-7.983-7.983v-5.682c0-4.407,3.574-7.983,7.983-7.983l0,0c4.409,0,7.983,3.576,7.983,7.983V726.856z"/>
 
+				<text class="symTextName" transform="matrix(1 0 0 1 2519.0508 713.1914)" fill="#164A9F" font-family="'ArialMT'" font-size="14.531">Бор-Өндөр</text>
 				<text class="symTextName" transform="matrix(1 0 0 1 2551.1797 263.3013)" font-size="14.531">Батширээт</text>
 				<text class="symTextName" transform="matrix(1 0 0 1 2555.8984 415.3799)" font-size="14.531">Өмнөдэлгэр</text>
 				<text class="symTextName" transform="matrix(1 0 0 1 2657.2266 295.3799)"  font-size="14.531">Биндэр</text>
@@ -285,9 +288,9 @@ xml:space="preserve">
 				<text class="symTextName" transform="matrix(1 0 0 1 2541.0977 621.5918)"  font-size="14.531">Баянмөнх</text>
 				<text class="symTextName" transform="matrix(1 0 0 1 2607.4297 555.5918)"  font-size="14.531">Мөрөн</text>
 				<text class="symTextName" transform="matrix(1 0 0 1 2695.4668 577.5918)"  font-size="14.531">Баянхутаг</text>
-				<text class="symTextName" transform="matrix(1 0 0 1 2676.8008 549.9287)"  font-size="14.531">*ЧИНГИС</text>
+				<text class="symTextName" transform="matrix(1 0 0 1 2676.8008 549.9287)"  font-size="15">*ЧИНГИС</text>
 				<text class="symTextName" transform="matrix(1 0 0 1 2680.4688 681.7197)"  font-size="14.531">Галшар</text>
-				<text class="symTextName" transform="matrix(1 0 0 1 2530.8008 693.0527)"  font-size="14.531">Дархан</text>
+				<text class="symTextName" transform="matrix(1 0 0 1 2510.0508 659.8027)"  font-size="14.531">Дархан</text>
 
 
 </svg>
