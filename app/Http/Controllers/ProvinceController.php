@@ -17,7 +17,7 @@ class ProvinceController extends Controller
   {
       $this->middleware('auth');
   }
-  
+
   public function provinceShow()
   {
     try{
@@ -77,5 +77,16 @@ class ProvinceController extends Controller
     }catch(\Exception $e){
       return "Серверийн алдаа!!! Веб мастерт хандана уу";
     }
+  }
+
+  public function getProvsByBus(Request $req){
+      try{
+          $provs = DB::table('tb_province')
+              ->where('sectorID', '=', $req->bus)
+              ->get();
+          return json_encode($provs);
+      }catch(\Exception $e){
+          return "Серверийн алдаа!!! Веб мастерт хандана уу";
+      }
   }
 }

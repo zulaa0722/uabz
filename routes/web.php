@@ -73,6 +73,7 @@ Route::post("/getProvince", "ProvinceController@getProvinceData");
 Route::post("/province/insert", "ProvinceController@store");
 Route::post("/province/edit", "ProvinceController@update");
 Route::post("/province/delete", "ProvinceController@delete");
+Route::post("/get/prov/by/bus", "ProvinceController@getProvsByBus");
 
 Route::get("/sym/show", "SymController@symShow");
 Route::post("/getSym", "SymController@getSymData");
@@ -80,6 +81,9 @@ Route::post("/sym/insert", "SymController@store");
 Route::post("/sym/edit", "SymController@update");
 Route::post("/sym/delete", "SymController@delete");
 Route::post("/sym/get/by/provID", "SymController@getSymByProvinceID");
+Route::post("/declare/danger/by/sum", "DangerController@declareDangerBySum");
+Route::post("/declare/danger/by/province", "DangerController@declareDangerByProvs");
+Route::post("/declare/danger/by/sector", "DangerController@declareDangerBySector");
 
 Route::get("/org/show", "OrganizationController@orgShow");
 Route::post("/getOrg", "OrganizationController@getOrgData");
@@ -166,7 +170,8 @@ Route::post('/dada/file/manager/delete/image', 'dadaaFileManagerController@delet
 
 
 //test
-Route::get("/test/get", "mongolianMapsController@getBaliarArray");
+Route::get("/test/get", "mongolianMapsController@getBaliarSda");
+Route::get("/test/get/{id}", "PopulationController@getStandardPopByProvID");
 //test end
 
 

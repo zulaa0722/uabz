@@ -19,7 +19,7 @@ class PopulationController extends Controller
   {
       $this->middleware('auth');
   }
-  
+
   public function popShow()
   {
     try{
@@ -84,4 +84,9 @@ class PopulationController extends Controller
       return "Серверийн алдаа!!! Веб мастерт хандана уу";
     }
   }
+
+    public function getStandardPopByProvID($provID){
+        $sumOfStandartPopByProvID = Population::where('provID', $provID)->sum('standardPop');
+        return $sumOfStandartPopByProvID;
+    }
 }

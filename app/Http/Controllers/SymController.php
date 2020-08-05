@@ -18,7 +18,7 @@ class SymController extends Controller
   {
       $this->middleware('auth');
   }
-  
+
   public function symShow()
   {
     try{
@@ -84,7 +84,7 @@ class SymController extends Controller
   {
     try{
       $getSyms  = DB::table("tb_sym")->where("provID", "=", $req->provID)->get();
-      return $getSyms;
+      return json_encode($getSyms);
     }catch(\Exception $e){
       return "Серверийн алдаа!!! Веб мастерт хандана уу";
     }

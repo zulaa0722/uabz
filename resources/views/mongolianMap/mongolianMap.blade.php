@@ -1,65 +1,65 @@
 @extends('layouts.layout_master')
 @section('css')
   <style media="screen">
-.aimag{
-  fill:black;
-  fill-opacity:0.4;
-  stroke:white;
-  stroke-width:8;
-}
+    .aimag{
+        fill:black;
+        fill-opacity:0.4;
+        stroke:white;
+        stroke-width:8;
+    }
 
-.aimag1{
-  /* fill:transparent; */
-  fill:#ff0c00;
-  fill-opacity:0.7;
-  stroke:white;
-  stroke-width:8;
-}
+    .aimag1{
+        /* fill:transparent; */
+        fill:#ff0c00;
+        fill-opacity:0.7;
+        stroke:white;
+        stroke-width:8;
+    }
 
-.aimag:hover{
-  fill:transparent;
-}
-path {
-  cursor: pointer;
-}
-.selected {
-  stroke: white;
-  stroke-width: 8;
-  fill:transparent;
-}
+    .aimag:hover{
+        fill:transparent;
+    }
+    path {
+      cursor: pointer;
+    }
+    .selected {
+        stroke: white;
+        stroke-width: 8;
+        fill:transparent;
+    }
 
-.hotuud:hover{
-fill:transparent;
-}
-.hotuud{
-  fill:black;
-  fill-opacity:0.4;
-  stroke:white;
-  stroke-width:8;
+    .hotuud:hover{
+        fill:transparent;
+    }
+    .hotuud{
+        fill:black;
+        fill-opacity:0.4;
+        stroke:white;
+        stroke-width:8;
 
-}
-.syms:hover{
-stroke:blue;
-stroke-width:2;
-}
-.syms{
-  fill:green;
-  fill-opacity:1;
-  stroke:white;
-  stroke-width:1;
-}
-.oneSum{
-  stroke-width:2;
-  stroke:white;
-  fill:green;
-}
+    }
+    .syms:hover{
+        stroke:blue;
+        stroke-width:2;
+    }
+    .syms{
+        fill:green;
+        fill-opacity:1;
+        stroke:white;
+        stroke-width:1;
+    }
+    .oneSum{
+        stroke-width:2;
+        stroke:white;
+        fill:green;
+    }
 
-.insideCity{
-  fill:black;
-  fill-opacity:0.4;
-  stroke:white;
-  stroke-width:4;
-}
+    .insideCity{
+        fill:black;
+        fill-opacity:0.4;
+        stroke:white;
+        stroke-width:4;
+    }
 
   </style>
 @endsection
@@ -72,6 +72,20 @@ stroke-width:2;
               <div class="card">
                   <div id="changeBlade" class="card-body">
                     <div class="col-md-6">
+                      <div class="form-group row">
+                        <div class="col-md-8">
+                          <select class="form-control" id="cmbDangerType" name="">
+                            <option value="-1">Сонгоно уу</option>
+                            <option value="1">Бүсээр</option>
+                            <option value="2">Аймгаар</option>
+                            <option value="3">Сумаар</option>
+                          </select>
+                        </div>
+                        <div class="col-md-4">
+                          <input type="button" id="btnDeclareDangerModal" class="btn btn-danger" name="" value="Онц байдал зарлах">
+                        </div>
+
+                      </div>
                       <div class="page-title-box">
                           <ol class="breadcrumb mb-0">
                               <li class="breadcrumb-item"><a href="{{url("/mongolia/maps")}}" id="mongolianMap">Монгол Улс</a></li>
@@ -81,9 +95,9 @@ stroke-width:2;
                     </div>
                     <div id="changeProvince">
                         @include('mongolianMap.allMaps')
-
+                        @include('mongolianMap.danger.dangerModal')
                     </div>
-                    
+
 
 
     <style media="screen">
@@ -126,7 +140,6 @@ stroke-width:2;
               <div class="card">
                   <div class="card-body">
                       <h4 class="card-title mb-12" id="changeName">Монгол Улсын хэмжээнд</h4>
-
                   </div>
               </div>
           </div>
@@ -138,7 +151,6 @@ stroke-width:2;
     <div class="col-md-12">
       <div class="card">
         <div class="card-body">
-
         </div>
       </div>
 
@@ -155,6 +167,7 @@ stroke-width:2;
   var changeUrl = "{{url("/get/name")}}";
   var allMongolianMap = "{{url("/mongolian/allMaps")}}";
   var changeBladeProvince = "{{url("/mongolian/province")}}";
+  var getAlertedProvJson = "{{url("/test/get")}}";
   var aimagName = "";
   var provID = "";
 
@@ -182,9 +195,14 @@ stroke-width:2;
         $('[data-toggle="tooltip"]').tooltip();
 
         $('path').on('click', function() {
-            $('path.selected').attr("class", "aimag");
-            $('path.selected').attr("class", "syms");
-            $(this).attr("class", "selected");
+            if($(this).attr('danger') == "1"){
+
+            }
+            else{
+              $('path.selected').attr("class", "aimag");
+              $('path.selected').attr("class", "syms");
+              $(this).attr("class", "selected");
+            }
             aimagName = $(this).attr('name');
             provID = $(this).attr('id');
             $.ajax({

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Sector;
 
 class HomeController extends Controller
 {
@@ -28,6 +29,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-          return view("mongolianMap.mongolianMap");
+      $sectors = Sector::orderBy('sectorName', 'ASC')->get();
+      return view("mongolianMap.mongolianMap", compact('sectors'));
     }
 }
