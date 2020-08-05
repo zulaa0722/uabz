@@ -233,50 +233,8 @@
   var provID = "";
 
       $(document).ready(function(){
-      //   $.ajax({
-      //     type: 'get',
-      //     url: allMongolianMap,
-      //     data: {
-      //         _token: csrf
-      //     },
-      //     success:function(response){
-      //       $("#changeProvince").html("");
-      //       $("#changeProvince").html(response);
-      //     },
-      //   error: function(jqXhr, json, errorThrown){// this are default for ajax errors
-      //     var errors = jqXhr.responseJSON;
-      //     var errorsHtml = '';
-      //     $.each(errors['errors'], function (index, value) {
-      //         errorsHtml += '<ul class="list-group"><li class="list-group-item alert alert-danger">' + value + '</li></ul>';
-      //     });
-      //     alert(errorsHtml);
-      //   }
-      // });
 
         $('[data-toggle="tooltip"]').tooltip();
-
-        $('path').on('click', function() {
-            if($(this).attr('danger') == "1"){
-
-            }
-            else{
-              $('path.selected').attr("class", "aimag");
-              $('path.selected').attr("class", "syms");
-              $(this).attr("class", "selected");
-            }
-            aimagName = $(this).attr('name');
-            provID = $(this).attr('id');
-            $.ajax({
-              type: 'get',
-              url: changeUrl,
-              data: {
-                  _token: csrf,
-                  name:aimagName
-              },
-              success:function(response){
-                $("#changeName").html("");
-                $("#changeName").html(response);
-
 
         $("#toSum").click(function(){
           if(aimagName != ""){

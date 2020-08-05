@@ -96,7 +96,10 @@ Route::post("/getPop", "PopulationController@getPopData");
 Route::post("/pop/insert", "PopulationController@store");
 Route::post("/pop/edit", "PopulationController@update");
 Route::post("/pop/delete", "PopulationController@delete");
+
+//rightPanel begin
 Route::get("/get/getAimagInfo", "Sides@getAimagInfo");
+//rightPanel end
 
 Route::get("/cattle/show", "CattleController@cattleShow");
 Route::post("/getCattle", "CattleController@getCattleData");
