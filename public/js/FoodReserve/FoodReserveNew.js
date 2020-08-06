@@ -12,7 +12,7 @@ $(document).ready(function(){
       var qntt = $(this).val();
       var foodQntt = $(this).attr("foodQntt");
       var foodKcal = $(this).attr("foodKcal");
-      var foodTotalKcal = qntt*1000*foodKcal/foodQntt;
+      var foodTotalKcal = qntt*foodKcal/foodQntt;
       $("#foodTotalKcal"+$(this).attr("id")).text(foodTotalKcal.toFixed(2) + " Ккал");
     });
 
@@ -23,11 +23,11 @@ $(document).ready(function(){
     var i=6;
     $(".foodProductFields").each(function(){
       if($(this).val != "")
-        $(this).val(parseFloat(dataRow[i]));
-        var qntt = parseFloat(dataRow[i]);
+        $(this).val(parseFloat(dataRow[i]) * 1000);
+        var qntt = parseFloat(dataRow[i]) * 1000;
         var foodQntt = $(this).attr("foodQntt");
         var foodKcal = $(this).attr("foodKcal");
-        var foodTotalKcal = qntt*1000*foodKcal/foodQntt;
+        var foodTotalKcal = qntt*foodKcal/foodQntt;
         $("#foodTotalKcal"+$(this).attr("id")).text(foodTotalKcal.toFixed(2) + " Ккал");
         i++;
     });
@@ -111,7 +111,7 @@ $(document).ready(function(){
             table.rows({ selected: true })
             .every(function (rowIdx, tableLoop, rowLoop){
               for(var i=0; i<index; i++)
-                table.cell(rowIdx, i+6).data(rowData[i]);
+                table.cell(rowIdx, i+6).data(rowData[i]/1000 + " тн");
             }).draw();
 
 //             var table = $("#FoodReserveTable").DataTable().rows({ selected: true }).every(function (rowIdx, tableLoop, rowLoop) {
@@ -141,11 +141,6 @@ $(document).ready(function(){
             console.log(response.msg);
           }
 
-
-
-          // FoodProductsTableRefresh();
-          // emptyForm();
-          // dataRow = "";
       }
     });
   }

@@ -25,7 +25,7 @@ Route::get("/mongolia/mapsAll", "mongolianMapsController@mongolianMapsAll");
 
 Route::get("/mongolia/maps", "mongolianMapsController@mongolianMapsShow");
 Route::get("/mongolian/sumd", "mongolianMapsController@mongolianSumd");
-Route::get("/get/name", "mongolianMapsController@getName");
+// Route::get("/get/name", "mongolianMapsController@getName");
 
 Route::get("/mongolian/province", "mongolianMapsController@showProvince");
 Route::get("/mongolian/allMaps", "mongolianMapsController@allMapsShow");
@@ -75,6 +75,7 @@ Route::post("/getProvince", "ProvinceController@getProvinceData");
 Route::post("/province/insert", "ProvinceController@store");
 Route::post("/province/edit", "ProvinceController@update");
 Route::post("/province/delete", "ProvinceController@delete");
+Route::post("/get/prov/by/bus", "ProvinceController@getProvsByBus");
 
 Route::get("/sym/show", "SymController@symShow");
 Route::post("/getSym", "SymController@getSymData");
@@ -82,6 +83,9 @@ Route::post("/sym/insert", "SymController@store");
 Route::post("/sym/edit", "SymController@update");
 Route::post("/sym/delete", "SymController@delete");
 Route::post("/sym/get/by/provID", "SymController@getSymByProvinceID");
+Route::post("/declare/danger/by/sum", "DangerController@declareDangerBySum");
+Route::post("/declare/danger/by/province", "DangerController@declareDangerByProvs");
+Route::post("/declare/danger/by/sector", "DangerController@declareDangerBySector");
 
 Route::get("/org/show", "OrganizationController@orgShow");
 Route::post("/getOrg", "OrganizationController@getOrgData");
@@ -94,6 +98,10 @@ Route::post("/getPop", "PopulationController@getPopData");
 Route::post("/pop/insert", "PopulationController@store");
 Route::post("/pop/edit", "PopulationController@update");
 Route::post("/pop/delete", "PopulationController@delete");
+
+//rightPanel begin
+Route::get("/get/getAimagInfo", "Sides@getAimagInfo");
+//rightPanel end
 
 Route::get("/cattle/show", "CattleController@cattleShow");
 Route::post("/getCattle", "CattleController@getCattleData");
@@ -174,7 +182,8 @@ Route::post('/dada/file/manager/delete/image', 'dadaaFileManagerController@delet
 
 
 //test
-Route::get("/test/get", "mongolianMapsController@getBaliarArray");
+Route::get("/test/get", "mongolianMapsController@getBaliarSda");
+Route::get("/test/get/{id}", "PopulationController@getStandardPopByProvID");
 //test end
 
 

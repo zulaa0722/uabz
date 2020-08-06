@@ -136,4 +136,10 @@ class NormController extends Controller
             return "Серверийн алдаа!!! Веб мастерт хандана уу";
         }
     }
+
+    public function sumOfNormKcalByID($normID){
+        $sumKcal = DB::table('tb_norms')
+            ->where('normID', '=', $normID)->sum('normCkal');
+        return $sumKcal;
+    }
 }
