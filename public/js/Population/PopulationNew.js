@@ -16,7 +16,8 @@ $(document).ready(function(){
           provID: $("#provName").val()
         },
         success:function(response){
-          $.each(response, function (value, index ) {
+          var obj = JSON.parse(response);
+          $.each(obj, function (value, index ) {
              var o = new Option(index['symName'], index['id']);  // Option(name, val)
              $("#cmbSymNew").append(o);
           });
