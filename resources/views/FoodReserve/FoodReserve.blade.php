@@ -38,7 +38,12 @@
 
                     <td>{{$sym->provName}}</td>
                     <td>{{$sym->symName}}</td>
-                    <td>sdfd</td>
+                    <td>@php
+                      $totalCattleQnnt = App\Http\Controllers\CattleQnttController::getTotalCattleBySym($sym->id);
+                      $totalCattleQnnt = round($totalCattleQnnt/1000 , 1);
+                      echo $totalCattleQnnt." тн";
+                    @endphp
+                    </td>
                     @foreach ($products as $product)
                       <td>
                       @php

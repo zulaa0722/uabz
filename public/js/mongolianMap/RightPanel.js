@@ -17,7 +17,7 @@ $(document).ready(function(){
         success:function(response){
           console.log(response);
           var div = "";
-          $.each(response, function(key, val){
+          $.each(response.bottomSide, function(key, val){
             div = div + '<div class="form-group row col-md-3">';
             div = div + '<div class="col-md-12" id="productName">'+val.product+'</div>';
             div = div + '<div class="col-md-12">Үлдсэн хоног: <label id="leftDays">'+val.leftDays+'</label></div>';
@@ -25,12 +25,13 @@ $(document).ready(function(){
           });
           $("#bottom").html("");
           $("#bottom").html(div);
+
           $("#changeName").text( aimagName );
           $("#selectedProvName").text( aimagName );
-          $("#totalPop").text( response.totalPop );
-          $("#standardPop").text( response.standardPop );
-          $("#totalCattle").text( response.totalCattle );
-          $("#reserveDay").text( response.reserveDay );
+          $("#totalPop").text( response.rightSide.totalPop );
+          $("#standardPop").text( response.rightSide.standardPop );
+          $("#totalCattle").text( response.rightSide.totalCattle );
+          $("#reserveDay").text( response.rightSide.reserveDay );
 
         },
       error: function(jqXhr, json, errorThrown){// this are default for ajax errors

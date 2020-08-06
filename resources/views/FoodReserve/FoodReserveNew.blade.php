@@ -25,6 +25,7 @@
                 </div>
 
                 <div class="form-group row">
+
                   @foreach ($products as $product)
                     <div class="col-md-3">
                       <label style="margin-bottom:-20px;">{{$product->productName}}</label><label style="color:red;font-style:bold;">&nbsp /кг/</label>

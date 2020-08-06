@@ -44,14 +44,15 @@ class Sides extends Controller
           ->where("provID", "=", $province->id)->sum("standardPop");
 
         //normiin kcal-iig tuhain aimgiin jishsen huneer urjuulj niit kcal-iig bodoj bn
-        $aimagTotalKcal = $normKcal * $standardPop;
-
+        if($standardPop != 0)
+          $aimagTotalKcal = $normKcal * $standardPop;
+        else
+          $aimagTotalKcal = 0;
+        
         //hunsnii nootsoos niit kcal-iig avch bn
         $reserveTotalKcal = DB::table("tb_food_reserve")
           ->where("provID", "=", $province->id)->sum("totalKcal");
 
-        //maliin too tolgoig kcal-d shiljuulj nemeegui bgaa!
-        $reserveDay = $reserveTotalKcal / $aimagTotalKcal;
 
         //aimgiin niit maliin too
         $totalCattle = DB::table("tb_cattle_qntt")
@@ -60,12 +61,22 @@ class Sides extends Controller
         $totalSheepKg = DB::table("tb_cattle_qntt")
           ->where("provID", "=", $province->id)->sum("sheepKg");
 
+        //maliin honin tolgoid shiljuulsen kg-iin niit kcal iig bodoh heseg
+        $meat = DB::table("tb_food_products")
+          ->where("productCode", "=", "01")->first();
+        $meatQntt = $meat->foodQntt;
+        $meatKcal = $meat->foodCkal;
+        //niit maliin kcal
+        $totalCattleKcal = $totalSheepKg*$meatKcal/$meatQntt;
+
+        //heden honog uldseniig kcal-oor huvaaj hariulj bn
+        $reserveDay = ($reserveTotalKcal + $totalCattleKcal) / $aimagTotalKcal;
 
         $rightSide = array(
           "totalPop" => $totalPop,
           "standardPop" => $standardPop,
           "totalCattle" => $totalCattle,
-          "reserveDay" => $reserveDay
+          "reserveDay" => intval($reserveDay)
         );
 #End of RIGHTSIDE
 
@@ -93,8 +104,12 @@ class Sides extends Controller
             }
           }
         }
+        $bothSides = array(
+          "rightSide" => $rightSide,
+          "bottomSide" => $bottomSide
+        );
+        return $bothSides;
 
-        return $bottomSide;
       } catch (\Exception $e) {
         // return "Серверийн алдаа!!! Веб мастерт хандана уу";
         return $e;
