@@ -89,7 +89,7 @@
                       <div class="page-title-box">
                           <ol class="breadcrumb mb-0">
                               <li class="breadcrumb-item"><a href="{{url("/mongolia/maps")}}" id="mongolianMap">Монгол Улс</a></li>
-                              <li class="breadcrumb-item active " id="nameID"></li>
+                              <li class="breadcrumb-item active " id="selectedProvName"></li>
                           </ol>
                       </div>
                     </div>
@@ -203,7 +203,7 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title mb-12" id="changeName">Тухайн хүнсний бүтээгдэхүүний үлдсэн хоног</h4>
+          <h4 class="card-title mb-12" id="">Тухайн хүнсний бүтээгдэхүүний үлдсэн хоног</h4>
           <div class="form-group row" id="bottom">
             {{-- <div class="form-group row col-md-3">
               <div class="col-md-12" id="productName">Гурил:</div>
@@ -229,7 +229,7 @@
   var changeBladeProvince = "{{url("/mongolian/province")}}";
   var getAlertedProvJson = "{{url("/test/get")}}";
   var aimagName = "";
-  var provID = "";
+  var provCode = "";
 
       $(document).ready(function(){
 
@@ -242,7 +242,7 @@
               url: changeBladeProvince,
               data: {
                   _token: csrf,
-                  name: provID
+                  provCode: provCode
               },
               success:function(response){
                 $("#changeProvince").html("");

@@ -122,7 +122,7 @@ class mongolianMapsController extends Controller
 
     public function showProvince(Request $req)
     {
-      $province = DB::table("tb_province")->where("provCode", "=", $req->name)->first();
+      $province = DB::table("tb_province")->where("provCode", "=", $req->provCode)->first();
 
         $url = "mongolianMap.".$province->provEngName;
         // return $url;

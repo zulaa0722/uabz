@@ -26,6 +26,7 @@ $(document).ready(function(){
           $("#bottom").html("");
           $("#bottom").html(div);
           $("#changeName").text( aimagName );
+          $("#selectedProvName").text( aimagName );
           $("#totalPop").text( response.totalPop );
           $("#standardPop").text( response.standardPop );
           $("#totalCattle").text( response.totalCattle );

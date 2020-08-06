@@ -21,7 +21,7 @@ Route::get('/template', function(){
 });
 
 
-Route::get("/mongolia/mapsAll", "mongolianMapsController@mongolianMapsAll");
+// Route::get("/mongolia/mapsAll", "mongolianMapsController@mongolianMapsAll");
 
 Route::get("/mongolia/maps", "mongolianMapsController@mongolianMapsShow");
 Route::get("/mongolian/sumd", "mongolianMapsController@mongolianSumd");
