@@ -21,6 +21,8 @@ Route::get('/template', function(){
 });
 
 
+Route::get("/mongolia/mapsAll", "mongolianMapsController@mongolianMapsAll");
+
 Route::get("/mongolia/maps", "mongolianMapsController@mongolianMapsShow");
 Route::get("/mongolian/sumd", "mongolianMapsController@mongolianSumd");
 Route::get("/get/name", "mongolianMapsController@getName");
@@ -28,7 +30,7 @@ Route::get("/get/name", "mongolianMapsController@getName");
 Route::get("/mongolian/province", "mongolianMapsController@showProvince");
 Route::get("/mongolian/allMaps", "mongolianMapsController@allMapsShow");
 
-Route::get("/mongolia/arkhangai", "mongolianMapsController@arkhangai");
+Route::get("/mongolia/Arkhangai", "mongolianMapsController@arkhangai");
 Route::get("/mongolia/Bayan-Ulgii", "mongolianMapsController@BayanUlgii");
 Route::get("/mongolia/Bayankhongor", "mongolianMapsController@Bayankhongor");
 
@@ -138,11 +140,17 @@ Route::post("/level/delete", "LevelController@delete");
 //Survey start
 Route::get("/survey/list", "SurveyController@surveyListShow");
 
-Route::get("/Survey/drinkingWater", "DrinkingWaterSourceController@drinkingWaterShow");
-Route::post("/getDrinkingWater", "DrinkingWaterSourceController@getDrinkingWaterData");
-Route::post("/drinkingWater/insert", "DrinkingWaterSourceController@store");
-Route::post("/drinkingWater/edit", "DrinkingWaterSourceController@update");
-Route::post("/drinkingWater/delete", "DrinkingWaterSourceController@delete");
+Route::get("/Survey/drinkingWater", "SrvyDrinkingWaterSourceController@drinkingWaterShow");
+Route::post("/getDrinkingWater", "SrvyDrinkingWaterSourceController@getDrinkingWaterData");
+Route::post("/drinkingWater/insert", "SrvyDrinkingWaterSourceController@store");
+Route::post("/drinkingWater/edit", "SrvyDrinkingWaterSourceController@update");
+Route::post("/drinkingWater/delete", "SrvyDrinkingWaterSourceController@delete");
+
+Route::get("/Survey/foodTradeCenter", "SrvyFoodTradeCenterController@foodTradeCenterShow");
+Route::post("/getFoodTradeCenter", "SrvyFoodTradeCenterController@getFoodTradeCenterData");
+Route::post("/foodTradeCenter/insert", "SrvyFoodTradeCenterController@store");
+Route::post("/foodTradeCenter/edit", "SrvyFoodTradeCenterController@update");
+Route::post("/foodTradeCenter/delete", "SrvyFoodTradeCenterController@delete");
 //Survey end
 
 

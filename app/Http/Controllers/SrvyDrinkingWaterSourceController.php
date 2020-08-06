@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\DrinkingWaterSource;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\DrinkingWaterSource;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\DataTables;
 use Carbon\Carbon;
@@ -12,13 +13,13 @@ use App\Province;
 use App\Sym;
 use DB;
 
-class DrinkingWaterSourceController extends Controller
+class SrvyDrinkingWaterSourceController extends Controller
 {
   public function __construct()
   {
       $this->middleware('auth');
   }
-  
+
   public function drinkingWaterShow()
   {
     try{
@@ -64,14 +65,16 @@ class DrinkingWaterSourceController extends Controller
   public function update(Request $req)
   {
     try{
-      // $updateFoodProducts = FoodProducts::find($req->rowID);
-      // $updateFoodProducts->productName = $req->productName;
-      // $updateFoodProducts->foodQntt = $req->foodQntt;
-      // $updateFoodProducts->foodProtein = $req->foodProtein;
-      // $updateFoodProducts->foodFat = $req->foodFat;
-      // $updateFoodProducts->foodCarbon = $req->foodCarbon;
-      // $updateFoodProducts->foodCkal = $req->foodCkal;
-      // $updateFoodProducts->save();
+      $insertDrinkingWater = DrinkingWaterSource::find($req->rowID);
+      $insertDrinkingWater->provID = $req->provID;
+      $insertDrinkingWater->symID = $req->symID;
+      $insertDrinkingWater->location = $req->location;
+      $insertDrinkingWater->wellName = $req->wellName;
+      $insertDrinkingWater->capacity = $req->capacity;
+      $insertDrinkingWater->state = $req->state;
+      $insertDrinkingWater->resName = $req->resName;
+      $insertDrinkingWater->contact = $req->contact;
+      $insertDrinkingWater->save();
       return "Амжилттай заслаа";
     }catch(\Exception $e){
       return "Серверийн алдаа!!! Веб мастерт хандана уу";
@@ -81,8 +84,8 @@ class DrinkingWaterSourceController extends Controller
   public function delete(Request $req)
   {
     try{
-      $deleteFoodProducts = FoodProducts::find($req->rowID);
-      $deleteFoodProducts->delete();
+      $deleteDrinkingWater = DrinkingWaterSource::find($req->rowID);
+      $deleteDrinkingWater->delete();
       return "Амжилттай устгалаа";
     }catch(\Exception $e){
       return "Серверийн алдаа!!! Веб мастерт хандана уу";

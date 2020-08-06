@@ -1,21 +1,19 @@
-
-
-<div id="modalDrinkingWaterNew" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
+<div id="modalFoodTradeCenterNew" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
       {{-- modal-lg --}}
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title mt-0">Ундны усны эх үүсвэр нэмэх</h5>
+                <h5 class="modal-title mt-0">Хүнсний худалдааны томоохон төв, захын судалгаа нэмэх</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-              <form id="frmDrinkingWaterNew" action="" method="post">
+              <form id="frmFoodTradeCenterNew" action="" method="post">
                 @csrf
                   <div class="form-group row">
                     <div class="col-md-6">
-                      <label>Аймгийн нэр:</label>
+                      <label>Аймаг / Нийслэл:</label>
                       <select class="form-control" name="provID" id="provName" getSymUrl="{{url("/sym/get/by/provID")}}">
                           <option value="-1">Сонгоно уу</option>
                         @foreach ($provinces as $province)
@@ -24,7 +22,7 @@
                       </select>
                     </div>
                     <div class="col-md-6">
-                      <label>Сумын нэр:</label>
+                      <label>Сум/дүүрэг:</label>
                       <select class="form-control" name="symID" id="cmbSymNew">
                           <option value="-1">Сонгоно уу</option>
 
@@ -35,21 +33,29 @@
 
                   <div class="form-group row">
                     <div class="col-md-6">
-                      <label>Байршил:</label>
-                      <input class="form-control" type="text" name="location" id="location">
+                      <label>Аж ахуйн нэгжийн нэр:</label>
+                      <input class="form-control" type="text" name="firmName" id="firmName">
                     </div>
                     <div class="col-md-6">
-                      <label>*Ундны усны худгийн нэр, дугаар:</label>
-                      <input class="form-control" type="text" name="wellName" id="wellName">
+                      <label>Ашиглалтад орсон огноо:</label>
+                      <input class="form-control" type="date" name="startDate" id="startDate">
                     </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+                    <div class="form-group row">
                     <div class="col-md-6">
-                      <label>Хүчин чадал, багтаамж (m3/сек):</label>
+                      <label>Агуулахын багтаамж, хүчин чадал /тн/:</label>
                       <input class="form-control" type="text" name="capacity" id="capacity">
                     </div>
                     <div class="col-md-6">
-                      <label>**Төлөв:</label>
+                      <label>*Төлөв:</label>
                       <input class="form-control" type="text" name="state" id="state">
                     </div>
+                  </div>
+
+                  <div class="clearfix"></div>
+                  <div class="form-group row">
                     <div class="col-md-6">
                       <label>Хариуцах хүний нэр:</label>
                       <input class="form-control" type="text" name="resName" id="resName">
@@ -59,12 +65,11 @@
                       <input class="form-control" type="text" name="contact" id="contact">
                     </div>
                   </div>
-                  <p class="text-right">*Аймаг, нийслэл, сум, дүүргийн төвийн бүсийн худгийг оруулж тооцно. <br>
-                  **Худаг механикжсан бол (М), гар ажиллагаатай бол (Г) гэж тэмдэглэнэ.</p>
+                  <p class="text-right">*механикжсан агуулах бол (М), уламжлалт ажиллагаатай бол (У) гэж тэмдэглэнэ.</p>
 
                   </div>
                   <div class="modal-footer">
-                      <button type="submit" id="btnDrinkingWaterAdd" class="btn btn-primary">Хадгалах</button>
+                      <button type="submit" id="btnFoodTradeCenterAdd" class="btn btn-primary">Хадгалах</button>
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Хаах</button>
                   </div>
             </form>

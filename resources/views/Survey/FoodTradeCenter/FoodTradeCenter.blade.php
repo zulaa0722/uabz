@@ -7,17 +7,17 @@
           <div class="col-xl-12">
               <div class="card">
                 <div  class="card-body">
-                  <h4 Class="text-center">Ундны усны эх үүсвэрийн судалгаа</h4>
-                  <table id="drinkingWaterSource" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                  <h4 Class="text-center">Хүнсний худалдааны томоохон төв, захын судалгаа</h4>
+                  <table id="FoodTradeCenter" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                       <thead>
                         <tr class="text-center">
                           <th>№</th>
                           <th>Аймаг, нийслэл</th>
                           <th>Сум, дүүрэг</th>
-                          <th>Байршил </th>
-                          <th>Худгийн нэр, <br> дугаар*</th>
-                          <th>Хүчин чадал, <br> багтаамж (м3/сек)</th>
-                          <th>Төлөв**</th>
+                          <th>Аж ахуйн <br> нэгжийн нэр </th>
+                          <th>Ашиглалтад орсон <br> огноо</th>
+                          <th>Агуулахын багтаамж, <br> хүчин чадал /тн/</th>
+                          <th>Төлөв*</th>
                           <th>Хариуцах хүний нэр </th>
                           <th>Холбоо барих утас</th>
                           <th></th>
@@ -30,27 +30,27 @@
                     </table>
                     <button class="btn btn-primary" type="button" name="button" id="btnAddModalOpen">Нэмэх</button>
                     <button class="btn btn-warning" type="button" name="button" id="btnEditModalOpen">Засах</button>
-                    <button class="btn btn-danger" type="button" name="button" id="drinkingWaterSourceDelete">Устгах</button>
-                    <p class="text-right">*Аймаг, нийслэл, сум, дүүргийн төвийн бүсийн худгийг оруулж тооцно. <br>
-                    **Худаг механикжсан бол (М), гар ажиллагаатай бол (Г) гэж тэмдэглэнэ.</p>
+                    <button class="btn btn-danger" type="button" name="button" id="FoodTradeCenterDelete">Устгах</button>
+                    <p class="text-right">
+                    *механикжсан агуулах бол (М), уламжлалт ажиллагаатай бол (У) гэж тэмдэглэнэ.</p>
                   </div>
                 </div>
             </div>
         </div>
       </div>
     </div>
-@include('Survey.DrinkingWaterSource.DrinkingWaterSourceNew')
-@include('Survey.DrinkingWaterSource.DrinkingWaterSourceEdit')
+@include('Survey.FoodTradeCenter.FoodTradeCenterNew')
+@include('Survey.FoodTradeCenter.FoodTradeCenterEdit')
 @endsection
 
 @section('css')
   <link rel="stylesheet" href="{{url("public/uaBCssJs/datatableCss/datatables.min.css")}}">
   <style media="screen">
-#drinkingWaterSource tbody tr.selected {
+#FoodTradeCenter tbody tr.selected {
   color: white;
   background-color: #8893f2;
 }
-#drinkingWaterSource tbody tr{
+#FoodTradeCenter tbody tr{
 cursor: pointer;
 }
 </style>
@@ -65,13 +65,13 @@ cursor: pointer;
   <script type="text/javascript">
   var dataRow = "";
   var csrf = "{{ csrf_token() }}";
-  var getDrinkingWater = "{{url("/getDrinkingWater")}}";
-  var drinkingWaterNew = "{{url("/drinkingWater/insert")}}";
-  var drinkingWaterEditUrl = "{{url("/drinkingWater/edit")}}";
-  var drinkingWaterDeleteUrl = "{{url("/drinkingWater/delete")}}";
+  var getFoodTradeCenter = "{{url("/getFoodTradeCenter")}}";
+  var foodTradeCenterNew = "{{url("/foodTradeCenter/insert")}}";
+  var foodTradeCenterEditUrl = "{{url("/foodTradeCenter/edit")}}";
+  var foodTradeCenterDeleteUrl = "{{url("/foodTradeCenter/delete")}}";
 
   $(document).ready(function(){
-    var table = $('#drinkingWaterSource').DataTable({
+    var table = $('#FoodTradeCenter').DataTable({
       "language": {
               "lengthMenu": "_MENU_ мөрөөр харах",
               "zeroRecords": "Хайлт илэрцгүй байна",
@@ -94,7 +94,7 @@ cursor: pointer;
           "serverSide": true,
           "stateSave": true,
           "ajax":{
-                   "url": getDrinkingWater,
+                   "url": getFoodTradeCenter,
                    "dataType": "json",
                    "type": "post",
                    "data":{
@@ -107,8 +107,8 @@ cursor: pointer;
       }  },
             { data: "provName", name: "provName"},
             { data: "symName", name: "symName"},
-            { data: "location", name: "location"},
-            { data: "wellName", name: "wellName"},
+            { data: "firmName", name: "firmName"},
+            { data: "startDate", name: "startDate"},
             { data: "capacity", name: "capacity"},
             { data: "state", name: "state"},
             { data: "resName", name: "resName"},
@@ -118,7 +118,7 @@ cursor: pointer;
             ]
         });
 
-        $('#drinkingWaterSource tbody').on( 'click', 'tr', function () {
+        $('#FoodTradeCenter tbody').on( 'click', 'tr', function () {
             if ( $(this).hasClass('selected') ) {
                 $(this).removeClass('selected');
                 dataRow = "";
@@ -126,15 +126,15 @@ cursor: pointer;
                 table.$('tr.selected').removeClass('selected');
                 $(this).addClass('selected');
                 var currow = $(this).closest('tr');
-                dataRow = $('#drinkingWaterSource').DataTable().row(currow).data();
+                dataRow = $('#FoodTradeCenter').DataTable().row(currow).data();
             }
           });
   });
   </script>
 
 <script src="{{url("public/js/Survey/SurveyAll.js")}}"></script>
-<script src="{{url("public/js/Survey/DrinkingWater/DrinkingWaterNew.js")}}"></script>
-<script src="{{url("public/js/Survey/DrinkingWater/DrinkingWaterEdit.js")}}"></script>
-<script src="{{url("public/js/Survey/DrinkingWater/DrinkingWaterDelete.js")}}"></script>
+<script src="{{url("public/js/Survey/FoodTradeCenter/FoodTradeCenterNew.js")}}"></script>
+<script src="{{url("public/js/Survey/FoodTradeCenter/FoodTradeCenterEdit.js")}}"></script>
+<script src="{{url("public/js/Survey/FoodTradeCenter/FoodTradeCenterDelete.js")}}"></script>
 
 @endsection

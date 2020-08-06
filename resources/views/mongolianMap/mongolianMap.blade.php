@@ -81,11 +81,7 @@ stroke-width:2;
                     </div>
                     <div id="changeProvince">
                         @include('mongolianMap.allMaps')
-
                     </div>
-                    
-
-
     <style media="screen">
       .aimagTextName{
         /* font-weight:bold; */

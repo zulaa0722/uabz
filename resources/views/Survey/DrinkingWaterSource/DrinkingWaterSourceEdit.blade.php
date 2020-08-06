@@ -13,7 +13,7 @@
             <div class="modal-body">
               <form id="frmDrinkingWaterEdit" action="" method="post">
                 @csrf
-                <input type="hidden" name="number" id="rowID" value="">
+                <input type="hidden" name="rowID" id="rowID" value="">
                   <div class="form-group row">
                     <div class="col-md-6">
                       <label>Аймгийн нэр:</label>
@@ -61,7 +61,7 @@
                     </div>
                   </div>
                   <p class="text-right">*Аймаг, нийслэл, сум, дүүргийн төвийн бүсийн худгийг оруулж тооцно. <br>
-                  **Худан механикжсан бол (М), гар ажиллагаатай бол (Г) гэж тэмдэглэнэ.</p>
+                  **Худаг механикжсан бол (М), гар ажиллагаатай бол (Г) гэж тэмдэглэнэ.</p>
 
                   </div>
                   <div class="modal-footer">

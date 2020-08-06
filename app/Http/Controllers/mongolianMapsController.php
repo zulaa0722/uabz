@@ -30,6 +30,13 @@ class mongolianMapsController extends Controller
         return $req->name;
     }
 
+
+
+
+  public function mongolianMapsAll(){
+    return view("mongolianMap.allMaps");
+  }
+
   public function form1(Request $req){
     return view("forms.nootsiinSudalgaa");
   }

@@ -4,7 +4,7 @@
   <ol class="rectangle-list">
    {{-- <li><a href="{{url("/forms/form1")}}">Хавсралт 1</a></li> --}}
    <li><a href="{{url("/Survey/drinkingWater")}}">Ундны усны эх үүсвэрийн судалгаа</a></li>
-   <li><a href="javascript: void(0);">Хүнсний худалдааны томоохон төв, захын судалгаа</a></li>
+   <li><a href="{{url("/Survey/foodTradeCenter")}}">Хүнсний худалдааны томоохон төв, захын судалгаа</a></li>
    <li><a href="javascript: void(0);">Хүнсний агуулах зоорийн судалгаа</a></li>
    <li><a href="javascript: void(0);">Тариалангийн агуулах, элеватор, зоорийн судалгаа</a></li>
    <li><a href="javascript: void(0);">Хүнсний үйлдвэрийн судалгаа</a></li>
