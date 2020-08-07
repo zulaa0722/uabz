@@ -25,6 +25,10 @@ $(document).ready(function(){
     });
 });
 
+$(document).on("click", "path[class='syms']", function(){
+    alert($(this).attr('id'));
+});
+
 $(document).ready(function(){
     $("#btnDeclareDangerModal").click(function(){
         if($("#cmbDangerType").val() == "-1"){
