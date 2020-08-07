@@ -178,7 +178,7 @@ $(document).ready(function(){
                     alertify.error(res.msg);
                 }
                 else{
-                    alertify.msg(res.msg);
+                    alertify.alert(res.msg);
                 }
             }
         });
@@ -224,7 +224,7 @@ $(document).ready(function(){
                     alertify.error(res.msg);
                 }
                 else{
-                    alertify.msg(res.msg);
+                    alertify.alert(res.msg);
                 }
             }
         });
@@ -260,7 +260,7 @@ $(document).ready(function(){
                     alertify.error(res.msg);
                 }
                 else{
-                    alertify.msg(res.msg);
+                    alertify.alert(res.msg);
                 }
             }
         });
