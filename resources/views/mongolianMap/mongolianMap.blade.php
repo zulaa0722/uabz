@@ -99,35 +99,35 @@
                         @include('mongolianMap.danger.dangerModal')
                     </div>
 
-    <style media="screen">
-      .aimagTextName{
-        /* font-weight:bold; */
-        fill:#E4FD0C;
-        stroke:#E4FD0C;
-        font-family:tahoma;
-        font-size:62.3503px;
-        stroke-miterlimit:1px;
-        cursor:pointer;
-      }
+                      <style media="screen">
+                        .aimagTextName{
+                          /* font-weight:bold; */
+                          fill:#E4FD0C;
+                          stroke:#E4FD0C;
+                          font-family:tahoma;
+                          font-size:62.3503px;
+                          stroke-miterlimit:1px;
+                          cursor:pointer;
+                        }
 
-      .symTextName{
-        font-weight:bold;
-        fill:#fff;
-        font-family:tahoma;
-        cursor:pointer;
-        /* stroke: black; stroke-width: 1; */
-      }
-    </style>
+                        .symTextName{
+                          font-weight:bold;
+                          fill:#fff;
+                          font-family:tahoma;
+                          cursor:pointer;
+                          /* stroke: black; stroke-width: 1; */
+                        }
+                      </style>
 
-  <div class="col-md-12 float-right">
-    <div class="page-title-box">
-        <ol class="breadcrumb mb-0 float-right">
-            <li class="breadcrumb-item"><a href="javascript:void(0)" id="toSum">Сумаар харах</a></li>
-            <li class="breadcrumb-item"><a href=""></a></li>
-        </ol>
-    </div>
-  </div>
-</div>
+                    <div class="col-md-12 float-right">
+                      <div class="page-title-box">
+                          <ol class="breadcrumb mb-0 float-right">
+                              <li class="breadcrumb-item"><a href="javascript:void(0)" id="toSum">Сумаар харах</a></li>
+                              <li class="breadcrumb-item"><a href=""></a></li>
+                          </ol>
+                      </div>
+                    </div>
+                  </div>
 
               </div>
           </div>
@@ -144,7 +144,7 @@
                           Нийт хүн ам:
                         </div>
                         <div class="col-md-3">
-                          <img src="{{url('\public\images\icons\cattleIcon.png')}}" width="35" alt="" style="padding-bottom:4px;">
+                          <img src="{{url('\public\images\icons\population.png')}}" width="35" alt="" style="padding-bottom:4px;">
                         </div>
                         <div id="totalPop" class="col-md-9 text-left" style="font-size:22px;">
                           2237812
@@ -157,7 +157,7 @@
                           Жишсэн хүн ам:
                         </div>
                         <div class="col-md-3">
-                          <img src="{{url('\public\images\icons\cattleIcon.png')}}" width="35" alt="" style="padding-bottom:4px;">
+                          <img src="{{url('\public\images\icons\standard.png')}}" width="35" alt="" style="padding-bottom:4px;">
                         </div>
                         <div id="standardPop" class="col-md-9 text-left" style="font-size:22px;">
                           1737812

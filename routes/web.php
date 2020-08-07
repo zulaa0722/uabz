@@ -28,7 +28,7 @@ Route::get("/mongolian/sumd", "mongolianMapsController@mongolianSumd");
 // Route::get("/get/name", "mongolianMapsController@getName");
 
 Route::get("/mongolian/province", "mongolianMapsController@showProvince");
-Route::get("/mongolian/allMaps", "mongolianMapsController@allMapsShow");
+//Route::get("/mongolian/allMaps", "mongolianMapsController@allMapsShow");
 
 Route::get("/mongolia/Arkhangai", "mongolianMapsController@arkhangai");
 Route::get("/mongolia/Bayan-Ulgii", "mongolianMapsController@BayanUlgii");

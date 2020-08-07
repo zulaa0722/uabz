@@ -92,4 +92,10 @@ class CattleQnttController extends Controller
             ->get();
         return $cattleCount;
     }
+    public static function getTotalCattleBySym($symID)
+    {
+      $cattleCount = DB::table('tb_cattle_qntt')
+        ->where('symID', '=', $symID)->sum('sheepKg');
+      return $cattleCount;
+    }
 }
