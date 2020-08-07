@@ -48,7 +48,7 @@ class Sides extends Controller
           $aimagTotalKcal = $normKcal * $standardPop;
         else
           $aimagTotalKcal = 0;
-        
+
         //hunsnii nootsoos niit kcal-iig avch bn
         $reserveTotalKcal = DB::table("tb_food_reserve")
           ->where("provID", "=", $province->id)->sum("totalKcal");

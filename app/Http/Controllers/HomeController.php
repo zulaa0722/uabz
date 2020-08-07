@@ -31,5 +31,6 @@ class HomeController extends Controller
     {
       $sectors = Sector::orderBy('sectorName', 'ASC')->get();
       return view("mongolianMap.mongolianMap", compact('sectors'));
+      
     }
 }
