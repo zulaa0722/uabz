@@ -47,6 +47,10 @@
                     <label>ккал /Томъёогоор бодогдсон/</label>
                     <input class="form-control" type="number" id="efoodTomCkal" name="foodTomCkal">
                   </div>
+                  <div class="col-md-12">
+                    <label>Үнэ: /кг, төгрөгөөр/</label>
+                    <input class="form-control" type="number" id="efoodPrice" name="foodPrice">
+                  </div>
 
                 </div>
 

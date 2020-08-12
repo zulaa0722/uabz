@@ -18,6 +18,7 @@
                     <th>Нүүрс ус</th>
                     <th>ккал</th>
                     <th>Бодогдсон ккал</th>
+                    <th>Үнэ</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -96,15 +97,16 @@
                  },
           "columns": [
             { data: "id", name: "id",  render: function (data, type, row, meta) {
-          return meta.row + meta.settings._iDisplayStart + 1;
-      }  },
+              return meta.row + meta.settings._iDisplayStart + 1;
+            }},
             { data: "productName", name: "productName"},
             { data: "foodQntt", name: "foodQntt"},
             { data: "foodProtein", name: "foodProtein"},
             { data: "foodFat", name: "foodFat"},
             { data: "foodCarbon", name: "foodCarbon"},
             { data: "foodCkal", name: "foodCkal"},
-            { data: "foodTomCkal", name: "foodTomCkal"}
+            { data: "foodTomCkal", name: "foodTomCkal"},
+            { data: "price", name: "price"}
             ]
         });
 

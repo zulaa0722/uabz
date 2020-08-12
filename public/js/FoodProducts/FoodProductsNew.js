@@ -83,6 +83,7 @@ function emptyForm()
   $("#foodCarbon").val("");
   $("#foodCkal").val("");
   $("#foodTomCkal").val("");
+  $("#foodPrice").val("");
 }
 
 function FoodProductsTableRefresh()
@@ -128,7 +129,8 @@ function FoodProductsTableRefresh()
          { data: "foodFat", name: "foodFat"},
          { data: "foodCarbon", name: "foodCarbon"},
          { data: "foodCkal", name: "foodCkal"},
-         { data: "foodTomCkal", name: "foodTomCkal"}
+         { data: "foodTomCkal", name: "foodTomCkal"},
+         { data: "price", name: "price"}
          ]
      }).ajax.reload();
 }

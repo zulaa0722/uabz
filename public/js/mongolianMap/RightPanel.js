@@ -11,11 +11,11 @@ $(document).ready(function(){
         url: getAimagInfo,
         data: {
             _token: csrf,
-            name:aimagName,
+            name: aimagName,
             provCode: provCode
         },
         success:function(response){
-          console.log(response);
+          //console.log(response);
           var div = "";
           $.each(response.bottomSide, function(key, val){
             div = div + '<div class="form-group row col-md-3">';
@@ -44,4 +44,33 @@ $(document).ready(function(){
       }
     });
   });
+});
+$(document).on("click", "path[class='syms']", function(){
+    //alert($(this).attr('id') + 'lol');
+    var symName = $(this).attr('name');
+    $.ajax({
+      type: "get",
+      url: getSymInfo,
+      data: {
+        symCode: $(this).attr('id')
+      },
+      success:function(response){
+        var div = "";
+        $.each(response.bottomSide, function(key, val){
+          div = div + '<div class="form-group row col-md-3">';
+          div = div + '<div class="col-md-12" id="productName">'+val.product+'</div>';
+          div = div + '<div class="col-md-12">Үлдсэн хоног: <label id="leftDays">'+val.leftDays+'</label></div>';
+          div = div + '</div>';
+        });
+        $("#bottom").html("");
+        $("#bottom").html(div);
+
+       $("#changeName").text( symName );
+        //$("#selectedProvName").text( $(this).attr('name') );
+        $("#totalPop").text( response.rightSide.totalPop );
+        $("#standardPop").text( response.rightSide.standardPop );
+        $("#totalCattle").text( response.rightSide.totalCattle );
+        $("#reserveDay").text( response.rightSide.reserveDay );
+      }
+    });
 });

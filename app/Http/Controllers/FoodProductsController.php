@@ -19,7 +19,7 @@ class FoodProductsController extends Controller
   {
       $this->middleware('auth');
   }
-  
+
   public function foodProductsShow()
   {
     try{
@@ -50,6 +50,7 @@ class FoodProductsController extends Controller
       $insertFoodProducts->foodCarbon = $req->foodCarbon;
       $insertFoodProducts->foodCkal = $req->foodCkal;
       $insertFoodProducts->foodTomCkal = $req->foodTomCkal;
+      $insertFoodProducts->price = $req->foodPrice;
       $insertFoodProducts->save();
       return "Амжилттай хадгаллаа";
     }catch(\Exception $e){
@@ -68,6 +69,7 @@ class FoodProductsController extends Controller
       $updateFoodProducts->foodCarbon = $req->foodCarbon;
       $updateFoodProducts->foodCkal = $req->foodCkal;
       $updateFoodProducts->foodTomCkal = $req->foodTomCkal;
+      $updateFoodProducts->price = $req->foodPrice;
 
       $updateFoodProducts->save();
       return "Амжилттай заслаа";

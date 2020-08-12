@@ -101,6 +101,8 @@ Route::post("/pop/delete", "PopulationController@delete");
 
 //rightPanel begin
 Route::get("/get/getAimagInfo", "Sides@getAimagInfo");
+Route::get("/get/getSymInfo", "Sides@getSymInfo");
+
 //rightPanel end
 
 Route::get("/cattle/show", "CattleController@cattleShow");

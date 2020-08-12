@@ -17,6 +17,7 @@ $(document).ready(function(){
     $("#efoodCarbon").val(dataRow['foodCarbon']);
     $("#efoodCkal").val(dataRow['foodCkal']);
     $("#efoodTomCkal").val(dataRow['foodTomCkal']);
+    $("#efoodPrice").val(dataRow['foodPrice']);
 
     $("#modalFoodProductsEdit").modal("show");
 

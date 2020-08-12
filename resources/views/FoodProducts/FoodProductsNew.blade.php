@@ -42,9 +42,13 @@
                     <input class="form-control" type="number" id="foodCarbon" name="foodCarbon">
                   </div>
 
-                  <div class="col-md-12">
+                  <div class="col-md-9">
                     <label>ккал /Томъёогоор бодогдсон/</label>
                     <input class="form-control" type="number" id="foodTomCkal" name="foodTomCkal">
+                  </div>
+                  <div class="col-md-9">
+                    <label>Үнэ: /кг, төгрөгөөр/</label>
+                    <input class="form-control" type="number" id="foodPrice" name="foodPrice">
                   </div>
                 </div>
 

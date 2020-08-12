@@ -225,6 +225,7 @@
   <script type="text/javascript">
   var csrf = "{{ csrf_token() }}";
   var getAimagInfo = "{{url("/get/getAimagInfo")}}";
+  var getSymInfo = "{{url("/get/getSymInfo")}}";
   var allMongolianMap = "{{url("/mongolian/allMaps")}}";
   var changeBladeProvince = "{{url("/mongolian/province")}}";
   var getAlertedProvJson = "{{url("/test/get")}}";
