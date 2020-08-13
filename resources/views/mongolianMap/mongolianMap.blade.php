@@ -88,19 +88,22 @@
               <div class="card">
                   <div id="changeBlade" class="card-body">
                     <div class="col-md-6">
-                      <div class="form-group row">
-                        <div class="col-md-8">
-                          <select class="form-control" id="cmbDangerType" name="">
-                            <option value="-1">Сонгоно уу</option>
-                            <option value="1">Бүсээр</option>
-                            <option value="2">Аймгаар</option>
-                            <option value="3">Сумаар</option>
-                          </select>
-                        </div>
-                        <div class="col-md-4">
-                          <input type="button" id="btnDeclareDangerModal" class="btn btn-danger" name="" value="Онц байдал зарлах">
-                        </div>
+                      <div class="form-group border border-danger">
+                        <label class="col-md-12 col-form-label text-md-center">Онц байдал зарлах</label>
+                        <div class="form-group row">
+                          <div class="col-md-6">
+                            <select class="form-control" id="cmbDangerType" name="">
+                              <option value="-1">Сонгоно уу</option>
+                              <option value="1">Бүсээр</option>
+                              <option value="2">Аймгаар</option>
+                              <option value="3">Сумаар</option>
+                            </select>
+                          </div>
+                          <div class="col-md-6">
+                            <input type="button" id="btnDeclareDangerModal" class="btn btn-danger" name="" value="Онц байдал зарлах">
+                          </div>
 
+                        </div>
                       </div>
                       <div class="page-title-box">
                           <ol class="breadcrumb mb-0">
