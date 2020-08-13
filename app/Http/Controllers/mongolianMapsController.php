@@ -142,10 +142,11 @@ class mongolianMapsController extends Controller
                   "name" => $province->provName,
                   "popCount" => $popController->getStandardPopByProvID($province->id),
                   "Kcal" => $normController->sumOfNormKcalByID($province->normID),
-                  "reserveKcal" => "100000000",
-                  "provEngName" => $province->provName
+                  "reserveKcal" => "100000000"
               ));
         }
         return json_encode($arr);
     }
+
+    // public function getSumsDay
 }

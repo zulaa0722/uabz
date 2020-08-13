@@ -1,3 +1,29 @@
+
+	<style media="screen">
+	    .danger{
+	        /* fill:transparent; */
+	        fill:red;
+	        fill-opacity:0.9;
+	        stroke:white;
+	        /* stroke-width:8; */
+	    }
+
+	    .warning{
+	        /* fill:transparent; */
+	        fill:yellow;
+	        fill-opacity:0.9;
+	        stroke:white;
+	        /* stroke-width:8; */
+	    }
+
+	    .success{
+	        /* fill:transparent; */
+	        fill:green;
+	        fill-opacity:0.8;
+	        stroke:white;
+	        /* stroke-width:8; */
+	    }
+	</style>
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
  width="100%" height="100%" viewBox="0 234.596 1053.05 724.463" enable-background="new 325.194 244.5 466 710"
  xml:space="preserve">

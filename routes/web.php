@@ -55,6 +55,9 @@ Route::get("/mongolia/Uvurkhangai", "mongolianMapsController@Uvurkhangai");
 Route::get("/mongolia/Zavkhan", "mongolianMapsController@Zavkhan");
 
 
+// START gazriin zurgiin sumdiin ungu uurchluh heseg
+Route::post("/get/sums/reserve/count", "SumAndFoodReserveController@getSumsReserveDays");
+// END gazriin zurgiin sumdiin ungu uurchluh heseg
 
 
 //FoodReserve begin
@@ -186,6 +189,7 @@ Route::post('/dada/file/manager/delete/image', 'dadaaFileManagerController@delet
 //test
 Route::get("/test/get", "mongolianMapsController@getBaliarSda");
 Route::get("/test/get/{id}", "PopulationController@getStandardPopByProvID");
+Route::get("/test/map/sum/days", "SumAndFoodReserveController@getSumsReserveDays");
 //test end
 
 

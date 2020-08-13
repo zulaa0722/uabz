@@ -8,10 +8,26 @@
         stroke-width:8;
     }
 
-    .aimag1{
+    .danger{
         /* fill:transparent; */
-        fill:#ff0c00;
-        fill-opacity:0.7;
+        fill:red;
+        fill-opacity:0.9;
+        stroke:white;
+        stroke-width:8;
+    }
+
+    .warning{
+        /* fill:transparent; */
+        fill:yellow;
+        fill-opacity:0.9;
+        stroke:white;
+        stroke-width:8;
+    }
+
+    .success{
+        /* fill:transparent; */
+        fill:green;
+        fill-opacity:0.8;
         stroke:white;
         stroke-width:8;
     }
@@ -231,6 +247,7 @@
   var getAlertedProvJson = "{{url("/test/get")}}";
   var aimagName = "";
   var provCode = "";
+  var getAllSumsReserveDayCountURL = "{{url("/get/sums/reserve/count")}}";
 
       $(document).ready(function(){
 
@@ -248,6 +265,7 @@
               success:function(response){
                 $("#changeProvince").html("");
                 $("#changeProvince").html(response);
+                changeSymColor();
               },
             error: function(jqXhr, json, errorThrown){// this are default for ajax errors
               var errors = jqXhr.responseJSON;
@@ -270,4 +288,5 @@
 
   <script src="{{url('public/js/mongolianMap/test.js')}}"></script>
   <script src="{{url('public/js/mongolianMap/RightPanel.js')}}"></script>
+  <script src="{{url('public/js/mongolianMap/changeColor.js')}}"></script>
 @endsection
