@@ -86,16 +86,16 @@ class FoodReserveController extends Controller
     }
     public static function selectReserveFootQnttByProvSym($provID, $symID, $productID)
     {
-      try{
-        $qntt = DB::table("tb_food_reserve")
-          ->where('provID', '=', $provID)
-          ->where('symID', '=', $symID)
-          ->where('productID', '=', $productID)->get();
+        try{
+            $qntt = DB::table("tb_food_reserve")
+                ->where('provID', '=', $provID)
+                ->where('symID', '=', $symID)
+                ->where('productID', '=', $productID)->get();
 
-          return $qntt;
+            return $qntt;
+          }
+        catch(\Exception $e){
+            return "Серверийн алдаа!!! Веб мастерт хандана уу";
         }
-      catch(\Exception $e){
-        return "Серверийн алдаа!!! Веб мастерт хандана уу";
-      }
     }
 }

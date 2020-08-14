@@ -8,10 +8,26 @@
         stroke-width:8;
     }
 
-    .aimag1{
+    .danger{
         /* fill:transparent; */
-        fill:#ff0c00;
-        fill-opacity:0.7;
+        fill:red;
+        fill-opacity:0.9;
+        stroke:white;
+        stroke-width:8;
+    }
+
+    .warning{
+        /* fill:transparent; */
+        fill:yellow;
+        fill-opacity:0.9;
+        stroke:white;
+        stroke-width:8;
+    }
+
+    .success{
+        /* fill:transparent; */
+        fill:green;
+        fill-opacity:0.8;
         stroke:white;
         stroke-width:8;
     }
@@ -72,19 +88,22 @@
               <div class="card">
                   <div id="changeBlade" class="card-body">
                     <div class="col-md-6">
-                      <div class="form-group row">
-                        <div class="col-md-8">
-                          <select class="form-control" id="cmbDangerType" name="">
-                            <option value="-1">Сонгоно уу</option>
-                            <option value="1">Бүсээр</option>
-                            <option value="2">Аймгаар</option>
-                            <option value="3">Сумаар</option>
-                          </select>
-                        </div>
-                        <div class="col-md-4">
-                          <input type="button" id="btnDeclareDangerModal" class="btn btn-danger" name="" value="Онц байдал зарлах">
-                        </div>
+                      <div class="form-group border border-danger">
+                        <label class="col-md-12 col-form-label text-md-center">Онц байдал зарлах</label>
+                        <div class="form-group row">
+                          <div class="col-md-6">
+                            <select class="form-control" id="cmbDangerType" name="">
+                              <option value="-1">Сонгоно уу</option>
+                              <option value="1">Бүсээр</option>
+                              <option value="2">Аймгаар</option>
+                              <option value="3">Сумаар</option>
+                            </select>
+                          </div>
+                          <div class="col-md-6">
+                            <input type="button" id="btnDeclareDangerModal" class="btn btn-danger" name="" value="Онц байдал зарлах">
+                          </div>
 
+                        </div>
                       </div>
                       <div class="page-title-box">
                           <ol class="breadcrumb mb-0">
@@ -231,6 +250,7 @@
   var getAlertedProvJson = "{{url("/test/get")}}";
   var aimagName = "";
   var provCode = "";
+  var getAllSumsReserveDayCountURL = "{{url("/get/sums/reserve/count")}}";
 
       $(document).ready(function(){
 
@@ -248,6 +268,7 @@
               success:function(response){
                 $("#changeProvince").html("");
                 $("#changeProvince").html(response);
+                changeSymColor();
               },
             error: function(jqXhr, json, errorThrown){// this are default for ajax errors
               var errors = jqXhr.responseJSON;
@@ -270,4 +291,5 @@
 
   <script src="{{url('public/js/mongolianMap/test.js')}}"></script>
   <script src="{{url('public/js/mongolianMap/RightPanel.js')}}"></script>
+  <script src="{{url('public/js/mongolianMap/changeColor.js')}}"></script>
 @endsection

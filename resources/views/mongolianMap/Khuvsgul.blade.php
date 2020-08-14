@@ -1,3 +1,30 @@
+
+	<style media="screen">
+	    .danger{
+	        /* fill:transparent; */
+	        fill:red;
+	        fill-opacity:0.9;
+	        stroke:white;
+	        /* stroke-width:8; */
+	    }
+
+	    .warning{
+	        /* fill:transparent; */
+	        fill:yellow;
+	        fill-opacity:0.9;
+	        stroke:white;
+	        /* stroke-width:8; */
+	    }
+
+	    .success{
+	        /* fill:transparent; */
+	        fill:green;
+	        fill-opacity:0.8;
+	        stroke:white;
+	        /* stroke-width:8; */
+	    }
+	</style>
+
 <svg version="1.1"  x="0px" y="0px"
 	 width="100%" height="100%" viewBox="970.5 -318 923 714" enable-background="new 970.5 -318 923 714" xml:space="preserve">
 

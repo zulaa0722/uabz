@@ -1,3 +1,30 @@
+
+	<style media="screen">
+	    .danger{
+	        /* fill:transparent; */
+	        fill:red;
+	        fill-opacity:0.9;
+	        stroke:white;
+	        /* stroke-width:8; */
+	    }
+
+	    .warning{
+	        /* fill:transparent; */
+	        fill:yellow;
+	        fill-opacity:0.9;
+	        stroke:white;
+	        /* stroke-width:8; */
+	    }
+
+	    .success{
+	        /* fill:transparent; */
+	        fill:green;
+	        fill-opacity:0.8;
+	        stroke:white;
+	        /* stroke-width:8; */
+	    }
+	</style>
+
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Generator: Adobe Illustrator 15.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg

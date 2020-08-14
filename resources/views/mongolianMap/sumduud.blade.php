@@ -1,4 +1,30 @@
 
+	<style media="screen">
+	    .danger{
+	        /* fill:transparent; */
+	        fill:red;
+	        fill-opacity:0.9;
+	        stroke:white;
+	        /* stroke-width:8; */
+	    }
+
+	    .warning{
+	        /* fill:transparent; */
+	        fill:yellow;
+	        fill-opacity:0.9;
+	        stroke:white;
+	        /* stroke-width:8; */
+	    }
+
+	    .success{
+	        /* fill:transparent; */
+	        fill:green;
+	        fill-opacity:0.8;
+	        stroke:white;
+	        /* stroke-width:8; */
+	    }
+	</style>
+
 <div class="col-md-6">
   <div class="page-title-box">
       <ol class="breadcrumb mb-0">

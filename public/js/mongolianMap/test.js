@@ -1,29 +1,29 @@
-$(document).ready(function(){
-    // alert("A");
-    $.ajax({
-        type:"get",
-        url:getAlertedProvJson,
-        data:{
-            _token: csrf
-        },
-        success:function(res){
-            // alert(res.length);
-            var res = jQuery.parseJSON(res);
-            console.log(res);
-            $.each(res, function(i, item) {
-                if(parseFloat(item.popCount) == 0){
-                  var day=11;
-                }
-                var day = parseFloat(item.reserveKcal) / (parseFloat(item.popCount) * parseFloat(item.Kcal));
-                $('path[name="' + item.provEngName + '"]').attr('danger', '1');
-                if(day < 30){
-                    $('path[name="' + item.provEngName + '"]').removeClass('aimag');
-                    $('path[name="' + item.provEngName + '"]').addClass('aimag1');
-                }
-            });
-        }
-    });
-});
+// $(document).ready(function(){
+//     // alert("A");
+//     $.ajax({
+//         type:"get",
+//         url:getAlertedProvJson,
+//         data:{
+//             _token: csrf
+//         },
+//         success:function(res){
+//             // alert(res.length);
+//             var res = jQuery.parseJSON(res);
+//             console.log(res);
+//             $.each(res, function(i, item) {
+//                 if(parseFloat(item.popCount) == 0){
+//                   var day=11;
+//                 }
+//                 var day = parseFloat(item.reserveKcal) / (parseFloat(item.popCount) * parseFloat(item.Kcal));
+//                 $('path[name="' + item.provEngName + '"]').attr('danger', '1');
+//                 if(day < 30){
+//                     $('path[name="' + item.provEngName + '"]').removeClass('aimag');
+//                     $('path[name="' + item.provEngName + '"]').addClass('aimag1');
+//                 }
+//             });
+//         }
+//     });
+// });
 
 
 

@@ -90,4 +90,9 @@ class PopulationController extends Controller
         $sumOfStandartPopByProvID = Population::where('provID', $provID)->sum('standardPop');
         return $sumOfStandartPopByProvID;
     }
+
+    public function getStandardPopBySumID($sumID){
+        $sumOfStandartPopByProvID = Population::where('symID', $sumID)->sum('standardPop');
+        return $sumOfStandartPopByProvID;
+    }
 }
