@@ -27,13 +27,16 @@
 
 
 
-$(document).ready(function(){
-    $("#btnDeclareDangerModal").click(function(){
+$(document).on("click", '#btnDeclareDangerModal', function(event) {
         if($("#cmbDangerType").val() == "-1"){
             alertify.error("Дайчилгаа зарлах төрлөө зарлана уу!!!");
             $("#frmDeclareDangerByBus #txtPassword").removeClass('border border-danger');
             return;
         }
+        $('#frmDeclareDangerByBus')[0].reset();
+        $('#frmDeclareDangerByProvince')[0].reset();
+        $('#frmDeclareDangerBySum')[0].reset();
+
         $('#modalDeclareDanger form').hide();
         if($("#cmbDangerType").val() == "1"){
             $('#modalDeclareDanger').modal('show');
@@ -56,7 +59,6 @@ $(document).ready(function(){
             $("#frmDeclareDangerBySum #txtPassword").removeClass('border border-danger');
             return;
         }
-    });
 });
 
 $(document).ready(function(){
@@ -143,6 +145,8 @@ $(document).ready(function(){
         $("#frmDeclareDangerBySum #cmbBus").removeClass('border border-danger');
         $("#frmDeclareDangerBySum #cmbProvs").removeClass('border border-danger');
         $("#frmDeclareDangerBySum #txtPassword").removeClass('border border-danger');
+        $("#frmDeclareDangerByBus #txtCommandNumber").removeClass('border border-danger');
+        $("#frmDeclareDangerByBus #dateDeclareDate").removeClass('border border-danger');
         if($("#frmDeclareDangerBySum #cmbBus").val() == "-1"){
             alertify.error("Та бүсээ сонгоно уу!!!");
             $("#frmDeclareDangerBySum #cmbBus").addClass('border border-danger');
@@ -163,6 +167,16 @@ $(document).ready(function(){
         });
         if(checkCount == 0){
             alertify.error("Та сум дүүргээ сонгоно уу!!!");
+            return;
+        }
+        if($("#frmDeclareDangerBySum #txtCommandNumber").val() == ""){
+            alertify.error("Та тушаалын дугаараа оруулна уу!!!");
+            $("#frmDeclareDangerByBus #txtCommandNumber").addClass('border border-danger');
+            return;
+        }
+        if($("#frmDeclareDangerBySum #dateDeclareDate").val() == ""){
+            alertify.error("Та эхлэх огноогоо оруулна уу!!!");
+            $("#frmDeclareDangerByBus #dateDeclareDate").addClass('border border-danger');
             return;
         }
         if($("#frmDeclareDangerBySum #txtPassword").val() == ""){
@@ -193,6 +207,8 @@ $(document).ready(function(){
         e.preventDefault();
         $("#frmDeclareDangerByProvince #cmbBus").removeClass('border border-danger');
         $("#frmDeclareDangerByProvince #txtPassword").removeClass('border border-danger');
+        $("#frmDeclareDangerByBus #txtCommandNumber").removeClass('border border-danger');
+        $("#frmDeclareDangerByBus #dateDeclareDate").removeClass('border border-danger');
 
         if($("#frmDeclareDangerByProvince #cmbBus").val() == "-1"){
             alertify.error("Та бүсээ сонгоно уу!!!");
@@ -208,6 +224,16 @@ $(document).ready(function(){
         });
         if(checkCount == 0){
             alertify.error("Та аймаг нийслэлээ сонгоно уу!!!");
+            return;
+        }
+        if($("#frmDeclareDangerByProvince #txtCommandNumber").val() == ""){
+            alertify.error("Та тушаалын дугаараа оруулна уу!!!");
+            $("#frmDeclareDangerByBus #txtCommandNumber").addClass('border border-danger');
+            return;
+        }
+        if($("#frmDeclareDangerByProvince #dateDeclareDate").val() == ""){
+            alertify.error("Та эхлэх огноогоо оруулна уу!!!");
+            $("#frmDeclareDangerByBus #dateDeclareDate").addClass('border border-danger');
             return;
         }
 
@@ -233,10 +259,18 @@ $(document).ready(function(){
     });
 });
 
+
+// Buseer onts baidal zarlah heseg
 $(document).ready(function(){
     $("#btnDeclareDangerBus").click(function(e){
         e.preventDefault();
+        // buh ulaan hureeg arilgaj baina
         $("#frmDeclareDangerByBus #txtPassword").removeClass('border border-danger');
+        $("#frmDeclareDangerByBus #txtCommandNumber").removeClass('border border-danger');
+        $("#frmDeclareDangerByBus #dateDeclareDate").removeClass('border border-danger');
+        // buh ulaan hureeg arilgaj baina
+
+        // checkboxuud checklesen esehiig shalgaj baina
         var checkCount = 0;
         $("#frmDeclareDangerByBus .sectors").each(function(){
             if($(this).prop('checked')){
@@ -247,24 +281,51 @@ $(document).ready(function(){
             alertify.error("Та онц байдал зарлах бүсээ сонгоно уу!!!");
             return;
         }
+        // checkboxuud checklesen esehiig shalgaj bainas
+        if($("#frmDeclareDangerByBus #txtCommandNumber").val() == ""){
+            alertify.error("Та тушаалын дугаараа оруулна уу!!!");
+            $("#frmDeclareDangerByBus #txtCommandNumber").addClass('border border-danger');
+            return;
+        }
+        if($("#frmDeclareDangerByBus #dateDeclareDate").val() == ""){
+            alertify.error("Та эхлэх огноогоо оруулна уу!!!");
+            $("#frmDeclareDangerByBus #dateDeclareDate").addClass('border border-danger');
+            return;
+        }
         if($("#txtPassword").val()==""){
-            alertify.error("Та онц байдал зарлах бүсээ сонгоно уу!!!");
+            alertify.error("Та нууц үгээ оруулна уу!!!");
             $("#frmDeclareDangerByBus #txtPassword").addClass('border border-danger');
             return;
         }
 
+        // zarlah button arilgaad orond niit unshij baigaa zurag haruulj baina
+        $("#btnDeclareDangerBus").hide();
+        $("#frmDeclareDangerByBus #divLoading").removeClass("d-none");
+        // zarlah button arilgaad orond niit unshij baigaa zurag haruulj baina
+
+        // onts baidal zarlah ajax
         $.ajax({
             type:"post",
             url:$("#btnDeclareDangerBus").attr("post-url"),
             data:$("#frmDeclareDangerByBus").serialize(),
             success:function(res){
+                $("#btnDeclareDangerBus").show();
+                $("#frmDeclareDangerByBus #divLoading").addClass("d-none");
                 if(res.status == "error"){
                     alertify.error(res.msg);
                 }
                 else{
+                    $('#frmDeclareDangerByBus')[0].reset(); //ene formiin buh ugugduliig hoosloj baina
+                    $('#modalDeclareDanger').modal('toggle');
                     alertify.alert(res.msg);
                 }
+            },
+            error: function (jqXHR, exception) {
+                $("#btnDeclareDangerBus").show();
+                $("#frmDeclareDangerByBus #divLoading").addClass("d-none");
+                alertify.error("Алдаа гарлаа дахин оролдоно уу!!!");
             }
         });
+        // onts baidal zarlah ajax
     });
 });

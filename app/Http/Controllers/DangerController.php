@@ -8,6 +8,8 @@ use App\Sym;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use DB;
+use App\DangerSym;
+use App\Danger;
 
 class DangerController extends Controller
 {
@@ -69,8 +71,9 @@ class DangerController extends Controller
         }
     }
 
+    // Buseer onts baidal zarlah uyd hiih function
     public function declareDangerBySector(Request $req){
-        if (!(Hash::check($req->get('password'), Auth::user()->password))) {
+        if (!(Hash::check($req->get('password1'), Auth::user()->password))) {
             $array = array(
                 'status' => 'error',
                 'msg' => 'Нууц үг буруу байна!!!'
@@ -79,24 +82,41 @@ class DangerController extends Controller
         }
 
         try{
+
+            // ehleed danger table ruu tushaal dugaar ognoo ederee hadgalaad hadgalsan id-g avaad danger_sym ruu hadgalna
+            $danger = new Danger;
+            $danger->commandNumber = $req->commandNumber;
+            $danger->declareDate = $req->declareDate;
+            $danger->minusedDate = $req->declareDate;
+            $danger->comment = $req->comment;
+            $danger->save();
+            // ehleed danger table ruu tushaal dugaar ognoo ederee hadgalaad hadgalsan id-g avaad danger_sym ruu hadgalna
+
+            // odoo danger_sym ruu ugugdul hadgalj baina
+            // ehleed sector davtaltand aimag avaad davtalt tegeed sums avaad sum davtaltand ugugdul hadgalna
             foreach($req->sectors as $sector){
                 $provs = DB::table('tb_province')->where('sectorID', '=', $sector)->get();
                 foreach ($provs as $prov) {
-                    $sum = Sym::where('provID', $prov->id)
-                        ->update([
-                            'isStart' => 1
-                        ]);
+                    $sums = DB::table('tb_sym')->where('provID', '=', $prov->id)->get();
+                    foreach ($sums as $sum) {
+                        $dangerSym = new DangerSym;
+                        $dangerSym->danger_id = $danger->id;
+                        $dangerSym->sectorID = $sector;
+                        $dangerSym->provID = $prov->id;
+                        $dangerSym->symID = $sum->id;
+                        $dangerSym->save();
+                    }
                 }
             }
             $array = array(
                 'status' => 'success',
-                'msg' => 'Амжилттай хадгаллаа!!!'
+                'msg' => $req->commandNumber . ' тушаалтай онц байдал зарлалаа!!!'
             );
             return $array;
         }catch(\Exception $e){
             $array = array(
                 'status' => 'error',
-                'msg' => 'Серверийн алдаа!!! Веб мастерт хандана уу!!!'
+                'msg' => 'Серверийн алдаа!!! Дахин оролдоно уу!!!'
             );
             return $array;
         }

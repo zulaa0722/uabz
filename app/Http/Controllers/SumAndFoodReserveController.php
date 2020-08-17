@@ -56,4 +56,8 @@ class SumAndFoodReserveController extends Controller
             return "Серверийн алдаа!!! Веб мастерт хандана уу";
         }
     }
+
+    public function minusNormFromReserve(Request $req){
+        
+    }
 }

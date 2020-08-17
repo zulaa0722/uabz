@@ -88,7 +88,7 @@
               <div class="card">
                   <div id="changeBlade" class="card-body">
                     <div class="col-md-6">
-                      <div class="form-group border border-danger">
+                      <div class="form-group border border-danger" id="divDeclareDangerContent">
                         <label class="col-md-12 col-form-label text-md-center">Онц байдал зарлах</label>
                         <div class="form-group row">
                           <div class="col-md-6">
@@ -139,11 +139,23 @@
                       </style>
 
                     <div class="col-md-12 float-right">
-                      <div class="page-title-box">
+                      <div class="page-title-box" id="divBtnShowBySym">
                           <ol class="breadcrumb mb-0 float-right">
                               <li class="breadcrumb-item"><a href="javascript:void(0)" id="toSum">Сумаар харах</a></li>
                               <li class="breadcrumb-item"><a href=""></a></li>
                           </ol>
+                      </div>
+                      <div class="d-none" id="divShowBySymLoading">
+                        <div class="d-flex flex-column align-items-center justify-content-right">
+                          <div class="row">
+                            <div class="spinner-border text-primary" role="status">
+                              <span class="sr-only">Loading...</span>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <strong>Аймгийн өгөгдөл татаж байна...</strong>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -242,22 +254,24 @@
 @section('js')
 
   <script type="text/javascript">
-  var csrf = "{{ csrf_token() }}";
-  var getAimagInfo = "{{url("/get/getAimagInfo")}}";
-  var getSymInfo = "{{url("/get/getSymInfo")}}";
-  var allMongolianMap = "{{url("/mongolian/allMaps")}}";
-  var changeBladeProvince = "{{url("/mongolian/province")}}";
-  var getAlertedProvJson = "{{url("/test/get")}}";
-  var aimagName = "";
-  var provCode = "";
-  var getAllSumsReserveDayCountURL = "{{url("/get/sums/reserve/count")}}";
+    var csrf = "{{ csrf_token() }}";
+    var getAimagInfo = "{{url("/get/getAimagInfo")}}";
+    var getSymInfo = "{{url("/get/getSymInfo")}}";
+    var allMongolianMap = "{{url("/mongolian/allMaps")}}";
+    var changeBladeProvince = "{{url("/mongolian/province")}}";
+    var getAlertedProvJson = "{{url("/test/get")}}";
+    var aimagName = "";
+    var provCode = "";
+    var getAllSumsReserveDayCountURL = "{{url("/get/sums/reserve/count")}}";
 
       $(document).ready(function(){
-
         $('[data-toggle="tooltip"]').tooltip();
 
         $("#toSum").click(function(){
           if(aimagName != ""){
+            $("#changeProvince").prop( "disabled", true );
+            $("#divBtnShowBySym").hide();
+            $("#divShowBySymLoading").removeClass("d-none");
             $.ajax({
               type: 'get',
               url: changeBladeProvince,
@@ -269,15 +283,21 @@
                 $("#changeProvince").html("");
                 $("#changeProvince").html(response);
                 changeSymColor();
+                $("#divDeclareDangerContent").hide();
+                $("#divShowBySymLoading").addClass("d-none");
+                $("#changeProvince").prop( "disabled", false );
               },
-            error: function(jqXhr, json, errorThrown){// this are default for ajax errors
-              var errors = jqXhr.responseJSON;
-              var errorsHtml = '';
-              $.each(errors['errors'], function (index, value) {
-                  errorsHtml += '<ul class="list-group"><li class="list-group-item alert alert-danger">' + value + '</li></ul>';
-              });
-              alert(errorsHtml);
-            }
+              error: function(jqXhr, json, errorThrown){// this are default for ajax errors
+                var errors = jqXhr.responseJSON;
+                var errorsHtml = '';
+                $.each(errors['errors'], function (index, value) {
+                    errorsHtml += '<ul class="list-group"><li class="list-group-item alert alert-danger">' + value + '</li></ul>';
+                });
+                // alert(errorsHtml);
+                $("#divBtnShowBySym").show();
+                $("#divShowBySymLoading").addClass("d-none");
+                $("#changeProvince").prop( "disabled", false );
+              }
           });
         }else{
           alert("аймаг сонгон уу");

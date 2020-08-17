@@ -11,7 +11,7 @@
             <div class="modal-body">
 
 
-              <form id="frmDeclareDangerByBus" action="" method="post">
+              <form id="frmDeclareDangerByBus" action="" method="post" autocomplete="off">
                 @csrf
                 <div class="row">
                 @foreach ($sectors as $sector)
@@ -24,16 +24,46 @@
                     </div>
                 @endforeach
                 </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label text-md-right">Тушаалын дугаар:</label>
+                    <div class="col-md-7">
+                      <input type="text" class="form-control" id="txtCommandNumber" name="commandNumber" value="" maxlength="250" autocomplete="off" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label text-md-right">Огноо:</label>
+                    <div class="col-md-7">
+                      <input type="date" class="form-control" id="dateDeclareDate" name="declareDate" value="" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label text-md-right">Тайлбар:</label>
+                    <div class="col-md-7">
+                      <textarea class="form-control" id="areaComment" name="comment" rows="3"></textarea>
+                    </div>
+                </div>
                 <div class="form-group row" id="divPassword">
                     <label for="password" class="col-md-3 col-form-label text-md-right">Нууц үг:</label>
 
                     <div class="col-md-7">
-                      <input type="password" class="form-control" id="txtPassword" name="password" value="">
+                      <input type="password" class="form-control" id="txtPassword" name="password1" value="" autocomplete="off" />
                     </div>
                 </div>
                 <div class="row">
                   <div class="col text-center">
                     <button type="submit" id="btnDeclareDangerBus" post-url="{{url("/declare/danger/by/sector")}}" class="btn btn-primary">Хадгалах</button>
+                  </div>
+                </div>
+                <div class="d-none" id="divLoading">
+                  <div class="d-flex flex-column align-items-center justify-content-right">
+                    <div class="row">
+                      <div class="spinner-border text-primary" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <strong>Онц байдал зарлаж байна. Түр хүлээнэ үү...</strong>
+                    </div>
                   </div>
                 </div>
               </form>
@@ -61,6 +91,24 @@
                       </label>
                     </div>
                   </div> --}}
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label text-md-right">Тушаалын дугаар:</label>
+                    <div class="col-md-7">
+                      <input type="text" class="form-control" id="txtCommandNumber" name="commandNumber" value="" maxlength="250" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label text-md-right">Огноо:</label>
+                    <div class="col-md-7">
+                      <input type="date" class="form-control" id="dateDeclareDate" name="declareDate" value="" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label text-md-right">Тайлбар:</label>
+                    <div class="col-md-7">
+                      <textarea class="form-control" id="areaComment" name="comment" rows="3"></textarea>
+                    </div>
                 </div>
                 <div class="form-group row" id="divPassword">
                     <label for="password" name="password" class="col-md-3 col-form-label text-md-right">Нууц үг:</label>
@@ -102,6 +150,24 @@
                   </div>
                   <div class="form-group row" id="divSums">
                   </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label text-md-right">Тушаалын дугаар:</label>
+                    <div class="col-md-7">
+                      <input type="text" class="form-control" id="txtCommandNumber" name="commandNumber" value="" maxlength="250" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label text-md-right">Огноо:</label>
+                    <div class="col-md-7">
+                      <input type="date" class="form-control" id="dateDeclareDate" name="declareDate" value="" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label text-md-right">Тайлбар:</label>
+                    <div class="col-md-7">
+                      <textarea class="form-control" id="areaComment" name="comment" rows="3"></textarea>
+                    </div>
                 </div>
                 <div class="form-group row" id="divPassword">
                     <label for="password" class="col-md-3 col-form-label text-md-right">Нууц үг:</label>
