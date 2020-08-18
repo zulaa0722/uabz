@@ -54,7 +54,7 @@ function emptyForm()
   $("#fProductID").val("-1");
   $("#subName").val("");
   $("#multiplier").val("");
-
+  $("#price").val("");
 }
 
 function subProductsTableRefresh()
@@ -97,7 +97,8 @@ function subProductsTableRefresh()
          { data: "productName", name: "productName"},
          { data: "subName", name: "subName"},
          { data: "multiplier", name: "multiplier"},
-         { data: "fProductID", name: "fProductID", visible:false}
+         { data: "fProductID", name: "fProductID", visible:false},
+         { data: "price", name: "price"}
          ]
      }).ajax.reload();
 }
