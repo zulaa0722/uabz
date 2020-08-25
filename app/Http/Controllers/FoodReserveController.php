@@ -50,6 +50,8 @@ class FoodReserveController extends Controller
             $insertFoodReserve->totalKcal = $value['totalKcal'];
             $insertFoodReserve->measurement = "тн";
             $insertFoodReserve->save();
+
+            
         }
 
         $arrayMsg = array(

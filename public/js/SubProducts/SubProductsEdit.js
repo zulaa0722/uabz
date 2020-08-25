@@ -10,9 +10,9 @@ $(document).ready(function(){
     $("#efProductID").val(dataRow['fProductID']);
     $("#esubName").val(dataRow['subName']);
     $("#emultiplier").val(dataRow['multiplier']);
+    $("#eprice").val(dataRow['price']);
 
     $("#modalSubProductsEdit").modal("show");
-
   });
 
   $("#btnSubProductsUpdate").click(function(e){
@@ -49,7 +49,6 @@ function editCode()
           emptyForm();
           dataRow = "";
           $("#modalSubProductsEdit").modal("hide");
-
       },
       error: function(XMLHttpRequest, textStatus, errorThrown) {
           alertify.error("Status: " + textStatus); alertify.error("Error: " + errorThrown);

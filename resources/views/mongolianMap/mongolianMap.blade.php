@@ -87,8 +87,9 @@
           <div class="col-xl-12">
               <div class="card">
                   <div id="changeBlade" class="card-body">
-                    <div class="col-md-6">
-                      <div class="form-group border border-danger" id="divDeclareDangerContent">
+                    <div class="form-group row">
+                    <div class="col-md-6 border border-danger">
+                      <div class="form-group" id="divDeclareDangerContent">
                         <label class="col-md-12 col-form-label text-md-center">Онц байдал зарлах</label>
                         <div class="form-group row">
                           <div class="col-md-6">
@@ -100,21 +101,33 @@
                             </select>
                           </div>
                           <div class="col-md-6">
-                            <input type="button" id="btnDeclareDangerModal" class="btn btn-danger" name="" value="Онц байдал зарлах">
+                            <input type="button" id="btnDeclareDangerModal" class="btn btn-danger" name="btnDeclareDangerModal" value="Онц байдал зарлах">
                           </div>
 
                         </div>
                       </div>
+                    </div>
+                    <div class="col-md-6 border border-danger">
+                      <div class="form-group">
+                        <label class="col-md-8 col-form-label text-md-left">Гол нэрийн бүтээгдээхүүний нөөц дуусч байгаа сумууд</label>
+                        <h3 class="text-danger">16</h3>
+                        <div class="text-center">
+                          <input type="button" id="btnInfoEverything" class="btn btn-info" name="" value="Дэлгэрэнгүй">
+                        </div>
+                        {{-- <input type="button" id="btnChangeNorm" class="btn btn-info" name="" value="Норм өөрчлөх"> --}}
+                      </div>
+                    </div>
+                  </div>
                       <div class="page-title-box">
                           <ol class="breadcrumb mb-0">
                               <li class="breadcrumb-item"><a href="{{url("/mongolia/maps")}}" id="mongolianMap">Монгол Улс</a></li>
                               <li class="breadcrumb-item active " id="selectedProvName"></li>
                           </ol>
                       </div>
-                    </div>
+
                     <div id="changeProvince">
                         @include('mongolianMap.allMaps')
-
+                        @include('ShowSubProduct.ShowSubProducts')
                         @include('mongolianMap.danger.dangerModal')
                     </div>
 
@@ -300,7 +313,7 @@
               }
           });
         }else{
-          alert("аймаг сонгон уу");
+          alert("аймаг сонгоно уу");
         }
 
         });
@@ -312,4 +325,5 @@
   <script src="{{url('public/js/mongolianMap/test.js')}}"></script>
   <script src="{{url('public/js/mongolianMap/RightPanel.js')}}"></script>
   <script src="{{url('public/js/mongolianMap/changeColor.js')}}"></script>
+  <script src="{{url('public/js/mongolianMap/compute.js')}}"></script>
 @endsection

@@ -20,7 +20,7 @@ class SubProductsController extends Controller
   {
       $this->middleware('auth');
   }
-  
+
   public function subProductsShow()
   {
     try{
@@ -50,6 +50,7 @@ class SubProductsController extends Controller
       $insertSubProducts->fProductID = $req->fProductID;
       $insertSubProducts->subName = $req->subName;
       $insertSubProducts->multiplier = $req->multiplier;
+      $insertSubProducts->price = $req->price;
       $insertSubProducts->save();
       return "Амжилттай хадгаллаа";
     }catch(\Exception $e){
@@ -64,6 +65,7 @@ class SubProductsController extends Controller
       $updateSubProducts->fProductID = $req->fProductID;
       $updateSubProducts->subName = $req->subName;
       $updateSubProducts->multiplier = $req->multiplier;
+      $updateSubProducts->price = $req->price;
       $updateSubProducts->save();
       return "Амжилттай заслаа";
     }catch(\Exception $e){

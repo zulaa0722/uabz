@@ -33,6 +33,12 @@
                     <input class="form-control" type="number" id="emultiplier" name="multiplier">
                   </div>
                 </div>
+                <div class="form-group row">
+                  <div class="col-md-4">
+                    <label>Үнэ /кг, төгрөгөөр/</label>
+                    <input class="form-control" type="number" id="eprice" name="price">
+                  </div>
+                </div>
                 <div class="clearfix"></div>
 
             </div>

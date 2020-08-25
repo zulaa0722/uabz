@@ -16,6 +16,7 @@
                           <th>Орлох хүнс</th>
                           <th>Итгэлцүүр</th>
                           <th></th>
+                          <th>Үнэ</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -96,13 +97,13 @@ cursor: pointer;
                  },
           "columns": [
             { data: "id", name: "id",  render: function (data, type, row, meta) {
-          return meta.row + meta.settings._iDisplayStart + 1;
-      }  },
+              return meta.row + meta.settings._iDisplayStart + 1;
+            }},
             { data: "productName", name: "productName"},
             { data: "subName", name: "subName"},
             { data: "multiplier", name: "multiplier"},
-            { data: "fProductID", name: "fProductID", visible:false}
-
+            { data: "fProductID", name: "fProductID", visible:false},
+            { data: "price", name: "price"}
             ]
         });
 
