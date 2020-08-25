@@ -138,6 +138,8 @@ $(document).ready(function(){
     });
 });
 
+
+//START Sumaar onts baidal zarlah heseg
 $(document).ready(function(){
     $("#btnDeclareDangerSum").click(function(e){
         e.preventDefault();
@@ -185,30 +187,49 @@ $(document).ready(function(){
             return;
         }
 
+        // zarlah button arilgaad orond niit unshij baigaa zurag haruulj baina
+        $("#btnDeclareDangerSum").hide();
+        $("#frmDeclareDangerBySum #divLoading").removeClass("d-none");
+        // zarlah button arilgaad orond niit unshij baigaa zurag haruulj baina
+
         $.ajax({
             type: "post",
             url: $("#btnDeclareDangerSum").attr("post-url"),
             data:$("#frmDeclareDangerBySum").serialize(),
             success:function(res){
+                $("#btnDeclareDangerSum").show();
+                $("#frmDeclareDangerBySum #divLoading").addClass("d-none");
                 if(res.status == "error"){
                     alertify.error(res.msg);
                 }
                 else{
+                    $('#frmDeclareDangerBySum')[0].reset(); //ene formiin buh ugugduliig hoosloj baina
+                    $('#modalDeclareDanger').modal('toggle');
                     alertify.alert(res.msg);
                 }
+            },
+            error: function (jqXHR, exception) {
+                $("#btnDeclareDangerSum").show();
+                $("#frmDeclareDangerBySum #divLoading").addClass("d-none");
+                alertify.error("Алдаа гарлаа дахин оролдоно уу!!!");
             }
         });
     });
 });
+//END Sumaar onts baidal zarlah heseg
 
 
+//START Aimgaar onts baidal zarlah heseg
 $(document).ready(function(){
     $("#btnDeclareDangerProvince").click(function(e){
         e.preventDefault();
+        // buh ulaan hureeg arilgaj baina
         $("#frmDeclareDangerByProvince #cmbBus").removeClass('border border-danger');
         $("#frmDeclareDangerByProvince #txtPassword").removeClass('border border-danger');
-        $("#frmDeclareDangerByBus #txtCommandNumber").removeClass('border border-danger');
-        $("#frmDeclareDangerByBus #dateDeclareDate").removeClass('border border-danger');
+        $("#frmDeclareDangerByProvince #txtCommandNumber").removeClass('border border-danger');
+        $("#frmDeclareDangerByProvince #dateDeclareDate").removeClass('border border-danger');
+        // buh ulaan hureeg arilgaj baina
+
 
         if($("#frmDeclareDangerByProvince #cmbBus").val() == "-1"){
             alertify.error("Та бүсээ сонгоно уу!!!");
@@ -228,12 +249,12 @@ $(document).ready(function(){
         }
         if($("#frmDeclareDangerByProvince #txtCommandNumber").val() == ""){
             alertify.error("Та тушаалын дугаараа оруулна уу!!!");
-            $("#frmDeclareDangerByBus #txtCommandNumber").addClass('border border-danger');
+            $("#frmDeclareDangerByProvince #txtCommandNumber").addClass('border border-danger');
             return;
         }
         if($("#frmDeclareDangerByProvince #dateDeclareDate").val() == ""){
             alertify.error("Та эхлэх огноогоо оруулна уу!!!");
-            $("#frmDeclareDangerByBus #dateDeclareDate").addClass('border border-danger');
+            $("#frmDeclareDangerByProvince #dateDeclareDate").addClass('border border-danger');
             return;
         }
 
@@ -243,21 +264,37 @@ $(document).ready(function(){
             return;
         }
 
+        // zarlah button arilgaad orond niit unshij baigaa zurag haruulj baina
+        $("#btnDeclareDangerProvince").hide();
+        $("#frmDeclareDangerByProvince #divLoading").removeClass("d-none");
+        // zarlah button arilgaad orond niit unshij baigaa zurag haruulj baina
+
         $.ajax({
             type: "post",
             url: $("#btnDeclareDangerProvince").attr("post-url"),
             data:$("#frmDeclareDangerByProvince").serialize(),
             success:function(res){
+                $("#btnDeclareDangerProvince").show();
+                $("#frmDeclareDangerByProvince #divLoading").addClass("d-none");
                 if(res.status == "error"){
                     alertify.error(res.msg);
                 }
                 else{
+                    $('#frmDeclareDangerByProvince')[0].reset(); //ene formiin buh ugugduliig hoosloj baina
+                    $('#modalDeclareDanger').modal('toggle');
                     alertify.alert(res.msg);
                 }
+            },
+            error: function (jqXHR, exception) {
+                $("#btnDeclareDangerProvince").show();
+                $("#frmDeclareDangerByProvince #divLoading").addClass("d-none");
+                alertify.error("Алдаа гарлаа дахин оролдоно уу!!!");
             }
         });
     });
 });
+//END Aimgaar onts baidal zarlah heseg
+
 
 
 // Buseer onts baidal zarlah heseg

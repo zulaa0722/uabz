@@ -19,9 +19,8 @@ class SumAndFoodReserveController extends Controller
     }
 
     public function getSumsReserveDays(){
-        try{
-          $sums = DB::table('tb_sym')
-              ->where('isStart', '=', 1)->get();
+        // try{
+          $sums = DB::table('tb_danger_sym')->get();
 
           $normController = new NormController;
           $popController = new PopulationController;
@@ -30,9 +29,11 @@ class SumAndFoodReserveController extends Controller
 
           $arr = [];
           foreach ($sums as $sum) {
-              $popCount = $popController->getStandardPopBySumID($sum->id);
-              $normKcal =$normController->sumOfNormKcalByID($sum->normID);
-              $reserveKcal = $foodReserve->getReserveKcalBySum($sum->id);
+              $sumRow = DB::table('tb_sym')
+                  ->where('id', '=', $sum->symID)->first();
+              $popCount = $popController->getStandardPopBySumID($sum->symID);
+              $normKcal =$normController->sumOfNormKcalByID($sumRow->normID);
+              $reserveKcal = $foodReserve->getReserveKcalBySum($sum->symID);
 
               if($normKcal * $popCount == 0){
                   $days = -1;
@@ -42,8 +43,8 @@ class SumAndFoodReserveController extends Controller
               }
 
               array_push($arr, array(
-                  "id" => $sum->symCode,
-                  "symName" => $sum->symName,
+                  "id" => $sumRow->symCode,
+                  "symName" => $sumRow->symName,
                   "popCount" => $popCount,
                   "normKcal" => $normKcal,
                   "reserveKcal" => $reserveKcal,
@@ -51,13 +52,13 @@ class SumAndFoodReserveController extends Controller
               ));
           }
           return json_encode($arr);
-        }
-        catch(\Exception $e){
-            return "Серверийн алдаа!!! Веб мастерт хандана уу";
-        }
+        // }
+        // catch(\Exception $e){
+        //     return "Серверийн алдаа!!! Веб мастерт хандана уу";
+        // }
     }
 
     public function minusNormFromReserve(Request $req){
-        
+
     }
 }

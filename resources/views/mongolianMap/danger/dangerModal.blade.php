@@ -69,7 +69,7 @@
               </form>
 
 
-              <form id="frmDeclareDangerByProvince" action="" method="post">
+              <form id="frmDeclareDangerByProvince" action="" method="post" autocomplete="off">
                 @csrf
                 <div class="form-group row">
                     <label for="password" class="col-md-3 col-form-label text-md-right">Бүс:</label>
@@ -122,10 +122,22 @@
                     <button type="submit" id="btnDeclareDangerProvince" post-url="{{url("/declare/danger/by/province")}}" class="btn btn-primary">Хадгалах</button>
                   </div>
                 </div>
+                <div class="d-none" id="divLoading">
+                  <div class="d-flex flex-column align-items-center justify-content-right">
+                    <div class="row">
+                      <div class="spinner-border text-primary" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <strong>Онц байдал зарлаж байна. Түр хүлээнэ үү...</strong>
+                    </div>
+                  </div>
+                </div>
               </form>
 
 
-              <form id="frmDeclareDangerBySum" action="" method="post">
+              <form id="frmDeclareDangerBySum" action="" method="post" autocomplete="off">
                 @csrf
                 <div id="hide">
                   <div class="form-group row">
@@ -179,6 +191,18 @@
                 <div class="row">
                   <div class="col text-center">
                     <button type="submit" id="btnDeclareDangerSum" post-url="{{url("/declare/danger/by/sum")}}" class="btn btn-primary">Хадгалах</button>
+                  </div>
+                </div>
+                <div class="d-none" id="divLoading">
+                  <div class="d-flex flex-column align-items-center justify-content-right">
+                    <div class="row">
+                      <div class="spinner-border text-primary" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <strong>Онц байдал зарлаж байна. Түр хүлээнэ үү...</strong>
+                    </div>
                   </div>
                 </div>
               </form>
