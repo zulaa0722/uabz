@@ -80,6 +80,7 @@ class Sides extends Controller
         );
 
 #End of RIGHTSIDE
+
         $bottomSide = [];
 
         $products = DB::table("tb_food_products")->get();
@@ -198,8 +199,8 @@ class Sides extends Controller
         return $bothSides;
 
       } catch (\Exception $e) {
-        // return "Серверийн алдаа!!! Веб мастерт хандана уу";
-        return $e;
+        return "Серверийн алдаа!!! Веб мастерт хандана уу";
+        // return $e;
       }
     }
 }
