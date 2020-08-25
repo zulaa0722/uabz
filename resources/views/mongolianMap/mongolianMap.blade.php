@@ -87,7 +87,7 @@
           <div class="col-xl-12">
               <div class="card">
                   <div id="changeBlade" class="card-body">
-                    <div class="form-group row">
+                    <div class="form-group row" id="divDeedHeseg">
                     <div class="col-md-6 border border-danger">
                       <div class="form-group" id="divDeclareDangerContent">
                         <label class="col-md-12 col-form-label text-md-center">Онц байдал зарлах</label>
@@ -296,7 +296,7 @@
                 $("#changeProvince").html("");
                 $("#changeProvince").html(response);
                 changeSymColor();
-                $("#divDeclareDangerContent").hide();
+                $("#divDeedHeseg").hide();
                 $("#divShowBySymLoading").addClass("d-none");
                 $("#changeProvince").prop( "disabled", false );
               },
