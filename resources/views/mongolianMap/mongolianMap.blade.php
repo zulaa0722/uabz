@@ -109,9 +109,11 @@
                     </div>
                     <div class="col-md-6 border border-danger">
                       <div class="form-group">
-                        <label class="col-md-8 col-form-label text-md-left">Гол нэрийн бүтээгдээхүүний нөөц дуусч байгаа сумууд</label>
-                        <h3 class="text-danger">16</h3>
                         <div class="text-center">
+                          <label class="col-md-9 col-form-label text-md-center">Гол нэрийн бүтээгдээхүүний нөөц дуусч байгаа сумууд</label>
+                        {{-- </div> --}}
+                        <h3 class="text-danger">16</h3>
+                        {{-- <div class="text-center"> --}}
                           <input type="button" id="btnInfoEverything" class="btn btn-info" name="" value="Дэлгэрэнгүй">
                         </div>
                         {{-- <input type="button" id="btnChangeNorm" class="btn btn-info" name="" value="Норм өөрчлөх"> --}}
