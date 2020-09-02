@@ -1,64 +1,134 @@
+@extends('layouts.layout_master')
+@section('css')
+<link rel="stylesheet" href="{{url("public/uaBCssJs/datatableCss/datatables.min.css")}}">
+<link href="{{url('public/uaBCssJs/dropzone/dropzone.min.css')}}" rel="stylesheet">
+@endsection
+
+@section('content')
+  <div class="row">
+    <div class="col-md-12">
+        <div class="card">
+          <div id="changeBlade" class="card-body">
+            <h4 class="text-center">Хүнсний нөөцийн судалгаа</h4>
+            <table id="ShowSubProducts" class="table table-striped table-bordered wrap " style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                <thead>
+                  <tr>
+
+                    <th>Аймаг, нийслэл</th>
+                    <th style="width:18%;">Сум, Дүүрэг</th>
+                    <th>Гол нэрийн бүтээгдхүүн</th>
+                    <th>Үлдсэн хоног</th>
+                    <th>Арга хэмжээ</th>
+                    <th>Арга хэмжээ</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Архангай</td>
+                    <td>Батцэнгэл</td>
+                    <td>Төмс</td>
+                    <td style="font-color:red;">2</td>
+                    <td>
+                      <input type="button" class="btn btn-warning" name="" value="Орлуулах">
+                    </td>
+                    <td>
+                      <input type="button" class="btn btn-danger" name="" value="Хасах">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Завхан</td>
+                    <td>Тосонцэнгэл</td>
+                    <td>Гурил</td>
+                    <td style="font-color:red;">1</td>
+                    <td>
+                      <input type="button" class="btn btn-warning" name="" value="Орлуулах">
+                    </td>
+                    <td>
+                      <input type="button" class="btn btn-danger" name="" value="Хасах">
+                    </td>
+                  </tr>
+                </tbody>
+            </table>
+
+          </div>
+        </div>
+    </div>
+  </div>
+
+@endsection
+
+@section('css')
+  <link rel="stylesheet" href="{{url("public/uaBCssJs/datatableCss/datatables.min.css")}}">
+  <style media="screen">
+    #FoodReserveTable tbody tr.selected {
+      color: white;
+      background-color: #8893f2;
+    }
+    #FoodReserveTable tbody tr{
+      cursor: pointer;
+    }
+  </style>
+@endsection
+@section('js')
+  <script type="text/javascript" src="{{url("public/uaBCssJs/datatableJs/datatables.min.js")}}"></script>
+  <script type="text/javascript" src="{{url("public/uaBCssJs/datatableJs/jszip.min.js")}}"></script>
+  <script type="text/javascript" src="{{url("public/uaBCssJs/datatableJs/pdfmake.min.js")}}"></script>
+  <script type="text/javascript" src="{{url("public/uaBCssJs/datatableJs/datatables.init.js")}}"></script>
+
+  <script type="text/javascript">
+    var dataRow = "";
+    var foodReserveNewUrl = "{{url("/foodReserve/insert")}}";
+    var foodReserveDeleteUrl = "{{url("/foodReserve/delete")}}";
+  </script>
 
 
-<div id="modalSubModel" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-xl" role="document">
-      {{-- modal-lg --}}
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title mt-0">Нөөц дуусч буй сумууд</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form id="modalSubModel" action=1"" method="post">
-            <div class="modal-body">
-                @csrf
-                <table id="FoodReserveTable" class="table table-striped table-bordered wrap " style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                    <thead>
-                      <tr>
 
-                        <th>Аймаг, нийслэл</th>
-                        <th style="width:18%;">Сум, Дүүрэг</th>
-                        <th>Гол нэрийн бүтээгдхүүн</th>
-                        <th>Үлдсэн хоног</th>
-                        <th>Арга хэмжээ</th>
-                        <th>Арга хэмжээ</th>
+<script type="text/javascript">
+$(document).ready(function(){
+  $('#ShowSubProducts thead tr').clone(true).appendTo( '#ShowSubProducts thead' );
 
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Архангай</td>
-                        <td>Батцэнгэл</td>
-                        <td>Төмс</td>
-                        <td style="font-color:red;">2</td>
-                        <td>
-                          <input type="button" class="btn btn-warning" name="" value="Орлуулах">
-                        </td>
-                        <td>
-                          <input type="button" class="btn btn-danger" name="" value="Хасах">
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Завхан</td>
-                        <td>Тосонцэнгэл</td>
-                        <td>Гурил</td>
-                        <td style="font-color:red;">1</td>
-                        <td>
-                          <input type="button" class="btn btn-warning" name="" value="Орлуулах">
-                        </td>
-                        <td>
-                          <input type="button" class="btn btn-danger" name="" value="Хасах">
-                        </td>
-                      </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="modal-footer">
-                {{-- <button type="submit" id="btnOrgAdd" class="btn btn-primary">Хадгалах</button> --}}
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Хаах</button>
-            </div>
-            </form>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+  var filterIndex = 0;
+    $('#ShowSubProducts thead tr:eq(1) th').each( function (i) {
+      if(filterIndex == 4 || filterIndex == 3)
+      {
+        $(this).html( '<input type="text" style="width:110%;" placeholder="Хайх..." />' );
+        $( 'input', this ).on( 'keyup change', function () {
+            if ( table.column(i).search() !== this.value ) {
+                table.column(i).search( this.value ).draw();
+            }
+        });
+      }
+      else {
+        $(this).html('');
+      }
+      filterIndex++;
+    });
+  var table = $('#ShowSubProducts').DataTable( {
+    "language": {
+            "lengthMenu": "_MENU_ мөрөөр харах",
+            "zeroRecords": "Хайлт илэрцгүй байна",
+            "info": "Нийт _PAGES_ -аас _PAGE_-р хуудас харж байна ",
+            "infoEmpty": "Хайлт илэрцгүй",
+            "infoFiltered": "(_MAX_ мөрөөс хайлт хийлээ)",
+            "sSearch": "Хайх: ",
+            "paginate": {
+                        "previous": "Өмнөх",
+                        "next": "Дараахи"
+                        },
+            "select": {
+                      rows: ""
+                      }
+            },
+      select: {
+        style: 'single'
+      },
+      "orderCellsTop": true,
+      "fixedHeader": true,
+      "scrollX": true
+      // "stateSave": true
+      });
+
+});
+</script>
+@endsection

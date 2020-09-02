@@ -114,7 +114,9 @@
                         {{-- </div> --}}
                         <h3 class="text-danger">16</h3>
                         {{-- <div class="text-center"> --}}
-                          <input type="button" id="btnInfoEverything" class="btn btn-info" name="" value="Дэлгэрэнгүй">
+                          <form id="showSubProducts" action="{{"ShowSubController@showSubView"}}" method="post">
+                            <input type="button" id="btnInfoEverything" class="btn btn-info" name="" value="Дэлгэрэнгүй">
+                          </form>
                         </div>
                         {{-- <input type="button" id="btnChangeNorm" class="btn btn-info" name="" value="Норм өөрчлөх"> --}}
                       </div>
@@ -129,7 +131,7 @@
 
                     <div id="changeProvince">
                         @include('mongolianMap.allMaps')
-                        @include('ShowSubProduct.ShowSubProducts')
+                        {{-- @include('ShowSubProduct.ShowSubProducts') --}}
                         @include('mongolianMap.danger.dangerModal')
                     </div>
 
