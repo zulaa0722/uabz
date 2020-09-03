@@ -238,6 +238,8 @@
                         </div>
                       </div>
 
+                      <a class="badge badge-info col-md-12 text-center" href="{{url("/show/dangers")}}">Бүх онц байдлуудыг харах</a>
+
 
 
                   </div>

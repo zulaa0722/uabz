@@ -30,7 +30,7 @@ class SumAndFoodReserveController extends Controller
           $arr = [];
           foreach ($sums as $sum) {
               $sumRow = DB::table('tb_sym')
-                  ->where('id', '=', $sum->symID)->first();
+                  ->where('symCode', '=', $sum->symID)->first();
               $popCount = $popController->getStandardPopBySumID($sum->symID);
               $normKcal =$normController->sumOfNormKcalByID($sumRow->normID);
               $reserveKcal = $foodReserve->getReserveKcalBySum($sum->symID);

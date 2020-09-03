@@ -86,9 +86,14 @@ Route::post("/sym/insert", "SymController@store");
 Route::post("/sym/edit", "SymController@update");
 Route::post("/sym/delete", "SymController@delete");
 Route::post("/sym/get/by/provID", "SymController@getSymByProvinceID");
+
+
 Route::post("/declare/danger/by/sum", "DangerController@declareDangerBySum");
 Route::post("/declare/danger/by/province", "DangerController@declareDangerByProvs");
 Route::post("/declare/danger/by/sector", "DangerController@declareDangerBySector");
+Route::get("/show/dangers", "DangerController@showDangers");
+Route::post("/get/dangers", "DangerController@getDangers");
+Route::post("/get/alerted/sums/d_id", "DangerController@getSumIDsByDangerID");
 
 Route::get("/org/show", "OrganizationController@orgShow");
 Route::post("/getOrg", "OrganizationController@getOrgData");
