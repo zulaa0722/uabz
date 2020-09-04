@@ -111,12 +111,8 @@
                       <div class="form-group">
                         <div class="text-center">
                           <label class="col-md-9 col-form-label text-md-center">Гол нэрийн бүтээгдээхүүний нөөц дуусч байгаа сумууд</label>
-                        {{-- </div> --}}
-                        <h3 class="text-danger">16</h3>
-                        {{-- <div class="text-center"> --}}
-                          <form id="showSubProducts" action="{{"ShowSubController@showSubView"}}" method="post">
-                            <input type="button" id="btnInfoEverything" class="btn btn-info" name="" value="Дэлгэрэнгүй">
-                          </form>
+                          <h3 class="text-danger">16</h3>
+                            <a class="btn btn-info" href="{{url("/showSubController")}}">Дэлгэрэнгүй</a>
                         </div>
                         {{-- <input type="button" id="btnChangeNorm" class="btn btn-info" name="" value="Норм өөрчлөх"> --}}
                       </div>
@@ -329,5 +325,4 @@
   <script src="{{url('public/js/mongolianMap/test.js')}}"></script>
   <script src="{{url('public/js/mongolianMap/RightPanel.js')}}"></script>
   <script src="{{url('public/js/mongolianMap/changeColor.js')}}"></script>
-  <script src="{{url('public/js/mongolianMap/compute.js')}}"></script>
 @endsection

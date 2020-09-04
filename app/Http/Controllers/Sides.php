@@ -81,14 +81,15 @@ class Sides extends Controller
 
 #End of RIGHTSIDE
 
-        $bottomSide = [];
-
+        //hunsnii buteegdhuunuudiig avch bn
         $products = DB::table("tb_food_products")->get();
+        //aimag ymar norm ashiglaj bgaag avch bn
         $provNormProducts = DB::table("tb_norms")->where('normID', '=', $province->normID)->get();
 
         $bottomSide = [];
 
         foreach ($products as $product) {
+          //tus aimagt bgaa hunsnii neg ner torliin baraa niit her bgaag avch bn
           $productTotalQntt = DB::table("tb_food_reserve")
             ->where("provID", "=", $province->id)
             ->where("productID","=",$product->id)->sum("mainQntt");
@@ -158,7 +159,7 @@ class Sides extends Controller
         //niit maliin kcal
         $totalCattleKcal = $totalSheepKg*$meatKcal/$meatQntt;
 
-        //heden honog uldseniig kcal-oor huvaaj hariulj bn
+        //heden honog uldseniig kcal-oor huvaaj haruulj bn
         $reserveDay = ($reserveTotalKcal + $totalCattleKcal) / $symTotalKcal;
 
         $rightSide = array(
@@ -167,11 +168,11 @@ class Sides extends Controller
           "totalCattle" => $totalCattle,
           "reserveDay" => intval($reserveDay)
         );
+#End of RIGHTSIDE
 
-      #End of RIGHTSIDE
-        $bottomSide = [];
-
+        //hunsnii golneriin buteegdhuunuudiig avch bn
         $products = DB::table("tb_food_products")->get();
+        //tuhain sumiin normiin hunsnii buteegdhuunuudiig avch bn
         $symNormProducts = DB::table("tb_norms")->where('normID', '=', $sym->normID)->get();
 
         $bottomSide = [];

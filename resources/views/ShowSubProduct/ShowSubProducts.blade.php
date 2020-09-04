@@ -9,7 +9,7 @@
     <div class="col-md-12">
         <div class="card">
           <div id="changeBlade" class="card-body">
-            <h4 class="text-center">Хүнсний нөөцийн судалгаа</h4>
+            <h4 class="text-center">Гол нэрийн бүтээгдэхүүн дуусч буй сумд</h4>
             <table id="ShowSubProducts" class="table table-striped table-bordered wrap " style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead>
                   <tr>
@@ -30,22 +30,10 @@
                     <td>Төмс</td>
                     <td style="font-color:red;">2</td>
                     <td>
-                      <input type="button" class="btn btn-warning" name="" value="Орлуулах">
+                      <input type="button" class="btn btn-warning" name="" value="Орлуулах" id="showSub">
                     </td>
                     <td>
-                      <input type="button" class="btn btn-danger" name="" value="Хасах">
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Завхан</td>
-                    <td>Тосонцэнгэл</td>
-                    <td>Гурил</td>
-                    <td style="font-color:red;">1</td>
-                    <td>
-                      <input type="button" class="btn btn-warning" name="" value="Орлуулах">
-                    </td>
-                    <td>
-                      <input type="button" class="btn btn-danger" name="" value="Хасах">
+                      <input type="button" class="btn btn-danger" name="" value="Нормоос хасах" id="changeNorm">
                     </td>
                   </tr>
                 </tbody>
@@ -58,18 +46,18 @@
 
 @endsection
 
-@section('css')
+{{-- @section('css')
   <link rel="stylesheet" href="{{url("public/uaBCssJs/datatableCss/datatables.min.css")}}">
   <style media="screen">
-    #FoodReserveTable tbody tr.selected {
+    #ShowSubProducts tbody tr.hover {
       color: white;
       background-color: #8893f2;
     }
-    #FoodReserveTable tbody tr{
+    #ShowSubProducts tbody tr{
       cursor: pointer;
     }
   </style>
-@endsection
+@endsection --}}
 @section('js')
   <script type="text/javascript" src="{{url("public/uaBCssJs/datatableJs/datatables.min.js")}}"></script>
   <script type="text/javascript" src="{{url("public/uaBCssJs/datatableJs/jszip.min.js")}}"></script>
@@ -86,24 +74,24 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-  $('#ShowSubProducts thead tr').clone(true).appendTo( '#ShowSubProducts thead' );
 
-  var filterIndex = 0;
-    $('#ShowSubProducts thead tr:eq(1) th').each( function (i) {
-      if(filterIndex == 4 || filterIndex == 3)
-      {
-        $(this).html( '<input type="text" style="width:110%;" placeholder="Хайх..." />' );
-        $( 'input', this ).on( 'keyup change', function () {
-            if ( table.column(i).search() !== this.value ) {
-                table.column(i).search( this.value ).draw();
-            }
-        });
-      }
-      else {
-        $(this).html('');
-      }
-      filterIndex++;
-    });
+  // $('#ShowSubProducts thead tr').clone(true).appendTo( '#ShowSubProducts thead' );
+  // var filterIndex = 0;
+  //   $('#ShowSubProducts thead tr:eq(1) th').each( function (i) {
+  //     if(filterIndex == 4 || filterIndex == 3)
+  //     {
+  //       $(this).html( '<input type="text" style="width:110%;" placeholder="Хайх..." />' );
+  //       $( 'input', this ).on( 'keyup change', function () {
+  //           if ( table.column(i).search() !== this.value ) {
+  //               table.column(i).search( this.value ).draw();
+  //           }
+  //       });
+  //     }
+  //     else {
+  //       $(this).html('');
+  //     }
+  //     filterIndex++;
+  //   });
   var table = $('#ShowSubProducts').DataTable( {
     "language": {
             "lengthMenu": "_MENU_ мөрөөр харах",
@@ -131,4 +119,5 @@ $(document).ready(function(){
 
 });
 </script>
+<script src="{{url('public/js/mongolianMap/ShowSubProduct.js')}}"></script>
 @endsection
