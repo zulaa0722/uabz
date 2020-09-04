@@ -96,6 +96,7 @@ Route::post("/declare/danger/by/sector", "DangerController@declareDangerBySector
 Route::get("/show/dangers", "DangerController@showDangers");
 Route::post("/get/dangers", "DangerController@getDangers");
 Route::post("/get/alerted/sums/d_id", "DangerController@getSumIDsByDangerID");
+Route::post("/danger/edit", "DangerController@editDanger");
 
 Route::get("/org/show", "OrganizationController@orgShow");
 Route::post("/getOrg", "OrganizationController@getOrgData");

@@ -19,7 +19,7 @@ class SumAndFoodReserveController extends Controller
     }
 
     public function getSumsReserveDays(){
-        // try{
+        try{
           $sums = DB::table('tb_danger_sym')->get();
 
           $normController = new NormController;
@@ -52,10 +52,10 @@ class SumAndFoodReserveController extends Controller
               ));
           }
           return json_encode($arr);
-        // }
-        // catch(\Exception $e){
-        //     return "Серверийн алдаа!!! Веб мастерт хандана уу";
-        // }
+        }
+        catch(\Exception $e){
+            return "Серверийн алдаа!!! Веб мастерт хандана уу";
+        }
     }
 
     public function minusNormFromReserve(Request $req){

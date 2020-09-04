@@ -70,7 +70,7 @@
                 </div>
                 <div class="row">
                   <div class="col text-center">
-                    <button type="submit" id="btnDeclareDangerSum" post-url="{{url("/declare/danger/by/sum")}}" class="btn btn-primary">Хадгалах</button>
+                    <button type="submit" id="btnEditDanger" post-url="{{url("/danger/edit")}}" class="btn btn-primary">Онц байдал засах</button>
                   </div>
                 </div>
                 <div class="d-none" id="divLoading">
@@ -81,7 +81,7 @@
                       </div>
                     </div>
                     <div class="row">
-                      <strong>Онц байдал зарлаж байна. Түр хүлээнэ үү...</strong>
+                      <strong>Онц байдлыг засаж байна. Түр хүлээнэ үү...</strong>
                     </div>
                   </div>
                 </div>

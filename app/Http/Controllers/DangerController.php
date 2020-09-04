@@ -11,6 +11,7 @@ use DB;
 use App\DangerSym;
 use App\Danger;
 use Yajra\DataTables\DataTables;
+use App\Province;
 
 class DangerController extends Controller
 {
@@ -84,10 +85,12 @@ class DangerController extends Controller
             $danger->save();
             // ehleed danger table ruu tushaal dugaar ognoo ederee hadgalaad hadgalsan id-g avaad danger_sym ruu hadgalna
             foreach($req->sums as $key => $value){
+              $symRow = DB::table("tb_sym")->where('symCode', '=', $value['sumID'])->first();
+              $provRow = DB::table("tb_province")->where('id', '=', $symRow->provID)->first();
               $dangerSym = new DangerSym;
               $dangerSym->danger_id = $danger->id;
-              $dangerSym->sectorID = $req->sector;
-              $dangerSym->provID = $req->province;
+              $dangerSym->sectorID = $provRow->sectorID;
+              $dangerSym->provID = $symRow->provID;
               $dangerSym->symID = $value['sumID'];
               $dangerSym->save();
             }
@@ -130,10 +133,11 @@ class DangerController extends Controller
 
             foreach($req->provs as $key => $value){
                 $sums = DB::table('tb_sym')->where('provID', '=', $value["provID"])->get();
+                $provRow = DB::table("tb_province")->where('id', '=', $value["provID"])->first();
                 foreach ($sums as $sum) {
                     $dangerSym = new DangerSym;
                     $dangerSym->danger_id = $danger->id;
-                    $dangerSym->sectorID = $req->sector;
+                    $dangerSym->sectorID = $provRow->sectorID;
                     $dangerSym->provID = $value["provID"];
                     $dangerSym->symID = $sum->symCode;
                     $dangerSym->save();
@@ -207,5 +211,48 @@ class DangerController extends Controller
         }
     }
 
+
+    // Зарласан онц байдлыг засах хэсэг
+    public function editDanger(Request $req){
+        try{
+
+            $danger = Danger::find($req->id);
+            $danger->commandNumber = $req->commandNumber;
+            $danger->declareDate = $req->declareDate;
+            $danger->minusedDate = $req->minusedDate;
+            $danger->comment = $req->comment;
+            $danger->save();
+
+            // хуучин сумыг устгаад
+            DangerSym::where('danger_id',$req->id)->delete();
+
+            // шинээр засаж буй сумыг хадгална
+            $province = new Province;
+            foreach($req->sums as $key => $value){
+                $symRow = DB::table("tb_sym")->where('symCode', '=', $value['sumID'])->first();
+                $provRow = DB::table("tb_province")->where('id', '=', $symRow->provID)->first();
+
+                $dangerSym = new DangerSym;
+                $dangerSym->danger_id = $req->id;
+                $dangerSym->sectorID = $provRow->sectorID;
+                $dangerSym->provID = $symRow->provID;
+                $dangerSym->symID = $value['sumID'];
+                $dangerSym->save();
+            }
+
+            $array = array(
+                'status' => 'success',
+                'msg' => 'Амжилттай хадгаллаа!!!'
+            );
+            return $array;
+        }catch(\Exception $e){
+            $array = array(
+                'status' => 'error',
+                'msg' => 'Серверийн алдаа!!! Веб мастерт хандана уу!!!'
+            );
+            return $array;
+        }
+    }
+    // Зарласан онц байдлыг засах хэсэг
 
 }
