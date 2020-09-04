@@ -47,7 +47,7 @@
             background-color: #8893f2;
         }
         #tableDangers tbody tr{
-            cursor: pointer;
+              cursor: pointer;
         }
     </style>
 @endsection
