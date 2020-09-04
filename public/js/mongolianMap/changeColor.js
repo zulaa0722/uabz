@@ -7,7 +7,7 @@ $("#document").ready(function(){
         },
         success:function(res){
             res = jQuery.parseJSON(res);
-            console.log(res);
+            // console.log(res);
             $.each(res, function(key, val){
                 // $('g path[id="' + val.id + '"]').removeClass('aimag');
                 if(val.days < 30 && val.days > 9){

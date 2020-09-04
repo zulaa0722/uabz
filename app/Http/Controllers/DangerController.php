@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use DB;
 use App\DangerSym;
 use App\Danger;
+use Yajra\DataTables\DataTables;
 
 class DangerController extends Controller
 {
@@ -18,6 +19,51 @@ class DangerController extends Controller
     {
         $this->middleware('auth');
     }
+
+    // Зарласан онц байдал харуулдаг view харуулна
+    public function showDangers(){
+        try{
+            $sectors = DB::table("tb_sectors")
+                ->get();
+            return view("danger.dangerShow", compact("sectors"));
+        }catch(\Exception $e){
+            return 'Серверийн алдаа!!! Веб мастерт хандана уу!!!';
+        }
+    }
+    // Зарласан онц байдал харуулдаг view харуулна
+
+    // онц байдал зарлсан id-аар нь тухайн онц байдалд оруулсан бүх сумдын мэдээллийг json хэлбэрээр буцаана
+    public function getSumIDsByDangerID(Request $req){
+        try{
+            $sums = DB::table("tb_danger_sym")
+                ->join("tb_sym", 'tb_danger_sym.symID', '=', 'tb_sym.symCode')
+                ->select('tb_danger_sym.*', 'tb_sym.symName')
+                ->where("tb_danger_sym.danger_id", "=", $req->id)
+                ->get();
+            return json_encode($sums);
+        }catch(\Exception $e){
+            $array = array(
+                'status' => 'error',
+                'msg' => 'Серверийн алдаа!!! Веб мастерт хандана уу!!!'
+            );
+            return $array;
+        }
+    }
+    // онц байдал зарлсан id-аар нь тухайн онц байдалд оруулсан бүх сумдын мэдээллийг json хэлбэрээр буцаана
+
+    // Бүртгэгдсэн онц байдлуудыг Datatable format руу хөрвуулж буцааж байна
+    public function getDangers(){
+        try{
+            $dangers = DB::table("tb_danger")
+                ->orderBy("declareDate", "DESC")
+                ->get();
+            return DataTables::of($dangers)
+              ->make(true);
+        }catch(\Exception $e){
+            return 'Серверийн алдаа!!! Веб мастерт хандана уу!!!';
+        }
+    }
+    // Бүртгэгдсэн онц байдлуудыг Datatable format руу хөрвуулж буцааж байна
 
     // Sumaar onts baidal zarlah heseg
     public function declareDangerBySum(Request $req){
@@ -37,12 +83,12 @@ class DangerController extends Controller
             $danger->comment = $req->comment;
             $danger->save();
             // ehleed danger table ruu tushaal dugaar ognoo ederee hadgalaad hadgalsan id-g avaad danger_sym ruu hadgalna
-            foreach($req->sums as $sum){
+            foreach($req->sums as $key => $value){
               $dangerSym = new DangerSym;
               $dangerSym->danger_id = $danger->id;
               $dangerSym->sectorID = $req->sector;
               $dangerSym->provID = $req->province;
-              $dangerSym->symID = $sum;
+              $dangerSym->symID = $value['sumID'];
               $dangerSym->save();
             }
             $array = array(
@@ -82,14 +128,14 @@ class DangerController extends Controller
             $danger->save();
             // ehleed danger table ruu tushaal dugaar ognoo ederee hadgalaad hadgalsan id-g avaad danger_sym ruu hadgalna
 
-            foreach($req->provs as $prov){
-                $sums = DB::table('tb_sym')->where('provID', '=', $prov)->get();
+            foreach($req->provs as $key => $value){
+                $sums = DB::table('tb_sym')->where('provID', '=', $value["provID"])->get();
                 foreach ($sums as $sum) {
                     $dangerSym = new DangerSym;
                     $dangerSym->danger_id = $danger->id;
-                    $dangerSym->sectorID = $req->bus;
-                    $dangerSym->provID = $prov;
-                    $dangerSym->symID = $sum->id;
+                    $dangerSym->sectorID = $req->sector;
+                    $dangerSym->provID = $value["provID"];
+                    $dangerSym->symID = $sum->symCode;
                     $dangerSym->save();
                 }
             }
@@ -142,7 +188,7 @@ class DangerController extends Controller
                         $dangerSym->danger_id = $danger->id;
                         $dangerSym->sectorID = $sector;
                         $dangerSym->provID = $prov->id;
-                        $dangerSym->symID = $sum->id;
+                        $dangerSym->symID = $sum->symCode;
                         $dangerSym->save();
                     }
                 }

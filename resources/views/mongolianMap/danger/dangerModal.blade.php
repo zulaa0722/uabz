@@ -93,6 +93,12 @@
                   </div> --}}
                 </div>
                 <div class="form-group row">
+                  <label class="col-md-3 col-form-label text-md-left">Сонгосон аймгууд:</label>
+                  <div class="col-md-7" id="divChoosedProvs">
+                    {{-- <a href="#" class="badge badge-info">Өмнөдэлгэр<i class="fas fa-times mx-1"></i></a> --}}
+                  </div>
+                </div>
+                <div class="form-group row">
                     <label class="col-md-3 col-form-label text-md-right">Тушаалын дугаар:</label>
                     <div class="col-md-7">
                       <input type="text" class="form-control" id="txtCommandNumber" name="commandNumber" value="" maxlength="250" />
@@ -136,7 +142,7 @@
                 </div>
               </form>
 
-
+              {{--START Ots baidal sum sumdaar zarlah form --}}
               <form id="frmDeclareDangerBySum" action="" method="post" autocomplete="off">
                 @csrf
                 <div id="hide">
@@ -164,7 +170,13 @@
                   </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-3 col-form-label text-md-right">Тушаалын дугаар:</label>
+                  <label class="col-md-3 col-form-label text-md-left">Сонгосон сумдууд:</label>
+                  <div class="col-md-7" id="divChoosedSumduud">
+                    {{-- <a href="#" class="badge badge-info">Өмнөдэлгэр<i class="fas fa-times mx-1"></i></a> --}}
+                  </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label text-md-left">Тушаалын дугаар:</label>
                     <div class="col-md-7">
                       <input type="text" class="form-control" id="txtCommandNumber" name="commandNumber" value="" maxlength="250" />
                     </div>
@@ -206,6 +218,7 @@
                   </div>
                 </div>
               </form>
+              {{--END Ots baidal sum sumdaar zarlah form --}}
 
 
                 <div class="clearfix"></div>
