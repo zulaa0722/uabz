@@ -83,4 +83,15 @@ class SubProductsController extends Controller
       return "Серверийн алдаа!!! Веб мастерт хандана уу";
     }
   }
+  public static function getSubsByProductID($productID)
+  {
+    try {
+      $subs = DB::table("tb_sub_products")->where("fProductID", "=", $productID)->get();
+      return $subs;
+    } catch (\Exception $e) {
+      return "Серверийн алдаа!!! Веб мастерт хандана уу";
+    }
+
+
+  }
 }
