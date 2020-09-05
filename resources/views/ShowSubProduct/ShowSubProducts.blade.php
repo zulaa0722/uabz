@@ -13,9 +13,12 @@
             <table id="ShowSubProducts" class="table table-striped table-bordered wrap " style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead>
                   <tr>
-
+                    <th>№</th>
+                    <th></th>
                     <th>Аймаг, нийслэл</th>
+                    <th></th>
                     <th style="width:18%;">Сум, Дүүрэг</th>
+                    <th></th>
                     <th>Гол нэрийн бүтээгдхүүн</th>
                     <th>Үлдсэн хоног</th>
                     <th>Арга хэмжээ</th>
@@ -24,21 +27,30 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Архангай</td>
-                    <td>Батцэнгэл</td>
-                    <td>Төмс</td>
-                    <td style="font-color:red;">2</td>
-                    <td>
-                      <input type="button" class="btn btn-warning" name="" value="Орлуулах" id="showSub">
-                    </td>
-                    <td>
-                      <input type="button" class="btn btn-danger" name="" value="Нормоос хасах" id="changeNorm">
-                    </td>
-                  </tr>
+                  @foreach ($arr as $ar => $val)
+                    <tr>
+                      <td></td>
+                      <td>{{$val["provID"]}}</td>
+                      <td>{{$val["provName"]}}</td>
+                      <td>{{$val["symID"]}}</td>
+                      <td>{{$val["symName"]}}</td>
+                      <td>{{$val["productID"]}}</td>
+                      <td>{{$val["product"]}}</td>
+                      <td class="text-danger">{{$val["leftDays"]}}</td>
+                      <td>
+                        <input id="showSub" type="button" class="btn btn-warning showSubProducts" name="" value="Орлуулах"
+                          provID={{$val["provID"]}} symID={{$val["symID"]}} productID={{$val["productID"]}}
+                          provName={{$val["provName"]}} symName={{$val["symName"]}} product={{$val["product"]}}>
+                      </td>
+                      <td>
+                        <input type="button" class="btn btn-danger" name="" value="Нормоос засах" id="changeNorm">
+                      </td>
+                    </tr>
+
+                  @endforeach
                 </tbody>
             </table>
-
+            @include('ShowSubProduct.ShowCompanySubs')
           </div>
         </div>
     </div>
@@ -46,18 +58,6 @@
 
 @endsection
 
-{{-- @section('css')
-  <link rel="stylesheet" href="{{url("public/uaBCssJs/datatableCss/datatables.min.css")}}">
-  <style media="screen">
-    #ShowSubProducts tbody tr.hover {
-      color: white;
-      background-color: #8893f2;
-    }
-    #ShowSubProducts tbody tr{
-      cursor: pointer;
-    }
-  </style>
-@endsection --}}
 @section('js')
   <script type="text/javascript" src="{{url("public/uaBCssJs/datatableJs/datatables.min.js")}}"></script>
   <script type="text/javascript" src="{{url("public/uaBCssJs/datatableJs/jszip.min.js")}}"></script>
@@ -113,9 +113,26 @@ $(document).ready(function(){
       },
       "orderCellsTop": true,
       "fixedHeader": true,
-      "scrollX": true
-      // "stateSave": true
-      });
+      "scrollX": true,
+      "stateSave": true,
+      "columns": [
+        {
+          data: "id", name: "id",  render: function (data, type, row, meta) {
+            return meta.row + meta.settings._iDisplayStart + 1;
+          }
+        },
+        { data: "provID", name: "provID", visible: false},
+        { data: "provName", name: "provName"},
+        { data: "symID", name: "symID", visible: false},
+        { data: "symName", name: "symName"},
+        { data: "productID", name: "productID", visible: false},
+        { data: "product", name: "product"},
+        { data: "leftDays", name: "leftDays"},
+        { data: "action1", name: "action1"},
+        { data: "action", name: "action"},
+
+      ]
+    });
 
 });
 </script>

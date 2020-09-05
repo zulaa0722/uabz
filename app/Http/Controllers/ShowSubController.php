@@ -29,12 +29,16 @@ class ShowSubController extends Controller
       try{
         //onts baidal zarlasan sumuudiig avch bn
         $dangerSymd = DB::table("tb_danger_sym")->get();
+
+
         //hunsnii golneriin buteegdhuunuudiig avch bn
         $products = DB::table("tb_food_products")->get();
         $arr = [];
 
         foreach ($dangerSymd as $dangerSym) {
           $sym = DB::table("tb_sym")->where("symCode", "=", $dangerSym->symID)->first();
+
+          $province = DB::table("tb_province")->where("id", "=", $dangerSym->provID)->first();
 
           //tuhain sumiin normiin hunsnii buteegdhuunuudiig avch bn
           $symNormProducts = DB::table("tb_norms")->where('normID', '=', $sym->normID)->get();
@@ -58,11 +62,15 @@ class ShowSubController extends Controller
                 $leftDays = 0;
                 if($productTotalQntt != 0)
                   $leftDays = intval($productTotalQntt / $val);
-                  if($leftDays > 7)
+                  if($leftDays < 7)
                     array_push($arr, array(
                       // "pp" => $val
-                        "product" => $product->productName,
+                        "provID" => $province->id,
+                        "provName" => $province->provName,
+                        "symID" => $sym->symCode,
+                        "symName" => $sym->symName,
                         "productID" => $product->id,
+                        "product" => $product->productName,
                         "leftDays" => $leftDays
                       )
                     );
@@ -71,13 +79,7 @@ class ShowSubController extends Controller
           }
         }
 
-        return $arr;
-
-
-
-
-
-        return view("ShowSubProduct.ShowSubProducts");
+        return view("ShowSubProduct.ShowSubProducts", compact("arr"));
       }catch(\Exception $e){
         return $e;
         // return "Серверийн алдаа!!! Веб мастерт хандана уу";
