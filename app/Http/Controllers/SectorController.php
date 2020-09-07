@@ -16,11 +16,16 @@ class SectorController extends Controller
   {
       $this->middleware('auth');
   }
-  
+
     public function sectoreShow()
     {
       try{
-        return view("Sector.Sector");
+        if(Auth::user()->permission == 2){
+          return view("permission.permissionError");
+        }
+        else{
+          return view("Sector.Sector");
+        }
       }catch(\Exception $e){
         return "Серверийн алдаа!!! Веб мастерт хандана уу";
       }

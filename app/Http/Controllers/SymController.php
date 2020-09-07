@@ -22,8 +22,13 @@ class SymController extends Controller
   public function symShow()
   {
     try{
-      $Provinces = DB::table("tb_province")->get();
-      return view("Sym.Sym", compact("Provinces"));
+      if(Auth::user()->permission == 2){
+        return view("permission.permissionError");
+      }
+      else{
+        $Provinces = DB::table("tb_province")->get();
+        return view("Sym.Sym", compact("Provinces"));
+      }
     }catch(\Exception $e){
       return "Серверийн алдаа!!! Веб мастерт хандана уу";
     }

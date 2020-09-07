@@ -19,8 +19,13 @@ class CattleController extends Controller
     public function cattleShow()
     {
         try{
-          $cattles = DB::table("tb_cattle")->get();
-          return view("Cattle.Cattle", compact("cattles"));
+          if(Auth::user()->permission == 2){
+            return view("permission.permissionError");
+          }
+          else{
+            $cattles = DB::table("tb_cattle")->get();
+            return view("Cattle.Cattle", compact("cattles"));
+          }
         }catch(\Exception $e){
           return "Серверийн алдаа!!! Веб мастерт хандана уу";
         }

@@ -23,9 +23,18 @@ class FoodReserveController extends Controller
     public function foodReserveShow()
     {
       try{
-        $syms = DB::table("tb_sym")
-          ->join("tb_province", "tb_sym.provID", "=", "tb_province.id")
-          ->select("tb_sym.*", "tb_province.provName")->get();
+        if(Auth::user()->permission == 2){
+          $syms = DB::table("tb_sym")
+            ->join("tb_province", "tb_sym.provID", "=", "tb_province.id")
+            ->select("tb_sym.*", "tb_province.provName")
+            ->where('tb_province.provCode', '=', Auth::user()->aimagCode)->get();
+        }
+        else{
+          $syms = DB::table("tb_sym")
+            ->join("tb_province", "tb_sym.provID", "=", "tb_province.id")
+            ->select("tb_sym.*", "tb_province.provName")->get();
+        }
+
         $products = DB::table("tb_food_products")
           ->orderBy("productName")->get();
         $provinces = DB::table("tb_province")->get();
@@ -51,7 +60,7 @@ class FoodReserveController extends Controller
             $insertFoodReserve->measurement = "тн";
             $insertFoodReserve->save();
 
-            
+
         }
 
         $arrayMsg = array(

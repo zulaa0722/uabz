@@ -218,3 +218,8 @@ Route::post('/get/users', "UserController@getUsers");
 Route::post('/delete/users', "UserController@deleteUsers");
 Route::post('/change/password/users', "UserController@changePassword");
 // ADMIN END
+
+
+Route::get("/testing/permission", function(){
+  return view("permission.permissionError");
+});

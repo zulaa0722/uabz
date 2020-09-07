@@ -24,8 +24,16 @@ class PopulationController extends Controller
   public function popShow()
   {
     try{
-      $provinces = DB::table("tb_province")->get();
-      return view("Population.Population", compact("provinces"));
+      if(Auth::user()->permission == 2){
+        // return view("permission.permissionError");
+        $provinces = DB::table("tb_province")
+            ->where('tb_province.provCode', '=', Auth::user()->aimagCode)->get();
+        return view("Population.Population", compact("provinces"));
+      }
+      else{
+        $provinces = DB::table("tb_province")->get();
+        return view("Population.Population", compact("provinces"));
+      }
     }catch(\Exception $e){
       return "Серверийн алдаа!!! Веб мастерт хандана уу";
     }
@@ -34,10 +42,19 @@ class PopulationController extends Controller
   public function getPopData(Request $req)
   {
     try{
-      $populations = DB::table("tb_population")
-        ->join("tb_province", "tb_population.provID", "=", "tb_province.id")
-        ->join("tb_sym", "tb_population.symID", "=", "tb_sym.id")
-        ->select("tb_population.*", "tb_province.provName", "tb_sym.symName")->get();
+      if(Auth::user()->permission == 2){
+        $populations = DB::table("tb_population")
+          ->join("tb_province", "tb_population.provID", "=", "tb_province.id")
+          ->join("tb_sym", "tb_population.symID", "=", "tb_sym.id")
+          ->select("tb_population.*", "tb_province.provName", "tb_sym.symName")
+          ->where('tb_province.provCode', '=', Auth::user()->aimagCode)->get();
+      }
+      else{
+        $populations = DB::table("tb_population")
+          ->join("tb_province", "tb_population.provID", "=", "tb_province.id")
+          ->join("tb_sym", "tb_population.symID", "=", "tb_sym.id")
+          ->select("tb_population.*", "tb_province.provName", "tb_sym.symName")->get();
+      }
       return DataTables::of($populations)
         ->make(true);
     }catch(\Exception $e){

@@ -21,10 +21,15 @@ class AxaxController extends Controller
   public function axaxShow()
   {
     try{
-      $levels = DB::table("tb_level")->get();
-      $organizations = DB::table("tb_organizations")->get();
+      if(Auth::user()->permission == 2){
+        return view("permission.permissionError");
+      }
+      else{
+        $levels = DB::table("tb_level")->get();
+        $organizations = DB::table("tb_organizations")->get();
 
-      return view("Axax.Axax", compact("levels", "organizations"));
+        return view("Axax.Axax", compact("levels", "organizations"));
+      }
     }catch(\Exception $e){
       return "Серверийн алдаа!!! Веб мастерт хандана уу";
     }

@@ -19,11 +19,16 @@ class LevelController extends Controller
   {
       $this->middleware('auth');
   }
-  
+
   public function levelShow()
   {
     try{
-      return view("Level.Level");
+      if(Auth::user()->permission == 2){
+        return view("permission.permissionError");
+      }
+      else{
+        return view("Level.Level");
+      }
     }catch(\Exception $e){
       return "Серверийн алдаа!!! Веб мастерт хандана уу";
     }

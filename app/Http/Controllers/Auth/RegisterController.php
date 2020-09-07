@@ -47,7 +47,7 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
         if(Auth::user()->permission != 1){
-            return 'Хандах эрх байхгүй!!!';
+            return view("permission.permissionError");
         }
         else{
             $provinces = DB::table('tb_province')

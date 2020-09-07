@@ -22,7 +22,7 @@ class UserController extends Controller
 
     public function showUsers(){
         if(Auth::user()->permission != 1){
-            return 'Хандах эрх байхгүй!!!';
+            return view("permission.permissionError");
         }
         else{
             $provinces = DB::table('tb_province')

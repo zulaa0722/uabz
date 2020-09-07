@@ -23,13 +23,22 @@ class CattleQnttController extends Controller
     public function cattleQnttShow()
     {
         try{
-            $provinces = DB::table("tb_province")->get();
-            $syms = DB::table("tb_sym")
-              ->join("tb_province", "tb_sym.provID", "=", "tb_province.id")
-              ->select("tb_sym.*", "tb_province.provName")->get();
+            if(Auth::user()->permission == 2){
+              $syms = DB::table("tb_sym")
+                ->join("tb_province", "tb_sym.provID", "=", "tb_province.id")
+                ->select("tb_sym.*", "tb_province.provName")
+                ->where('tb_province.provCode', '=', Auth::user()->aimagCode)
+                ->get();
+            }
+            else{
+              $syms = DB::table("tb_sym")
+                ->join("tb_province", "tb_sym.provID", "=", "tb_province.id")
+                ->select("tb_sym.*", "tb_province.provName")->get();
+            }
+            // $provinces = DB::table("tb_province")->get();
             $cattles = DB::table("tb_cattle")->get();
 
-            return view("CattleQntt.CattleQntt", compact("provinces", "syms", "cattles"));
+            return view("CattleQntt.CattleQntt", compact("syms", "cattles"));
         }catch(\Exception $e){
             return "Серверийн алдаа!!! Веб мастерт хандана уу";
         }

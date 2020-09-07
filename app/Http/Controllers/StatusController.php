@@ -20,11 +20,16 @@ class StatusController extends Controller
   {
       $this->middleware('auth');
   }
-  
+
   public function statusShow()
   {
     try{
-      return view("Status.Status");
+      if(Auth::user()->permission == 2){
+        return view("permission.permissionError");
+      }
+      else{
+        return view("Status.Status");
+      }
     }catch(\Exception $e){
       return "Серверийн алдаа!!! Веб мастерт хандана уу";
     }

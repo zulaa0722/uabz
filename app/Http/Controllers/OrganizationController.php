@@ -18,11 +18,16 @@ class OrganizationController extends Controller
   {
       $this->middleware('auth');
   }
-  
+
   public function orgShow()
   {
     try{
-      return view("Organization.Organization");
+      if(Auth::user()->permission == 2){
+        return view("permission.permissionError");
+      }
+      else{
+        return view("Organization.Organization");
+      }
     }catch(\Exception $e){
       return "Серверийн алдаа!!! Веб мастерт хандана уу";
     }

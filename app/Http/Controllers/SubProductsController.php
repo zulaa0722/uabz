@@ -24,8 +24,13 @@ class SubProductsController extends Controller
   public function subProductsShow()
   {
     try{
-      $getFoodProducts = DB::table("tb_food_products")->get();
-      return view("SubProducts.SubProducts", compact("getFoodProducts"));
+      if(Auth::user()->permission == 2){
+        return view("permission.permissionError");
+      }
+      else{
+        $getFoodProducts = DB::table("tb_food_products")->get();
+        return view("SubProducts.SubProducts", compact("getFoodProducts"));
+      }
     }catch(\Exception $e){
       return "Серверийн алдаа!!! Веб мастерт хандана уу";
     }

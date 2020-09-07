@@ -23,7 +23,12 @@ class FoodProductsController extends Controller
   public function foodProductsShow()
   {
     try{
-      return view("FoodProducts.FoodProducts");
+      if(Auth::user()->permission == 2){
+        return view("permission.permissionError");
+      }
+      else{
+        return view("FoodProducts.FoodProducts");
+      }
     }catch(\Exception $e){
       return "Серверийн алдаа!!! Веб мастерт хандана уу";
     }
