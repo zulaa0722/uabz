@@ -31,8 +31,8 @@
                   </div>
                 </div>
                 <div class="clear-fix"></div>
-                <div class="form-group row">
-                  <div class="col-md-8">
+                <div class="form-group row">``
+                  <div class="col-md-12">
                     <label class="form-group">Орлуулах хүнсний гол нэрийн бүтээгдэхүүний нэр:</label> &nbsp&nbsp
                     <label id="changeProduct" style="color:red; font-style:bold; font-size:16px"></label>
                   </div>
@@ -42,7 +42,7 @@
                 <div class="col-md-12">
                   <div class="form-group row">
                     @php
-                      $totalCattleQnnt = App\Http\Controllers\SubProductsController::getSubsByProductID(4);  
+                      $subProducts = App\Http\Controllers\SubProductsController::getSubsByProductID(4);
                     @endphp
                     <input type="checkbox" name="" value="">
                   </div>
