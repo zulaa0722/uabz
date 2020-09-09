@@ -31,21 +31,29 @@
                   </div>
                 </div>
                 <div class="clear-fix"></div>
-                <div class="form-group row">``
+                <div class="form-group row">
                   <div class="col-md-12">
                     <label class="form-group">Орлуулах хүнсний гол нэрийн бүтээгдэхүүний нэр:</label> &nbsp&nbsp
                     <label id="changeProduct" style="color:red; font-style:bold; font-size:16px"></label>
                   </div>
-                </div>
+
 
                 <div class="clearfix"></div>
-                <div class="col-md-12">
-                  <div class="form-group row">
-                    @php
+                <div class="col-md-12" id="showSubCheckboxes">
+                  {{-- <div class="form-group row"> --}}
+                    {{-- @php
                       $subProducts = App\Http\Controllers\SubProductsController::getSubsByProductID(4);
-                    @endphp
-                    <input type="checkbox" name="" value="">
-                  </div>
+                    @endphp --}}
+                    {{-- @foreach ($subProducts as $subProduct)
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input type="checkbox" name="" value="{{$subProduct->id}}">&nbsp {{$subProduct->subName}}
+
+                        </label>
+                      </div>
+                    @endforeach --}}
+                  {{-- </div> --}}
+                </div>
                 </div>
 
             <div class="modal-footer">

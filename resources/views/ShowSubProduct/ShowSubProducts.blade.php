@@ -27,6 +27,8 @@
                   </tr>
                 </thead>
                 <tbody>
+                  <form id="showCompanySubsForm" action="" method="post">
+
                   @foreach ($arr as $ar => $val)
                     <tr>
                       <td></td>
@@ -40,7 +42,7 @@
                       <td>
                         <input id="showSub" type="button" class="btn btn-warning showSubProducts" name="" value="Орлуулах"
                           provID={{$val["provID"]}} symID={{$val["symID"]}} productID={{$val["productID"]}}
-                          provName={{$val["provName"]}} symName={{$val["symName"]}} product={{$val["product"]}}>
+                          provName="{{$val["provName"]}}" symName="{{$val["symName"]}}" product="{{$val["product"]}}">
                       </td>
                       <td>
                         <input type="button" class="btn btn-danger" name="" value="Нормоос засах" id="changeNorm">
@@ -48,6 +50,7 @@
                     </tr>
 
                   @endforeach
+                </form>
                 </tbody>
             </table>
             @include('ShowSubProduct.ShowCompanySubs')
@@ -66,7 +69,7 @@
 
   <script type="text/javascript">
     var dataRow = "";
-    var foodReserveNewUrl = "{{url("/foodReserve/insert")}}";
+    var showCompanySubs = "{{url("/showSubController/showCompanySubs")}}";
     var foodReserveDeleteUrl = "{{url("/foodReserve/delete")}}";
   </script>
 
