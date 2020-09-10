@@ -20,6 +20,8 @@ Route::get('/template', function(){
     return view('layouts.layout_master');
 });
 
+Route::get("/test/minus/norm", "SumAndFoodReserveController@minusNormFromReserve");
+
 
 // Route::get("/mongolia/mapsAll", "mongolianMapsController@mongolianMapsAll");
 
