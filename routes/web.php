@@ -58,6 +58,7 @@ Route::get("/mongolia/Zavkhan", "mongolianMapsController@Zavkhan");
 
 //Gol neriin buteegdhuun gargaj ireh
 Route::get("/showSubController", "ShowSubController@showSubView");
+Route::post("/showSubController/showCompanySubs", "ShowSubController@ShowCompanySubs");
 
 // START gazriin zurgiin sumdiin ungu uurchluh heseg
 Route::post("/get/sums/reserve/count", "SumAndFoodReserveController@getSumsReserveDays");
