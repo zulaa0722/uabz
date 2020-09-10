@@ -22,9 +22,11 @@ $(document).on("click", ".showSubProducts", function(){
       var div = '';
       $.each(response, function(key, val){
         // div = div + '<div class="form-check">';
-        div = div + '<label class="form-check-label col-md-3">'
-        div = div + '<input type="checkbox" name="" value="ddd">&nbsp '+ val.subName;
-        div = div + '<input type="number" class="form-control">'
+        div = div + '<label class="form-check-label col-md-4">'
+        div = div + '<input type="checkbox" style="font-size: 16px;" class="subChecks" value="'+ val.id +'">&nbsp '+ val.subName;
+        div = div + '<label style="font-size: 13px;">Шилжүүлэх итгэлцүүр: &nbsp</label>';
+        div = div + '<label style="color:red; font-style:bold; font-size:15x">'+ val.multiplier +'</label>';
+        div = div + '<input type="number" class="form-control subText d-none" id="' + val.id + '">'
         div = div +'  </label> &nbsp &nbsp &nbsp';
       });
 
@@ -32,9 +34,18 @@ $(document).on("click", ".showSubProducts", function(){
       $("#showSubCheckboxes").html(div);
     }
   });
+});
+$(document).on("click", ".subChecks", function(){
+  if ($(this).prop('checked'))
+  {
+    $("#"+$(this).val()).removeClass("d-none");
+  }
+  else {
+    $("#"+$(this).val()).addClass("d-none");
+  }
+});
+$(document).ready(function(){
+  $("#insertSub").click(function(){
 
-
-
-
-
+  });
 });

@@ -34,7 +34,7 @@
                 <div class="form-group row">
                   <div class="col-md-12">
                     <label class="form-group">Орлуулах хүнсний гол нэрийн бүтээгдэхүүний нэр:</label> &nbsp&nbsp
-                    <label id="changeProduct" style="color:red; font-style:bold; font-size:16px"></label>
+                    <label id="changeProduct" style="color:blue; font-style:bold; font-size:16px"></label>
                   </div>
 
 
