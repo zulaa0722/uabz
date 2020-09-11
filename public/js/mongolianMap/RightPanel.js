@@ -45,7 +45,7 @@ $(document).ready(function(){
     });
   });
 });
-$(document).on("click", "path[class='syms']", function(){
+$(document).on("click", "path[data-toggle='tooltip']", function(){
     //alert($(this).attr('id') + 'lol');
     var symName = $(this).attr('name');
     $.ajax({
