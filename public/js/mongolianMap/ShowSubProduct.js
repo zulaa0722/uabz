@@ -65,8 +65,14 @@ $(document).on("click", ".showSubProducts", function(){
   });
 });
 $(document).on("keyup", ".subInput", function(){
-  
-  $("#totalPriceText"+$(this).attr("id")).text("3333");
+  var totalPrice = 0;
+
+  // if($("priceText"+$(this).attr("id")) != "" && $("priceText"+$(this).attr("id")) != null)
+  //   totalPrice = $("priceText"+$(this).attr("id")) * $(this).val();
+
+  console.log($("priceText"+$(this).attr("id")).text());
+  $("#totalPriceText"+$(this).attr("id")).text(totalPrice);
+
 });
 $(document).on("click", ".subChecks", function(){
   if ($(this).prop('checked'))
