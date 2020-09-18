@@ -5,6 +5,7 @@ $(document).on("click", ".showSubProducts", function(){
   var symName = $(this).attr("symName");
   var product = $(this).attr("product");
 
+
   $.ajax({
     type: "post",
     url: showCompanySubs,
@@ -24,7 +25,6 @@ $(document).on("click", ".showSubProducts", function(){
         var div = '';
         div = div + '<div class="row">';
         $.each(response, function(key, val){
-          // div = div + '<div class="form-group row col-md-4">';
           div = div + '<div class="col-md-4 border">';
           div = div + '<div class="text-left">'
           div = div + '<input type="checkbox" class="subChecks" id="'+ val.id +'" >';
@@ -36,12 +36,12 @@ $(document).on("click", ".showSubProducts", function(){
 
           div = div + '<div class="text-left d-none" id="div'+ val.id +'"';
           div = div + '<label>Хэмжээ /кг/: &nbsp</label>';
-          div = div + '<input type="number" style="margin-bottom:5px; margin-top:-5px;" class="form-control-sm subInput col-md-6" id="' + val.id + '">'
+          div = div + '<input type="number" subPrice="' +val.price+ '" style="margin-bottom:5px; margin-top:-5px;" class="form-control-sm subInput col-md-6" id="' + val.id + '">'
           div = div + '</div>';
 
           div = div + '<div class="text-left d-none" id="price'+ val.id +'"';
           div = div + '<label>Нэгжийн үнэ/төг/: &nbsp</label>';
-          div = div + '<label style="color:red; font-style:bold; font-size:15x" id="priceText'+ val.id +'">'+ val.price +'</label>';
+          div = div + '<label style="color:red; font-style:bold; font-size:15x" id="priceText'+ val.id +'" subPrice="'+val.price+'">'+ val.price +'</label>';
           div = div + '</div>';
 
           div = div + '<div class="text-left d-none" id="totalPrice'+ val.id +'"';
@@ -66,13 +66,14 @@ $(document).on("click", ".showSubProducts", function(){
 });
 $(document).on("keyup", ".subInput", function(){
   var totalPrice = 0;
+  var v = $(this).attr("subPrice");
 
-  // if($("priceText"+$(this).attr("id")) != "" && $("priceText"+$(this).attr("id")) != null)
-  //   totalPrice = $("priceText"+$(this).attr("id")) * $(this).val();
-
-  console.log($("priceText"+$(this).attr("id")).text());
-  $("#totalPriceText"+$(this).attr("id")).text(totalPrice);
-
+  totalPrice = $(this).val() * v;
+  if(v !== "null" && $(this).val() !== "")
+    $("#totalPriceText"+$(this).attr("id")).text(totalPrice);
+  else {
+    $("#totalPriceText"+$(this).attr("id")).text("0");
+  }
 });
 $(document).on("click", ".subChecks", function(){
   if ($(this).prop('checked'))
@@ -89,6 +90,11 @@ $(document).on("click", ".subChecks", function(){
 });
 $(document).ready(function(){
   $("#insertSub").click(function(){
-    alert("asd22f");
+    $(".subChecks").each(function(index){
+      if($(this).prop('checked'))
+      {
+        alert($(this).attr("id"));
+      }
+    });
   });
 });

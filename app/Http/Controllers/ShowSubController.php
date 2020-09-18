@@ -93,8 +93,8 @@ class ShowSubController extends Controller
         $subs = DB::table("tb_sub_products")->where("fProductID", "=", $req->productID)->get();
         return $subs;
       } catch (\Exception $e) {
-        // return "Серверийн алдаа!!! Веб мастерт хандана уу";
-        return $e;
+        return "Серверийн алдаа!!! Веб мастерт хандана уу";
+        // return $e;
       }
 
     }
