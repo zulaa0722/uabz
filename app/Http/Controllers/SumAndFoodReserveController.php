@@ -90,7 +90,8 @@ class SumAndFoodReserveController extends Controller
                             // хоногоор нь хүнсийн нөөцийг нормоор нь бодож олж байна
                             $minusedProductQtt = $foodReserveRow->mainQntt - $norm->normQntt * $dangerSym->standardPop * $day;
                             $minusedProductKcal = $foodReserveRow->totalKcal - $norm->normCkal * $dangerSym->standardPop * $day;
-                            if($minusedProductQtt < 0){ //хэрвээ хүнс дууссан бол шууд 0 болгоно
+                            //хэрвээ хүнс дууссан бол шууд 0 болгоно
+                            if($minusedProductQtt < 0){
                                 $minusedProductQtt = 0;
                                 $minusedProductKcal = 0;
                             }
