@@ -104,7 +104,7 @@ class SumAndFoodReserveController extends Controller
                 DB::commit();
             }
             // DB::raw('unlock tables');
-            return "haslaa";
+            // return "haslaa";
         }catch(Exception $e){
             DB::rollback();
         }
