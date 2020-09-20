@@ -70,8 +70,10 @@ class SumAndFoodReserveController extends Controller
             $dangers = Danger::all();
             foreach ($dangers as $danger) {
                 if(Carbon::now()->toDateString() > $danger->minusedDate){
+                    // хэд хоног хасах эсэхийг бодож байна
                     $diff = abs(strtotime(Carbon::now()->toDateString()) - strtotime($danger->minusedDate));
                     $day = (int)$diff / 86400;
+                    // $dangerSyms бол онц байдал зарласан сумдууд
                     $dangerSyms = DB::table('tb_danger_sym')
                         ->join('tb_sym', 'tb_danger_sym.symID', '=', 'tb_sym.symCode')
                         ->join('tb_population', 'tb_sym.id', '=', 'tb_population.symID')
@@ -80,16 +82,18 @@ class SumAndFoodReserveController extends Controller
                     // return $dangerSyms;
                     foreach ($dangerSyms as $dangerSym) {
                         $norms = Norm::where('normID', '=', $dangerSym->normID)->get();
-                        // return $norms;
                         foreach ($norms as $norm) {
                             $foodReserveRow = DB::table("tb_food_reserve")
                                 ->where('tb_food_reserve.symID', '=', $dangerSym->id)
                                 ->where('tb_food_reserve.productID', '=', $norm->producID)
                                 ->first();
-                            // return $foodReserveRow;
+                            // хоногоор нь хүнсийн нөөцийг нормоор нь бодож олж байна
                             $minusedProductQtt = $foodReserveRow->mainQntt - $norm->normQntt * $dangerSym->standardPop * $day;
                             $minusedProductKcal = $foodReserveRow->totalKcal - $norm->normCkal * $dangerSym->standardPop * $day;
-                            // return $minusedProductQtt . " kcal n bolhoor " . $minusedProductKcal;
+                            if($minusedProductQtt < 0){ //хэрвээ хүнс дууссан бол шууд 0 болгоно
+                                $minusedProductQtt = 0;
+                                $minusedProductKcal = 0;
+                            }
                             $foodReserve = FoodReserve::find($foodReserveRow->id);
                             $foodReserve->mainQntt = $minusedProductQtt;
                             $foodReserve->totalKcal = $minusedProductKcal;
