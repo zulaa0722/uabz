@@ -1,9 +1,13 @@
+var provID;
+var symID;
 $(document).on("click", ".showSubProducts", function(){
 
   var prodID = $(this).attr("productID");
   var provName = $(this).attr("provName");
   var symName = $(this).attr("symName");
   var product = $(this).attr("product");
+  provID = $(this).attr("provID");
+  symID = $(this).attr("symID");
 
 
   $.ajax({
@@ -32,11 +36,12 @@ $(document).on("click", ".showSubProducts", function(){
           div = div + '</div>';
 
           div = div + '<label style="font-size: 13px;" class="font-weight-light">Шилжүүлэх итгэлцүүр: &nbsp</label>';
-          div = div + '<label style="color:red; font-style:bold; font-size:15x">'+ val.multiplier +'</label>';
+          div = div + '<label style="color:red; font-style:bold; font-size:15x" id="multi'+ val.id +'">'+ val.multiplier +'</label>';
 
           div = div + '<div class="text-left d-none" id="div'+ val.id +'"';
           div = div + '<label>Хэмжээ /кг/: &nbsp</label>';
-          div = div + '<input type="number" subPrice="' +val.price+ '" style="margin-bottom:5px; margin-top:-5px;" class="form-control-sm subInput col-md-6" id="' + val.id + '">'
+          div = div + '<input type="number" subPrice="' +val.price+ '" style="margin-bottom:5px; margin-top:-5px;"';
+          div = div + ' class="form-control-sm subInput col-md-6" subInputID="' + val.id + '" id="qntt'+ val.id +'"">';
           div = div + '</div>';
 
           div = div + '<div class="text-left d-none" id="price'+ val.id +'"';
@@ -46,7 +51,7 @@ $(document).on("click", ".showSubProducts", function(){
 
           div = div + '<div class="text-left d-none" id="totalPrice'+ val.id +'"';
           div = div + '<label>Нийт өртөг/төг/: &nbsp</label>';
-          div = div + '<label style="color:red; font-style:bold; font-size:15x" id="totalPriceText'+val.id+'">'+ val.price +'</label>';
+          div = div + '<label style="color:red; font-style:bold; font-size:15x" id="totalPriceText'+val.id+'">0</label>';
           div = div + '</div>';
           div = div + '</div>';
         });
@@ -68,13 +73,15 @@ $(document).on("keyup", ".subInput", function(){
   var totalPrice = 0;
   var v = $(this).attr("subPrice");
 
+
   totalPrice = $(this).val() * v;
   if(v !== "null" && $(this).val() !== "")
-    $("#totalPriceText"+$(this).attr("id")).text(totalPrice);
+    $("#totalPriceText"+$(this).attr("subInputID")).text(totalPrice);
   else {
-    $("#totalPriceText"+$(this).attr("id")).text("0");
+    $("#totalPriceText"+$(this).attr("subInputID")).text("0");
   }
 });
+
 $(document).on("click", ".subChecks", function(){
   if ($(this).prop('checked'))
   {
@@ -88,13 +95,49 @@ $(document).on("click", ".subChecks", function(){
     $("#totalPrice"+$(this).attr("id")).addClass("d-none");
   }
 });
+
 $(document).ready(function(){
   $("#insertSub").click(function(){
+
+    if($("#companyName").val() == ""){
+      alertify.error("Та заавал БАЙГУУЛЛАГЫН НЭРИЙГ оруулна уу!!!");
+      return;
+    }
+    
+    jsonSubs = [];
     $(".subChecks").each(function(index){
       if($(this).prop('checked'))
       {
-        alert($(this).attr("id"));
+        item = {};
+        item["id"] = $(this).attr("id");
+        item["multiplier"] = $("#multi"+$(this).attr("id")).text();
+        item["qntt"] = $("#qntt"+$(this).attr("id")).val();
+        item["totalPrice"] = $("#totalPriceText"+$(this).attr("id")).text();
+        jsonSubs.push(item);
       }
     });
+
+
+    var companyName = $("#companyName").val();
+    var companyCode = $("#companyCode").val();
+
+    $.ajax({
+      type: "post",
+      url: saveSubs,
+      data: {
+        _token: $('meta[name="csrf-token"]').attr('content'),
+        provID: provID,
+        symID: symID,
+        companyName: $("#companyName").val(),
+        companyCode: $("#companyCode").val(),
+        subs: jsonSubs
+      },
+
+      success: function(response){
+        console.log(response);
+      }
+    });
+
+
   });
 });

@@ -13,8 +13,10 @@
                 @csrf
                 <div class="form-group row justify-content-center">
                   <label id="provName" style="color:blue; font-size:16px;"> </label>
+                  {{-- <input type="hidden" id="provID" value=""> --}}
                   <label style="font-size:16px;">&nbsp аймгийн &nbsp</label>
                   <label style="color:blue; font-size:16px;" id="symName"></label>
+                  {{-- <input type="hidden" id="symID" value=""> --}}
                   <label style="font-size:16px;">&nbsp сум </label>
                 </div>
 

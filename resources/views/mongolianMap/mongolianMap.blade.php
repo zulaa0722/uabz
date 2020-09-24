@@ -112,7 +112,7 @@
                         <div class="text-center">
                           <label class="col-md-9 col-form-label text-md-center">Гол нэрийн бүтээгдээхүүний нөөц дуусч байгаа сумууд</label>
                           <h3 class="text-danger">16</h3>
-                            <a class="btn btn-info" href="{{url("/showSubController")}}">Дэлгэрэнгүй</a>
+                            <a class="btn btn-info" href="{{url("/SubReserveController")}}">Дэлгэрэнгүй</a>
                         </div>
                         {{-- <input type="button" id="btnChangeNorm" class="btn btn-info" name="" value="Норм өөрчлөх"> --}}
                       </div>
