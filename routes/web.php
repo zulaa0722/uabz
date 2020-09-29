@@ -56,14 +56,20 @@ Route::get("/mongolia/Uvs", "mongolianMapsController@Uvs");
 Route::get("/mongolia/Uvurkhangai", "mongolianMapsController@Uvurkhangai");
 Route::get("/mongolia/Zavkhan", "mongolianMapsController@Zavkhan");
 
-//Gol neriin buteegdhuun gargaj ireh
-Route::get("/showSubController", "ShowSubController@showSubView");
-Route::post("/showSubController/showCompanySubs", "ShowSubController@ShowCompanySubs");
+//Orluulah buteegdhuunii heseg subProducts
+Route::get("/SubReserveController", "SubReserveController@showSubView");
+Route::post("/SubReserveController/showCompanySubs", "SubReserveController@ShowCompanySubs");
+Route::post("/SubReserveController/saveSubProducts", "SubReserveController@saveSubProducts");
 
 // START gazriin zurgiin sumdiin ungu uurchluh heseg
 Route::post("/get/sums/reserve/count", "SumAndFoodReserveController@getSumsReserveDays");
 // END gazriin zurgiin sumdiin ungu uurchluh heseg
 
+//tailangiin heseg ehelj bn
+Route::get("/reports", "ReportsController@showReportsTitle");
+Route::get("/reports/population", "ReportsController@showPopulation");
+Route::get("/reports/heregtsee", "ReportsController@showTable");
+//
 
 //FoodReserve begin
 Route::get("/foodReserve", "FoodReserveController@foodReserveShow");

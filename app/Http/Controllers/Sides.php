@@ -37,7 +37,7 @@ class Sides extends Controller
 
         //tuhain amgiin niit hun amiin too
         $totalPop = DB::table("tb_population")
-          ->where("provID", "=", $province->id)->sum("totalPop");
+        ->where("provID", "=", $province->id)->sum("totalPop");
 
         //tuhain amgiin jishsen hun amiin too
         $standardPop = DB::table("tb_population")
@@ -105,21 +105,32 @@ class Sides extends Controller
             }
           }
         }
+
+        $totalPop1 = DB::table("tb_population")
+        ->join('tb_sym', 'tb_sym.id', '=','tb_population.symID')
+        ->select('tb_sym.symName', 'tb_population.*')
+        ->where("tb_population.provID", "=", $province->id)->get();
+        // return ($totalPop1);
+        //dd($totalPop1);
+
         $bothSides = array(
           "rightSide" => $rightSide,
-          "bottomSide" => $bottomSide
+          "bottomSide" => $bottomSide,
+          "totalPop1" => $totalPop1
         );
         return $bothSides;
 
       } catch (\Exception $e) {
-        return "Серверийн алдаа!!! Веб мастерт хандана уу";
-        // return $e;
+        // return "Серверийн алдаа!!! Веб мастерт хандана уу";
+        return $e;
       }
 
     }
     public function getSymInfo(Request $req){
       try {
         $sym = DB::table("tb_sym")->where("symCode", "=", $req->symCode)->first();
+
+        //dd($req->symCode);
 
         //tuhain aimgiin normiin id-iig avch bn
         $norm = DB::table("tb_normname")->where("id", "=", $sym->normID)->first();
@@ -200,8 +211,8 @@ class Sides extends Controller
         return $bothSides;
 
       } catch (\Exception $e) {
-        return "Серверийн алдаа!!! Веб мастерт хандана уу";
-        // return $e;
+        // return "Серверийн алдаа!!! Веб мастерт хандана уу";
+        return $e;
       }
     }
 }

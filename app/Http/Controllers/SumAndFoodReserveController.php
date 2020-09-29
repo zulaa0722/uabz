@@ -86,6 +86,29 @@ class SumAndFoodReserveController extends Controller
                                 ->where('tb_food_reserve.symID', '=', $dangerSym->id)
                                 ->where('tb_food_reserve.productID', '=', $norm->producID)
                                 ->first();
+                            // return $dangerSym->id;
+                            if($foodReserveRow == null){
+                              $insertFoodReserve = new FoodReserve;
+                              $insertFoodReserve->provID = $dangerSym->provID;
+                              $sumRow = DB::table('tb_sym')
+                                  ->where('symCode', '=', $dangerSym->symCode)->first();
+                                  // return $sumRow->id;
+                              $insertFoodReserve->symID = $sumRow->id;
+                              $insertFoodReserve->fReseverDate = Carbon::now();
+                              $insertFoodReserve->productID = $norm->producID;
+                              $insertFoodReserve->mainQntt = "0";
+                              $insertFoodReserve->totalKcal = "0";
+                              $insertFoodReserve->measurement = "тн";
+                              $insertFoodReserve->save();
+
+                              $foodReserveRow = DB::table("tb_food_reserve")
+                                  ->where('tb_food_reserve.symID', '=', $dangerSym->id)
+                                  ->where('tb_food_reserve.productID', '=', $norm->producID)
+                                  ->first();
+                                  // return count($foodReserveRow);
+                            }
+
+                            // return count($foodReserveRow);
                             // хоногоор нь хүнсийн нөөцийг нормоор нь бодож олж байна
                             $minusedProductQtt = $foodReserveRow->mainQntt - $norm->normQntt * $dangerSym->standardPop * $day;
                             $minusedProductKcal = $foodReserveRow->totalKcal - $norm->normCkal * $dangerSym->standardPop * $day;

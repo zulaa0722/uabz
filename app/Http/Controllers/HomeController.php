@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Sector;
 use App\Danger;
+use App\Http\Controllers\SumAndFoodReserveController;
 
 class HomeController extends Controller
 {
@@ -31,8 +32,10 @@ class HomeController extends Controller
     public function index()
     {
       $sectors = Sector::orderBy('sectorName', 'ASC')->get();
+      ////end duudna
+      $obj = new SumAndFoodReserveController;
+      $obj->minusNormFromReserve();
 
-      
 
 
       return view("mongolianMap.mongolianMap", compact('sectors'));

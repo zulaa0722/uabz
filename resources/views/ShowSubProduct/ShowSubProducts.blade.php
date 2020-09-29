@@ -69,8 +69,9 @@
 
   <script type="text/javascript">
     var dataRow = "";
-    var showCompanySubs = "{{url("/showSubController/showCompanySubs")}}";
-    var foodReserveDeleteUrl = "{{url("/foodReserve/delete")}}";
+    var showCompanySubs = "{{url("/SubReserveController/showCompanySubs")}}";
+    var saveSubs = "{{url("SubReserveController/saveSubProducts")}}";
+
   </script>
 
 

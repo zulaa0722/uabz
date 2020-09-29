@@ -26,6 +26,8 @@
                     <button class="btn btn-primary" type="button" name="button" id="btnAddModalOpen">Нэмэх</button>
                     <button class="btn btn-warning" type="button" name="button" id="btnEditModalOpen">Засах</button>
                     <button class="btn btn-danger" type="button" name="button" id="btnProvinceDelete">Устгах</button>
+                    {{-- <button class="btn btn-danger" type="button" name="button" id="btnProvinceDelete">Хэвлэх</button> --}}
+                    <button class="btn btn-primary hidden-print" onclick="printFunction()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Хэвлэх</button>
                   </div>
                 </div>
             </div>
@@ -82,7 +84,11 @@
           },
           select: {
             style: 'single'
-        },
+          },
+          dom: 'Bfrtip',
+          buttons: [
+              'print', 'excel', 'pdf'
+          ],
           "processing": true,
           "serverSide": true,
           "stateSave": true,
@@ -118,6 +124,14 @@
           }
           });
   });
+
+    // $('#provinceDB').DataTable( {
+    //     dom: 'Bfrtip',
+    //     buttons: [
+    //         'print'
+    //     ]
+    // } );
+
   </script>
 
 <script src="{{url("public/js/Province/ProvinceNew.js")}}"></script>

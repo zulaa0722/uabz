@@ -112,9 +112,8 @@
                         <div class="text-center">
                           <label class="col-md-9 col-form-label text-md-center">Гол нэрийн бүтээгдээхүүний нөөц дуусч байгаа сумууд</label>
                           <h3 class="text-danger">16</h3>
-                            <a class="btn btn-info" href="{{url("/showSubController")}}">Дэлгэрэнгүй</a>
+                            <a class="btn btn-info" href="{{url("/SubReserveController")}}">Дэлгэрэнгүй</a>
                         </div>
-                        {{-- <input type="button" id="btnChangeNorm" class="btn btn-info" name="" value="Норм өөрчлөх"> --}}
                       </div>
                     </div>
                   </div>
@@ -236,7 +235,7 @@
 
                       <a class="badge badge-info col-md-12 text-center" href="{{url("/show/dangers")}}">Бүх онц байдлуудыг харах</a>
 
-
+                      <div id="chartContainer" class="col-md-12"></div>
 
                   </div>
               </div>
@@ -326,4 +325,5 @@
   <script src="{{url('public/js/mongolianMap/test.js')}}"></script>
   <script src="{{url('public/js/mongolianMap/RightPanel.js')}}"></script>
   <script src="{{url('public/js/mongolianMap/changeColor.js')}}"></script>
+  <script src="{{url('public/js/chart/jquery.canvasjs.min.js')}}"></script>
 @endsection
