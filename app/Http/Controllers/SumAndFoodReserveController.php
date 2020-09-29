@@ -79,7 +79,6 @@ class SumAndFoodReserveController extends Controller
                         ->join('tb_population', 'tb_sym.id', '=', 'tb_population.symID')
                         ->where('tb_danger_sym.danger_id', '=', $danger->id)
                         ->select('tb_sym.*', 'tb_danger_sym.danger_id', 'tb_population.standardPop')->get();
-                    // return $dangerSyms;
                     foreach ($dangerSyms as $dangerSym) {
                         $norms = Norm::where('normID', '=', $dangerSym->normID)->get();
                         foreach ($norms as $norm) {
