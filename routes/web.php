@@ -56,10 +56,8 @@ Route::get("/mongolia/Uvs", "mongolianMapsController@Uvs");
 Route::get("/mongolia/Uvurkhangai", "mongolianMapsController@Uvurkhangai");
 Route::get("/mongolia/Zavkhan", "mongolianMapsController@Zavkhan");
 
-<<<<<<< HEAD
 
-=======
->>>>>>> df23250497fd66ea114a5455999b7affff1e7bb5
+
 //reports ehelj bn
 Route::get("/reports", "ReportsController@showReportsTitle");
 Route::get("/reports/population", "ReportsController@showPopulation");
@@ -68,10 +66,7 @@ Route::get("/reports/population", "ReportsController@showPopulation");
 Route::get("/SubReserveController", "SubReserveController@showSubView");
 Route::post("/SubReserveController/showCompanySubs", "SubReserveController@ShowCompanySubs");
 Route::post("/SubReserveController/saveSubProducts", "SubReserveController@saveSubProducts");
-<<<<<<< HEAD
 
-=======
->>>>>>> df23250497fd66ea114a5455999b7affff1e7bb5
 //Gol neriin buteegdhuun gargaj ireh
 Route::get("/showSubController", "ShowSubController@showSubView");
 Route::post("/showSubController/showCompanySubs", "ShowSubController@ShowCompanySubs");
