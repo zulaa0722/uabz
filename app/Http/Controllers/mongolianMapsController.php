@@ -11,6 +11,7 @@ use App\Province;
 use App\Http\Controllers\NormController;
 use App\Http\Controllers\PopulationController;
 use App\Sector;
+use App\Http\Controllers\SumAndFoodReserveController;
 
 class mongolianMapsController extends Controller
 {
@@ -21,6 +22,8 @@ class mongolianMapsController extends Controller
     }
 
     public function mongolianMapsShow(){
+        $obj = new SumAndFoodReserveController;
+        $obj->minusNormFromReserve();
         $sectors = Sector::orderBy('sectorName', 'ASC')->get();
         return view("mongolianMap.mongolianMap", compact('sectors'));
     }
