@@ -103,7 +103,7 @@ $(document).ready(function(){
       alertify.error("Та заавал БАЙГУУЛЛАГЫН НЭРИЙГ оруулна уу!!!");
       return;
     }
-    
+
     jsonSubs = [];
     $(".subChecks").each(function(index){
       if($(this).prop('checked'))
@@ -116,10 +116,6 @@ $(document).ready(function(){
         jsonSubs.push(item);
       }
     });
-
-
-    var companyName = $("#companyName").val();
-    var companyCode = $("#companyCode").val();
 
     $.ajax({
       type: "post",
@@ -134,7 +130,11 @@ $(document).ready(function(){
       },
 
       success: function(response){
-        console.log(response);
+        alertify.alert(response, function(){
+          alertify.message('OK');
+        });
+        // alertify.alert();
+        $("#modalShowSub").modal("hide");
       }
     });
 

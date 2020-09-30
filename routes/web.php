@@ -65,6 +65,11 @@ Route::post("/SubReserveController/saveSubProducts", "SubReserveController@saveS
 Route::post("/get/sums/reserve/count", "SumAndFoodReserveController@getSumsReserveDays");
 // END gazriin zurgiin sumdiin ungu uurchluh heseg
 
+//tailangiin heseg ehelj bn
+Route::get("/reports", "ReportsController@showReportsTitle");
+Route::get("/reports/population", "ReportsController@showPopulation");
+Route::get("/reports/heregtsee", "ReportsController@showTable");
+//
 
 //FoodReserve begin
 Route::get("/foodReserve", "FoodReserveController@foodReserveShow");

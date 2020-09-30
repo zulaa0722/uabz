@@ -21,17 +21,20 @@ use DB;
 class SubReserveController extends Controller
 {
   //
+  private $symCount = 0;
+
   public function __construct()
   {
       $this->middleware('auth');
   }
+
+
 
   public function showSubView()
   {
     try{
       //onts baidal zarlasan sumuudiig avch bn
       $dangerSymd = DB::table("tb_danger_sym")->get();
-
 
       //hunsnii golneriin buteegdhuunuudiig avch bn
       $products = DB::table("tb_food_products")->get();
@@ -63,10 +66,11 @@ class SubReserveController extends Controller
 
               $leftDays = 0;
               if($productTotalQntt != 0)
+
                 $leftDays = intval($productTotalQntt / $val);
                 if($leftDays < 7)
                   array_push($arr, array(
-                    // "pp" => $val
+
                       "provID" => $province->id,
                       "provName" => $province->provName,
                       "symID" => $sym->symCode,
@@ -115,8 +119,9 @@ class SubReserveController extends Controller
           $insertSubReserve->subReseverDate = "";
           $insertSubReserve->save();
         }
+        return "Амжилттай хадгаллаа.";
     } catch (\Exception $e) {
-      return $e;
+      // return $e;
       return "Серверийн алдаа!!! Веб мастерт хандана уу";
     }
 

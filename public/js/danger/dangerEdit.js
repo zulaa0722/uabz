@@ -71,7 +71,7 @@ $(document).ready(function(){
             },
             success:function(res){
                 var table = jQuery.parseJSON(res);
-                console.log(table);
+                // console.log(table);
                 var div="";
                 $.each(table, function(index, item){
                     div = div + '<div class="col-md-4">';

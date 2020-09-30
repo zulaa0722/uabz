@@ -1,7 +1,7 @@
 $(document).ready(function(){
   $('path').on('click', function() {
       $('path.selected').attr("class", "aimag");
-      $('path.selected').attr("class", "syms");
+      // $('path.selected').attr("class", "syms");
       $(this).attr("class", "selected");
       aimagName = $(this).attr('name');
       provCode = $(this).attr('id');
@@ -33,6 +33,31 @@ $(document).ready(function(){
           $("#totalCattle").text( response.rightSide.totalCattle );
           $("#reserveDay").text( response.rightSide.reserveDay );
 
+          var data = [];
+          // console.log(response);
+
+          $.each(response.totalPop1, function(key, val){
+            item = {};
+            item["label"] = val.symName;
+            item["y"] = val.totalPop;
+            // console.log(item);
+            data.push(item);
+          });
+
+          var options = {
+          	animationEnabled: true,
+
+          	data: [{
+          		type: "doughnut",
+          		innerRadius: "80%",
+          		//showInLegend: true,
+          		legendText: "{label}",
+          		indexLabel: "{label}:",
+          		dataPoints: data
+          	}]
+          };
+          $("#chartContainer").CanvasJSChart(options);
+
         },
       error: function(jqXhr, json, errorThrown){// this are default for ajax errors
         var errors = jqXhr.responseJSON;
@@ -48,6 +73,7 @@ $(document).ready(function(){
 $(document).on("click", "path[data-toggle='tooltip']", function(){
     //alert($(this).attr('id') + 'lol');
     var symName = $(this).attr('name');
+    alert($(this).attr('id')+" "+symName);
     $.ajax({
       type: "get",
       url: getSymInfo,
@@ -66,7 +92,7 @@ $(document).on("click", "path[data-toggle='tooltip']", function(){
         $("#bottom").html(div);
 
        $("#changeName").text( symName );
-        //$("#selectedProvName").text( $(this).attr('name') );
+
         $("#totalPop").text( response.rightSide.totalPop );
         $("#standardPop").text( response.rightSide.standardPop );
         $("#totalCattle").text( response.rightSide.totalCattle );
