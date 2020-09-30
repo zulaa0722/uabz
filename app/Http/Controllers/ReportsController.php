@@ -16,7 +16,7 @@ class ReportsController extends Controller
 
     public function showTable()
     {
-      
+      return "asdf";
     }
 
     public function showReportsTitle(){
