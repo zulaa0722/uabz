@@ -19,8 +19,12 @@ $(document).ready(function(){
           var div = "";
           $.each(response.bottomSide, function(key, val){
             div = div + '<div class="form-group row col-md-3">';
-            div = div + '<div class="col-md-12" id="productName">'+val.product+'</div>';
-            div = div + '<div class="col-md-12">Үлдсэн хоног: <label id="leftDays">'+val.leftDays+'</label></div>';
+            div = div + '<div class="col-md-12" id="productName" style="color:#000">'+val.product+'</div>';
+            if(val.leftDays > 2)
+              div = div + '<div class="col-md-12">Үлдсэн хоног: <label id="leftDays">'+val.leftDays+'</label></div>';
+            else {
+              div = div + '<div class="col-md-12">Үлдсэн хоног: <label id="leftDays" style="color:red;">'+val.leftDays+'</label></div>';
+            }
             div = div + '</div>';
           });
           $("#bottom").html("");
@@ -73,7 +77,7 @@ $(document).ready(function(){
 $(document).on("click", "path[data-toggle='tooltip']", function(){
     //alert($(this).attr('id') + 'lol');
     var symName = $(this).attr('name');
-    alert($(this).attr('id')+" "+symName);
+
     $.ajax({
       type: "get",
       url: getSymInfo,

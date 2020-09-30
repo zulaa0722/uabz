@@ -24,9 +24,6 @@ class ReportsController extends Controller
         ])
       ->groupBy('date')->get();
 
-      // dd($pop);
-      // $years = count($pop);
-
       return view("Reports.ReportsView", compact('products','pop'));
     }
 

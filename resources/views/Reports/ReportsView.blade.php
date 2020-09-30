@@ -1,14 +1,13 @@
 @extends('layouts.layout_master')
 
 @section('content')
-  <div class="form-row" style="background-color: white; height: 100%;">
+  <div class="form-row" style="background-color: white; height: 100%; margin-top: 30px;">
 
     <ol class="rectangle-list col-md-5">
-      {{-- <li><a href="{{url("/forms/form1")}}">Хавсралт 1</a></li> --}}
       <li><a href="{{url("/reports/population")}}" id="pop">Монгол Улсын хүн амын тоо</a></li>
       <li><a href="javascript:void(0)" id="computeTable">Жишсэн хүн амын хэрэгцээг тооцох</a></li>
-      {{-- <li><a href="javascript: void(0);">Хүнсний агуулах зоорийн судалгаа</a></li>
-      <li><a href="javascript: void(0);">Тариалангийн агуулах, элеватор, зоорийн</a></li>
+      {{-- <li><a href="javascript: void(0);" id="subProductBuy">Орлуулах бүтээгдэхүүн авсан бүртгэл</a></li> --}}
+      {{--<li><a href="javascript: void(0);">Тариалангийн агуулах, элеватор, зоорийн</a></li>
       <li><a href="javascript: void(0);">Хүнсний үйлдвэрийн судалгаа</a></li>
       <li><a href="javascript: void(0);">Орон нутаг дахь давсны ордны судалгаа</a></li>
       <li><a href="javascript: void(0);">Тээврийн хэрэгслийн судалгаа</a></li>
@@ -19,10 +18,10 @@
       <table id="reportTable" class="table table-striped table-bordered wrap d-none" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
         <thead>
           <tr>
-            <th rowspan="2">№</th>
-            <th rowspan="2">Хүнсний бүтээгдэхүүний нэр төрөл</th>
-            <th rowspan="2">Жишсэн нэг хүний жилийн хүнсний хэрэгцээ /кг/</th>
-            <th colspan="{{count($pop)}}">Жишсэн хүн амын хүнсний хэрэгцээ</th>
+            <th rowspan="2" style="vertical-align:middle;">№</th>
+            <th rowspan="2" style="vertical-align:middle;">Хүнсний бүтээгдэхүүний нэр төрөл</th>
+            <th rowspan="2" style="vertical-align:middle;">Жишсэн нэг хүний жилийн хүнсний хэрэгцээ /кг/</th>
+            <th colspan="{{count($pop)}}" style="vertical-align:middle;">Жишсэн хүн амын хүнсний хэрэгцээ /мян.тн/</th>
           </tr>
           <tr>
 
@@ -33,13 +32,16 @@
           </tr>
         </thead>
         <tbody>
+          @php
+            $i=1;
+          @endphp
           @foreach ($products as $product)
             <tr>
-              <td></td>
+              <td>{{$i++}}</td>
               <td>{{$product->productName}}</td>
               <td>{{$product->foodQntt * 365}}</td>
               @foreach ($pop as $val)
-                <td>{{$val->date}}</td>
+                <td>{{round(($val->standardPop*$product->foodQntt*365)/1000,2)}}</td>
               @endforeach
 
             </tr>
@@ -51,6 +53,10 @@
   </div>
 
 <style media="screen">
+
+  thead th{
+    text-align: center;
+  }
 
   ol{
 			counter-reset: li;
@@ -71,14 +77,14 @@
     padding: .4em .4em .4em .8em;
     *padding: .4em;
     margin: .5em 0 .5em 2.5em;
-    background: #ddd;
+    background: #f6ecda;
     color: #444;
     text-decoration: none;
     transition: all .3s ease-out;
   }
 
   .rectangle-list a:hover{
-    background: #eee;
+    background: #f7e4bf;
   }
 
   .rectangle-list a:before{
@@ -88,7 +94,7 @@
     left: -2.5em;
     top: 50%;
     margin-top: -1em;
-    background: #fa8072;
+    background: #f8ab17;
     height: 2em;
     width: 2em;
     line-height: 2em;
@@ -108,7 +114,7 @@
 
   .rectangle-list a:hover:after{
     left: -.5em;
-    border-left-color: #fa8072;
+    border-left-color: #f8ab17;
   }
 </style>
 
@@ -125,22 +131,7 @@
   <script type="text/javascript" src="{{url("public/uaBCssJs/datatableJs/datatables.init.js")}}"></script>
 
   <script type="text/javascript">
-  var $table = $('table.scroll'),
-      $bodyCells = $table.find('tbody tr:first').children(),
-      colWidth;
 
-  // Adjust the width of thead cells when window resizes
-  $(window).resize(function() {
-      // Get the tbody columns width array
-      colWidth = $bodyCells.map(function() {
-          return $(this).width();
-      }).get();
-
-      // Set the width of thead columns
-      $table.find('thead tr').children().each(function(i, v) {
-          $(v).width(colWidth[i]);
-      });
-  }).resize(); // Trigger resize handler
   </script>
 <script src="{{url('public/js/chart/reportPopulation.js')}}"></script>
 <script src="{{url('public/js/chart/jquery.canvasjs.min.js')}}"></script>

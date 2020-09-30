@@ -21,14 +21,12 @@ use DB;
 class SubReserveController extends Controller
 {
   //
-  private $symCount = 0;
+
 
   public function __construct()
   {
       $this->middleware('auth');
   }
-
-
 
   public function showSubView()
   {
@@ -124,6 +122,133 @@ class SubReserveController extends Controller
       // return $e;
       return "Серверийн алдаа!!! Веб мастерт хандана уу";
     }
+  }
+  public function editNorm(Request $req)
+  {
+    try {
+      $sym = DB::table("tb_sym")
+      ->where("symCode", "=", $req->symID)->first();
 
+      $norm = DB::table("tb_normname")
+      ->where("id", "=", $sym->normID)->first();
+
+      //ontsgoi norm gesen oor nertei norm bval suuliin toog ni negeer nemegduulj bn /oor sumd ashiglaj baij magadgui/
+      $lastCounter = 1;
+      $norms = DB::table("tb_normname")->get();
+      foreach ($norms as $norm) {
+        if(strpos($norm->NormName, 'Онцгой') === 0){
+          $lastCounter = intval(substr($norm->NormName, strpos($norm->NormName, "№") +3));
+          $lastCounter++;
+        }
+      }
+
+      $normProducts = DB::table("tb_norms")
+      ->where("normID", "=", $sym->normID)->get();
+
+      //normname ruu shine norm nemj bn. /normoos hassan buteegdehuuniig hasaad neriin ard tald ni shine dugaar nemeed/
+      $normID = 0;
+      foreach ($normProducts as $product) {
+        if($product->producID == $req->prodID)
+        {
+          $newNormKcal = $norm->sumKcal - $product->normCkal;
+          $normName = new NormName;
+          $normName->NormName = "Онцгой норм №".$lastCounter;
+          $normName->sumKcal = $newNormKcal;
+          $normName->save();
+          $normID = $normName->id;
+        }
+      }
+
+      //sumiin normiin hunsnii buteegdehuunuudiig hassan buteegdehuunees busdaar insert hiij bn
+      foreach ($normProducts as $product) {
+        if($product->producID != $req->prodID)
+        {
+          $norm = new Norm;
+          $norm->producID = $product->producID;
+          $norm->normQntt = $product->normQntt;
+          $norm->normCkal = $product->normCkal;
+          $norm->normID = $normID;
+          $norm->save();
+        }
+      }
+
+      // sumiin normiig zassan normiin id-aar shineer update hiij bn
+      $sym = DB::table("tb_sym")
+            ->where("symCode", "=", $req->symID)
+            ->update(["normID" => $normID]);
+
+      // $this->showSubView();
+      return "Амжилттай нормоос хаслаа.";
+
+    } catch (\Exception $e) {
+      // return $e;
+      return "Серверийн алдаа!!! Веб мастерт хандана уу";
+    }
+
+  }
+
+  public static function getSymCount()
+  {
+    try{
+      $symCount = 0;
+      //onts baidal zarlasan sumuudiig avch bn
+      $dangerSymd = DB::table("tb_danger_sym")->get();
+
+      //hunsnii golneriin buteegdhuunuudiig avch bn
+      $products = DB::table("tb_food_products")->get();
+      $arr = [];
+
+      foreach ($dangerSymd as $dangerSym) {
+        $sym = DB::table("tb_sym")->where("symCode", "=", $dangerSym->symID)->first();
+
+        $province = DB::table("tb_province")->where("id", "=", $dangerSym->provID)->first();
+
+        //tuhain sumiin normiin hunsnii buteegdhuunuudiig avch bn
+        $symNormProducts = DB::table("tb_norms")->where('normID', '=', $sym->normID)->get();
+
+        //tuhain symiin jishsen hun amiin too
+        $standardPop = DB::table("tb_population")
+          ->where("symID", "=", $sym->id)->sum("standardPop");
+
+        foreach ($products as $product) {
+          //tuhain sumiin nootsod bga hunsnii buteegdehuunuudiin hemjee
+          $productTotalQntt = DB::table("tb_food_reserve")
+            ->where("symID", "=", $sym->id)
+            ->where("productID","=",$product->id)->sum("mainQntt");
+
+          foreach ($symNormProducts as $normProduct) {
+            if($product->id == $normProduct->producID){
+              //tuhain sumiin normiin hunsnii buteegdehuunuudiin hemjeeg jishsen hun amaar urjuulj bn.
+              //neg odort hereglegdeh hunsnii buteegdehuunuudiin hemjee garch irne
+              $val = $normProduct->normQntt * $standardPop;
+
+              $leftDays = 0;
+              if($productTotalQntt != 0)
+                $leftDays = intval($productTotalQntt / $val);
+
+              if($leftDays < 7)
+              {
+                $symCount++;
+                array_push($arr, array(
+                    "provID" => $province->id,
+                    "provName" => $province->provName,
+                    "symID" => $sym->symCode,
+                    "symName" => $sym->symName,
+                    "productID" => $product->id,
+                    "product" => $product->productName,
+                    "leftDays" => $leftDays
+                  )
+                );
+              }
+            }
+          }
+        }
+      }
+
+      return $symCount;
+    }catch(\Exception $e){
+      // return $e;
+      return "Серверийн алдаа!!! Веб мастерт хандана уу";
+    }
   }
 }

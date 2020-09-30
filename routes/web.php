@@ -67,6 +67,7 @@ Route::get("/reports/heregtsee", "ReportsController@showTable");
 Route::get("/SubReserveController", "SubReserveController@showSubView");
 Route::post("/SubReserveController/showCompanySubs", "SubReserveController@ShowCompanySubs");
 Route::post("/SubReserveController/saveSubProducts", "SubReserveController@saveSubProducts");
+Route::post("/SubReserveController/editNorm", "SubReserveController@editNorm");
 
 //Gol neriin buteegdhuun gargaj ireh
 Route::get("/showSubController", "ShowSubController@showSubView");

@@ -45,7 +45,9 @@
                           provName="{{$val["provName"]}}" symName="{{$val["symName"]}}" product="{{$val["product"]}}">
                       </td>
                       <td>
-                        <input type="button" class="btn btn-danger" name="" value="Нормоос засах" id="changeNorm">
+                        <input type="button" class="btn btn-danger editNorm" name="" value="Нормоос засах" id="changeNorm"
+                        provID={{$val["provID"]}} symID={{$val["symID"]}} productID={{$val["productID"]}}
+                        provName="{{$val["provName"]}}" symName="{{$val["symName"]}}" product="{{$val["product"]}}">
                       </td>
                     </tr>
 
@@ -71,7 +73,7 @@
     var dataRow = "";
     var showCompanySubs = "{{url("/SubReserveController/showCompanySubs")}}";
     var saveSubs = "{{url("SubReserveController/saveSubProducts")}}";
-
+    var editNorm = "{{url("/SubReserveController/editNorm")}}"
   </script>
 
 
@@ -79,23 +81,6 @@
 <script type="text/javascript">
 $(document).ready(function(){
 
-  // $('#ShowSubProducts thead tr').clone(true).appendTo( '#ShowSubProducts thead' );
-  // var filterIndex = 0;
-  //   $('#ShowSubProducts thead tr:eq(1) th').each( function (i) {
-  //     if(filterIndex == 4 || filterIndex == 3)
-  //     {
-  //       $(this).html( '<input type="text" style="width:110%;" placeholder="Хайх..." />' );
-  //       $( 'input', this ).on( 'keyup change', function () {
-  //           if ( table.column(i).search() !== this.value ) {
-  //               table.column(i).search( this.value ).draw();
-  //           }
-  //       });
-  //     }
-  //     else {
-  //       $(this).html('');
-  //     }
-  //     filterIndex++;
-  //   });
   var table = $('#ShowSubProducts').DataTable( {
     "language": {
             "lengthMenu": "_MENU_ мөрөөр харах",

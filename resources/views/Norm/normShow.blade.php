@@ -10,7 +10,7 @@
               <div class="form-group">
                 <div class="row">
                   <div class="col-md-2">
-                    <h6 class="text-right"><strong>Нормоо сонгоно уу=></strong></h6>
+                    <h6 class="text-right" style="margin-top:10px;"><strong>Нормоо сонгоно уу=></strong></h6>
                   </div>
                   <div class="col-md-3">
                     <select id="cmbNorms" class="form-control" name="">
@@ -26,8 +26,9 @@
                     </small>
                   </div>
                 </div>
-                <div class="row">
+                <div class="row" style="margin-left:5px;">
                     <div class="text-right">
+                      <br>
                         <button class="btn btn-warning pull-right" type="button" name="button" id="btnEditModalOpen">Сонгосон норм засах</button>
                         <button class="btn btn-danger pull-right" type="button" name="button" post-url="{{url('/norm/delete')}}" id="btnNormDelete">Сонгосон норм устгах</button>
                     </div>
