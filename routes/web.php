@@ -59,6 +59,7 @@ Route::get("/mongolia/Zavkhan", "mongolianMapsController@Zavkhan");
 //reports ehelj bn
 Route::get("/reports", "ReportsController@showReportsTitle");
 Route::get("/reports/population", "ReportsController@showPopulation");
+Route::get("/reports/heregtsee", "ReportsController@showTable");
 
 //Orluulah buteegdhuunii heseg subProducts
 Route::get("/SubReserveController", "SubReserveController@showSubView");

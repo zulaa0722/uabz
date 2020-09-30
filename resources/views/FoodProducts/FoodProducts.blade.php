@@ -83,7 +83,7 @@
           },
           select: {
             style: 'single'
-        },
+          },
           "processing": true,
           "serverSide": true,
           "stateSave": true,

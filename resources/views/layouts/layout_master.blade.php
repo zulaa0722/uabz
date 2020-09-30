@@ -119,7 +119,7 @@
                             </div>
                             <div class="d-inline-block">
                               <button type="button" disabled class="btn header-item waves-effect">
-                                  <h4>{{ Auth::user()->name }}</h4>
+                                  <h4 style="color: white; stroke-width:3px; stroke-color:black;">{{ Auth::user()->name }}</h4>
                                   {{-- <h4>davaanyam</h4> --}}
                               </button>
                             </div>
