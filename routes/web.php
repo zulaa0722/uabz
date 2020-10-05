@@ -61,11 +61,13 @@ Route::get("/mongolia/Zavkhan", "mongolianMapsController@Zavkhan");
 //reports ehelj bn
 Route::get("/reports", "ReportsController@showReportsTitle");
 Route::get("/reports/population", "ReportsController@showPopulation");
+Route::get("/reports/heregtsee", "ReportsController@showTable");
 
 //Orluulah buteegdhuunii heseg subProducts
 Route::get("/SubReserveController", "SubReserveController@showSubView");
 Route::post("/SubReserveController/showCompanySubs", "SubReserveController@ShowCompanySubs");
 Route::post("/SubReserveController/saveSubProducts", "SubReserveController@saveSubProducts");
+Route::post("/SubReserveController/editNorm", "SubReserveController@editNorm");
 
 //Gol neriin buteegdhuun gargaj ireh
 Route::get("/showSubController", "ShowSubController@showSubView");

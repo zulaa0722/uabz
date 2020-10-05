@@ -9,7 +9,7 @@ $(document).ready(function(){
                 var row = table.row( index );
 
                 var data = row.data();
-                console.log(data);
+                // console.log(data);
                 // alert(data["productName"]);
                 $("#editProductID" + data["producID"]).val(data["normQntt"]);
                 $("#editProduct_kcal" + data["producID"]).val(data["normCkal"]);

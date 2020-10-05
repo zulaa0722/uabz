@@ -19,11 +19,20 @@
                   </div>
                 </div>
                 <div class="form-group row">
-                  <div class="col-md-8">
+                  <div class="col-md-6">
                     <label>Ц (Шийдвэр гарсан хугацаа) + (хоног:цаг):</label>
                     <textarea class="form-control" id="einTime" name="inTime"></textarea>
                   </div>
-                  <div class="col-md-4">
+                  <div class="col-md-3">
+                    <label>Төлөв:</label>
+                    <select class="form-control" id="estatusID" name="statusID">
+                        <option value="-1">Сонгоно уу</option>
+                      @foreach ($statuss as $status)
+                        <option value="{{$status->id}}">{{$status->statusName}}</option>
+                      @endforeach
+                    </select>
+                  </div>
+                  <div class="col-md-3">
                     <label>Зэрэг:</label>
                     <select class="form-control" id="elevelID" name="levelID">
                         <option value="-1">Сонгоно уу</option>

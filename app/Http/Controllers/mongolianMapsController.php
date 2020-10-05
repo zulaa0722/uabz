@@ -8,6 +8,7 @@ use Yajra\DataTables\DataTables;
 use Carbon\Carbon;
 use DB;
 use App\Province;
+use App\CattleQntt;
 use App\Http\Controllers\NormController;
 use App\Http\Controllers\PopulationController;
 use App\Sector;
@@ -24,8 +25,14 @@ class mongolianMapsController extends Controller
     public function mongolianMapsShow(){
         $obj = new SumAndFoodReserveController;
         $obj->minusNormFromReserve();
+
+        $year = Carbon::now()->year;
+        $sumStandardPop = DB::table('tb_population')->where('date', '=', $year)->sum('standardPop');
+        $sumTotalPop = DB::table('tb_population')->where('date', '=', $year)->sum('totalPop');
+        $sumCattQntt = DB::table('tb_cattle_qntt')->where('year', '=', $year)->sum('cattQntt');
+
         $sectors = Sector::orderBy('sectorName', 'ASC')->get();
-        return view("mongolianMap.mongolianMap", compact('sectors'));
+        return view("mongolianMap.mongolianMap", compact('sectors', 'sumStandardPop', 'sumTotalPop', 'sumCattQntt', 'year'));
     }
 
     public function mongolianSumd(Request $req){

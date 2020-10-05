@@ -16,7 +16,7 @@
                   <div class="col-md-12">
                     <label>Товчилсон нэр:</label>
                     <input class="form-control" type="text" name="abbrName" id="abbrName" value="">
-                    <label>Сумын нэр:</label>
+                    <label>Байгууллага нэр:</label>
                     <input class="form-control" type="text" name="fullName" id="fullName" value="">
                   </div>
                   </div>

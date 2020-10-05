@@ -10,6 +10,7 @@ $(document).ready(function(){
     $("#eaxaxName").val(dataRow['axaxName']);
     $("#einTime").val(dataRow['inTime']);
     $("#elevelID").val(dataRow['levelID']);
+    $("#estatusID").val(dataRow['statusID']);
     $("#emainOrgID").val(dataRow['mainOrgID']);
     $("#esupportOrgID").val(dataRow['supportOrgID']);
 

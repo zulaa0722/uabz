@@ -14,23 +14,17 @@ class ReportsController extends Controller
         $this->middleware('auth');
     }
 
-    public function showTable()
-    {
-      return "asdf";
-    }
-
     public function showReportsTitle(){
       $products = DB::table("tb_food_products")->get();
 
       $pop = DB::table('tb_population')
       ->select([
           'tb_population.date',
-          DB::raw("SUM(totalPop) as totalPop"),
           DB::raw("SUM(standardPop) as standardPop"),
         ])
       ->groupBy('date')->get();
 
-      return view("Reports.ReportsView", compact('products','pop', count($pop)));
+      return view("Reports.ReportsView", compact('products','pop'));
     }
 
     public function showPopulation(Request $req){
