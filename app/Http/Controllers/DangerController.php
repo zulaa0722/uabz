@@ -56,7 +56,8 @@ class DangerController extends Controller
     public function getDangers(){
         try{
             $dangers = DB::table("tb_danger")
-                ->orderBy("declareDate", "DESC")
+                ->select('tb_danger.*', DB::raw("(IF(tb_danger.status=0, 'Цуцлагдсан', 'Идэвхитэй')) as statName"))
+                ->orderBy("status", "ASC")
                 ->get();
             return DataTables::of($dangers)
               ->make(true);
@@ -255,4 +256,22 @@ class DangerController extends Controller
     }
     // Зарласан онц байдлыг засах хэсэг
 
+    public function cancelDanger(Request $req){
+        // try {
+            $danger = Danger::find($req->id);
+            $danger->status = 0;
+            $danger->save();
+            $array = array(
+                'status' => 'success',
+                'msg' => 'Онц байдал цуцлагдлаа!!!'
+            );
+            return $array;
+        // } catch (\Exception $e) {
+        //     $array = array(
+        //         'status' => 'error',
+        //         'msg' => 'Серверийн алдаа!!! Веб мастерт хандана уу!!!'
+        //     );
+        //     return $array;
+        // }
+    }
 }

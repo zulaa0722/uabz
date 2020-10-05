@@ -111,6 +111,7 @@ Route::get("/show/dangers", "DangerController@showDangers");
 Route::post("/get/dangers", "DangerController@getDangers");
 Route::post("/get/alerted/sums/d_id", "DangerController@getSumIDsByDangerID");
 Route::post("/danger/edit", "DangerController@editDanger");
+Route::post("/danger/cancel", "DangerController@cancelDanger");
 
 Route::get("/org/show", "OrganizationController@orgShow");
 Route::post("/getOrg", "OrganizationController@getOrgData");

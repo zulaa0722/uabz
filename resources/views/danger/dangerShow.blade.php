@@ -20,6 +20,7 @@
             <th>Тушаалын дугаар</th>
             <th>Зарласан өдөр</th>
             <th>Тайлбар</th>
+            <th>Төлөв</th>
           </tr>
         </thead>
         <tbody>
@@ -29,7 +30,7 @@
         <input type="button" id="btnOpenEditDangerModal" get-sums-url="{{url("/get/alerted/sums/d_id")}}" class="btn btn-warning text-center" name="" value="Онц байдлыг засах">
       </div>
       <div class="text-right">
-        <input type="button" class="btn btn-danger text-right" name="" value="Онц байдлыг устгах">
+        <input type="button" class="btn btn-danger text-right" post-url="{{url("/danger/cancel")}}" name="" id="btnCancelDanger" value="Онц байдлыг устгах">
       </div>
     </div>
   </div>
@@ -59,4 +60,5 @@
   <script type="text/javascript" src="{{url("public/uaBCssJs/datatableJs/datatables.init.js")}}"></script>
   <script src="{{url("public/js/danger/dangerShow.js")}}"></script>
   <script src="{{url("public/js/danger/dangerEdit.js")}}"></script>
+  <script src="{{url("public/js/danger/dangerDelete.js")}}"></script>
 @endsection

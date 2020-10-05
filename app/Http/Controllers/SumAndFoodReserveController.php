@@ -25,7 +25,11 @@ class SumAndFoodReserveController extends Controller
 
     public function getSumsReserveDays(){
         try{
-          $sums = DB::table('tb_danger_sym')->get();
+          $sums = DB::table('tb_danger_sym')
+              ->join('tb_danger', 'tb_danger_sym.danger_id', '=', 'tb_danger.id')
+              ->where('tb_danger.status', '=', 1)
+              ->select('tb_danger_sym.*', 'tb_danger.status')
+              ->get();
 
           $normController = new NormController;
           $popController = new PopulationController;
