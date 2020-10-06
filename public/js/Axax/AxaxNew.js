@@ -64,6 +64,7 @@ function emptyForm()
   $("#axaxName").val("");
   $("#levelID").val("-1");
   $("#inTime").val("");
+  $("#statusID").val("-1");
   $("#mainOrgID").val("-1");
   $("#supportOrgID").val("-1");
 }
@@ -108,9 +109,11 @@ function AxaxTableRefresh()
           { data: "axaxName", name: "axaxName"},
           { data: "levelName", name: "levelName"},
           { data: "inTime", name: "inTime"},
+          { data: "statusName", name: "statusName"},
           { data: "mainName", name: "mainName"},
           { data: "supportName", name: "supportName"},
           { data: "levelID", name: "levelID", visible:false},
+          { data: "statusID", name: "statusID", visible:false},
           { data: "mainOrgID", name: "mainOrgID", visible:false},
           { data: "supportOrgID", name: "supportOrgID", visible:false}
           ]

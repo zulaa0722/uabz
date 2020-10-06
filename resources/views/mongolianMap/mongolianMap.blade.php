@@ -1,6 +1,41 @@
 @extends('layouts.layout_master')
 @section('css')
+  <style>
+
+  </style>
   <style media="screen">
+    .accordion {
+      background-color: #eee;
+      color: #444;
+
+      padding: 1px;
+      padding-top: 12px;
+      border: none;
+      /* border: 1px solid; */
+      border-radius: 5px;
+      text-align: left;
+      outline: none;
+      font-size: 14px;
+      transition: 0.4s;
+      line-height: 13px;
+    }
+    .active, .accordion:hover {
+      background-color: #ccc;
+    }
+    .accordion:after {
+      color: #777;
+      font-weight: bold;
+      float: right;
+      margin-left: 5px;
+    }
+    .panel {
+      background-color: white;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.2s ease-out;
+      border: none;
+    }
+
     .aimag{
         fill:black;
         fill-opacity:0.4;
@@ -190,7 +225,7 @@
                           <img src="{{url('\public\images\icons\population.png')}}" width="35" alt="" style="padding-bottom:4px;">
                         </div>
                         <div id="totalPop" class="col-md-9 text-left" style="font-size:22px;">
-                          2237812
+                          {{number_format($sumTotalPop)}}
                         </div>
                       </div>
 
@@ -203,7 +238,7 @@
                           <img src="{{url('\public\images\icons\standard.png')}}" width="35" alt="" style="padding-bottom:4px;">
                         </div>
                         <div id="standardPop" class="col-md-9 text-left" style="font-size:22px;">
-                          1737812
+                          {{number_format($sumStandardPop)}}
                         </div>
                       </div>
 
@@ -216,7 +251,7 @@
                           <img src="{{url('\public\images\icons\cattleIcon.png')}}" width="35" alt="" style="padding-bottom:4px;">
                         </div>
                         <div id="totalCattle" class="col-md-9 col-xm-9 text-left" style="font-size:22px;">
-                          52037812
+                          {{number_format($sumCattQntt)}}
                         </div>
                       </div>
 
@@ -235,7 +270,7 @@
 
                       <a class="badge badge-info col-md-12 text-center" href="{{url("/show/dangers")}}">Бүх онц байдлуудыг харах</a>
 
-                      <div id="chartContainer" class="col-md-12"></div>
+                      <div id="chartContainer" class="col-md-12" style="padding: 0px; margin:0px;"></div>
 
                   </div>
               </div>
@@ -248,7 +283,7 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title mb-12" id="">Тухайн хүнсний бүтээгдэхүүний үлдсэн хоног</h4>
+          <h4 class="card-title mb-12" id="titleOfremainingDays" style="display:none;">Тухайн хүнсний бүтээгдэхүүний үлдсэн хоног</h4>
           <div class="form-group row" id="bottom">
             {{-- <div class="form-group row col-md-3">
               <div class="col-md-12" id="productName">Гурил:</div>
@@ -265,6 +300,9 @@
 @endsection
 
 @section('js')
+  <script>
+
+  </script>
 
   <script type="text/javascript">
     var csrf = "{{ csrf_token() }}";

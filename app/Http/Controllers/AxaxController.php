@@ -27,12 +27,29 @@ class AxaxController extends Controller
       else{
         $levels = DB::table("tb_level")->get();
         $organizations = DB::table("tb_organizations")->get();
+        $statuss = DB::table("tb_status")->get();
+        $axaxTypes = DB::table("tb_axaxtype")->get();
 
-        return view("Axax.Axax", compact("levels", "organizations"));
+        return view("Axax.Axax", compact("levels", "organizations", "statuss", "axaxTypes"));
       }
     }catch(\Exception $e){
       return "Серверийн алдаа!!! Веб мастерт хандана уу";
     }
+  }
+
+  public static function getAxaxesByType($axaxType){
+    try {
+      $axaxes = DB::table("tb_axax")
+      ->join("tb_level", "tb_axax.levelID", "=", "tb_level.id")
+      ->join("tb_organizations", "tb_axax.mainOrgID", "=", "tb_organizations.id")
+      ->join("tb_status", "tb_axax.statusID", "=", "tb_status.id")
+      ->select("tb_axax.*", "tb_level.levelName", "tb_status.statusName", "tb_organizations.abbrName")
+      ->where("typeID","=",$axaxType)->get();
+      return $axaxes;
+    } catch (\Exception $e) {
+      return "Серверийн алдаа!!! Веб мастерт хандана уу";
+    }
+
   }
 
   public function getAxaxData(Request $req)
@@ -41,7 +58,8 @@ class AxaxController extends Controller
       $axax = DB::table("tb_axax")
         ->join("tb_level", "tb_axax.levelID", "=", "tb_level.id")
         ->join("tb_organizations", "tb_axax.mainOrgID", "=", "tb_organizations.id")
-        ->select("tb_axax.*", "tb_level.levelName", "tb_organizations.abbrName as mainName",
+        ->join("tb_status", "tb_axax.statusID", "=", "tb_status.id")
+        ->select("tb_axax.*", "tb_level.levelName", "tb_status.statusName", "tb_organizations.abbrName as mainName",
                   DB::raw('(select tb_organizations.abbrName from tb_organizations where tb_organizations.id = tb_axax.supportOrgID) as supportName'))->get();
       return DataTables::of($axax)
         ->make(true);

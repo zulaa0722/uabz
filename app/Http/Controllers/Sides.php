@@ -99,7 +99,8 @@ class Sides extends Controller
               $val = $normProduct->normQntt * $standardPop;
               array_push($bottomSide, array(
                   "product" => $product->productName,
-                  "leftDays" => intval($productTotalQntt / $val)
+                  "leftDays" => intval($productTotalQntt / $val),
+                  "remaining" => $productTotalQntt
                 )
               );
             }
@@ -198,7 +199,8 @@ class Sides extends Controller
               $val = $normProduct->normQntt * $standardPop;
               array_push($bottomSide, array(
                   "product" => $product->productName,
-                  "leftDays" => intval($productTotalQntt / $val)
+                  "leftDays" => intval($productTotalQntt / $val),
+                  "remaining" => $productTotalQntt
                 )
               );
             }
@@ -206,7 +208,8 @@ class Sides extends Controller
         }
         $bothSides = array(
           "rightSide" => $rightSide,
-          "bottomSide" => $bottomSide
+          "bottomSide" => $bottomSide,
+
         );
         return $bothSides;
 

@@ -66,7 +66,7 @@
                         <div class="d-flex">
                             <!-- LOGO -->
                             <div class="navbar-brand-box">
-                                <a href="index" class="logo logo-dark">
+                                <a href="#" class="logo logo-dark" style="cursor:default;">
                                     <span class="logo-sm">
                                       <img src="{{url("public/assets/images/logo.svg")}}" alt="" height="22">
                                     </span>
@@ -75,7 +75,7 @@
                                     </span>
                                 </a>
 
-                                <a href="index" class="logo logo-light">
+                                <a href="#" class="logo logo-light"  style="cursor:default;">
                                     <span class="logo-sm">
                                         <img src="{{url("public/assets/images/logo-sm.png")}}" alt="" height="22">
                                     </span>
@@ -110,7 +110,7 @@
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item text-danger" href="javascript:void();" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         <i class="bx bx-power-off font-size-17 align-middle mr-1 text-danger"></i>
-                                        Logout
+                                        Гарах
                                     </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -118,8 +118,8 @@
                                 </div>
                             </div>
                             <div class="d-inline-block">
-                              <button type="button" disabled class="btn header-item waves-effect">
-                                  <h4 style="color: white; stroke-width:3px; stroke-color:black;">{{ Auth::user()->name }}</h4>
+                              <button type="button" disabled class="btn header-item">
+                                  <h4 style="color: black; font-weight: bold;">{{ Auth::user()->name }}</h4>
                                   {{-- <h4>davaanyam</h4> --}}
                               </button>
                             </div>
@@ -267,7 +267,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    © <script>document.write(new Date().getFullYear())</script> <span class="d-none d-sm-inline-block"> Зэвсэгт хүчний Программ хангамжын төв <i class="mdi text-danger">Лого</i></span>
+                    © <script>document.write(new Date().getFullYear())</script> <span class="d-none d-sm-inline-block"> Зэвсэгт хүчний Программ хангамжийн төв <i class="mdi text-danger">Лого</i></span>
                 </div>
             </div>
         </div>
