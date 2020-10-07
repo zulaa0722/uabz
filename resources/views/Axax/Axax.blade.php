@@ -56,7 +56,11 @@
                                 <td style="display:none;">{{$axax->mainOrgID}}</td>
                                 <td style="display:none;">{{$axax->typeID}}</td>
                                 <td style="display:none;">{{$axax->id}}</td>
-                                <td>2.{{$j}}.{{$i}}</td>
+                                @if ($i < 10)
+                                  <td>2.{{$j}}.0{{$i}}</td>
+                                @else
+                                  <td>2.{{$j}}.{{$i}}</td>
+                                @endif
                                 <td>{{$axax->axaxName}}</td>
                                 <td>{{$axax->levelName}}</td>
                                 <td>{{$axax->inTime}}</td>
@@ -143,7 +147,12 @@
           },
           "select": {style : 'single' },
           "stateSave": true,
-          "ordering": false,
+          // "ordering": false,
+          "order": [[5, 'asc']],
+           "columnDefs": [{
+              "targets": "_all",
+              "orderable": false
+           }],
           "columns": [
             { data: "levelID", name: "levelID", visible: false},
             { data: "statusID", name: "statusID", visible: false},
@@ -159,6 +168,7 @@
             { data: "supportName", name: "supportName"}
             ]
         });
+        // table.order( [ 5, 'asc' ] ).draw();
 
         $('#axaxDB tbody').on( 'click', 'tr', function () {
           if ( $(this).hasClass('selected') ) {

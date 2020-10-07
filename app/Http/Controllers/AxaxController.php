@@ -68,10 +68,18 @@ class AxaxController extends Controller
       $insertAxax->supportOrg = $req->orgs;
 
       $insertAxax->save();
-      return "Амжилттай хадгаллаа";
+      $array = array(
+          'status' => 'success',
+          'msg' => 'Амжилттай хадгаллаа!!!',
+          'id' => $insertAxax->id
+      );
+      return $array;
     }catch(\Exception $e){
-      // return $e;
-      return "Серверийн алдаа!!! Веб мастерт хандана уу";
+      $array = array(
+          'status' => 'error',
+          'msg' => 'Серверийн алдаа!!! Веб мастерт хандана уу!!!'
+      );
+      return $array;
     }
   }
 
@@ -105,5 +113,12 @@ class AxaxController extends Controller
     }catch(\Exception $e){
       return "Серверийн алдаа!!! Веб мастерт хандана уу";
     }
+  }
+
+  public static function getAxaxCountByType($typeID){
+      $types = DB::table("tb_axax")
+          ->where('typeID', '=', $typeID)
+          ->get();
+      return count($types);
   }
 }

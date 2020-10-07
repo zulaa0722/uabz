@@ -19,7 +19,10 @@
                     <select class="form-control" id="axaxTypeID" name="axaxTypeID">
                         <option value="-1">Сонгоно уу</option>
                       @foreach ($axaxTypes as $axaxType)
-                        <option value="{{$axaxType->id}}">{{$axaxType->typeName}}</option>
+                        @php
+                          $axaxCount = App\Http\Controllers\AxaxController::getAxaxCountByType($axaxType->id);
+                        @endphp
+                        <option axaxCount="{{$axaxCount}}" value="{{$axaxType->id}}">{{$axaxType->typeName}}</option>
                       @endforeach
                     </select>
                   </div>
