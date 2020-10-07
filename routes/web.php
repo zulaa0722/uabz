@@ -142,6 +142,7 @@ Route::post("/cattle/delete", "CattleController@delete");
 Route::get("/cattleQntt/show", "CattleQnttController@cattleQnttShow");
 Route::post("/cattleQntt/insert", "CattleQnttController@store");
 Route::post("/cattleQntt/delete", "CattleQnttController@delete");
+Route::post("/get/all/cattle/quantity", "CattleQnttController@getCattleQuantity");
 
 Route::get("/axax/show", "AxaxController@axaxShow");
 Route::post("/getAxax", "AxaxController@getAxaxData");

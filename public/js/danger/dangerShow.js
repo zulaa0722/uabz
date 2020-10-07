@@ -114,4 +114,6 @@ function refresh(){
          dataRow = $('#tableDangers').DataTable().row(currow).data();
      }
      });
+
+     
 }

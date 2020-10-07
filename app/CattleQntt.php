@@ -10,5 +10,7 @@ class CattleQntt extends Model
   public $primaryKey = 'id';
   public $timestamps = false;
 
-  // public function 
+  public function getLastInsertedDate(){
+    
+  }
 }
