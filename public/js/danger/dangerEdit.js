@@ -70,10 +70,10 @@ $(document).ready(function(){
                 provID:$(this).val()
             },
             success:function(res){
-                var table = jQuery.parseJSON(res);
+                // var table = jQuery.parseJSON(res);
                 // console.log(table);
                 var div="";
-                $.each(table, function(index, item){
+                $.each(res, function(index, item){
                     div = div + '<div class="col-md-4">';
                     div = div + '<div class="form-check">';
                     div = div + '<label class="form-check-label">';

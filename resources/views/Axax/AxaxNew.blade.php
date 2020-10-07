@@ -14,6 +14,17 @@
               <form id="frmAxaxNew" action="" method="post">
                 @csrf
                 <div class="form-group row">
+                  <div class="col-md-6">
+                    <label>Хэрэгжүүлэх арга хэмжээний чиглэл:</label>
+                    <select class="form-control" id="axaxTypeID" name="axaxTypeID">
+                        <option value="-1">Сонгоно уу</option>
+                      @foreach ($axaxTypes as $axaxType)
+                        <option value="{{$axaxType->id}}">{{$axaxType->typeName}}</option>
+                      @endforeach
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group row">
                   <div class="col-md-12">
                     <label>Хэрэгжүүлэх арга хэмжээ:</label>
                       <textarea class="form-control" id="axaxName" name="axaxName" rows="4"></textarea>
@@ -60,7 +71,7 @@
                     <select class="form-control" name="supportOrgID" id="supportOrgID">
                         <option value="-1">Сонгоно уу</option>
                       @foreach ($organizations as $organization)
-                        <option value="{{$organization->id}}">{{$organization->fullName}}</option>
+                        <option value="{{$organization->id}}">{{$organization->abbrName}}</option>
                       @endforeach
                     </select>
                   </div>

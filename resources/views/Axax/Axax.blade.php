@@ -8,7 +8,7 @@
               <div class="card">
                 <div  class="card-body">
                   <h4 Class="text-center">Авч хэрэгжүүлэх арга хэмжээ</h4>
-                  <table id="axaxDB" class="table table-bordered dt-responsive wrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                  <table id="axaxDB" class="table table-bordered stripe hover cell-border order-column" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                       <thead>
                         <tr class="text-center">
                           <th>№</th>
@@ -27,7 +27,13 @@
                         @endphp
                           @foreach ($axaxTypes as $axaxType)
                             <tr style="background-color: #ccc; text-align: center;" class="mergedColumn">
-                              <td colspan="11">{{$axaxType->typeName}}</td>
+                              <td colspan="7">{{$axaxType->typeName}}</td>
+                              <td style="display:none;"></td>
+                              <td style="display:none;"></td>
+                              <td style="display:none;"></td>
+                              <td style="display:none;"></td>
+                              <td style="display:none;"></td>
+                              <td style="display:none;"></td>
                             </tr>
                             @php
                             $axaxes = App\Http\Controllers\AxaxController::getAxaxesByType($axaxType->id);
@@ -42,13 +48,14 @@
                                 <td>{{$axax->statusName}}</td>
                                 <td>{{$axax->abbrName}}</td>
                                 <td></td>
-                                <td style="display: none;">{{$i++}}</td>
-                                {{-- <td style="display: none;" class=".sec">{{$axax->id}}</td> --}}
                               </tr>
+                              @php
+                                $i++;
+                              @endphp
                             @endforeach
-                            <tr style="display: none;">
-                            <td>{{$j++}}</td>
-                            </tr>
+                            @php
+                              $j++;
+                            @endphp
                           @endforeach
 
                         </tr>
@@ -63,6 +70,7 @@
         </div>
       </div>
     </div>
+
 @include('Axax.AxaxNew')
 @include('Axax.AxaxEdit')
 @endsection
@@ -98,37 +106,40 @@
   var axaxEditUrl = "{{url("/axax/edit")}}";
   var axaxDeleteUrl = "{{url("/axax/delete")}}";
 
-  // $(document).ready(function(){
-  //
-  //    table = $('#axaxDB').DataTable({
-  //     "language": {
-  //             "lengthMenu": "_MENU_ мөрөөр харах",
-  //             "zeroRecords": "Хайлт илэрцгүй байна",
-  //             "info": "Нийт _PAGES_ -аас _PAGE_-р хуудас харж байна ",
-  //             "infoEmpty": "Хайлт илэрцгүй",
-  //             "infoFiltered": "(_MAX_ мөрөөс хайлт хийлээ)",
-  //             "sSearch": "Хайх: ",
-  //             "paginate": {
-  //               "previous": "Өмнөх",
-  //               "next": "Дараахи"
-  //             },
-  //             "select": {
-  //                 rows: ""
-  //             }
-  //         },
-  //         "select": {style : 'single' },
-  //         "stateSave": true,
-  //         "columns": [
-  //           { data: "id", name: "id"},
-  //           { data: "axaxName", name: "axaxName"},
-  //           { data: "levelName", name: "levelName"},
-  //           { data: "inTime", name: "inTime"},
-  //           { data: "statusName", name: "statusName"},
-  //           { data: "mainName", name: "mainName"},
-  //           { data: "supportName", name: "supportName"}
-  //           ]
-  //       });
-  //
+  // table = $('#axaxDB').DataTable();
+
+  $(document).ready(function(){
+
+     table = $('#axaxDB').DataTable({
+      "language": {
+              "lengthMenu": "_MENU_ мөрөөр харах",
+              "zeroRecords": "Хайлт илэрцгүй байна",
+              "info": "Нийт _PAGES_ -аас _PAGE_-р хуудас харж байна ",
+              "infoEmpty": "Хайлт илэрцгүй",
+              "infoFiltered": "(_MAX_ мөрөөс хайлт хийлээ)",
+              "sSearch": "Хайх: ",
+              "paginate": {
+                "previous": "Өмнөх",
+                "next": "Дараахи"
+              },
+              "select": {
+                  rows: ""
+              }
+          },
+          "select": {style : 'single' },
+          "stateSave": true,
+          "ordering": false,
+          "columns": [
+            { data: "id", name: "id"},
+            { data: "axaxName", name: "axaxName"},
+            { data: "levelName", name: "levelName"},
+            { data: "inTime", name: "inTime"},
+            { data: "statusName", name: "statusName"},
+            { data: "mainName", name: "mainName"},
+            { data: "supportName", name: "supportName"}
+            ]
+        });
+
         $('#axaxDB tbody').on( 'click', 'tr', function () {
           if ( $(this).hasClass('selected') ) {
               $(this).removeClass('selected');
@@ -141,7 +152,7 @@
               //dataRow = $('#axaxDB').DataTable().row(currow).data();
           }
           });
-  // });
+  });
   </script>
 
 <script src="{{url("public/js/Axax/AxaxNew.js")}}"></script>

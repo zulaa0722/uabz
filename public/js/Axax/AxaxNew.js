@@ -18,6 +18,10 @@ function mainCode()
     alertify.error("Та заавал АВЧ ХЭРЭГЖҮҮЛЭХ АРГА ХЭМЖЭЭНИЙ УТГА оруулана уу!!!");
     isInsert = false;
   }
+  if($("#axaxTypeID").val()=="-1"){
+    alertify.error("Та заавал хэрэгжүүлэх арга хэмжээний чиглэл сонгоно уу!!!");
+    isInsert = false;
+  }
   if($("#levelID").val()=="-1"){
     alertify.error("Та заавал ЗЭРЭГ сонгоно уу!!!");
     isInsert = false;
