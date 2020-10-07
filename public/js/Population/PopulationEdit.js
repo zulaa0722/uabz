@@ -9,7 +9,7 @@ $(document).ready(function(){
 
     $("#esymName option[value!='-1']").each(function(){
       $(this).remove();
-    })
+    });
     $.ajax({
       type: "post",
       url: $("#eprovName").attr("getSymUrl"),

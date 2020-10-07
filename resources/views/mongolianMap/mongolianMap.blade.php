@@ -145,7 +145,7 @@
                     <div class="col-md-6 border border-danger">
                       <div class="form-group">
                         <div class="text-center">
-                          <label class="col-md-9 col-form-label text-md-center">Гол нэрийн бүтээгдээхүүний нөөц дуусч байгаа сумууд</label>
+                          <label class="col-md-9 col-form-label text-md-center">Гол нэрийн бүтээгдэхүүний нөөц дуусч байгаа сумууд</label>
                           <h3 class="text-danger">{{ App\Http\Controllers\SubReserveController::getSymCount()}}</h3>
                             <a class="btn btn-info" href="{{url("/SubReserveController")}}">Дэлгэрэнгүй</a>
                         </div>

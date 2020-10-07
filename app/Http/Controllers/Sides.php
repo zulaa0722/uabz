@@ -58,6 +58,7 @@ class Sides extends Controller
         $totalCattle = DB::table("tb_cattle_qntt")
           ->where("provID", "=", $province->id)->sum("cattQntt");
 
+        //aimgiin niit maliin toog honin tolgoid shiljuulsen kg-iig ni avch bn
         $totalSheepKg = DB::table("tb_cattle_qntt")
           ->where("provID", "=", $province->id)->sum("sheepKg");
 
@@ -66,6 +67,7 @@ class Sides extends Controller
           ->where("productCode", "=", "01")->first();
         $meatQntt = $meat->foodQntt;
         $meatKcal = $meat->foodCkal;
+
         //niit maliin kcal
         $totalCattleKcal = $totalSheepKg*$meatKcal/$meatQntt;
 
@@ -94,13 +96,42 @@ class Sides extends Controller
             ->where("provID", "=", $province->id)
             ->where("productID","=",$product->id)->sum("mainQntt");
 
+          $totalProtein = ($productTotalQntt * $product->foodProtein) / ($product->foodQntt);
+          $totalFat = ($productTotalQntt * $product->foodFat) / ($product->foodQntt);
+          $totalCarbon = ($productTotalQntt * $product->foodCarbon) / ($product->foodQntt);
+          $Kcal = ($productTotalQntt * $product->foodCkal) / ($product->foodQntt);
+          $isMeat = 0;
+          $totalCattleProtein = 0;
+          $totalCattleFat = 0;
+          $totalCattleCarbon = 0;
+
+          if($product->productCode == '01')
+          {
+            $isMeat = 1;
+            $totalCattleProtein = ($totalSheepKg * $product->foodProtein) / ($product->foodQntt);
+            $totalCattleFat = ($totalSheepKg * $product->foodFat) / ($product->foodQntt);
+            $totalCattleCarbon = ($totalSheepKg * $product->foodCarbon) / ($product->foodQntt);
+          }
+
           foreach ($provNormProducts as $normProduct) {
+            //tuhain aimgiin norm dahi hunsnii buteegdehuunii ilchleguudiig gol neriin buteegdhun tablees avch bn
             if($product->id == $normProduct->producID){
+
               $val = $normProduct->normQntt * $standardPop;
               array_push($bottomSide, array(
                   "product" => $product->productName,
                   "leftDays" => intval($productTotalQntt / $val),
-                  "remaining" => $productTotalQntt
+                  "remaining" => $productTotalQntt,
+                  "foodProtein" => $totalProtein,
+                  "foodFat" => $totalFat,
+                  "foodCarbon" => $totalCarbon,
+                  "Kcal" =>$Kcal,
+                  "isMeat" => $isMeat,
+                  "totalCattleKg" => $totalSheepKg,
+                  "totalCattleProtein" => $totalCattleProtein,
+                  "totalCattleFat" => $totalCattleFat,
+                  "totalCattleCarbon" => $totalCattleCarbon,
+                  "totalCattleKcal" => $totalCattleKcal
                 )
               );
             }
@@ -194,13 +225,41 @@ class Sides extends Controller
             ->where("symID", "=", $sym->id)
             ->where("productID","=",$product->id)->sum("mainQntt");
 
+          $totalProtein = ($productTotalQntt * $product->foodProtein) / ($product->foodQntt);
+          $totalFat = ($productTotalQntt * $product->foodFat) / ($product->foodQntt);
+          $totalCarbon = ($productTotalQntt * $product->foodCarbon) / ($product->foodQntt);
+          $Kcal = ($productTotalQntt * $product->foodCkal) / ($product->foodQntt);
+
+          $isMeat = 0;
+          $totalCattleProtein = 0;
+          $totalCattleFat = 0;
+          $totalCattleCarbon = 0;
+
+          if($product->productCode == '01')
+          {
+            $isMeat = 1;
+            $totalCattleProtein = ($totalSheepKg * $product->foodProtein) / ($product->foodQntt);
+            $totalCattleFat = ($totalSheepKg * $product->foodFat) / ($product->foodQntt);
+            $totalCattleCarbon = ($totalSheepKg * $product->foodCarbon) / ($product->foodQntt);
+          }
+
           foreach ($symNormProducts as $normProduct) {
             if($product->id == $normProduct->producID){
               $val = $normProduct->normQntt * $standardPop;
               array_push($bottomSide, array(
                   "product" => $product->productName,
                   "leftDays" => intval($productTotalQntt / $val),
-                  "remaining" => $productTotalQntt
+                  "remaining" => $productTotalQntt,
+                  "foodProtein" => $totalProtein,
+                  "foodFat" => $totalFat,
+                  "foodCarbon" => $totalCarbon,
+                  "Kcal" => $Kcal,
+                  "isMeat" => $isMeat,
+                  "totalCattleKg" => intval($totalSheepKg),
+                  "totalCattleProtein" => intval($totalCattleProtein),
+                  "totalCattleFat" => intval($totalCattleFat),
+                  "totalCattleCarbon" => intval($totalCattleCarbon),
+                  "totalCattleKcal" => intval($totalCattleKcal)
                 )
               );
             }

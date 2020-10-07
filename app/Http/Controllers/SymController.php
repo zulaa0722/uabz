@@ -89,7 +89,7 @@ class SymController extends Controller
   {
     try{
       $getSyms  = DB::table("tb_sym")->where("provID", "=", $req->provID)->get();
-      return json_encode($getSyms);
+      return ($getSyms);
     }catch(\Exception $e){
       return "Серверийн алдаа!!! Веб мастерт хандана уу";
     }
