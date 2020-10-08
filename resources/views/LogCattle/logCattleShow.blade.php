@@ -15,13 +15,27 @@
                   @endforeach
                 </div>
                 <div class="list-group col-md-6" id="listSyms">
-                    
+
 
                 </div>
               </div>
               <div class="row col-md-8">
                 <div class="row col-md-12">
-
+                  <table post-url="{{url("/get/log/cattles")}}" id="cattleDB" class="table table-striped table-bordered nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                      <thead>
+                        <tr>
+                          <th>№</th>
+                          <th>№</th>
+                          <th>№</th>
+                          @foreach ($cattles as $cattle)
+                            <th>{{$cattle->cattleName}}</th>
+                          @endforeach
+                          {{-- <th>Огноо</th> --}}
+                        </tr>
+                      </thead>
+                      <tbody>
+                      </tbody>
+                    </table>
                 </div>
                 <div class="row col-md-12">
 
@@ -57,6 +71,9 @@
   <script type="text/javascript" src="{{url("public/uaBCssJs/datatableJs/pdfmake.min.js")}}"></script>
   <script type="text/javascript" src="{{url("public/uaBCssJs/datatableJs/datatables.init.js")}}"></script>
 
+  <script type="text/javascript">
+    var cols1 = <?php echo json_encode($cattles); ?>;
+  </script>
 
   <script src="{{url("public/js/logCattle/logCattleShow.js")}}"></script>
   <script src="{{url("public/js/logCattle/logCattleNew.js")}}"></script>
