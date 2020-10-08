@@ -74,6 +74,7 @@
     var showCompanySubs = "{{url("/SubReserveController/showCompanySubs")}}";
     var saveSubs = "{{url("SubReserveController/saveSubProducts")}}";
     var editNorm = "{{url("/SubReserveController/editNorm")}}"
+    var table = "";
   </script>
 
 
@@ -81,7 +82,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
 
-  var table = $('#ShowSubProducts').DataTable( {
+  table = $('#ShowSubProducts').DataTable( {
     "language": {
             "lengthMenu": "_MENU_ мөрөөр харах",
             "zeroRecords": "Хайлт илэрцгүй байна",

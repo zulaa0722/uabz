@@ -4,11 +4,28 @@
   <div class="row">
     <div class="col-md-12">
       <div class="row">
-          <div class="col-xl-8">
+          <div class="col-xl-9">
               <div class="card">
                 <div  class="card-body">
-                  <h4 Class="text-center">Малын махны хэмжээ /тоо толгой/</h4>
-                  <table id="cattleQnttDB" class="table table-striped table-bordered wrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                  <label class="text-success">Он ==> </label>
+                  <input type="button" class="btn btn-info btn-sm btnYear" name="" value="{{$year-3}}">
+                  <input type="button" class="btn btn-info btn-sm btnYear" name="" value="{{$year-2}}">
+                  <input type="button" class="btn btn-info btn-sm btnYear" name="" value="{{$year-1}}">
+                  <input type="button" class="btn btn-outline-info btn-sm btnYear" name="" value="{{$year}}">
+                  <div class="d-none" id="loadImage">
+                      <div class="d-flex flex-column align-items-center justify-content-center">
+                         <div class="row">
+                             <div class="spinner-border text-danger" role="status">
+                                 <span class="sr-only">Loading...</span>
+                             </div>
+                          </div>
+                          <div class="row">
+                            <strong>Өгөгдөл ачааллаж байна</strong>
+                          </div>
+                      </div>
+                  </div>
+                  <h4 Class="text-center">Малын тоо толгой <span class="text-success" id="headerYear">{{$year}} он</span></h4>
+                  <table id="cattleQnttDB" post-url="{{url("/get/all/cattle/quantity")}}" class="table table-striped table-bordered wrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                       <thead>
                         <tr>
                           <th>№</th>
@@ -21,33 +38,7 @@
                           @endforeach
                         </tr>
                       </thead>
-                      <tbody>
-                        @php
-                          $i=1;
-                        @endphp
-                          @foreach ($syms as $sym)
-                            <tr>
-                              <td>{{$i}}</td>
-                              <td>{{$sym->provID}}</td>
-                              <td>{{$sym->id}}</td>
-                              <td>{{$sym->provName}}</td>
-                              <td>{{$sym->symName}}</td>
-                              @foreach ($cattles as $cattle)
-                                  <td>
-                                  @php
-                                      $cattleCounts = App\Http\Controllers\CattleQnttController::getCattleCountBySymID($sym->id, $cattle->id);
-                                      foreach ($cattleCounts as $cattleCount) {
-                                          echo $cattleCount->cattQntt;
-                                      }
-                                  @endphp
-                                  </td>
-                              @endforeach
-                            </tr>
-                            @php
-                              $i++;
-                            @endphp
-                          @endforeach
-                      </tbody>
+                      <tbody></tbody>
                     </table>
                     <button class="btn btn-warning" type="button" name="button" id="btnAddModalOpen">Тоо толгой нэмэх</button>
                     <button class="btn btn-danger" type="button" name="button" id="btnCattleQnttDelete">Устгах</button>
@@ -84,51 +75,31 @@
   var csrf = "{{ csrf_token() }}";
   var cattleQnttNew = "{{url("/cattleQntt/insert")}}";
   var cattleQnttDeleteUrl = "{{url("/cattleQntt/delete")}}";
+  var table = "";
+  var year = {{$year}};
 
   $(document).ready(function(){
+    // alert(year);
 
-    $('#cattleQnttDB thead tr').clone(true).appendTo( '#cattleQnttDB thead' );
 
-    var filterIndex = 0;
-      $('#cattleQnttDB thead tr:eq(1) th').each( function (i) {
-        if(filterIndex == 3 || filterIndex == 4)
-        {
-          $(this).html( '<input type="text" style="width:110%;" placeholder="Хайх..." />' );
-          $( 'input', this ).on( 'keyup change', function () {
-              if ( table.column(i).search() !== this.value ) {
-                  table.column(i).search( this.value ).draw();
-              }
-          });
-        }
-        else {
-          $(this).html('');
-        }
-        filterIndex++;
-      });
-      var table = $('#cattleQnttDB').DataTable({
-        "language": {
-          "lengthMenu": "_MENU_ мөрөөр харах",
-          "zeroRecords": "Хайлт илэрцгүй байна",
-          "info": "Нийт _PAGES_ -аас _PAGE_-р хуудас харж байна ",
-          "infoEmpty": "Хайлт илэрцгүй",
-          "infoFiltered": "(_MAX_ мөрөөс хайлт хийлээ)",
-          "sSearch": "Хайх: ",
-          "paginate": {
-            "previous": "Өмнөх",
-            "next": "Дараахи"
-          },
-          "select": {
-            rows: ""
+        $('#cattleQnttDB thead tr').clone(true).appendTo( '#cattleQnttDB thead' );
+        var filterIndex = 0;
+        $('#cattleQnttDB thead tr:eq(1) th').each( function(i)  {
+          if(filterIndex == 3 || filterIndex == 4)
+          {
+            $(this).html( '<input type="text" style="width:110%;" placeholder="Хайх..." />' );
+            $( 'input', this) .on( 'keyup change', function () {
+                if ( table.column(i).search() !== this.value)  {
+                    table.column(i).search(this.value).draw();
+                }
+            });
           }
-        },
-        select: {
-          style: 'single'
-        },
-        "stateSave": true,
-        "orderCellsTop": true,
-        "fixedHeader": true,
-        "scrollX":true
-      });
+          else {
+            $(this).html('');
+          }
+          filterIndex++;
+        });
+        refresh({{$year}});
 
         table.column( 1 ).visible( false );
         table.column( 2 ).visible( false );
@@ -146,7 +117,7 @@
           });
   });
   </script>
-
+<script src="{{url("public/js/CattleQntt/CattleQnttShow.js")}}"></script>
 <script src="{{url("public/js/CattleQntt/CattleQnttNew.js")}}"></script>
 <script src="{{url("public/js/CattleQntt/CattleQnttDelete.js")}}"></script>
 @endsection

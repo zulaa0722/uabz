@@ -6,14 +6,15 @@ $(document).ready(function(){
         return;
     }
 
-    alertify.confirm( "Та устгахдаа итгэлтэй байна уу?", function (e) {
+    alertify.confirm( "Та " + dataRow["provName"] + " аймгийн " + dataRow["sumName"] + " сумын " + year + " оны мэдээлэл устгах гэж байна!!! Та устгахдаа итгэлтэй байна уу?", function (e) {
       if (e) {
         $.ajax({
           type:'post',
           url:cattleQnttDeleteUrl,
           data:{
             _token: $('meta[name="csrf-token"]').attr('content'),
-            symID: dataRow[2]
+            symID: dataRow["sumID"],
+            year:year
           },
           success:function(response){
               if(response.status == 'success'){

@@ -36,9 +36,12 @@ class CattleQnttController extends Controller
                 ->select("tb_sym.*", "tb_province.provName")->get();
             }
             // $provinces = DB::table("tb_province")->get();
+            $now = Carbon::now();
+            $year = $now->year;
+            $year = $year - 1;
             $cattles = DB::table("tb_cattle")->get();
 
-            return view("CattleQntt.CattleQntt", compact("syms", "cattles"));
+            return view("CattleQntt.CattleQntt", compact("syms", "cattles", "year"));
         }catch(\Exception $e){
             return "Серверийн алдаа!!! Веб мастерт хандана уу";
         }
@@ -47,16 +50,18 @@ class CattleQnttController extends Controller
     {
 
       try{
-        CattleQntt::where('symID',$req->symID)->delete();
+        CattleQntt::where('symID',$req->symID)
+            ->where('year', $req->year)
+            ->delete();
         foreach ($req->qntt as $key => $value) {
             $insertCattleQntt = new CattleQntt;
             $insertCattleQntt->provID = $req->provID;
             $insertCattleQntt->symID = $req->symID;
             $insertCattleQntt->cattleID = $value['cattleID'];
-            $insertCattleQntt->cattQntt = $value['cattleQntt']*1000;
-            $insertCattleQntt->toSheep = $value['toSheepQntt']*1000;
-            $insertCattleQntt->sheepKg = $value['toSheepKg']*1000;
-
+            $insertCattleQntt->cattQntt = $value['cattleQntt'];
+            $insertCattleQntt->toSheep = $value['toSheepQntt'];
+            $insertCattleQntt->sheepKg = $value['toSheepKg'];
+            $insertCattleQntt->year = $req->year;
             $insertCattleQntt->save();
         }
 
@@ -79,7 +84,8 @@ class CattleQnttController extends Controller
     public function delete(Request $req)
     {
       try{
-        CattleQntt::where('symID',$req->symID)->delete();
+        CattleQntt::where('symID',$req->symID)
+            ->where('year', '=', $req->year)->delete();
         $arrayMsg = array(
             'status' => 'success',
             'msg' => 'Амжилттай устгалаа...'
@@ -94,17 +100,58 @@ class CattleQnttController extends Controller
       }
     }
 
-    public static function getCattleCountBySymID($sumID, $cattleID){
+    public static function getCattleCountBySymID($sumID, $cattleID, $year){
+        // $now = Carbon::now();
+        // $year = $now->year;
+        // $year = $year - 1;
         $cattleCount = DB::table('tb_cattle_qntt')
             ->where('symID', '=', $sumID)
             ->where('cattleID', '=', $cattleID)
-            ->get();
-        return $cattleCount;
+            ->where('year', '=', $year)
+            ->first();
+        if ($cattleCount == null) {
+            return "";
+        }
+        return $cattleCount->cattQntt;
     }
     public static function getTotalCattleBySym($symID)
     {
-      $cattleCount = DB::table('tb_cattle_qntt')
-        ->where('symID', '=', $symID)->sum('sheepKg');
-      return $cattleCount;
+        $cattleCount = DB::table('tb_cattle_qntt')
+          ->where('symID', '=', $symID)->sum('sheepKg');
+        return $cattleCount;
+    }
+
+    public function getCattleQuantity(Request $req){
+        try {
+            $syms = DB::table("tb_sym")
+                ->join("tb_province", "tb_sym.provID", "=", "tb_province.id")
+                ->select("tb_sym.*", "tb_province.provName")->get();
+            $arrCattleQtt = [];
+            $rowCount = 1;
+            foreach ($syms as $sym) {
+                $sheep = $this::getCattleCountBySymID($sym->id, 1, $req->year);
+                $goat = $this::getCattleCountBySymID($sym->id, 2, $req->year);
+                $cattle = $this::getCattleCountBySymID($sym->id, 3, $req->year);
+                $horse = $this::getCattleCountBySymID($sym->id, 4, $req->year);
+                $camel = $this::getCattleCountBySymID($sym->id, 5, $req->year);
+                array_push($arrCattleQtt, array(
+                    "number" => $rowCount,
+                    "provID" => $sym->provID,
+                    "sumID" => $sym->id,
+                    "provName" => $sym->provName,
+                    "sumName" => $sym->symName,
+                    "sheep" => $sheep,
+                    "goat" => $goat,
+                    "cattle" => $cattle,
+                    "horse" => $horse,
+                    "camel" => $camel
+                ));
+                $rowCount++;
+            }
+            return DataTables::of($arrCattleQtt)
+              ->make(true);
+        } catch (\Exception $e) {
+
+        }
     }
 }

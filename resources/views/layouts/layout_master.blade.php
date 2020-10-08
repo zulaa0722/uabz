@@ -80,16 +80,16 @@
                                         <img src="{{url("public/assets/images/logo-sm.png")}}" alt="" height="22">
                                     </span>
                                     <span class="logo-lg">
-                                        <img src="{{url("public/assets/images/logo-light.png")}}" alt="" height="30">
+                                        <img src="{{url("public/assets/images/left-side-menu-logo.png")}}" alt="" height="55">
                                     </span>
                                 </a>
                             </div>
-                            <button type="button" class="btn btn-sm px-3 font-size-24 header-item waves-effect" id="vertical-menu-btn">
+                            <button type="button" style="background-color:#2f2f2f;" class="btn btn-sm px-3 font-size-24 header-item waves-effect" id="vertical-menu-btn">
                                 <i class="mdi mdi-menu"></i>
                             </button>
                         </div>
 
-                        <div class="d-flex">
+                        <div class="d-flex" style="height: 100%; background-color: #b1d8ff; opacity:0.8;">
                               <!-- App Search-->
                             <div class="dropdown d-none d-lg-inline-block">
                                 <button type="button" class="btn header-item noti-icon waves-effect" data-toggle="fullscreen">
@@ -102,7 +102,7 @@
                             <div class="dropdown d-inline-block">
                                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <img class="rounded-circle header-profile-user" src="{{url("public/assets/images/users/user-4.jpg")}}"
+                                    <img class="rounded-circle header-profile-user" src="{{url("public/assets/images/logo-top.png")}}"
                                         alt="Header Avatar">
                                 </button>
 
@@ -119,7 +119,7 @@
                             </div>
                             <div class="d-inline-block">
                               <button type="button" disabled class="btn header-item">
-                                  <h4 style="color: black; font-weight: bold;">{{ Auth::user()->name }}</h4>
+                                  <h4 style="opacity:1; color: black; font-weight: bold;">{{ Auth::user()->name }}</h4>
                                   {{-- <h4>davaanyam</h4> --}}
                               </button>
                             </div>

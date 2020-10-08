@@ -157,17 +157,7 @@ $(document).on("click", ".editNorm", function(){
           prodID: prodID
         },
         success: function(response){
-          var table = $("#ShowSubProducts").DataTable();
-          $('#ShowSubProducts tbody').on( 'click', 'tr', function () {
-            if ( $(this).hasClass('selected') ) {
-                $(this).removeClass('selected');
-            }
-            else {
-                table.$('tr.selected').removeClass('selected');
-                $(this).addClass('selected');
-            }
-          });
-          table.row('.selected').remove().draw();
+          table.rows('.selected').remove().draw(false);
           alertify.success(response);
         }
       });
