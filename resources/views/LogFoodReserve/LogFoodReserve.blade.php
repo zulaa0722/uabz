@@ -1,39 +1,41 @@
 @extends('layouts.layout_master')
-
+@section('css')
+<link rel="stylesheet" href="{{url("public/uaBCssJs/datatableCss/datatables.min.css")}}">
+<link href="{{url('public/uaBCssJs/dropzone/dropzone.min.css')}}" rel="stylesheet">
+@endsection
 @section('content')
-  <div class="row">
+  {{-- <div class="row"> --}}
     <div class="col-md-12">
         <div class="card">
-          <div  class="card-body">
-            <h4 Class="text-center">Гол нэрийн хүнсний бүтээгдэхүүний нөөцийг тодотгох</h4>
-            <div class="row">
+          <div class="card-body">
+
+            <div class="row col-md-12">
               <div class="row col-md-4">
                 <div class="list-group col-md-6">
                   <label>Аймаг аа сонгоно уу.</label>
                   @foreach ($provs as $prov)
-                    <a class="list-group-item list-group-item-action" data-toggle="list">{{$prov->provName}}</a>
+                    <a href="#" onclick="aimag({{$prov->provID}}, '{{url("/get/dangered/syms/by/provID")}}')" class="list-group-item list-group-item-action" data-toggle="list">{{$prov->provName}}</a>
                   @endforeach
-                  {{-- <a class="list-group-item list-group-item-action" data-toggle="list">Profile</a>
-                  <a class="list-group-item list-group-item-action" data-toggle="list">Messages</a>
-                  <a class="list-group-item list-group-item-action" data-toggle="list">Settings</a> --}}
                 </div>
-                <div class="list-group col-md-6">
-                  {{-- <a class="list-group-item list-group-item-action active" data-toggle="list">Home</a>
-                  <a class="list-group-item list-group-item-action" data-toggle="list">Profile</a>
-                  <a class="list-group-item list-group-item-action" data-toggle="list">Messages</a>
-                  <a class="list-group-item list-group-item-action" data-toggle="list">Settings</a> --}}
+
+                <div class="list-group col-md-6" id="listSyms">
                 </div>
+
               </div>
               <div class="row col-md-8">
+                <h4 class="text-center col-md-12">Гол нэрийн хүнсний бүтээгдэхүүний нөөцийг тодотгох</h4>
                 <div class="row col-md-12">
-                  <table>
+                  <table post-url="{{url("/log/foodReserve/refresh")}}" id="remainingProducts" class="table table-striped wrap table-bordered" style="width: 100%;">
                     <thead>
-                      <th>sda</th>
+
+                      <th>№</th>
+                      @foreach ($products as $product)
+                        <th>{{$product->productName}} /кг/</th>
+                      @endforeach
+                      <th>Огноо</th>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>lol</td>
-                      </tr>
+
                     </tbody>
                   </table>
                 </div>
@@ -41,7 +43,7 @@
 
                   <button class="btn btn-primary" type="button" name="button" id="btnAddModalOpen">Нэмэх</button>
                   <button class="btn btn-warning" type="button" name="button" id="btnEditModalOpen">Засах</button>
-                  <button class="btn btn-danger" type="button" name="button" id="btnAxaxDelete">Устгах</button>
+                  
                 </div>
               </div>
 
@@ -49,21 +51,14 @@
           </div>
         </div>
     </div>
-  </div>
+    @include('LogFoodReserve.LogFoodReserveNew')
+  {{-- </div> --}}
 
-{{-- @include('Axax.AxaxNew')
-@include('Axax.AxaxEdit') --}}
 @endsection
 
-@section('css')
+{{-- @section('css')
   <link rel="stylesheet" href="{{url("public/uaBCssJs/datatableCss/datatables.min.css")}}">
-  <style media="screen">
-  .list-group {
-    margin: 0;
-    width: 100%;
-  }
-  </style>
-@endsection
+@endsection --}}
 
 @section('js')
   <script type="text/javascript" src="{{url("public/uaBCssJs/datatableJs/datatables.min.js")}}"></script>
@@ -72,10 +67,10 @@
   <script type="text/javascript" src="{{url("public/uaBCssJs/datatableJs/datatables.init.js")}}"></script>
 
   <script type="text/javascript">
-    var getAxax = "{{url("/getAxax")}}";
+    var cols1 = <?php echo json_encode($products); ?>;
   </script>
 
-<script src="{{url("public/js/Axax/AxaxNew.js")}}"></script>
-<script src="{{url("public/js/Axax/AxaxEdit.js")}}"></script>
-<script src="{{url("public/js/Axax/AxaxDelete.js")}}"></script>
+<script src="{{url("public/js/LogFoodReserve/log_ReserveShow.js")}}"></script>
+<script src="{{url("public/js/LogFoodReserve/log_ReserveEdit.js")}}"></script>
+<script src="{{url("public/js/LogFoodReserve/log_ReserveAdd.js")}}"></script>
 @endsection

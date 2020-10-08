@@ -58,6 +58,7 @@ Route::get("/mongolia/Zavkhan", "mongolianMapsController@Zavkhan");
 
 //Hunsnii buteegdehuunii log ehelj bn
 Route::get("/log/foodReserve", "LogFoodReserveController@showHome");
+Route::post("/log/foodReserve/refresh", "LogFoodReserveController@getProductRemaingBySym");
 //hunsnii buteegdhuunii log duusch bn
 
 
