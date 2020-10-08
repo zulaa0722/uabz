@@ -15,7 +15,7 @@ $(document).ready(function(){
     $("#estatusID").val(dataRow['statusID']);
     $("#emainOrgID").val(dataRow['mainOrgID']);
 
-    var supportOrgs = dataRow['supportName'].split(';');
+    var supportOrgs = dataRow['supportOrg'].split(';');
 
     $(".esupportOrgs").prop("checked", false);
     $(".esupportOrgs").each(function(){
@@ -33,7 +33,8 @@ $(document).ready(function(){
 
   $("#btnAxaxUpdate").click(function(e){
     e.preventDefault();
-    editCode();
+
+    editCode();//
   });
 
 });
@@ -59,12 +60,14 @@ function editCode()
   }
 
   var supportOrg = "";
+  var supportOrgNames = "";
   $(".esupportOrgs").each(function(){
     if($(this).prop("checked"))
+    {
       supportOrg = supportOrg + $(this).val() + ';';
+      supportOrgNames = supportOrgNames + $(this).attr('name') + ', ';
+    }
   });
-
-  console.log(supportOrg);
 
   $.ajax({
       type: 'post',
@@ -72,19 +75,47 @@ function editCode()
       data:{
         _token: $('meta[name="csrf-token"]').attr('content'),
         fields: JSON.parse(JSON.stringify($("#frmAxaxEdit").serializeArray())),
-        supportOrgs: supportOrg
+        supportOrgs: supportOrg,
+        supportOrgNames: supportOrgNames
       },
       success:function(response){
-        console.log(response);
-          // alertify.alert(response);
-          // AxaxTableRefresh();
-          // emptyForm();
-          dataRow = "";
-          $("#modalAxaxEdit").modal("hide");
+        //console.log(response);
+        alertify.alert(response);
+        $("#modalAxaxEdit").modal("hide");
+        AxaxTableRefreshEdit(supportOrg, supportOrgNames);
+        dataRow = "";
 
       },
       error: function(XMLHttpRequest, textStatus, errorThrown) {
           alertify.error("Status: " + textStatus); alertify.error("Error: " + errorThrown);
       }
   })
+}
+function AxaxTableRefreshEdit(supportOrg, supportOrgNames)
+{
+  var elementText = $("#eaxaxTypeID option:selected").text();
+  var element = $("#eaxaxTypeID").find('option:selected');
+  var myTag = element.attr("eaxaxCount");
+  if(dataRow["number"].substr(0,4) !== elementText.substr(0,4))
+    myTag++;
+  element.attr("axaxcount", myTag);
+
+  table.rows({ selected: true })
+  .every(function (rowIdx, tableLoop, rowLoop){
+      table.cell(rowIdx, 0).data($("#elevelID").val());
+      table.cell(rowIdx, 1).data($("#estatusID").val());
+      table.cell(rowIdx, 2).data($("#emainOrgID").val());
+      table.cell(rowIdx, 3).data($("#eaxaxTypeID").val());
+      table.cell(rowIdx, 4).data(supportOrg);
+      // table.cell(rowIdx, 5).data("");
+      if(myTag <10)
+        myTag = '0'+myTag;
+      table.cell(rowIdx, 6).data(elementText.substr(0,4)+''+myTag);
+      table.cell(rowIdx, 7).data($("#eaxaxName").val());
+      table.cell(rowIdx, 8).data($("#elevelID option:selected").text());
+      table.cell(rowIdx, 9).data($("#einTime").val());
+      table.cell(rowIdx, 10).data($("#estatusID option:selected").text());
+      table.cell(rowIdx, 11).data($("#emainOrgID option:selected").text());
+      table.cell(rowIdx, 12).data(supportOrgNames);
+  }).draw();
 }

@@ -5,6 +5,26 @@
     <div class="col-md-12">
       <div class="row">
           <div class="col-xl-9">
+            <style >
+               @media print {
+                 body{
+                   visibility: hidden;
+                 }
+             #mal
+             {
+               visibility: visible;
+             }
+                 #cattleQnttDB
+                 {
+                   width: 100%;
+                   height: 100%;
+                   border: solid;
+                   table-layout: fixed;
+                   visibility: visible;
+                 }
+
+               }
+             </style>
               <div class="card">
                 <div  class="card-body">
                   <label class="text-success">Он ==> </label>
@@ -24,7 +44,7 @@
                           </div>
                       </div>
                   </div>
-                  <h4 Class="text-center">Малын тоо толгой <span class="text-success" id="headerYear">{{$year}} он</span></h4>
+                  <h4 Class="text-center" id="mal">Малын тоо толгой <span class="text-success" id="headerYear">{{$year}} он</span></h4>
                   <table id="cattleQnttDB" post-url="{{url("/get/all/cattle/quantity")}}" class="table table-striped table-bordered wrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                       <thead>
                         <tr>
@@ -42,6 +62,7 @@
                     </table>
                     <button class="btn btn-warning" type="button" name="button" id="btnAddModalOpen">Тоо толгой нэмэх</button>
                     <button class="btn btn-danger" type="button" name="button" id="btnCattleQnttDelete">Устгах</button>
+                    <button onclick="window.print()">ustgah</button>
                   </div>
                 </div>
             </div>

@@ -13,13 +13,7 @@ $(document).ready(function(){
 
 function mainCode()
 {
-    // alert(table.rows().count());
-    // AxaxTableRefresh();
-    // return;
 
-    var element = $("#axaxTypeID").find('option:selected');
-    alert(element.text);
-    return;
   var isInsert = true;
 
   if($("#axaxName").val()==""){
@@ -47,10 +41,14 @@ function mainCode()
 
   if(isInsert == false){return;}
 
-  var supportOrg = "";
+  var supportOrgIDS = "";
+  var supportOrgNames = "";
   $(".supportOrgs").each(function(){
     if($(this).prop("checked"))
-      supportOrg = supportOrg + $(this).val() + ';';
+    {
+      supportOrgIDS = supportOrgIDS + $(this).val() + ';';
+      supportOrgNames = supportOrgNames + $(this).attr('name') + ', ';
+    }
   });
 
   $.ajax({
@@ -59,20 +57,19 @@ function mainCode()
     data:{
       _token: $('meta[name="csrf-token"]').attr('content'),
       fields: JSON.parse(JSON.stringify($("#frmAxaxNew").serializeArray())),
-      orgs: supportOrg
+      supportOrgIDS: supportOrgIDS,
+      orgNames: supportOrgNames
     },
     success:function(response){
         if(response.status == "error"){
             alertify.error(response.msg);
         }
         else{
-            AxaxTableRefresh(response.id);
+            AxaxTableRefresh(response.id, supportOrgNames, supportOrgIDS);
             alertify.alert(response.msg);
         }
         $("#modalAxaxNew").modal("hide");
-        // $("#axaxDB").row.add([])
-        // emptyForm();
-        // dataRow = "";
+
     },
     error: function(jqXhr, json, errorThrown){// this are default for ajax errors
       var errors = jqXhr.responseJSON;
@@ -94,25 +91,32 @@ function emptyForm()
   $("#supportOrgID").val("-1");
 }
 
-function AxaxTableRefresh(id)
+function AxaxTableRefresh(id, supportOrgNames, supportOrgIDS)
 {
+
+  var elementText = $("#axaxTypeID option:selected").text();
+
+
   var element = $("#axaxTypeID").find('option:selected');
   var myTag = element.attr("axaxcount");
   myTag++;
   element.attr("axaxcount", myTag);
+  // alert(myTag);
+
   table.row.add( {
       "levelID": $("#levelID").val(),
       "statusID": $("#statusID").val(),
       "mainOrgID": $("#mainOrgID").val(),
       "axaxTypeID": $("#axaxTypeID").val(),
+      "supportOrg": supportOrgIDS,
       "id": id,
-      "number": '2.1.' + myTag,
+      "number": elementText.substr(0,4)+'' + myTag,
       "axaxName": $("#axaxName").val(),
       "levelName": $("#levelID option:selected").text(),
       "inTime": $("#inTime").val(),
       "statusName": $("#statusID option:selected").text(),
       "mainName": $("#mainOrgID option:selected").text(),
-      "supportName": "0"
+      "supportName": supportOrgNames
   } ).draw();
 
 }

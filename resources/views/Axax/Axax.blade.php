@@ -1,5 +1,25 @@
 @extends('layouts.layout_master')
 
+<style >
+   @media print {
+     body{
+       visibility: hidden;
+     }
+
+     #axaxDB
+     {
+       width: 100%;
+       height: 100%;
+       border: solid;
+       table-layout: fixed;
+       visibility: visible;
+     }
+     #zailaa
+     {
+       visibility: visible;
+     }
+   }
+ </style>
 @section('content')
   <div class="row">
     <div class="col-md-12">
@@ -11,6 +31,7 @@
                   <table id="axaxDB" class="table table-bordered stripe hover cell-border order-column" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                       <thead>
                         <tr class="text-center">
+                          <th style="display:none;"></th>
                           <th style="display:none;"></th>
                           <th style="display:none;"></th>
                           <th style="display:none;"></th>
@@ -37,6 +58,7 @@
                               <td style="display:none;"></td>
                               <td style="display:none;"></td>
                               <td style="display:none;"></td>
+                              <td style="display:none;"></td>
                               <td colspan="7">{{$axaxType->typeName}}</td>
                               <td style="display:none;"></td>
                               <td style="display:none;"></td>
@@ -55,6 +77,7 @@
                                 <td style="display:none;">{{$axax->statusID}}</td>
                                 <td style="display:none;">{{$axax->mainOrgID}}</td>
                                 <td style="display:none;">{{$axax->typeID}}</td>
+                                <td style="display:none;">{{$axax->supportOrg}}</td>
                                 <td style="display:none;">{{$axax->id}}</td>
                                 @if ($i < 10)
                                   <td>2.{{$j}}.0{{$i}}</td>
@@ -66,17 +89,7 @@
                                 <td>{{$axax->inTime}}</td>
                                 <td>{{$axax->statusName}}</td>
                                 <td>{{$axax->abbrName}}</td>
-                                <td>
-                                  @php
-                                    $orgs = explode(';', $axax->supportOrg);
-                                    for($n=0; $n<count($orgs); $n++)
-                                    {
-                                      echo $orgs[$n].' ';
-                                    }
-                                  @endphp
-                                  {{-- {{$axax->supportOrg}} --}}
-
-                                </td>
+                                <td>{{$axax->supportOrgNames}}</td>
                               </tr>
                               @php
                                 $i++;
@@ -117,6 +130,14 @@
       #axaxDB .mergedColumn{
         cursor: default;
       }
+
+
+      /* #zailaa
+      {
+        visibility: visible;
+      } */
+    }
+
 </style>
 @endsection
 
@@ -158,7 +179,7 @@
           "select": {style : 'single' },
           "stateSave": true,
           // "ordering": false,
-          "order": [[5, 'asc']],
+          "order": [[6, 'asc']],
            "columnDefs": [{
               "targets": "_all",
               "orderable": false
@@ -168,6 +189,7 @@
             { data: "statusID", name: "statusID", visible: false},
             { data: "mainOrgID", name: "mainOrgID", visible: false},
             { data: "axaxTypeID", name: "axaxTypeID", visible: false},
+            { data: "supportOrg", name: "supportOrg", visible: false},
             { data: "id", name: "id", visible: false},
             { data: "number", name: "number"},
             { data: "axaxName", name: "axaxName"},
