@@ -54,8 +54,6 @@ class AxaxController extends Controller
 
   public function store(Request $req)
   {
-    // return $req->fields[2]["value"];
-
     try{
       $insertAxax = new Axax;
       $insertAxax->typeID = $req->fields[0]['value'];

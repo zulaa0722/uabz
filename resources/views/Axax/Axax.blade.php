@@ -66,7 +66,17 @@
                                 <td>{{$axax->inTime}}</td>
                                 <td>{{$axax->statusName}}</td>
                                 <td>{{$axax->abbrName}}</td>
-                                <td>{{$axax->supportOrg}}</td>
+                                <td>
+                                  @php
+                                    $orgs = explode(';', $axax->supportOrg);
+                                    for($n=0; $n<count($orgs); $n++)
+                                    {
+                                      echo $orgs[$n].' ';
+                                    }
+                                  @endphp
+                                  {{-- {{$axax->supportOrg}} --}}
+
+                                </td>
                               </tr>
                               @php
                                 $i++;

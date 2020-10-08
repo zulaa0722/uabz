@@ -10,7 +10,7 @@
             </div>
             <div class="modal-body">
               <form id="frmAxaxEdit" action="" method="post">
-                
+
                 <input type="hidden" name="rowID" id="rowID">
                 <div class="form-group row">
                   <div class="col-md-6">
@@ -74,7 +74,7 @@
                   <label>Дэмжлэг үзүүлэх байгууллагууд:</label><br>
                   @foreach ($organizations as $organization)
                     <label class="form-check-label">
-                      <input type="checkbox" class="esupportOrgs" name="" id="" value="{{$organization->id}}">&nbsp;{{$organization->abbrName}}&nbsp;&nbsp;&nbsp;
+                      <input type="checkbox" class="esupportOrgs" name="{{$organization->abbrName}}" id="" value="{{$organization->id}}">&nbsp;{{$organization->abbrName}}&nbsp;&nbsp;&nbsp;
                     </label>
                     {{-- <option value="{{$organization->id}}">{{$organization->abbrName}}</option> --}}
                   @endforeach

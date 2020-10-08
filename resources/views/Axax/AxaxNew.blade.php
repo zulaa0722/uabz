@@ -79,7 +79,7 @@
                   <label>Дэмжлэг үзүүлэх байгууллагууд:</label><br>
                   @foreach ($organizations as $organization)
                     <label class="form-check-label">
-                      <input type="checkbox" class="supportOrgs" name="" id="" value="{{$organization->id}}">&nbsp;{{$organization->abbrName}}&nbsp;&nbsp;&nbsp;
+                      <input type="checkbox" class="supportOrgs" name="{{$organization->abbrName}}" id="" value="{{$organization->id}}">&nbsp;{{$organization->abbrName}}&nbsp;&nbsp;&nbsp;
                     </label>
                     {{-- <option value="{{$organization->id}}">{{$organization->abbrName}}</option> --}}
                   @endforeach

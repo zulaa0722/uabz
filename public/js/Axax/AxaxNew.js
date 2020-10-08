@@ -16,6 +16,10 @@ function mainCode()
     // alert(table.rows().count());
     // AxaxTableRefresh();
     // return;
+
+    var element = $("#axaxTypeID").find('option:selected');
+    alert(element.text);
+    return;
   var isInsert = true;
 
   if($("#axaxName").val()==""){
@@ -110,5 +114,5 @@ function AxaxTableRefresh(id)
       "mainName": $("#mainOrgID option:selected").text(),
       "supportName": "0"
   } ).draw();
-  
+
 }
