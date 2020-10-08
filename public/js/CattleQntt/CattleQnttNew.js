@@ -126,10 +126,6 @@ function mainCode()
           alertify.alert(response.msg);
         }
         else{
-<<<<<<< HEAD
-          // console.log(response.msg);
-=======
->>>>>>> c371e2cacad0fb4abb1b820f39722b58d708cf22
           alertify.error(response.msg);
         }
     }
