@@ -1,43 +1,68 @@
-function aimag(aimagCode, url){
-    $.ajax({
-      type:"post",
-      url:url,
-      data:{
-          _token:$('meta[name="csrf-token"]').attr('content'),
-          provID:aimagCode
-      },
-      success:function(res){
-          $("#listSyms").empty();
-          $("#listSyms").append("<label>Сумаа сонгоно уу.</label>");
-          $.each(res, function(key, val){
-              // alert(val.symName);
-              var atag = '<a href="#" onclick="getSymData(' + val.symID + ', ' + val.id + ')" class="list-group-item list-group-item-action" data-toggle="list">' + val.symName + '</a>';
-              $("#listSyms").append(atag);
-          });
+$(document).ready(function(){
+    $("#cmbProv").change(function(){
+      if($(this).val() == "0"){
+          $("#divSums").addClass('d-none');
+          return;
       }
+      $("#divSums").removeClass('d-none');
+      $.ajax({
+        type:"post",
+        url:$("#cmbProv").attr('post-url'),
+        data:{
+            _token:$('meta[name="csrf-token"]').attr('content'),
+            provID:$("#cmbProv").val()
+        },
+        success:function(res){
+            $('#cmbSum').empty();
+            $("#cmbSum").append(new Option("Сонгоно уу", "0"));
+            $.each(res, function(key, val){
+                $("#cmbSum").append(new Option(val.symName, val.symID));
+                $('#cmbSum').attr('danger-id', val.id);
+                // var atag = '<a href="#" onclick="getSymData(' + val.symID + ', ' + val.id + ')" class="list-group-item list-group-item-action" data-toggle="list">' + val.symName + '</a>';
+                // $("#listSyms").append(atag);
+            });
+        }
+      });
     });
-}
+});
 
-function getSymData(symID, dangerID){
-  refresh(symID, dangerID);
-}
+$(document).ready(function(){
+    $("#cmbSum").change(function(){
+        if($(this).val() == "0"){
+          $("#lblProv").text("");
+          $("#lblSum").text("");
+        }
+        else{
+          $("#lblProv").text($("#cmbProv option:selected").text() + " аймгийн ");
+          $("#lblSum").text($("#cmbSum option:selected").text() + " сумын ");
+        }
+        refresh($(this).val(), $(this).attr('danger-id'));
+    });
+});
 
 function refresh(symID, dangerID){
 
   $('#cattleDB').dataTable().fnDestroy();
   cols = [
     { data: "number", name: "number"},
-    { data: "provID", name: "provID"},
-    { data: "sumID", name: "sumID"}
+    { data: "date", name: "date"}
   ];
-  $.each(cols1, function(key, val){
-    alert(val.id);
+  $.each(cattlesCols, function(key, val){
     item = {};
-    item["data"] = '' + val.cattleName + '';
-    item["name"] = '' + val.cattleName + '';
+    item["data"] = 'qtt' + val.id + '';
+    item["name"] = 'qtt' + val.id + '';
+    cols.push(item);
+    item = {};
+    item["data"] = 'toSheep' + val.id + '';
+    item["name"] = 'toSheep' + val.id + '';
+    cols.push(item);
+    item = {};
+    item["data"] = 'toKG' + val.id + '';
+    item["name"] = 'toKG' + val.id + '';
     cols.push(item);
   });
-console.log(cols);
+// console.log(cols);
+// return;
   table = $('#cattleDB').DataTable({
     "language": {
       "lengthMenu": "_MENU_ мөрөөр харах",
@@ -62,12 +87,15 @@ console.log(cols);
     "fixedHeader": true,
     "scrollX":true,
     "processing": true,
+    "scrollX": true,
     "ajax":{
         "url": $("#cattleDB").attr("post-url"),
         "dataType": "json",
         "type": "post",
         "data":{
-            _token: $('meta[name="csrf-token"]').attr('content')
+            _token: $('meta[name="csrf-token"]').attr('content'),
+            sumCode:symID,
+            dangerID:dangerID
           }
      },
      // "initComplete":function( settings, json){

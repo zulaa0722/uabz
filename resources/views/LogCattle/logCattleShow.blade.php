@@ -1,55 +1,62 @@
 @extends('layouts.layout_master')
 
 @section('content')
-  <div class="row">
     <div class="col-md-12">
         <div class="card">
-          <div  class="card-body">
-            <h4 Class="text-center">Гол нэрийн хүнсний бүтээгдэхүүний нөөцийг тодотгох</h4>
-            <div class="row">
-              <div class="row col-md-4">
-                <div class="list-group col-md-6">
-                  <label>Аймаг аа сонгоно уу.</label>
-                  @foreach ($provs as $prov)
-                    <a href="#" onclick="aimag({{$prov->provID}}, '{{url("/get/dangered/syms/by/provID")}}')" class="list-group-item list-group-item-action" data-toggle="list">{{$prov->provName}}</a>
-                  @endforeach
+          <div class="card-body">
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-md-5 col-form-label text-md-right">Аймгаа сонгоно уу=></label>
+                    <div class="col-md-6">
+                      <select post-url="{{url("/get/dangered/syms/by/provID")}}" class="form-control" id="cmbProv" name="">
+                        <option value="0">Сонгоно уу</option>
+                        @foreach ($provs as $prov)
+                          <option value="{{$prov->provID}}">{{$prov->provName}}</option>
+                        @endforeach
+                      </select>
+                    </div>
+                  </div>
                 </div>
-                <div class="list-group col-md-6" id="listSyms">
-
-
+                <div class="col-md-6 d-none" id="divSums">
+                  <div class="form-group row">
+                    <label class="col-md-5 col-form-label text-md-right">Сумаа сонгоно уу=></label>
+                    <div class="col-md-6">
+                      <select class="form-control" id="cmbSum" name="">
+                        <option value="0">Сонгоно уу</option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div class="row col-md-8">
+
+              <h4 class="text-center"><label class="bg-info" id="lblProv"></label> <label class="bg-info" id="lblSum"></label> малын тоо толгойны мэдээлэл</h4>
+              <table post-url="{{url("/get/log/cattles")}}" id="cattleDB" class="table table-striped table-bordered" style="border-collapse: collapse; border-spacing: 0; width: 40%;">
+                  <thead>
+                    <tr>
+                      <th rowspan="2">№</th>
+                      <th rowspan="2">Огноо</th>
+                      @foreach ($cattles as $cattle)
+                        <th style="text-align:center;" colspan="3">{{$cattle->cattleName}}</th>
+                      @endforeach
+                    </tr>
+                    <tr>
+                      @foreach ($cattles as $cattle)
+                        <th>Тоо</th>
+                        <th>Хонин толгой</th>
+                        <th>Кг</th>
+                      @endforeach
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
                 <div class="row col-md-12">
-                  <table post-url="{{url("/get/log/cattles")}}" id="cattleDB" class="table table-striped table-bordered nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                      <thead>
-                        <tr>
-                          <th>№</th>
-                          <th>№</th>
-                          <th>№</th>
-                          @foreach ($cattles as $cattle)
-                            <th>{{$cattle->cattleName}}</th>
-                          @endforeach
-                          {{-- <th>Огноо</th> --}}
-                        </tr>
-                      </thead>
-                      <tbody>
-                      </tbody>
-                    </table>
-                </div>
-                <div class="row col-md-12">
-
                   <button class="btn btn-primary" type="button" name="button" id="btnAddModalOpen">Нэмэх</button>
                   <button class="btn btn-warning" type="button" name="button" id="btnEditModalOpen">Засах</button>
-                  <button class="btn btn-danger" type="button" name="button" id="btnAxaxDelete">Устгах</button>
+                  <button class="btn btn-danger" type="button" name="button" id="btnLogCattleDelete">Устгах</button>
                 </div>
-              </div>
-
-            </div>
           </div>
         </div>
     </div>
-  </div>
 @endsection
 
 @section('css')
@@ -72,7 +79,42 @@
   <script type="text/javascript" src="{{url("public/uaBCssJs/datatableJs/datatables.init.js")}}"></script>
 
   <script type="text/javascript">
-    var cols1 = <?php echo json_encode($cattles); ?>;
+    var table="";
+    var cattlesCols = <?php echo json_encode($cattles); ?>;
+    console.log(cattlesCols);
+    $(document).ready(function(){
+      table = $('#cattleDB').DataTable({
+        "language": {
+          "lengthMenu": "_MENU_ мөрөөр харах",
+          "zeroRecords": "Хайлт илэрцгүй байна",
+          "info": "Нийт _PAGES_ -аас _PAGE_-р хуудас харж байна ",
+          "infoEmpty": "Хайлт илэрцгүй",
+          "infoFiltered": "(_MAX_ мөрөөс хайлт хийлээ)",
+          "sSearch": "Хайх: ",
+          "paginate": {
+            "previous": "Өмнөх",
+            "next": "Дараахи"
+          },
+          "select": {
+            rows: ""
+          }
+        },
+        select: {
+          style: 'single'
+        },
+        "stateSave": true,
+        "orderCellsTop": true,
+        "fixedHeader": true,
+        "scrollX":true,
+        "processing": true,
+        "scrollX": true,
+        "order": [[1, 'asc']],
+         "columnDefs": [{
+            "targets": "_all",
+            "orderable": false
+         }],
+      });
+    });
   </script>
 
   <script src="{{url("public/js/logCattle/logCattleShow.js")}}"></script>

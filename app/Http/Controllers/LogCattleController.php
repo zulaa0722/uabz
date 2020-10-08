@@ -30,27 +30,34 @@ class LogCattleController extends Controller
     }
 
     public function getCattlesLogBySymCode(Request $req){
-        // $logCattles = DB::table('log_cattle')
-        //     ->join('tb_cattle', 'log_cattle.cattleID')
-        $syms = DB::table("tb_sym")
-            ->join("tb_province", "tb_sym.provID", "=", "tb_province.id")
-            ->select("tb_sym.*", "tb_province.provName")
-            ->where('tb_sym.id', '<', 20)
+        $logSums = DB::table("log_cattle")
+            ->where('sumCode', '=', $req->sumCode)
+            ->where('dangerID', '=', $req->dangerID)
+            ->select('sumCode', 'date', 'dangerID')
+            ->groupBy('sumCode', 'date', 'dangerID')
             ->get();
+
+        $cattles = Cattle::all();
+
         $arrCattleQtt = [];
         $rowCount = 1;
-        $cattles = Cattle::all();
-        $cols=[];
-
-        foreach ($syms as $sym) {
+        foreach ($logSums as $logSum) {
             $datarow = [];
             $datarow['number'] = $rowCount;
-            $datarow += ['provID'=>$sym->provID];
-            $datarow += ['sumID'=>$sym->id];
+            $datarow['date'] = $logSum->date;
             foreach ($cattles as $cattle) {
-              // $cattle->id => $cattle->cattleName,
-              $datarow += ["$cattle->cattleName" => $cattle->id];
-              // $datarow += ["$cattle->id" => $cattle->id];
+                $logCatRow = $this->getLogCattleCountBySumCodeDateDangerID($logSum->sumCode, $logSum->date, $logSum->dangerID, $cattle->id);
+                if($logCatRow == null){
+                    $datarow += ["qtt$cattle->id" => ""];
+                    $datarow += ["toSheep$cattle->id" => ""];
+                    $datarow += ["toKG$cattle->id" => ""];
+                }
+                else{
+                    $datarow += ["qtt$cattle->id" => $logCatRow->quantity];
+                    $datarow += ["toSheep$cattle->id" => $logCatRow->toSheep];
+                    $datarow += ["toKG$cattle->id" => $logCatRow->toKG];
+                }
+
             }
             array_push($arrCattleQtt, $datarow);
             $rowCount++;
@@ -59,5 +66,16 @@ class LogCattleController extends Controller
           ->make(true);
     }
 
+    public function getLogCattleCountBySumCodeDateDangerID($sumCode, $date, $danger, $cattleID){
+        $cattleCount = DB::table('log_cattle')
+            ->where('sumCode', '=', $sumCode)
+            ->where('date', '=', $date)
+            ->where('dangerID', '=', $danger)
+            ->where('cattleID', '=', $cattleID)
+            ->select('quantity', 'toSheep', 'toKG')
+            ->first();
+        return $cattleCount;
+    }
 
+    
 }
