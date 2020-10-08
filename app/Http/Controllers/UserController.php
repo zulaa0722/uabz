@@ -34,9 +34,10 @@ class UserController extends Controller
 
     public function getUsers(){
         $users = DB::table('users')
-            ->join('tb_province', 'users.aimagCode', '=', 'tb_province.provCode')
             ->join('users_permission', 'users.permission', '=', 'users_permission.id')
-            ->select('users.*', 'users_permission.permissionName', 'tb_province.provName')
+            ->select('users.*', 'users_permission.permissionName',
+            DB::raw('(select provName from tb_province where provCode=users.aimagCode) as provName'),
+            DB::raw('(select abbrName from tb_organizations where id=users.organizationID) as abbrOrgName'))
             ->get();
         return DataTables::of($users)
           ->make(true);

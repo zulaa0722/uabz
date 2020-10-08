@@ -43,3 +43,21 @@ $(document).ready(function(){
         $("#frmNewUser").submit();
     });
 });
+
+
+$(document).ready(function(){
+    $("#cmbPermission").change(function(){
+        if($(this).val() == "1" || $(this).val() == "0"){
+            $("#divProvince").addClass('d-none');
+            $("#divOrganization").addClass('d-none');
+        }
+        if($(this).val() == "2"){
+            $("#divProvince").removeClass('d-none');
+            $("#divOrganization").addClass('d-none');
+        }
+        if($(this).val() == "3"){
+            $("#divProvince").addClass('d-none');
+            $("#divOrganization").removeClass('d-none');
+        }
+    });
+});

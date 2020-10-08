@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use App\Organization;
 
 class RegisterController extends Controller
 {
@@ -53,7 +54,8 @@ class RegisterController extends Controller
             $provinces = DB::table('tb_province')
                 ->orderBy('provName', 'ASC')
                 ->get();
-            return view('auth.register', compact('provinces'));
+            $organizations = Organization::orderBy('fullName')->get();
+            return view('auth.register', compact('provinces', 'organizations'));
         }
     }
 
@@ -86,7 +88,8 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'api_token' => Str::random(60),
             'permission' => $data['permission'],
-            'aimagCode' => $data['province']
+            'aimagCode' => $data['province'],
+            'organizationID' => $data['organization']
         ]);
     }
 

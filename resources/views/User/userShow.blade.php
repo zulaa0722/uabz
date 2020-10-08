@@ -16,6 +16,8 @@
                 <th>Хэрэглэгчийн эрх</th>
                 <th>Аймгийн код</th>
                 <th>Аймгийн нэр</th>
+                <th>Байгууллагын код</th>
+                <th>Байгууллагын нэр</th>
               </tr>
             </thead>
             <tbody>
@@ -85,6 +87,13 @@
           "processing": true,
           "serverSide": true,
           "stateSave": true,
+          "fnRowCallback": function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+            if (aData['permission'] == "1") {
+              $('td', nRow).css('background-color', '#4ac3b3');
+            } else if (aData['permission'] == "2") {
+              $('td', nRow).css('background-color', 'Orange');
+            }
+          },
           "ajax":{
                    "url": "{{url('/get/users')}}",
                    "dataType": "json",
@@ -93,6 +102,7 @@
                         _token: $('meta[name="csrf-token"]').attr('content')
                       }
                  },
+
           "columns": [
             { data: "id", name: "id",  render: function (data, type, row, meta) {
           return meta.row + meta.settings._iDisplayStart + 1;
@@ -102,7 +112,9 @@
             { data: "permission", name: "permission", "visible":false},
             { data: "permissionName", name: "permissionName"},
             { data: "aimagCode", name: "aimagCode", "visible":false},
-            { data: "provName", name: "provName"}
+            { data: "provName", name: "provName"},
+            { data: "organizationID", name: "organizationID", "visible":false},
+            { data: "abbrOrgName", name: "abbrOrgName"}
             ]
         });
 
