@@ -104,6 +104,7 @@ Route::post("/sym/insert", "SymController@store");
 Route::post("/sym/edit", "SymController@update");
 Route::post("/sym/delete", "SymController@delete");
 Route::post("/sym/get/by/provID", "SymController@getSymByProvinceID");
+Route::post("/get/dangered/syms/by/provID", "SymController@getDangeredSymByProvID");
 
 
 Route::post("/declare/danger/by/sum", "DangerController@declareDangerBySum");
