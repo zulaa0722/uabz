@@ -70,11 +70,12 @@
                                     <option value="0">Сонгоно уу</option>
                                     <option value="1">Бүрэн эрх</option>
                                     <option value="2">Аймгийн эрх</option>
+                                    <option value="3">Байгууллагын эрх</option>
                                 </select>
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="form-group row d-none" id="divProvince">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Аймаг:</label>
 
                             <div class="col-md-6">
@@ -82,6 +83,19 @@
                                     <option value="0">Сонгоно уу</option>
                                     @foreach ($provinces as $province)
                                         <option value="{{$province->provCode}}">{{$province->provName}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row d-none" id="divOrganization">
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Албан байгууллага:</label>
+
+                            <div class="col-md-6">
+                                <select class="form-control" id="cmbOrganization" name="organization">
+                                    <option value="0">Сонгоно уу</option>
+                                    @foreach ($organizations as $organization)
+                                        <option value="{{$organization->id}}">{{$organization->fullName}}</option>
                                     @endforeach
                                 </select>
                             </div>
