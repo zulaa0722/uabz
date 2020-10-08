@@ -99,8 +99,8 @@ class SymController extends Controller
       $sums = DB::table('tb_danger_sym')
           ->join('tb_danger', 'tb_danger_sym.danger_id', '=', 'tb_danger.id')
           ->join('tb_sym', 'tb_danger_sym.symID', '=', 'tb_sym.symCode')
-          ->groupBy('tb_danger_sym.symID', 'tb_sym.symName')
-          ->select('tb_danger_sym.symID', 'tb_sym.symName')
+          ->groupBy('tb_danger_sym.symID', 'tb_sym.symName', 'tb_danger.id')
+          ->select('tb_danger_sym.symID', 'tb_sym.symName', 'tb_danger.id')
           ->where('tb_danger.status', '=', 1)
           ->where('tb_danger_sym.provID', '=', $req->provID)
           ->get();

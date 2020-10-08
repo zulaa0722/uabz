@@ -11,13 +11,13 @@ function aimag(aimagCode, url){
           $("#listSyms").append("<label>Сумаа сонгоно уу.</label>");
           $.each(res, function(key, val){
               // alert(val.symName);
-              var atag = '<a href="#" onclick="getSymData(' + val.symID + ')" class="list-group-item list-group-item-action" data-toggle="list">' + val.symName + '</a>';
+              var atag = '<a href="#" onclick="getSymData(' + val.symID + ', ' + val.id + ')" class="list-group-item list-group-item-action" data-toggle="list">' + val.symName + '</a>';
               $("#listSyms").append(atag);
           });
       }
     });
 }
 
-function getSymData(symID){
-  alert(symID);
+function getSymData(symID, dangerID){
+  alert(dangerID);
 }
