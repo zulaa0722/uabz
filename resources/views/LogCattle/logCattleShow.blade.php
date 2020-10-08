@@ -3,14 +3,37 @@
 @section('content')
   <div class="row">
     <div class="col-md-12">
-      <div class="card">
-        <div class="card-body">
-          <h4 class="text-center">Малын хэрэглээ</h4>
-          <div class="form-group row">
-            
+        <div class="card">
+          <div  class="card-body">
+            <h4 Class="text-center">Гол нэрийн хүнсний бүтээгдэхүүний нөөцийг тодотгох</h4>
+            <div class="row">
+              <div class="row col-md-4">
+                <div class="list-group col-md-6">
+                  <label>Аймаг аа сонгоно уу.</label>
+                  @foreach ($provs as $prov)
+                    <a href="#" onclick="aimag({{$prov->provID}}, '{{url("/get/dangered/syms/by/provID")}}')" class="list-group-item list-group-item-action" data-toggle="list">{{$prov->provName}}</a>
+                  @endforeach
+                </div>
+                <div class="list-group col-md-6" id="listSyms">
+                    
+
+                </div>
+              </div>
+              <div class="row col-md-8">
+                <div class="row col-md-12">
+
+                </div>
+                <div class="row col-md-12">
+
+                  <button class="btn btn-primary" type="button" name="button" id="btnAddModalOpen">Нэмэх</button>
+                  <button class="btn btn-warning" type="button" name="button" id="btnEditModalOpen">Засах</button>
+                  <button class="btn btn-danger" type="button" name="button" id="btnAxaxDelete">Устгах</button>
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
-      </div>
     </div>
   </div>
 @endsection
