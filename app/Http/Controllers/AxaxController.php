@@ -52,49 +52,46 @@ class AxaxController extends Controller
 
   }
 
-  public function getAxaxData(Request $req)
-  {
-    try{
-      $axax = DB::table("tb_axax")
-        ->join("tb_level", "tb_axax.levelID", "=", "tb_level.id")
-        ->join("tb_organizations", "tb_axax.mainOrgID", "=", "tb_organizations.id")
-        ->join("tb_status", "tb_axax.statusID", "=", "tb_status.id")
-        ->select("tb_axax.*", "tb_level.levelName", "tb_status.statusName", "tb_organizations.abbrName as mainName",
-                  DB::raw('(select tb_organizations.abbrName from tb_organizations where tb_organizations.id = tb_axax.supportOrgID) as supportName'))->get();
-      return DataTables::of($axax)
-        ->make(true);
-    }catch(\Exception $e){
-      return "Серверийн алдаа!!! Веб мастерт хандана уу";
-    }
-  }
   public function store(Request $req)
   {
+    // return $req->fields[2]["value"];
+
     try{
       $insertAxax = new Axax;
-      $insertAxax->axaxName = $req->axaxName;
-      $insertAxax->levelID = $req->levelID;
-      $insertAxax->inTime = $req->inTime;
-      $insertAxax->mainOrgID = $req->mainOrgID;
-      $insertAxax->supportOrgID = $req->supportOrgID;
+      $insertAxax->typeID = $req->fields[0]['value'];
+      $insertAxax->axaxName = $req->fields[1]['value'];
+      $insertAxax->levelID = $req->fields[4]['value'];
+      $insertAxax->statusID = $req->fields[3]['value'];
+      $insertAxax->inTime = $req->fields[2]['value'];
+      $insertAxax->mainOrgID = $req->fields[5]['value'];
+      $insertAxax->comment = $req->fields[6]['value'];
+      $insertAxax->supportOrg = $req->orgs;
+
       $insertAxax->save();
       return "Амжилттай хадгаллаа";
     }catch(\Exception $e){
+      // return $e;
       return "Серверийн алдаа!!! Веб мастерт хандана уу";
     }
   }
 
   public function update(Request $req)
   {
+    // return $req;
     try{
-      $updateAxax = Axax::find($req->rowID);
-      $updateAxax->axaxName = $req->axaxName;
-      $updateAxax->levelID = $req->levelID;
-      $updateAxax->inTime = $req->inTime;
-      $updateAxax->mainOrgID = $req->mainOrgID;
-      $updateAxax->supportOrgID = $req->supportOrgID;
+      $updateAxax = Axax::find($req->fields[0]['value']);
+      $updateAxax->typeID = $req->fields[1]['value'];
+      $updateAxax->axaxName = $req->fields[2]['value'];
+      $updateAxax->inTime = $req->fields[3]['value'];
+      $updateAxax->statusID = $req->fields[4]['value'];
+      $updateAxax->levelID = $req->fields[5]['value'];
+      $updateAxax->mainOrgID = $req->fields[6]['value'];
+      $updateAxax->supportOrg = $req->supportOrgs;
+      $updateAxax->comment = $req->fields[7]['value'];
       $updateAxax->save();
       return "Амжилттай заслаа";
     }catch(\Exception $e){
+      // return $e;
         return "Серверийн алдаа!!! Веб мастерт хандана уу";
     }
   }

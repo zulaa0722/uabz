@@ -6,14 +6,27 @@ $(document).ready(function(){
         return;
     }
 
+    // alert(dataRow['id']);
     $("#rowID").val(dataRow['id']);
+    $("#eaxaxTypeID").val(dataRow['axaxTypeID']);
     $("#eaxaxName").val(dataRow['axaxName']);
     $("#einTime").val(dataRow['inTime']);
     $("#elevelID").val(dataRow['levelID']);
     $("#estatusID").val(dataRow['statusID']);
     $("#emainOrgID").val(dataRow['mainOrgID']);
-    $("#esupportOrgID").val(dataRow['supportOrgID']);
 
+    var supportOrgs = dataRow['supportName'].split(';');
+
+    $(".esupportOrgs").prop("checked", false);
+    $(".esupportOrgs").each(function(){
+      for(var i=0; i<supportOrgs.length; i++){
+        if(supportOrgs[i] !== "")
+        {
+          if($(this).val() === supportOrgs[i])
+            $(this).prop("checked", true);
+        }
+      }
+    });
 
     $("#modalAxaxEdit").modal("show");
   });
@@ -45,19 +58,27 @@ function editCode()
     return;
   }
 
-  if($("#esupportOrgID").val()=="-1"){
-    alertify.error("Та заавал ДЭМЖЛЭГ ҮЗҮҮЛЭХ БАЙГУУЛЛАГА сонгоно уу!!!");
-    return;
-  }
+  var supportOrg = "";
+  $(".esupportOrgs").each(function(){
+    if($(this).prop("checked"))
+      supportOrg = supportOrg + $(this).val() + ';';
+  });
+
+  console.log(supportOrg);
 
   $.ajax({
       type: 'post',
       url: axaxEditUrl,
-      data:$("#frmAxaxEdit").serialize(),
+      data:{
+        _token: $('meta[name="csrf-token"]').attr('content'),
+        fields: JSON.parse(JSON.stringify($("#frmAxaxEdit").serializeArray())),
+        supportOrgs: supportOrg
+      },
       success:function(response){
-          alertify.alert(response);
-          AxaxTableRefresh();
-          emptyForm();
+        console.log(response);
+          // alertify.alert(response);
+          // AxaxTableRefresh();
+          // emptyForm();
           dataRow = "";
           $("#modalAxaxEdit").modal("hide");
 

@@ -11,6 +11,11 @@
                   <table id="axaxDB" class="table table-bordered stripe hover cell-border order-column" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                       <thead>
                         <tr class="text-center">
+                          <th style="display:none;"></th>
+                          <th style="display:none;"></th>
+                          <th style="display:none;"></th>
+                          <th style="display:none;"></th>
+                          <th style="display:none;"></th>
                           <th>№</th>
                           <th>Авч хэрэгжүүлэх <br> арга хэмжээ</th>
                           <th>Зэрэг</th>
@@ -27,6 +32,11 @@
                         @endphp
                           @foreach ($axaxTypes as $axaxType)
                             <tr style="background-color: #ccc; text-align: center;" class="mergedColumn">
+                              <td style="display:none;"></td>
+                              <td style="display:none;"></td>
+                              <td style="display:none;"></td>
+                              <td style="display:none;"></td>
+                              <td style="display:none;"></td>
                               <td colspan="7">{{$axaxType->typeName}}</td>
                               <td style="display:none;"></td>
                               <td style="display:none;"></td>
@@ -41,13 +51,18 @@
                             @endphp
                             @foreach ($axaxes as $axax)
                               <tr axaxID="{{$axax->id}}">
+                                <td style="display:none;">{{$axax->levelID}}</td>
+                                <td style="display:none;">{{$axax->statusID}}</td>
+                                <td style="display:none;">{{$axax->mainOrgID}}</td>
+                                <td style="display:none;">{{$axax->typeID}}</td>
+                                <td style="display:none;">{{$axax->id}}</td>
                                 <td>2.{{$j}}.{{$i}}</td>
                                 <td>{{$axax->axaxName}}</td>
                                 <td>{{$axax->levelName}}</td>
                                 <td>{{$axax->inTime}}</td>
                                 <td>{{$axax->statusName}}</td>
                                 <td>{{$axax->abbrName}}</td>
-                                <td></td>
+                                <td>{{$axax->supportOrg}}</td>
                               </tr>
                               @php
                                 $i++;
@@ -130,7 +145,12 @@
           "stateSave": true,
           "ordering": false,
           "columns": [
-            { data: "id", name: "id"},
+            { data: "levelID", name: "levelID", visible: false},
+            { data: "statusID", name: "statusID", visible: false},
+            { data: "mainOrgID", name: "mainOrgID", visible: false},
+            { data: "axaxTypeID", name: "axaxTypeID", visible: false},
+            { data: "id", name: "id", visible: false},
+            { data: "number", name: "number"},
             { data: "axaxName", name: "axaxName"},
             { data: "levelName", name: "levelName"},
             { data: "inTime", name: "inTime"},
@@ -149,7 +169,7 @@
               $(this).addClass('selected');
               var currow = $(this).closest('tr');
               // alert($(this).attr("axaxID"));
-              //dataRow = $('#axaxDB').DataTable().row(currow).data();
+              dataRow = $('#axaxDB').DataTable().row(currow).data();
           }
           });
   });

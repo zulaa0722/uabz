@@ -3,6 +3,7 @@ $(document).ready(function(){
         $("#modalAxaxNew").modal("show");
     });
 
+
   $("#btnAxaxAdd").click(function(e){
         e.preventDefault();
         mainCode();
@@ -26,10 +27,6 @@ function mainCode()
     alertify.error("Та заавал ЗЭРЭГ сонгоно уу!!!");
     isInsert = false;
   }
-  if($("#inTime").val()==""){
-    alertify.error("Та заавал Ц (Шийдвэр гарсан хугацаа) оруулана уу!!!");
-    isInsert = false;
-  }
 
   if($("#mainOrgID").val()=="-1"){
     alertify.error("Та заавал УДИРДАН ЗОХИОН БАЙГУУЛАХ БАЙГУУЛЛАГА сонгоно уу!!!");
@@ -43,15 +40,27 @@ function mainCode()
 
   if(isInsert == false){return;}
 
+  var supportOrg = "";
+  $(".supportOrgs").each(function(){
+    if($(this).prop("checked"))
+      supportOrg = supportOrg + $(this).val() + ';';
+  });
+
   $.ajax({
     type:'post',
-    url:axaxNew,
-    data:$("#frmAxaxNew").serialize(),
+    url: axaxNew,
+    data:{
+      _token: $('meta[name="csrf-token"]').attr('content'),
+      fields: JSON.parse(JSON.stringify($("#frmAxaxNew").serializeArray())),
+      orgs: supportOrg
+    },
     success:function(response){
         alertify.alert( response);
+        $("#modalAxaxNew").modal("hide");
+        // $("#axaxDB").row.add([])
         AxaxTableRefresh();
-        emptyForm();
-        dataRow = "";
+        // emptyForm();
+        // dataRow = "";
     },
     error: function(jqXhr, json, errorThrown){// this are default for ajax errors
       var errors = jqXhr.responseJSON;
@@ -75,51 +84,5 @@ function emptyForm()
 
 function AxaxTableRefresh()
 {
-  $('#axaxDB').DataTable().destroy();
-   table = $('#axaxDB').DataTable({
-    "language": {
-            "lengthMenu": "_MENU_ мөрөөр харах",
-            "zeroRecords": "Хайлт илэрцгүй байна",
-            "info": "Нийт _PAGES_ -аас _PAGE_-р хуудас харж байна ",
-            "infoEmpty": "Хайлт илэрцгүй",
-            "infoFiltered": "(_MAX_ мөрөөс хайлт хийлээ)",
-            "sSearch": "Хайх: ",
-            "paginate": {
-              "previous": "Өмнөх",
-              "next": "Дараахи"
-            },
-            "select": {
-                rows: ""
-            }
-        },
-        select: {
-          style: 'single'
-      },
-        "processing": true,
-        "serverSide": true,
-        "stateSave": true,
-        "ajax":{
-                 "url": getAxax,
-                 "dataType": "json",
-                 "type": "post",
-                 "data":{
-                      _token: csrf
-                    }
-               },
-        "columns": [
-          { data: "id", name: "id",  render: function (data, type, row, meta) {
-        return meta.row + meta.settings._iDisplayStart + 1;
-    }  },
-          { data: "axaxName", name: "axaxName"},
-          { data: "levelName", name: "levelName"},
-          { data: "inTime", name: "inTime"},
-          { data: "statusName", name: "statusName"},
-          { data: "mainName", name: "mainName"},
-          { data: "supportName", name: "supportName"},
-          { data: "levelID", name: "levelID", visible:false},
-          { data: "statusID", name: "statusID", visible:false},
-          { data: "mainOrgID", name: "mainOrgID", visible:false},
-          { data: "supportOrgID", name: "supportOrgID", visible:false}
-          ]
-      }).ajax.reload();
+
 }

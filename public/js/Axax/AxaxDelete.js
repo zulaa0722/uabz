@@ -14,7 +14,7 @@ $(document).ready(function(){
             data: {_token: csrf, rowID : dataRow['id']},
             success:function(response){
                 alertify.alert(response);
-                AxaxTableRefresh();
+                // AxaxTableRefresh();
                 dataRow = "";
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {

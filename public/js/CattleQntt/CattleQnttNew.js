@@ -93,7 +93,7 @@ function mainCode()
           alertify.alert(response.msg);
         }
         else{
-          console.log(response.msg);
+          // console.log(response.msg);
           alertify.error(response.msg);
         }
     }

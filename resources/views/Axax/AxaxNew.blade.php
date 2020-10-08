@@ -11,8 +11,8 @@
                 </button>
             </div>
             <div class="modal-body">
+              @csrf
               <form id="frmAxaxNew" action="" method="post">
-                @csrf
                 <div class="form-group row">
                   <div class="col-md-6">
                     <label>Хэрэгжүүлэх арга хэмжээний чиглэл:</label>
@@ -33,7 +33,7 @@
                 <div class="form-group row">
                   <div class="col-md-6">
                     <label>Ц (Шийдвэр гарсан хугацаа) + (хоног:цаг):</label>
-                    <textarea class="form-control" id="inTime" name="inTime"></textarea>
+                    <input type="text" class="form-control" id="inTime" name="inTime"></textarea>
                   </div>
                   <div class="col-md-3">
                     <label>Төлөв:</label>
@@ -62,28 +62,30 @@
                     <select class="form-control" name="mainOrgID" id="mainOrgID">
                         <option value="-1">Сонгоно уу</option>
                       @foreach ($organizations as $organization)
-                        <option value="{{$organization->id}}">{{$organization->fullName}}</option>
-                      @endforeach
-                    </select>
-                  </div>
-                  <div class="col-md-6">
-                    <label>Дэмжлэг үзүүлэх байгууллага</label>
-                    <select class="form-control" name="supportOrgID" id="supportOrgID">
-                        <option value="-1">Сонгоно уу</option>
-                      @foreach ($organizations as $organization)
                         <option value="{{$organization->id}}">{{$organization->abbrName}}</option>
                       @endforeach
                     </select>
                   </div>
+                  <div class="col-md-6">
+                    <label>Тайлбар:</label>
+                    <textarea class="form-control" id="comment" name="comment"></textarea>
+                  </div>
                 </div>
-
-
+              </form>
+                <div class="col-md-12">
+                  <label>Дэмжлэг үзүүлэх байгууллагууд:</label><br>
+                  @foreach ($organizations as $organization)
+                    <label class="form-check-label">
+                      <input type="checkbox" class="supportOrgs" name="" id="" value="{{$organization->id}}">&nbsp;{{$organization->abbrName}}&nbsp;&nbsp;&nbsp;
+                    </label>
+                    {{-- <option value="{{$organization->id}}">{{$organization->abbrName}}</option> --}}
+                  @endforeach
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="submit" id="btnAxaxAdd" class="btn btn-primary">Хадгалах</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Хаах</button>
             </div>
-            </form>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
