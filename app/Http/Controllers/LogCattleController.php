@@ -8,6 +8,7 @@ use App\LogCattle;
 use Illuminate\Support\Facades\Auth;
 use DB;
 use Yajra\DataTables\DataTables;
+use App\Cattle;
 
 class LogCattleController extends Controller
 {
@@ -27,7 +28,32 @@ class LogCattleController extends Controller
         return view('LogCattle.logCattleShow', compact('provs'));
     }
 
-    public function getCattleLogBySymCode(Request $req){
+    public function getCattlesLogBySymCode(Request $req){
+        // $logCattles = DB::table('log_cattle')
+        //     ->join('tb_cattle', 'log_cattle.cattleID')
+        $syms = DB::table("tb_sym")
+            ->join("tb_province", "tb_sym.provID", "=", "tb_province.id")
+            ->select("tb_sym.*", "tb_province.provName")->get();
+        $arrCattleQtt = [];
+        $rowCount = 1;
+        $cattles = Cattle::all();
+        $cols=[];
 
+        foreach ($syms as $sym) {
+            $datarow = [];
+            $datarow['number'] = $rowCount;
+            $datarow += ['provID'=>$sym->provID];
+            $datarow += ['sumID'=>$sym->id];
+            foreach ($cattles as $cattle) {
+              // $cattle->id => $cattle->cattleName,
+              $datarow += ["$cattle->cattleName" => $cattle->id];
+              // $datarow += ["$cattle->id" => $cattle->id];
+            }
+            array_push($arrCattleQtt, $datarow);
+            $rowCount++;
+        }
+        return $arrCattleQtt;
     }
+
+
 }
