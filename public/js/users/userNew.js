@@ -10,17 +10,17 @@ $(document).ready(function(){
             return;
         }
         if($("#email").val() == ""){
-            alertify.error("Хэрэглэгчийн нэрээ оруулна уу!!!");
+            alertify.error("Цахим хаягаа оруулна уу!!!");
             $("#email").addClass("is-invalid");
             return;
         }
         if($("#password").val() == ""){
-            alertify.error("Хэрэглэгчийн нэрээ оруулна уу!!!");
+            alertify.error("Нууц үгээ оруулна уу!!!");
             $("#password").addClass("is-invalid");
             return;
         }
         if($("#password-confirm").val() == ""){
-            alertify.error("Хэрэглэгчийн нэрээ оруулна уу!!!");
+            alertify.error("Нууц үгээ давтаж оруулна уу!!!");
             $("#password-confirm").addClass("is-invalid");
             return;
         }
@@ -31,13 +31,18 @@ $(document).ready(function(){
             return;
         }
         if($("#cmbPermission").val() == "0"){
-            alertify.error("Хэрэглэгчийн нэрээ оруулна уу!!!");
+            alertify.error("Хэрэглэгчийн түвшингээ сонгоно уу!!!");
             $("#cmbPermission").addClass("is-invalid");
             return;
         }
-        if($("#cmbProvince").val() == "0"){
-            alertify.error("Хэрэглэгчийн нэрээ оруулна уу!!!");
+        if($("#cmbPermission").val() == "2" && $("#cmbProvince").val() == "0"){
+            alertify.error("Аймгаа сонгоно уу!!!");
             $("#cmbProvince").addClass("is-invalid");
+            return;
+        }
+        if($("#cmbPermission").val() == "3" && $("#cmbOrganization").val() == "0"){
+            alertify.error("Байгууллагаа сонгоно уу!!!");
+            $("#cmbOrganization").addClass("is-invalid");
             return;
         }
         $("#frmNewUser").submit();

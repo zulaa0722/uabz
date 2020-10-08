@@ -235,6 +235,7 @@ Route::get('/show/users', "UserController@showUsers");
 Route::post('/get/users', "UserController@getUsers");
 Route::post('/delete/users', "UserController@deleteUsers");
 Route::post('/change/password/users', "UserController@changePassword");
+Route::post('/update/users', 'UserController@update');
 // ADMIN END
 
 

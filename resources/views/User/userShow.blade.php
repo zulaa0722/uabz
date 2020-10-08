@@ -23,8 +23,8 @@
             <tbody>
             </tbody>
           </table>
-          <button class="btn btn-primary" type="button" name="button" id="btnEditModalOpen">Хэрэглэгчийн эрх засах</button>
-          <button class="btn btn-primary" type="button" name="button" id="btnChangePasswordModalOpen">Хэрэглэгчийн нууц үг солих</button>
+          <button class="btn btn-primary" type="button" name="button" id="btnEditModalOpen">Хэрэглэгч засах</button>
+          <button class="btn btn-primary" type="button" name="button" id="btnChangePasswordModalOpen">Нууц үг солих</button>
           <button class="btn btn-danger" post-url="{{url("/delete/users")}}" type="button" name="button" id="btnDeleteUser">Хэрэглэгч устгах</button>
         </div>
       </div>
@@ -89,9 +89,14 @@
           "stateSave": true,
           "fnRowCallback": function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
             if (aData['permission'] == "1") {
-              $('td', nRow).css('background-color', '#4ac3b3');
+              $(nRow).find('td:eq(3)').css('background-color', '#4ac3b3');
+              // $('td', nRow).css('background-color', '#4ac3b3');
             } else if (aData['permission'] == "2") {
-              $('td', nRow).css('background-color', 'Orange');
+              $(nRow).find('td:eq(3)').css('background-color', '#27c333');
+              // $('td', nRow).css('background-color', 'Orange');
+            } else if (aData['permission'] == "3") {
+              $(nRow).find('td:eq(3)').css('background-color', '#d4de3e');
+              // $('td', nRow).css('background-color', 'Orange');
             }
           },
           "ajax":{

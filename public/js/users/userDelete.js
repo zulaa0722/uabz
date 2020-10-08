@@ -16,7 +16,7 @@ $(document).ready(function(){
                       success:function(res){
                           if(res.status == 'success'){
                               alertify.alert(res.msg);
-                              refreshUserTable();
+                              table.rows('.selected').remove().draw(false);
                               dataRow = "";
                           }
                           else{
