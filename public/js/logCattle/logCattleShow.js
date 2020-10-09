@@ -31,7 +31,7 @@ function refresh(symID, dangerID){
     { data: "sumID", name: "sumID"}
   ];
   $.each(cols1, function(key, val){
-    alert(val.id);
+
     item = {};
     item["data"] = '' + val.cattleName + '';
     item["name"] = '' + val.cattleName + '';
