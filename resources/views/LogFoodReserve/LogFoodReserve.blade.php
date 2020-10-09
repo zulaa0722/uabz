@@ -6,41 +6,47 @@
         <div class="card">
           <div  class="card-body">
             <h4 Class="text-center">Гол нэрийн хүнсний бүтээгдэхүүний нөөцийг тодотгох</h4>
-            <div class="row col-md-4">
-              <div class="list-group col-md-6">
-                <a class="list-group-item list-group-item-action active" data-toggle="list">Home</a>
-                <a class="list-group-item list-group-item-action" data-toggle="list">Profile</a>
-                <a class="list-group-item list-group-item-action" data-toggle="list">Messages</a>
-                <a class="list-group-item list-group-item-action" data-toggle="list">Settings</a>
+            <div class="row">
+              <div class="row col-md-4">
+                <div class="list-group col-md-6">
+                  <label>Аймаг аа сонгоно уу.</label>
+                  @foreach ($provs as $prov)
+                    <a class="list-group-item list-group-item-action" data-toggle="list">{{$prov->provName}}</a>
+                  @endforeach
+                  {{-- <a class="list-group-item list-group-item-action" data-toggle="list">Profile</a>
+                  <a class="list-group-item list-group-item-action" data-toggle="list">Messages</a>
+                  <a class="list-group-item list-group-item-action" data-toggle="list">Settings</a> --}}
+                </div>
+                <div class="list-group col-md-6">
+                  {{-- <a class="list-group-item list-group-item-action active" data-toggle="list">Home</a>
+                  <a class="list-group-item list-group-item-action" data-toggle="list">Profile</a>
+                  <a class="list-group-item list-group-item-action" data-toggle="list">Messages</a>
+                  <a class="list-group-item list-group-item-action" data-toggle="list">Settings</a> --}}
+                </div>
               </div>
-              <div class="list-group col-md-6">
-                <a class="list-group-item list-group-item-action active" data-toggle="list">Home</a>
-                <a class="list-group-item list-group-item-action" data-toggle="list">Profile</a>
-                <a class="list-group-item list-group-item-action" data-toggle="list">Messages</a>
-                <a class="list-group-item list-group-item-action" data-toggle="list">Settings</a>
-              </div>
-            </div>
-            <div class="row col-md-8">
-              <div class="row col-md-12">
-                <table>
-                  <thead>
-                    <th>sda</th>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>lol</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="row col-md-12">
+              <div class="row col-md-8">
+                <div class="row col-md-12">
+                  <table>
+                    <thead>
+                      <th>sda</th>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>lol</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="row col-md-12">
 
-                <button class="btn btn-primary" type="button" name="button" id="btnAddModalOpen">Нэмэх</button>
-                <button class="btn btn-warning" type="button" name="button" id="btnEditModalOpen">Засах</button>
-                <button class="btn btn-danger" type="button" name="button" id="btnAxaxDelete">Устгах</button>
+                  <button class="btn btn-primary" type="button" name="button" id="btnAddModalOpen">Нэмэх</button>
+                  <button class="btn btn-warning" type="button" name="button" id="btnEditModalOpen">Засах</button>
+                  <button class="btn btn-danger" type="button" name="button" id="btnAxaxDelete">Устгах</button>
+                </div>
               </div>
+
             </div>
-            </div>
+          </div>
         </div>
     </div>
   </div>
@@ -54,7 +60,6 @@
   <style media="screen">
   .list-group {
     margin: 0;
-    
     width: 100%;
   }
   </style>

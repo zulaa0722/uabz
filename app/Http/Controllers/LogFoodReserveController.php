@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
+use Illuminate\Support\Facades\Auth;
+use Yajra\DataTables\DataTables;
+use App\LogFoodReserve;
 
 class LogFoodReserveController extends Controller
 {
@@ -12,6 +16,13 @@ class LogFoodReserveController extends Controller
   }
   public function showHome()
   {
-    return view("LogFoodReserve/LogFoodReserve");
+    $provs = DB::table('tb_danger_sym')
+        ->join('tb_danger', 'tb_danger_sym.danger_id', '=', 'tb_danger.id')
+        ->join('tb_province', 'tb_danger_sym.provID', '=', 'tb_province.id')
+        ->groupBy('tb_danger_sym.provID', 'tb_province.provName')
+        ->select('tb_danger_sym.provID', 'tb_province.provName')
+        ->where('tb_danger.status', '=', 1)
+        ->get();
+    return view("LogFoodReserve/LogFoodReserve", compact('provs'));
   }
 }
