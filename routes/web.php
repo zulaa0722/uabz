@@ -56,6 +56,9 @@ Route::get("/mongolia/Uvs", "mongolianMapsController@Uvs");
 Route::get("/mongolia/Uvurkhangai", "mongolianMapsController@Uvurkhangai");
 Route::get("/mongolia/Zavkhan", "mongolianMapsController@Zavkhan");
 
+//Hunsnii buteegdehuunii log ehelj bn
+Route::get("/log/foodReserve", "LogFoodReserveController@showHome");
+//hunsnii buteegdhuunii log duusch bn
 
 
 //reports ehelj bn
