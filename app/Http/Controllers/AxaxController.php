@@ -63,7 +63,8 @@ class AxaxController extends Controller
       $insertAxax->inTime = $req->fields[2]['value'];
       $insertAxax->mainOrgID = $req->fields[5]['value'];
       $insertAxax->comment = $req->fields[6]['value'];
-      $insertAxax->supportOrg = $req->orgs;
+      $insertAxax->supportOrg = $req->supportOrgIDS;
+      $insertAxax->supportOrgNames = $req->orgNames;
 
       $insertAxax->save();
       $array = array(
@@ -75,7 +76,8 @@ class AxaxController extends Controller
     }catch(\Exception $e){
       $array = array(
           'status' => 'error',
-          'msg' => 'Серверийн алдаа!!! Веб мастерт хандана уу!!!'
+          // 'msg' => 'Серверийн алдаа!!! Веб мастерт хандана уу!!!'
+          'msg' => $e
       );
       return $array;
     }
@@ -93,6 +95,7 @@ class AxaxController extends Controller
       $updateAxax->levelID = $req->fields[5]['value'];
       $updateAxax->mainOrgID = $req->fields[6]['value'];
       $updateAxax->supportOrg = $req->supportOrgs;
+      $updateAxax->supportOrgNames = $req->supportOrgNames;
       $updateAxax->comment = $req->fields[7]['value'];
       $updateAxax->save();
       return "Амжилттай заслаа";
