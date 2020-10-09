@@ -20,7 +20,7 @@ class LogFoodReserveController extends Controller
         ->join('tb_danger', 'tb_danger_sym.danger_id', '=', 'tb_danger.id')
         ->join('tb_province', 'tb_danger_sym.provID', '=', 'tb_province.id')
         ->groupBy('tb_danger_sym.provID', 'tb_province.provName')
-        ->select('tb_danger_sym.provID', 'tb_province.provName')
+        ->select('tb_danger_sym.provID', 'tb_province.provName', 'tb_danger.id')
         ->where('tb_danger.status', '=', 1)
         ->get();
     return view("LogFoodReserve/LogFoodReserve", compact('provs'));

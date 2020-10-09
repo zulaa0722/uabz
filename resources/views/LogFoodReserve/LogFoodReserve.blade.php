@@ -5,33 +5,38 @@
     <div class="col-md-12">
         <div class="card">
           <div  class="card-body">
-            <h4 Class="text-center">Гол нэрийн хүнсний бүтээгдэхүүний нөөцийг тодотгох</h4>
             <div class="row">
               <div class="row col-md-4">
                 <div class="list-group col-md-6">
                   <label>Аймаг аа сонгоно уу.</label>
                   @foreach ($provs as $prov)
-                    <a class="list-group-item list-group-item-action" data-toggle="list">{{$prov->provName}}</a>
+                    <a href="#" onclick="aimag({{$prov->provID}}, '{{url("/get/dangered/syms/by/provID")}}')" class="list-group-item list-group-item-action" data-toggle="list">{{$prov->provName}}</a>
                   @endforeach
-                  {{-- <a class="list-group-item list-group-item-action" data-toggle="list">Profile</a>
-                  <a class="list-group-item list-group-item-action" data-toggle="list">Messages</a>
-                  <a class="list-group-item list-group-item-action" data-toggle="list">Settings</a> --}}
                 </div>
-                <div class="list-group col-md-6">
-                  {{-- <a class="list-group-item list-group-item-action active" data-toggle="list">Home</a>
-                  <a class="list-group-item list-group-item-action" data-toggle="list">Profile</a>
-                  <a class="list-group-item list-group-item-action" data-toggle="list">Messages</a>
-                  <a class="list-group-item list-group-item-action" data-toggle="list">Settings</a> --}}
+
+                <div class="list-group col-md-6" id="listSyms">
                 </div>
+
               </div>
               <div class="row col-md-8">
+                <h4 class="text-center col-md-12">Гол нэрийн хүнсний бүтээгдэхүүний нөөцийг тодотгох</h4>
                 <div class="row col-md-12">
                   <table>
                     <thead>
                       <th>sda</th>
+                      <th>sda</th>
                     </thead>
                     <tbody>
                       <tr>
+                        <td>lol</td>
+                        <td>lol</td>
+                      </tr>
+                      <tr>
+                        <td>lol</td>
+                        <td>lol</td>
+                      </tr>
+                      <tr>
+                        <td>lol</td>
                         <td>lol</td>
                       </tr>
                     </tbody>
@@ -41,7 +46,7 @@
 
                   <button class="btn btn-primary" type="button" name="button" id="btnAddModalOpen">Нэмэх</button>
                   <button class="btn btn-warning" type="button" name="button" id="btnEditModalOpen">Засах</button>
-                  <button class="btn btn-danger" type="button" name="button" id="btnAxaxDelete">Устгах</button>
+                  <button class="btn btn-danger text-right" type="button" name="button" id="btnAxaxDelete">Устгах</button>
                 </div>
               </div>
 
@@ -51,8 +56,6 @@
     </div>
   </div>
 
-{{-- @include('Axax.AxaxNew')
-@include('Axax.AxaxEdit') --}}
 @endsection
 
 @section('css')
@@ -75,7 +78,7 @@
     var getAxax = "{{url("/getAxax")}}";
   </script>
 
-<script src="{{url("public/js/Axax/AxaxNew.js")}}"></script>
-<script src="{{url("public/js/Axax/AxaxEdit.js")}}"></script>
-<script src="{{url("public/js/Axax/AxaxDelete.js")}}"></script>
+<script src="{{url("public/js/LogFoodReserve/log_ReserveShow.js")}}"></script>
+<script src="{{url("public/js/LogFoodReserve/log_ReserveEdit.js")}}"></script>
+<script src="{{url("public/js/LogFoodReserve/log_ReserveAdd.js")}}"></script>
 @endsection
