@@ -245,3 +245,8 @@ Route::post('/update/users', 'UserController@update');
 Route::get("/testing/permission", function(){
   return view("permission.permissionError");
 });
+
+
+// LOG CATTLE
+Route::get('/log/cattle/show', 'LogCattleController@showLogCattle');
+// LOG CATTLE END

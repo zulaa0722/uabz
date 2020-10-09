@@ -94,4 +94,16 @@ class SymController extends Controller
       return "Серверийн алдаа!!! Веб мастерт хандана уу";
     }
   }
+
+  public function getDangeredSymByProvID(Request $req){
+      $sums = DB::table('tb_danger_sym')
+          ->join('tb_danger', 'tb_danger_sym.danger_id', '=', 'tb_danger.id')
+          ->join('tb_sym', 'tb_danger_sym.symID', '=', 'tb_sym.symCode')
+          ->groupBy('tb_danger_sym.symID', 'tb_sym.symName')
+          ->select('tb_danger_sym.symID', 'tb_sym.symName')
+          ->where('tb_danger.status', '=', 1)
+          ->where('tb_danger_sym.provID', '=', $req->provID)
+          ->get();
+      return $sums;
+  }
 }
