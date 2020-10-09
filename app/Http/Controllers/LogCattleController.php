@@ -25,7 +25,8 @@ class LogCattleController extends Controller
             ->select('tb_danger_sym.provID', 'tb_province.provName')
             ->where('tb_danger.status', '=', 1)
             ->get();
-        return view('LogCattle.logCattleShow', compact('provs'));
+        $cattles = Cattle::all();
+        return view('LogCattle.logCattleShow', compact('provs', 'cattles'));
     }
 
     public function getCattlesLogBySymCode(Request $req){
@@ -33,7 +34,9 @@ class LogCattleController extends Controller
         //     ->join('tb_cattle', 'log_cattle.cattleID')
         $syms = DB::table("tb_sym")
             ->join("tb_province", "tb_sym.provID", "=", "tb_province.id")
-            ->select("tb_sym.*", "tb_province.provName")->get();
+            ->select("tb_sym.*", "tb_province.provName")
+            ->where('tb_sym.id', '<', 20)
+            ->get();
         $arrCattleQtt = [];
         $rowCount = 1;
         $cattles = Cattle::all();
@@ -52,7 +55,8 @@ class LogCattleController extends Controller
             array_push($arrCattleQtt, $datarow);
             $rowCount++;
         }
-        return $arrCattleQtt;
+        return DataTables::of($arrCattleQtt)
+          ->make(true);
     }
 
 
