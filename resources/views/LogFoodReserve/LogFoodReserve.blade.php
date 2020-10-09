@@ -9,8 +9,8 @@
         <div class="card">
           <div class="card-body">
 
-            <div class="row col-md-12">
-              <div class="row col-md-4">
+            <div class="col-md-12"style="background-color:blue;">
+              <div class="row col-md-4"style="background-color:pink;">
                 <div class="list-group col-md-6">
                   <label>Аймаг аа сонгоно уу.</label>
                   @foreach ($provs as $prov)
@@ -22,12 +22,11 @@
                 </div>
 
               </div>
-              <div class="row col-md-8">
+              <div class="col-md-8"style="background-color:red;">
                 <h4 class="text-center col-md-12">Гол нэрийн хүнсний бүтээгдэхүүний нөөцийг тодотгох</h4>
-                <div class="row col-md-12">
+                <div class="row col-md-12" style="background-color:black;">
                   <table post-url="{{url("/log/foodReserve/refresh")}}" id="remainingProducts" class="table table-striped wrap table-bordered" style="width: 100%;">
                     <thead>
-
                       <th>№</th>
                       @foreach ($products as $product)
                         <th>{{$product->productName}} /кг/</th>
@@ -43,7 +42,7 @@
 
                   <button class="btn btn-primary" type="button" name="button" id="btnAddModalOpen">Нэмэх</button>
                   <button class="btn btn-warning" type="button" name="button" id="btnEditModalOpen">Засах</button>
-                  
+
                 </div>
               </div>
 
