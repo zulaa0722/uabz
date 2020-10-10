@@ -27,7 +27,6 @@
                 <div class="row col-md-12">
                   <table post-url="{{url("/log/foodReserve/refresh")}}" id="remainingProducts" class="table table-striped wrap table-bordered" style="width: 100%;">
                     <thead>
-
                       <th>№</th>
                       @foreach ($products as $product)
                         <th>{{$product->productName}} /кг/</th>
