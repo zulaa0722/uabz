@@ -15,6 +15,7 @@ use Carbon\Carbon;
 use App\DangerSym;
 use App\Norm;
 use App\Population;
+use App\FoodProducts;
 
 class SumAndFoodReserveController extends Controller
 {
@@ -25,39 +26,47 @@ class SumAndFoodReserveController extends Controller
 
     public function getSumsReserveDays(){
         try{
+          $now = Carbon::now();
+          $yearNow = $now->year - 1;
           $sums = DB::table('tb_danger_sym')
               ->join('tb_danger', 'tb_danger_sym.danger_id', '=', 'tb_danger.id')
+              ->join('tb_sym', 'tb_danger_sym.symID', '=', 'tb_sym.symCode')
               ->where('tb_danger.status', '=', 1)
-              ->select('tb_danger_sym.*', 'tb_danger.status')
+              ->select('tb_danger_sym.*', 'tb_danger.status', 'tb_sym.id as symiinID', 'tb_sym.normID', 'tb_sym.symName')
               ->get();
 
-          $normController = new NormController;
-          $popController = new PopulationController;
-          $foodReserve = new FoodReserve;
-
+          $foodProducts = FoodProducts::all();
 
           $arr = [];
           foreach ($sums as $sum) {
-              $sumRow = DB::table('tb_sym')
-                  ->where('symCode', '=', $sum->symID)->first();
-              $popCount = $popController->getStandardPopBySumID($sumRow->id);
-              $normKcal =$normController->sumOfNormKcalByID($sumRow->normID);
-              $reserveKcal = $foodReserve->getReserveKcalBySum($sumRow->id);
 
-              if($normKcal * $popCount == 0){
-                  $days = -1;
+              $foodDays = DB::table('tb_food_products')
+                  ->select(
+                      'tb_food_products.id as productID',
+                      'tb_food_products.productName',
+                      DB::raw("(SELECT tb_population.standardPop FROM tb_population WHERE tb_population.date = $yearNow AND tb_population.symID = $sum->symiinID LIMIT 0,1) as standartPop"),
+                      DB::raw("(SELECT tb_norms.normCkal FROM tb_norms WHERE tb_norms.producID = tb_food_products.id LIMIT 0,1) as normKcal"),
+                      DB::raw("(SELECT tb_food_reserve.totalKcal FROM tb_food_reserve WHERE tb_food_reserve.productID = tb_food_products.id AND tb_food_reserve.symID = $sum->symiinID LIMIT 0,1) as reserve")
+                  )
+                  ->get();
+
+              $minDays = 1000000;
+              foreach ($foodDays as $foodDay) {
+                  if($foodDay->normKcal * $foodDay->standartPop == 0){
+                      $days = 0;
+                  }
+                  else{
+                      $days = $foodDay->reserve / ($foodDay->normKcal * $foodDay->standartPop);
+                  }
+                  if($days < $minDays){
+                      $minDays = $days;
+                  }
               }
-              else{
-                  $days = $reserveKcal / ($normKcal * $popCount);
-              }
+
 
               array_push($arr, array(
-                  "id" => $sumRow->symCode,
-                  "symName" => $sumRow->symName,
-                  "popCount" => $popCount,
-                  "normKcal" => $normKcal,
-                  "reserveKcal" => $reserveKcal,
-                  "days" => $days
+                  "id" => $sum->symID,
+                  "days" => $minDays
               ));
           }
           return json_encode($arr);

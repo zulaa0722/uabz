@@ -13,13 +13,19 @@ class FoodReserve extends Model
 
 
 
-    public function getReserveKcalBySum($sumID){
+    public function getReserveKcalBySum($sumID, $productID){
         $sumKcal = DB::table('tb_food_reserve')
             ->where('symID', '=', $sumID)
-            ->sum('totalKcal');
-        return $sumKcal;
+            ->where('productID', '=', $productID)
+            ->first();
+        if($sumKcal == null){
+           return 0;
+        }
+        else{
+            return $sumKcal->totalKcal;
+        }
     }
 
 
-    
+
 }
