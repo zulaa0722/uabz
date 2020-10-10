@@ -41,7 +41,7 @@
 
               <div class="clearfix"></div>
               <div class="modal-footer">
-                  <button type="submit" id="btnLogCattleQnttAdd" class="btn btn-primary">Хадгалах</button>
+                  <button type="submit" post-url="{{url("/log/cattle/new")}}" id="btnLogCattleQnttAdd" class="btn btn-primary">Хадгалах</button>
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Хаах</button>
               </div>
           </form>
