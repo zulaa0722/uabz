@@ -76,8 +76,8 @@ class AxaxController extends Controller
     }catch(\Exception $e){
       $array = array(
           'status' => 'error',
-          // 'msg' => 'Серверийн алдаа!!! Веб мастерт хандана уу!!!'
-          'msg' => $e
+          'msg' => 'Серверийн алдаа!!! Веб мастерт хандана уу!!!'
+          // 'msg' => $e
       );
       return $array;
     }
