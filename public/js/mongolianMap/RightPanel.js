@@ -181,3 +181,8 @@ $(document).on("click", "path[data-toggle='tooltip']", function(){
       }
     });
 });
+function showSub()
+{
+  $("#modalShowChangeNorm").modal("show");
+
+}

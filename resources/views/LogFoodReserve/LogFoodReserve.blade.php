@@ -9,8 +9,8 @@
         <div class="card">
           <div class="card-body">
 
-            <div class="col-md-12"style="background-color:blue;">
-              <div class="row col-md-4"style="background-color:pink;">
+            {{-- <div class="row col-md-12"> --}}
+              <div class="row col-md-4">
                 <div class="list-group col-md-6">
                   <label>Аймаг аа сонгоно уу.</label>
                   @foreach ($provs as $prov)
@@ -22,9 +22,9 @@
                 </div>
 
               </div>
-              <div class="col-md-8"style="background-color:red;">
-                <h4 class="text-center col-md-12">Гол нэрийн хүнсний бүтээгдэхүүний нөөцийг тодотгох</h4>
-                <div class="row col-md-12" style="background-color:black;">
+              <div class="row col-md-8">
+                <h4 class="text-center col-md-12">Гол нэрийн хүнсний бүтээгдэхүүний зарцуулалт</h4>
+                <div class="row col-md-12">
                   <table post-url="{{url("/log/foodReserve/refresh")}}" id="remainingProducts" class="table table-striped wrap table-bordered" style="width: 100%;">
                     <thead>
                       <th>№</th>
@@ -44,7 +44,7 @@
                   <button class="btn btn-warning" type="button" name="button" id="btnEditModalOpen">Засах</button>
 
                 </div>
-              </div>
+              {{-- </div> --}}
 
             </div>
           </div>
@@ -54,10 +54,6 @@
   {{-- </div> --}}
 
 @endsection
-
-{{-- @section('css')
-  <link rel="stylesheet" href="{{url("public/uaBCssJs/datatableCss/datatables.min.css")}}">
-@endsection --}}
 
 @section('js')
   <script type="text/javascript" src="{{url("public/uaBCssJs/datatableJs/datatables.min.js")}}"></script>

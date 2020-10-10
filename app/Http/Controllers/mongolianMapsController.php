@@ -23,13 +23,13 @@ class mongolianMapsController extends Controller
     }
 
     public function mongolianMapsShow(){
-        $obj = new SumAndFoodReserveController;
-        $obj->minusNormFromReserve();
+        // $obj = new SumAndFoodReserveController;
+        // $obj->minusNormFromReserve();
 
         $year = Carbon::now()->year;
         $sumStandardPop = DB::table('tb_population')->where('date', '=', $year)->sum('standardPop');
         $sumTotalPop = DB::table('tb_population')->where('date', '=', $year)->sum('totalPop');
-        $sumCattQntt = DB::table('tb_cattle_qntt')->where('year', '=', $year)->sum('cattQntt');
+        $sumCattQntt = DB::table('tb_cattle_qntt')->where('year', '=', $year-1)->sum('cattQntt');
 
         $sectors = Sector::orderBy('sectorName', 'ASC')->get();
         return view("mongolianMap.mongolianMap", compact('sectors', 'sumStandardPop', 'sumTotalPop', 'sumCattQntt', 'year'));
