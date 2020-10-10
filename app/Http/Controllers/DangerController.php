@@ -83,6 +83,7 @@ class DangerController extends Controller
             $danger->declareDate = $req->declareDate;
             $danger->minusedDate = $req->declareDate;
             $danger->comment = $req->comment;
+            $danger->status = 1;
             $danger->save();
             // ehleed danger table ruu tushaal dugaar ognoo ederee hadgalaad hadgalsan id-g avaad danger_sym ruu hadgalna
             foreach($req->sums as $key => $value){
@@ -129,6 +130,7 @@ class DangerController extends Controller
             $danger->declareDate = $req->declareDate;
             $danger->minusedDate = $req->declareDate;
             $danger->comment = $req->comment;
+            $danger->status = 1;
             $danger->save();
             // ehleed danger table ruu tushaal dugaar ognoo ederee hadgalaad hadgalsan id-g avaad danger_sym ruu hadgalna
 
@@ -179,6 +181,7 @@ class DangerController extends Controller
             $danger->declareDate = $req->declareDate;
             $danger->minusedDate = $req->declareDate;
             $danger->comment = $req->comment;
+            $danger->status = 1;
             $danger->save();
             // ehleed danger table ruu tushaal dugaar ognoo ederee hadgalaad hadgalsan id-g avaad danger_sym ruu hadgalna
 
@@ -257,7 +260,7 @@ class DangerController extends Controller
     // Зарласан онц байдлыг засах хэсэг
 
     public function cancelDanger(Request $req){
-        // try {
+        try {
             $danger = Danger::find($req->id);
             $danger->status = 0;
             $danger->save();
@@ -266,12 +269,12 @@ class DangerController extends Controller
                 'msg' => 'Онц байдал цуцлагдлаа!!!'
             );
             return $array;
-        // } catch (\Exception $e) {
-        //     $array = array(
-        //         'status' => 'error',
-        //         'msg' => 'Серверийн алдаа!!! Веб мастерт хандана уу!!!'
-        //     );
-        //     return $array;
-        // }
+        } catch (\Exception $e) {
+            $array = array(
+                'status' => 'error',
+                'msg' => 'Серверийн алдаа!!! Веб мастерт хандана уу!!!'
+            );
+            return $array;
+        }
     }
 }

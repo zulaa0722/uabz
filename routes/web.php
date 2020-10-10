@@ -252,4 +252,5 @@ Route::get("/testing/permission", function(){
 // LOG CATTLE
 Route::get('/log/cattle/show', 'LogCattleController@showLogCattle');
 Route::post('/get/log/cattles', 'LogCattleController@getCattlesLogBySymCode');
+Route::post('/log/cattle/new', 'LogCattleController@storeCattleLog');
 // LOG CATTLE END

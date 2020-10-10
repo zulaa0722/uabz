@@ -230,6 +230,8 @@ return [
 
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
 
+        'ConstantVariables' => App\ConstantVariables::class,
+
     ],
 
 ];

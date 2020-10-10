@@ -40,6 +40,7 @@ $(document).ready(function(){
     });
 });
 
+// refresh Table
 function refresh(symID, dangerID){
 
   $('#cattleDB').dataTable().fnDestroy();
@@ -105,3 +106,23 @@ function refresh(symID, dangerID){
      "columns": cols
   });
 }
+// refresh Table
+
+
+// START Modal show hiij haruulah button click event
+$(document).ready(function(){
+    $("#btnAddModalOpen").click(function(){
+        $("#cmbProv").removeClass("is-invalid");
+        $("#cmbSum").removeClass("is-invalid");
+        $("#provName").text($("#cmbProv option:selected").text());
+        $("#symName").text($("#cmbSum option:selected").text());
+        if($("#cmbSum").val() == '0'){
+            $("#cmbProv").addClass("is-invalid");
+            $("#cmbSum").addClass("is-invalid");
+            alertify.error('Та өгөгдөл оруулах аймаг сумаа сонгоно уу!!!');
+            return;
+        }
+        $('#modalLogCattleQnttNew').modal('show');
+    });
+});
+// END Modal show hiij haruulah button click event
