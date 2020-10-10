@@ -228,17 +228,6 @@ function showNorm(sumID)
        {data: "normCkal", name: "normCkal"}
      ]
   });
-  // var normTable = '<table><thead><tr><th>Бүтээгдэхүүн</th><th>Хэмжээ</th><th>Ккал</th></tr></thead><tbody>';
-  // $.each(norm, function(key, val){
-  //   normTable = normTable + '<tr>';
-  //   normTable = normTable + '<td>'+val.producID+'</td>';
-  //   normTable = normTable + '<td>'+val.normQntt+'</td>';
-  //   normTable = normTable + '<td>'+val.normCkal+'</td>';
-  //   normTable = normTable + '</tr>';
-  // });
-  // normTable = normTable + '</tbody></table>';
-  // $("#normTable").html("");
-  // $("#normTable").html(normTable);
 }
 $(document).ready(function(){
   $("#showDangers").click(function(){
