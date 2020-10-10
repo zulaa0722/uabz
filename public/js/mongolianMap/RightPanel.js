@@ -189,4 +189,10 @@ $(document).ready(function(){
   $("#showDangers").click(function(){
     window.location.href=$(this).attr('viewUrl');
   });
+  $("#btnLogReserve").click(function(){
+    window.location.href=$(this).attr('url');
+  });
+  $("#btnCattleReserve").click(function(){
+    window.location.href=$(this).attr('url');
+  });
 });

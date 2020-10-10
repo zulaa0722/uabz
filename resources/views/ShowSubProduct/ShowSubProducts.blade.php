@@ -22,7 +22,7 @@
                     <th>Гол нэрийн бүтээгдэхүүн</th>
                     <th>Үлдсэн хоног</th>
                     <th>Арга хэмжээ</th>
-                    <th>Арга хэмжээ</th>
+                    {{-- <th>Арга хэмжээ</th> --}}
 
                   </tr>
                 </thead>
@@ -44,11 +44,11 @@
                           provID={{$val["provID"]}} symID={{$val["symID"]}} productID={{$val["productID"]}}
                           provName="{{$val["provName"]}}" symName="{{$val["symName"]}}" product="{{$val["product"]}}">
                       </td>
-                      <td>
+                      {{-- <td>
                         <input type="button" class="btn btn-danger editNorm" name="" value="Нормоос засах" id="changeNorm"
                         provID={{$val["provID"]}} symID={{$val["symID"]}} productID={{$val["productID"]}}
                         provName="{{$val["provName"]}}" symName="{{$val["symName"]}}" product="{{$val["product"]}}">
-                      </td>
+                      </td> --}}
                     </tr>
 
                   @endforeach
@@ -119,7 +119,7 @@ $(document).ready(function(){
         { data: "product", name: "product"},
         { data: "leftDays", name: "leftDays"},
         { data: "action1", name: "action1"},
-        { data: "action", name: "action"},
+        // { data: "action", name: "action"},
 
       ]
     });
