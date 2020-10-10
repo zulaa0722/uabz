@@ -295,7 +295,7 @@
       </div>
     </div>
   </div>
-
+@include('ShowSubProduct.ShowChangeNorm')
 
 @endsection
 
