@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use DB;
 use Yajra\DataTables\DataTables;
 use App\Cattle;
+use App\ConstanVariables;
+use App\CattleQntt;
 
 class LogCattleController extends Controller
 {
@@ -77,5 +79,15 @@ class LogCattleController extends Controller
         return $cattleCount;
     }
 
-    
+    public function storeCattleLog(Request $req){
+        try {
+            DB::beginTransaction();
+            $dateArray = explode('-', $req->year);
+            return $dateArray[0];
+        } catch (\Exception $e) {
+            DB::rollback();
+        }
+
+    }
+
 }
