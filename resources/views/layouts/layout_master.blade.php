@@ -25,6 +25,9 @@
             <link href="{{url("public/uaBCssJs/css/app.min.css")}}" id="app-light" rel="stylesheet" type="text/css" />
 
 
+            <link href="{{url("public/css/uabz_css.css")}}" id="app-light" rel="stylesheet" type="text/css" />
+
+
             <!--Zagvarlag alert-->
             <link rel="stylesheet" href="{{ asset('public/z-alert/css/alertify.core.css') }}" />
             <link rel="stylesheet" href="{{ asset('public/z-alert/css/alertify.default.css') }}" />
