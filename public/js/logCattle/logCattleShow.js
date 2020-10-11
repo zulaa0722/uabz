@@ -14,10 +14,17 @@ $(document).ready(function(){
         },
         success:function(res){
             $('#cmbSum').empty();
-            $("#cmbSum").append(new Option("Сонгоно уу", "0"));
+            $("#cmbSum").append($('<option>', {
+                value: '0',
+                text: 'Сонгоно уу!!!'
+              }).attr('dangerID', 'asd')
+            );
             $.each(res, function(key, val){
-                $("#cmbSum").append(new Option(val.symName, val.symID));
-                $('#cmbSum').attr('danger-id', val.id);
+                $("#cmbSum").append($('<option>', {
+                    value: val.symID,
+                    text: val.symName
+                  }).attr('dangerID', val.id)
+                );
                 // var atag = '<a href="#" onclick="getSymData(' + val.symID + ', ' + val.id + ')" class="list-group-item list-group-item-action" data-toggle="list">' + val.symName + '</a>';
                 // $("#listSyms").append(atag);
             });
@@ -35,8 +42,8 @@ $(document).ready(function(){
         else{
           $("#lblProv").text($("#cmbProv option:selected").text() + " аймгийн ");
           $("#lblSum").text($("#cmbSum option:selected").text() + " сумын ");
+          refresh($(this).val(), $("#cmbSum option:selected").attr('dangerid'));
         }
-        refresh($(this).val(), $(this).attr('danger-id'));
     });
 });
 

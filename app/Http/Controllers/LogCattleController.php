@@ -11,6 +11,7 @@ use Yajra\DataTables\DataTables;
 use App\Cattle;
 use App\ConstanVariables;
 use App\CattleQntt;
+use App\Sym;
 
 class LogCattleController extends Controller
 {
@@ -80,14 +81,67 @@ class LogCattleController extends Controller
     }
 
     public function storeCattleLog(Request $req){
-        try {
-            DB::beginTransaction();
-            $dateArray = explode('-', $req->year);
-            return $dateArray[0];
-        } catch (\Exception $e) {
-            DB::rollback();
-        }
+        // try {
+            // DB::beginTransaction();
+            $dateArray = explode('-', $req->date);
+            $year = $dateArray[0];
 
+            $oldCattleLogs = DB::table('log_cattle')
+                ->where('sumCode', '=', $req->symCode)
+                ->where('date', '=', $req->date)
+                ->where('dangerID', '=', $req->dangerid)
+                ->get();
+            foreach ($oldCattleLogs as $oldCattleLog) {
+                $symRow = DB::table('tb_sym')->where('symCode', '=', $oldCattleLog->sumCode)->first();
+                $cattleQntt = DB::table('tb_cattle_qntt')
+                    ->where('symID', '=', $symRow->id)
+                    ->where('cattleID', '=', $oldCattleLog->cattleID)
+                    ->orderby('year', 'DESC')->first();
+                if($cattleQntt != null){
+                    DB::table('tb_cattle_qntt')
+                        ->where('symID', '=', $symRow->id)
+                        ->where('cattleID', '=', $oldCattleLog->cattleID)
+                        ->where('year', '=', $cattleQntt->year)->update([
+                          'cattQntt' => $cattleQntt->cattQntt + $oldCattleLog->quantity,
+                          'toSheep' => $cattleQntt->toSheep + $oldCattleLog->toSheep,
+                          'sheepKg' => $cattleQntt->sheepKg + $oldCattleLog->toKG
+                        ]);
+                }
+            }
+            $oldCattleLogs = DB::table('log_cattle')
+                ->where('sumCode', '=', $req->symCode)
+                ->where('date', '=', $req->date)
+                ->where('dangerID', '=', $req->dangerid)->delete();
+            foreach ($req->jsonObj as $key => $value) {
+                $symRow = DB::table('tb_sym')->where('symCode', '=', $req->symCode)->first();
+                $cattleQntt = DB::table('tb_cattle_qntt')
+                    ->where('symID', '=', $symRow->id)
+                    ->where('cattleID', '=', $value["cattleID"])
+                    ->orderby('year', 'DESC')->first();
+                DB::table('tb_cattle_qntt')
+                    ->where('symID', '=', $symRow->id)
+                    ->where('cattleID', '=', $cattleQntt->cattleID)
+                    ->where('year', '=', $cattleQntt->year)->update([
+                      'cattQntt' => $cattleQntt->cattQntt - $value["cattleQntt"],
+                      'toSheep' => $cattleQntt->toSheep - $value["toSheepQntt"],
+                      'sheepKg' => $cattleQntt->sheepKg - $value["toSheepKg"]
+                    ]);
+                $cattleLog = new LogCattle;
+                $cattleLog->provCode = $req->provID;
+                $cattleLog->sumCode = $req->symCode;
+                $cattleLog->cattleID = $value["cattleID"];
+                $cattleLog->quantity = $value["cattleQntt"];
+                $cattleLog->toSheep = $value["toSheepQntt"];
+                $cattleLog->toKG = $value["toSheepKg"];
+                $cattleLog->date = $req->date;
+                $cattleLog->dangerID = $req->dangerid;
+                $cattleLog->save();
+            }
+
+
+        // } catch (\Exception $e) {
+        //     DB::rollback();
+        // }
     }
 
 }
