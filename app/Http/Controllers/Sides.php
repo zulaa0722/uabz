@@ -206,6 +206,8 @@ class Sides extends Controller
         $reserveDay = ($reserveTotalKcal + $totalCattleKcal) / $symTotalKcal;
 
         $rightSide = array(
+          "normName" => $norm->NormName,
+          "normKcal" => $norm->sumKcal,
           "totalPop" => $totalPop,
           "standardPop" => $standardPop,
           "totalCattle" => $totalCattle,
@@ -276,5 +278,22 @@ class Sides extends Controller
         // return "Серверийн алдаа!!! Веб мастерт хандана уу";
         return $e;
       }
+    }
+
+    public function showNormTable(Request $req)
+    {
+      $sym = DB::table("tb_sym")->where("symCode", "=", $req->symCode)->first();
+
+      //tuhain sumiin normiin id-iig avch bn
+      // $norm = DB::table("tb_normname")->where("id", "=", $sym->normID)->get();
+      // return count($norm);
+      //sumiin normiig haruulah modal
+      $modalNorm = DB::table('tb_norms')
+        ->join('tb_food_products', 'tb_norms.producID', '=', 'tb_food_products.id')
+        ->select('tb_norms.*', 'tb_food_products.productName')
+        ->where('tb_norms.normID','=',$sym->normID)->get();
+
+        return DataTables::of($modalNorm)
+          ->make(true);
     }
 }

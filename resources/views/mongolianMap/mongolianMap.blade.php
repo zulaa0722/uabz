@@ -1,5 +1,6 @@
 @extends('layouts.layout_master')
 @section('css')
+  <link rel="stylesheet" href="{{url("public/uaBCssJs/datatableCss/datatables.min.css")}}">
   <style media="screen">
     .accordion {
       background-color: #eee;
@@ -263,8 +264,10 @@
                           Хоног
                         </div>
                       </div>
+                      <div class="col-md-12" id="showSymNorm">
 
-                      <button class="accordion col-md-12 text-center" id="showDangers" style="margin-bottom: 10px;" viewUrl="{{url("/show/dangers")}}">
+                      </div>
+                      <button class="accordion col-md-12 text-center" id="showDangers" style="margin: 10px 0;" viewUrl="{{url("/show/dangers")}}">
                         <div class="col-md-12"><label>Бүх онц байдлуудыг харах</label></div>
                       </button>
 
@@ -302,13 +305,15 @@
     </div>
   </div>
 @include('ShowSubProduct.ShowChangeNorm')
+@include('Norm.ShowNormProducts')
 
 @endsection
 
 @section('js')
-  <script>
-
-  </script>
+  <script type="text/javascript" src="{{url("public/uaBCssJs/datatableJs/datatables.min.js")}}"></script>
+  <script type="text/javascript" src="{{url("public/uaBCssJs/datatableJs/jszip.min.js")}}"></script>
+  <script type="text/javascript" src="{{url("public/uaBCssJs/datatableJs/pdfmake.min.js")}}"></script>
+  <script type="text/javascript" src="{{url("public/uaBCssJs/datatableJs/datatables.init.js")}}"></script>
 
   <script type="text/javascript">
     var csrf = "{{ csrf_token() }}";
@@ -317,6 +322,7 @@
     var allMongolianMap = "{{url("/mongolian/allMaps")}}";
     var changeBladeProvince = "{{url("/mongolian/province")}}";
     var getAlertedProvJson = "{{url("/test/get")}}";
+    var showNormTable = "{{url("/get/getSymInfo/showNormTable")}}";
     var aimagName = "";
     var provCode = "";
     var getAllSumsReserveDayCountURL = "{{url("/get/sums/reserve/count")}}";

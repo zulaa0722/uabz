@@ -106,6 +106,7 @@ class SubReserveController extends Controller
   public function saveSubProducts(Request $req)
   {
     try {
+      
       foreach ($req->subs as $key => $value) {
           $insertSubReserve = new SubReserve;
           $insertSubReserve->provID = $req->provID;

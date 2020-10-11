@@ -135,6 +135,7 @@ Route::post("/pop/delete", "PopulationController@delete");
 //rightPanel begin
 Route::get("/get/getAimagInfo", "Sides@getAimagInfo");
 Route::get("/get/getSymInfo", "Sides@getSymInfo");
+Route::post("/get/getSymInfo/showNormTable", "Sides@showNormTable");
 
 //rightPanel end
 
