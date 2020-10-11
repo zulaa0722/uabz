@@ -5,9 +5,10 @@ $(document).ready(function(){
 });
 
 $(document).on("click", ".accordion", function(){
+
   this.classList.toggle("active");
   var panel = this.nextElementSibling;
-  alert(panel.attr("lol"));
+  
   // if($(this).hasClass('active'))
   //   $(this).next().css({'border':'1px solid', 'border-radius': '5px'});
   // else

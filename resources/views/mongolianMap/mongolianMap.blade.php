@@ -13,6 +13,7 @@
       font-size: 14px;
       transition: 0.4s;
       line-height: 13px;
+      margin-bottom: 10px;
     }
     .active, .accordion:hover {
       background-color: #ccc;
@@ -263,7 +264,14 @@
                         </div>
                       </div>
 
-                      <a class="badge badge-info col-md-12 text-center" href="{{url("/show/dangers")}}">Бүх онц байдлуудыг харах</a>
+                      <button class="accordion col-md-12 text-center" id="showDangers" viewUrl="{{url("/show/dangers")}}">
+                        <div class="col-md-12"><label>Бүх онц байдлуудыг харах</label></div>
+                      </button>
+
+                      <button class="accordion col-md-12 text-center" id="showDangers" viewUrl="{{url("/show/dangers")}}">
+                        <div class="col-md-12"><label>Нөөцийг тодотгох</label></div>
+                      </button>
+
 
                       <div id="chartContainer" class="col-md-12" style="padding: 0px; margin:0px;"></div>
 

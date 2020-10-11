@@ -27,15 +27,15 @@
                 <div class="form-group row">
 
                   @foreach ($products as $product)
-                    <div class="col-md-3">
-
-                      <button class="accordion col-md-12" style="cursor:default;"><div class="col-md-12"><label id="productName">{{$product->productName}}</label></div>
-                      <button>
-                      <div class="panel col-md-12" style="padding: 0px;" lol="aaa">
+                    <div class="col-md-3" style="margin-bottom: 10px;">
+                      <button class="accordion col-md-12" style="cursor:default;">
+                        <div class="col-md-12"><label>{{$product->productName}}</label></div>
+                      </button>
+                      <div class="panel col-md-12" style="padding: 0px;">
                         <table style="text-align:center" class="col-md-12">
                           <tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт үлдсэн /кг/:</td><td>'+val.remaining+'</td></tr>
                           <tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт уураг /гр/:</td><td>'+val.foodProtein+'</td></tr>
-                          <tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт өөх тос /гр/:</td><td>'+val.foodFat+'</td>></tr>
+                          <tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт өөх тос /гр/:</td><td>'+val.foodFat+'</td></tr>
                           <tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт нүүрс ус /гр/:</td><td>'+val.foodCarbon+'</td></tr>
                           <tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт Ккал /мян.ккал/:</td><td>'+val.Kcal/1000+'</td></tr>
                         </table>

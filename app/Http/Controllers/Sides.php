@@ -122,16 +122,16 @@ class Sides extends Controller
                   "product" => $product->productName,
                   "leftDays" => intval($productTotalQntt / $val),
                   "remaining" => ($productTotalQntt),
-                  "foodProtein" => number_format($totalProtein),
-                  "foodFat" => number_format($totalFat),
-                  "foodCarbon" => number_format($totalCarbon),
-                  "Kcal" =>number_format($Kcal),
+                  "foodProtein" => ($totalProtein),
+                  "foodFat" => ($totalFat),
+                  "foodCarbon" => ($totalCarbon),
+                  "Kcal" =>($Kcal),
                   "isMeat" => $isMeat,
-                  "totalCattleKg" => number_format($totalSheepKg),
-                  "totalCattleProtein" => number_format($totalCattleProtein),
-                  "totalCattleFat" => number_format($totalCattleFat),
-                  "totalCattleCarbon" => number_format($totalCattleCarbon),
-                  "totalCattleKcal" => number_format($totalCattleKcal)
+                  "totalCattleKg" => ($totalSheepKg),
+                  "totalCattleProtein" => ($totalCattleProtein),
+                  "totalCattleFat" => ($totalCattleFat),
+                  "totalCattleCarbon" => ($totalCattleCarbon),
+                  "totalCattleKcal" => ($totalCattleKcal)
                 )
               );
             }

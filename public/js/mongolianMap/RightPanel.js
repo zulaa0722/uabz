@@ -185,3 +185,8 @@ function showSub()
   $("#modalShowChangeNorm").modal("show");
 
 }
+$(document).ready(function(){
+  $("#showDangers").click(function(){
+    window.location.href=$(this).attr('viewUrl');
+  });
+});

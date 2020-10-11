@@ -32,7 +32,9 @@ class SubReserveController extends Controller
   {
     try{
       //onts baidal zarlasan sumuudiig avch bn
-      $dangerSymd = DB::table("tb_danger_sym")->get();
+      $dangerSymd = DB::table("tb_danger_sym")
+        ->join('tb_danger', 'tb_danger.id', '=', 'tb_danger_sym.danger_id')
+        ->where('tb_danger.status', '=', '1')->get();
 
       //hunsnii golneriin buteegdhuunuudiig avch bn
       $products = DB::table("tb_food_products")->get();
@@ -192,7 +194,9 @@ class SubReserveController extends Controller
     try{
       $symCount = 0;
       //onts baidal zarlasan sumuudiig avch bn
-      $dangerSymd = DB::table("tb_danger_sym")->get();
+      $dangerSymd = DB::table("tb_danger_sym")
+        ->join('tb_danger', 'tb_danger.id', '=', 'tb_danger_sym.danger_id')
+        ->where('tb_danger.status', '=', '1')->get();
 
       //hunsnii golneriin buteegdhuunuudiig avch bn
       $products = DB::table("tb_food_products")->get();
