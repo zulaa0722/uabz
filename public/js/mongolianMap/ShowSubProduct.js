@@ -133,7 +133,6 @@ $(document).ready(function(){
         alertify.alert(response, function(){
           alertify.message('OK');
         });
-        // alertify.alert();
         $("#modalShowSub").modal("hide");
       }
     });
@@ -143,25 +142,25 @@ $(document).ready(function(){
 });
 
 $(document).on("click", ".editNorm", function(){
-  var symID = $(this).attr("symID");
-  var prodID = $(this).attr("productID");
-  alertify.confirm('Та энэхүү нэрийн хүнсний бүтээгдэхүүнийг нормоос хасахад итгэлтэй байна уу?',
-  function(e){
-    if(e){
-      $.ajax({
-        type: "post",
-        url: editNorm,
-        data: {
-          _token: $('meta[name="csrf-token"]').attr('content'),
-          symID: symID,
-          prodID: prodID
-        },
-        success: function(response){
-          table.rows('.selected').remove().draw(false);
-          alertify.success(response);
-        }
-      });
-    }
-  });
+  // var symID = $(this).attr("symID");
+  // var prodID = $(this).attr("productID");
+  // alertify.confirm('Та энэхүү нэрийн хүнсний бүтээгдэхүүнийг нормоос хасахад итгэлтэй байна уу?',
+  // function(e){
+  //   if(e){
+  //     $.ajax({
+  //       type: "post",
+  //       url: editNorm,
+  //       data: {
+  //         _token: $('meta[name="csrf-token"]').attr('content'),
+  //         symID: symID,
+  //         prodID: prodID
+  //       },
+  //       success: function(response){
+  //         table.rows('.selected').remove().draw(false);
+  //         alertify.success(response);
+  //       }
+  //     });
+  //   }
+  // });
 
 });

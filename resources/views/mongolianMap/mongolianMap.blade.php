@@ -13,7 +13,7 @@
       font-size: 14px;
       transition: 0.4s;
       line-height: 13px;
-      margin-bottom: 10px;
+      /* margin-bottom: 10px; */
     }
     .active, .accordion:hover {
       background-color: #ccc;
@@ -264,14 +264,17 @@
                         </div>
                       </div>
 
-                      <button class="accordion col-md-12 text-center" id="showDangers" viewUrl="{{url("/show/dangers")}}">
+                      <button class="accordion col-md-12 text-center" id="showDangers" style="margin-bottom: 10px;" viewUrl="{{url("/show/dangers")}}">
                         <div class="col-md-12"><label>Бүх онц байдлуудыг харах</label></div>
                       </button>
 
                       <button class="accordion col-md-12 text-center" id="showDangers" viewUrl="{{url("/show/dangers")}}">
-                        <div class="col-md-12"><label>Нөөцийг тодотгох</label></div>
+                        <div class="col-md-12"><label>Нөөцийг шинэчлэх</label></div>
                       </button>
-
+                      <div class="panel col-md-12" style="padding: 0px;">
+                        <button style="margin-bottom:1px;" type="button" url="{{url("/log/foodReserve")}}" class="btn btn-secondary col-md-12" id="btnLogReserve" name="button">Хүнсний нөөц</button>
+                        <button type="button" url="{{url("/log/cattle/show")}}" class="btn btn-secondary col-md-12" id="btnCattleReserve" name="button">Малын тоо толгой</button>
+                      </div>
 
                       <div id="chartContainer" class="col-md-12" style="padding: 0px; margin:0px;"></div>
 
