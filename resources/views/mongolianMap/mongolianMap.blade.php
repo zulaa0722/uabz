@@ -1,17 +1,12 @@
 @extends('layouts.layout_master')
 @section('css')
-  <style>
-
-  </style>
   <style media="screen">
     .accordion {
       background-color: #eee;
       color: #444;
-
       padding: 1px;
       padding-top: 12px;
       border: none;
-      /* border: 1px solid; */
       border-radius: 5px;
       text-align: left;
       outline: none;

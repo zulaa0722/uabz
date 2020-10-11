@@ -22,7 +22,6 @@ $(document).ready(function(){
             div = div + '<div class="form-group row col-md-3" style="margin-right: 2px;">';
             div = div + '<button class="accordion col-md-12" style="cursor:default;"><div class="col-md-12"><label id="productName">'+val.product+'</label></div>';
             if(val.leftDays > 2)
-	          //div = div + '<label style="color:red;">Section 2321</label>'
               div = div + '<div class="col-md-12">Үлдсэн хоног: <label id="leftDays">'+val.leftDays+'</label></div>';
             else {
               div = div + '<div class="col-md-12">Үлдсэн хоног: <label id="leftDays" style="color:red;">'+val.leftDays+'</label></div>';
@@ -35,18 +34,18 @@ $(document).ready(function(){
             if(val.isMeat === 1)
             {
               div = div + '<tr style="border-bottom: 1px solid"><td></td><td>Хүнсний нөөц</td><td>Амьд мал</td></tr>';
-              div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт үлдсэн /кг/:</td><td>'+val.remaining+'</td><td>'+val.totalCattleKg+'</td></tr>';
-              div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт уураг /гр/:</td><td>'+val.foodProtein+'</td><td>'+parseInt(val.totalCattleProtein)+'</td></tr>';
-              div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт өөх тос /гр/:</td><td>'+val.foodFat+'</td><td>'+val.totalCattleFat+'</td></tr>';
-              div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт нүүрс ус /гр/:</td><td>'+val.foodCarbon+'</td><td>'+val.totalCattleCarbon+'</td></tr>';
-              div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт Ккал /мян.ккал/:</td><td>'+val.Kcal/1000+'</td><td>'+val.totalCattleKcal/1000+'</td></tr>';
+              div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт үлдсэн /кг/:</td><td>'+parseInt(val.remaining)+'</td><td>'+parseInt(val.totalCattleKg)+'</td></tr>';
+              div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт уураг /гр/:</td><td>'+parseInt(val.foodProtein)+'</td><td>'+parseInt(val.totalCattleProtein)+'</td></tr>';
+              div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт өөх тос /гр/:</td><td>'+parseInt(val.foodFat)+'</td><td>'+parseInt(val.totalCattleFat)+'</td></tr>';
+              div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт нүүрс ус /гр/:</td><td>'+parseInt(val.foodCarbon)+'</td><td>'+parseInt(val.totalCattleCarbon)+'</td></tr>';
+              div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт Ккал:</td><td>'+parseInt(val.Kcal)+'</td><td>'+parseInt(val.totalCattleKcal)+'</td></tr>';
             }else {
               div = div + '<tr style="border-bottom: 1px solid" class="col-md-12"><td></td><td>Хүнсний нөөц</td></tr>';
-              div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт үлдсэн /кг/:</td><td>'+val.remaining+'</td></tr>';
-              div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт уураг /гр/:</td><td>'+val.foodProtein+'</td></tr>';
-              div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт өөх тос /гр/:</td><td>'+val.foodFat+'</td></tr>';
-              div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт нүүрс ус /гр/:</td><td>'+val.foodCarbon+'</td></tr>';
-              div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт Ккал /мян.ккал/:</td><td>'+val.Kcal/1000+'</td></tr>';
+              div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт үлдсэн /кг/:</td><td>'+parseInt(val.remaining)+'</td></tr>';
+              div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт уураг /гр/:</td><td>'+parseInt(val.foodProtein)+'</td></tr>';
+              div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт өөх тос /гр/:</td><td>'+parseInt(val.foodFat)+'</td></tr>';
+              div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт нүүрс ус /гр/:</td><td>'+parseInt(val.foodCarbon)+'</td></tr>';
+              div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт Ккал:</td><td>'+parseInt(val.Kcal)+'</td></tr>';
             }
             div = div + '</table>';
             div = div + '<div class="col-md-12"><a href="javascript:showSub()">Орлуулах</a> &nbsp&nbsp&nbsp&nbsp ';
@@ -149,18 +148,18 @@ $(document).on("click", "path[data-toggle='tooltip']", function(){
           if(val.isMeat === 1)
           {
             div = div + '<tr style="border-bottom: 1px solid"><td></td><td>Хүнсний нөөц</td><td>Амьд мал</td></tr>';
-            div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт үлдсэн /кг/:</td><td>'+val.remaining+'</td><td>'+val.totalCattleKg+'</td></tr>';
-            div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт уураг /гр/:</td><td>'+val.foodProtein+'</td><td>'+val.totalCattleProtein+'</td></tr>';
-            div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт өөх тос /гр/:</td><td>'+val.foodFat+'</td><td>'+val.totalCattleFat+'</td></tr>';
-            div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт нүүрс ус /гр/:</td><td>'+val.foodCarbon+'</td><td>'+val.totalCattleCarbon+'</td></tr>';
-            div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт Ккал:</td><td>'+val.Kcal+'</td><td>'+val.totalCattleKcal+'</td></tr>';
+            div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт үлдсэн /кг/:</td><td>'+parseInt(val.remaining)+'</td><td>'+parseInt(val.totalCattleKg)+'</td></tr>';
+            div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт уураг /гр/:</td><td>'+parseInt(val.foodProtein)+'</td><td>'+parseInt(val.totalCattleProtein)+'</td></tr>';
+            div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт нүүрс ус /гр/:</td><td>'+parseInt(val.foodCarbon)+'</td><td>'+parseInt(val.totalCattleCarbon)+'</td></tr>';
+            div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт өөх тос /гр/:</td><td>'+parseInt(val.foodFat)+'</td><td>'+parseInt(val.totalCattleFat)+'</td></tr>';
+            div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт Ккал:</td><td>'+parseInt(val.Kcal)+'</td><td>'+parseInt(val.totalCattleKcal)+'</td></tr>';
           }else {
             div = div + '<tr style="border-bottom: 1px solid" class="col-md-12"><td></td><td>Хүнсний нөөц</td></tr>';
-            div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт үлдсэн /кг/:</td><td>'+val.remaining+'</td></tr>';
-            div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт уураг /гр/:</td><td>'+val.foodProtein+'</td></tr>';
-            div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт өөх тос /гр/:</td><td>'+val.foodFat+'</td></tr>';
-            div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт нүүрс ус /гр/:</td><td>'+val.foodCarbon+'</td></tr>';
-            div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт Ккал:</td><td>'+val.Kcal+'</td></tr>';
+            div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт үлдсэн /кг/:</td><td>'+parseInt(val.remaining)+'</td></tr>';
+            div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт уураг /гр/:</td><td>'+parseInt(val.foodProtein)+'</td></tr>';
+            div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт өөх тос /гр/:</td><td>'+parseInt(val.foodFat)+'</td></tr>';
+            div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт нүүрс ус /гр/:</td><td>'+parseInt(val.foodCarbon)+'</td></tr>';
+            div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт Ккал:</td><td>'+parseInt(val.Kcal)+'</td></tr>';
           }
           div = div + '</table>';
           div = div + '<div class="col-md-12"><a href="javascript:showSub()">Орлуулах</a> &nbsp&nbsp&nbsp&nbsp ';

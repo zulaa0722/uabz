@@ -89,7 +89,7 @@ class Sides extends Controller
         $provNormProducts = DB::table("tb_norms")->where('normID', '=', $province->normID)->get();
 
         $bottomSide = [];
-
+        $Kcal = 0;
         foreach ($products as $product) {
           //tus aimagt bgaa hunsnii neg ner torliin baraa niit her bgaag avch bn
           $productTotalQntt = DB::table("tb_food_reserve")
@@ -99,7 +99,7 @@ class Sides extends Controller
           $totalProtein = ($productTotalQntt * $product->foodProtein) / ($product->foodQntt);
           $totalFat = ($productTotalQntt * $product->foodFat) / ($product->foodQntt);
           $totalCarbon = ($productTotalQntt * $product->foodCarbon) / ($product->foodQntt);
-          $Kcal = ($productTotalQntt * $product->foodCkal) / ($product->foodQntt);
+          $Kcal = $Kcal + ($productTotalQntt * $product->foodTomCkal) / ($product->foodQntt);
           $isMeat = 0;
           $totalCattleProtein = 0;
           $totalCattleFat = 0;
@@ -121,23 +121,23 @@ class Sides extends Controller
               array_push($bottomSide, array(
                   "product" => $product->productName,
                   "leftDays" => intval($productTotalQntt / $val),
-                  "remaining" => $productTotalQntt,
-                  "foodProtein" => $totalProtein,
-                  "foodFat" => $totalFat,
-                  "foodCarbon" => $totalCarbon,
-                  "Kcal" =>$Kcal,
+                  "remaining" => ($productTotalQntt),
+                  "foodProtein" => number_format($totalProtein),
+                  "foodFat" => number_format($totalFat),
+                  "foodCarbon" => number_format($totalCarbon),
+                  "Kcal" =>number_format($Kcal),
                   "isMeat" => $isMeat,
-                  "totalCattleKg" => $totalSheepKg,
-                  "totalCattleProtein" => $totalCattleProtein,
-                  "totalCattleFat" => $totalCattleFat,
-                  "totalCattleCarbon" => $totalCattleCarbon,
-                  "totalCattleKcal" => $totalCattleKcal
+                  "totalCattleKg" => number_format($totalSheepKg),
+                  "totalCattleProtein" => number_format($totalCattleProtein),
+                  "totalCattleFat" => number_format($totalCattleFat),
+                  "totalCattleCarbon" => number_format($totalCattleCarbon),
+                  "totalCattleKcal" => number_format($totalCattleKcal)
                 )
               );
             }
           }
+          $Kcal = 0;
         }
-
         $totalPop1 = DB::table("tb_population")
         ->join('tb_sym', 'tb_sym.id', '=','tb_population.symID')
         ->select('tb_sym.symName', 'tb_population.*')
@@ -219,7 +219,7 @@ class Sides extends Controller
         $symNormProducts = DB::table("tb_norms")->where('normID', '=', $sym->normID)->get();
 
         $bottomSide = [];
-
+        $Kcal = 0;
         foreach ($products as $product) {
           $productTotalQntt = DB::table("tb_food_reserve")
             ->where("symID", "=", $sym->id)
@@ -228,7 +228,7 @@ class Sides extends Controller
           $totalProtein = ($productTotalQntt * $product->foodProtein) / ($product->foodQntt);
           $totalFat = ($productTotalQntt * $product->foodFat) / ($product->foodQntt);
           $totalCarbon = ($productTotalQntt * $product->foodCarbon) / ($product->foodQntt);
-          $Kcal = ($productTotalQntt * $product->foodCkal) / ($product->foodQntt);
+          $Kcal = $Kcal + ($productTotalQntt * $product->foodCkal) / ($product->foodQntt);
 
           $isMeat = 0;
           $totalCattleProtein = 0;

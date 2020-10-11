@@ -40,8 +40,8 @@
                 </div>
                 <div class="row col-md-12">
 
-                  <button class="btn btn-primary" type="button" name="button" id="btnAddModalOpen">Нэмэх</button>
-                  <button class="btn btn-warning" type="button" name="button" id="btnEditModalOpen">Засах</button>
+                  <button class="btn btn-primary" type="button" name="button" id="btnInsertSpent">Зарцуулалт оруулах</button>
+                  <button class="btn btn-warning" type="button" name="button" id="btnEditSpent">Засах</button>
 
                 </div>
               {{-- </div> --}}
