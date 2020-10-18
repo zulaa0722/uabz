@@ -3,19 +3,20 @@
       {{-- modal-lg --}}
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title mt-0">Гол нэрийн бүтээгдэхүүний зарцуулалтыг оруулах</h5>
+                {{-- <h5 class="modal-title mt-0">Гол нэрийн бүтээгдэхүүний зарцуулалтыг оруулах</h5> --}}
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-
-
-                <div class="form-group row justify-content-center">
-                    <label id="provName" style="color:blue; font-size:16px;"> </label>
-                    <label style="font-size:16px;">&nbsp аймгийн &nbsp</label>
-                    <label style="color:blue; font-size:16px;" id="symName"></label>
-                    <label style="font-size:16px;">&nbsp сум </label>
+                <div class="text-center col-md-12">
+                  <div class="text-center">
+                    <label id="provName" style="font-size:18px;"></label>&nbsp
+                    <label id="symName" style="font-size:18px;"></label>
+                  </div>
+                  <div class="text-center col-md-12">
+                    <h5>Гол нэрийн бүтээгдэхүүний зарцуулалт</h5>
+                  </div>
                 </div>
                   <div class="form-group row">
                   <div class="col-md-3">
@@ -32,12 +33,19 @@
                         <div class="col-md-12"><label>{{$product->productName}}</label></div>
                       </button>
                       <div class="panel col-md-12" style="padding: 0px;">
+                        {{-- {{$reserve = App\Http\Controllers\LogFoodReserveController::getReserveBySym()}} --}}
                         <table style="text-align:center" class="col-md-12">
-                          <tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт үлдсэн /кг/:</td><td>'+val.remaining+'</td></tr>
-                          <tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт уураг /гр/:</td><td>'+val.foodProtein+'</td></tr>
-                          <tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт өөх тос /гр/:</td><td>'+val.foodFat+'</td></tr>
-                          <tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт нүүрс ус /гр/:</td><td>'+val.foodCarbon+'</td></tr>
-                          <tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт Ккал /мян.ккал/:</td><td>'+val.Kcal/1000+'</td></tr>
+                          <tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт үлдсэн /кг/:</td><td id="totalRemain{{$product->id}}"></td></tr>
+                          <tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт уураг /гр/:</td><td id="protein{{$product->id}}"></td></tr>
+                          <tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт өөх тос /гр/:</td><td id="fat{{$product->id}}"></td></tr>
+                          <tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт нүүрс ус /гр/:</td><td id="carbon{{$product->id}}"></td></tr>
+                          <tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт Ккал:</td><td id="totalKcal{{$product->id}}"></td></tr>
+                          <tr style="display:none;"><td id="tomKcal{{$product->id}}"></td></tr>
+                          <tr style="display:none;"><td id="foodQntt{{$product->id}}"></td></tr>
+                          <tr style="display:none;"><td id="usedKcal{{$product->id}}"></td></tr>
+                          <tr style="border-bottom: 1px solid"><td style="text-align:left">Зарцуулсан хэмжээ /кг/:</td><td style="width:80px;"><input type="number" class="spentInput" prodID="{{$product->id}}"></td></tr>
+                          <tr style="border-bottom: 1px solid"><td style="text-align:left">Нөөцөд үлдэх /кг/:</td><td><label id="remainingLbl{{$product->id}}"></label></td></tr>
+
                         </table>
                       </div>
 
@@ -55,7 +63,7 @@
 
 
             <div class="modal-footer">
-                <button type="submit" id="btnFoodReserveAdd" class="btn btn-primary">Хадгалах</button>
+                <button type="submit" id="btnInsertSpent" class="btn btn-primary" inserSpentUrl="{{url("/log/foodReserve/insertFoodSpent")}}">Хадгалах</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Хаах</button>
             </div>
 
@@ -63,6 +71,10 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <style media="screen">
+
+  input[type=number]{
+      width: 80px;
+  }
   .accordion {
     background-color: #eee;
     color: #444;

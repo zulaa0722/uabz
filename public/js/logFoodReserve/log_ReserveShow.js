@@ -1,32 +1,61 @@
-function aimag(aimagCode, url){
+$(document).ready(function(){
+  $("#cmbProv").change(function(){
+
+    if($("#cmbProv").val() == "-1")
+      $("#showSymDiv").addClass("d-none")
+
+    var url = $(this).attr("post-url");
+    var provID = $(this).val();
+
+    $("#showSymDiv").removeClass("d-none");
+
     $.ajax({
-      type:"post",
-      url:url,
-      data:{
-        _token:$('meta[name="csrf-token"]').attr('content'),
-        provID: aimagCode
+      type: "post",
+      url: url,
+      data: {
+        _token: $('meta[name="csrf-token"]').attr('content'),
+        provID: provID
       },
-      success:function(res){
+      success: function(res){
         // console.log(res);
-          $("#listSyms").empty();
-          $("#listSyms").append("<label>Сумаа сонгоно уу.</label>");
-          $.each(res, function(key, val){
-              // alert(val.symName);
-              var atag = '<a href="#" onclick="getSymData(' + val.symID + ', ' + val.id + ')" class="list-group-item list-group-item-action" data-toggle="list">' + val.symName + '</a>';
-              $("#listSyms").append(atag);
-          });
+        $('#cmbSym').empty();
+        $("#cmbSym").append($('<option>', {
+            value: '-1',
+            text: 'Сонгоно уу'
+          }).attr('dangerID', 'lol')
+        );
+        $.each(res, function(key, val){
+            $("#cmbSym").append($('<option>', {
+                value: val.symID,
+                text: val.symName
+              }).attr('dangerID', val.id)
+            );
+        });
       }
     });
-}
+  });
+});
 
-function getSymData(symID, dangerID){
-  refresh(symID, dangerID);
-}
+$(document).ready(function(){
+    $("#cmbSym").change(function(){
+        if($(this).val() == "0"){
+          $("#lblProv").text("");
+          $("#lblSym").text("");
+        }
+        else{
+          $("#lblProv").text($("#cmbProv option:selected").text() + " аймгийн ");
+          $("#lblSym").text($("#cmbSym option:selected").text() + " сумын ");
+          refresh($(this).val(), $("#cmbSym option:selected").attr('dangerid'));
+        }
+    });
+});
+
 function refresh(symID, dangerID){
 
   $('#remainingProducts').dataTable().fnDestroy();
   cols = [
-    { data: "number", name: "number"}
+    { data: "number", name: "number"},
+    { data: "date", name: "date"}
   ];
   $.each(cols1, function(key, val){
 
@@ -35,7 +64,6 @@ function refresh(symID, dangerID){
     item["name"] = '' + val.id + '';
     cols.push(item);
   });
-  cols.push({data: "date", name: "date"})
 // console.log(cols);
   table = $('#remainingProducts').DataTable({
     "language": {

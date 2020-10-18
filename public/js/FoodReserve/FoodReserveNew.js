@@ -76,7 +76,7 @@ $(document).ready(function(){
     $(".foodProductFields").each(function(){
         if($(this).val() != "" ){
             item = {}
-            item ["productID"] = $(this).attr('id');
+            item ["prodID"] = $(this).attr('id');
             item ["foodQntt"] = $(this).val();
             item ["totalKcal"] = $("#foodTotalKcal"+$(this).attr('id')).text();
             // if(item ["totalKcal"] == "NaN")
@@ -137,8 +137,8 @@ $(document).ready(function(){
             alertify.alert(response.msg);
           }
           else{
-            // alertify.error(response.msg);
-            console.log(response.msg);
+            alertify.error(response.msg);
+            // console.log(response.msg);
           }
 
       }

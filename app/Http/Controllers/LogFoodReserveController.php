@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\DataTables;
 use App\LogFoodReserve;
 use App\FoodProducts;
+use App\FoodReserve;
 
 class LogFoodReserveController extends Controller
 {
@@ -38,36 +39,26 @@ class LogFoodReserveController extends Controller
 
       $products = FoodProducts::all();
 
-      // $remaining = DB::table("tb_food_reserve")
-      //   ->where('symID', '=', $sym->id)->get();
-
       $nowProducts = DB::table("log_food_reserve")
         ->where('symCode', '=', $req->symID)
         ->where('dangerID', '=', $req->dangerID)
         ->groupBy('date')->get();
-
-      // return $nowProducts;
 
       $remainingArray = [];
       $rowCount = 1;
       foreach ($nowProducts as $nowProd) {
           $datarow = [];
           $datarow['number'] = $rowCount;
+          $datarow += ['date'=>$nowProd->date];
           foreach ($products as $product) {
             $proRow = $this->getRemainingFoodByDangerIdSumCodeDateProductID($req->dangerID, $req->symID, $nowProd->date, $product->id);
             if($proRow == null){
               $datarow += ["$product->id" => ""];
             }
             else{
-              $datarow += ["$product->id" => $proRow->qnttRemain];
+              $datarow += ["$product->id" => $proRow->qnttUsed];
             }
-            // getRemainingFoodByDangerIdSumCodeDateProductID($dangerID, $sumID, $date, $productID)
-            // if($nowProd->productID == $product->id)
-            //   $datarow += ["$product->id" => $nowProd->qnttRemain];
-            // else
-            //   $datarow += ["$product->id" => ""];
           }
-          $datarow += ['date'=>$nowProd->date];
 
           array_push($remainingArray, $datarow);
           $rowCount++;
@@ -78,7 +69,8 @@ class LogFoodReserveController extends Controller
       return $remainingArray;
 
     } catch (\Exception $e) {
-      return $e;
+      return "Серверийн алдаа!!! Веб мастерт хандана уу";
+      // return $e;
     }
   }
 
@@ -93,8 +85,68 @@ class LogFoodReserveController extends Controller
       return $productRowLog;
   }
 
+  public function showRemainingProducts(Request $req)
+  {
+    try {
+      $sym = DB::table("tb_sym")
+        ->where('symCode', '=', $req->symCode)->first();
+
+      $reserve = DB::table("tb_food_reserve")
+        ->join("tb_food_products", "tb_food_reserve.productID", "=", "tb_food_products.id")
+        ->select("tb_food_reserve.*", "tb_food_products.*")
+        ->where("tb_food_reserve.symID", "=", $sym->id)->get();
+
+      return $reserve;
+    } catch (\Exception $e) {
+      return "Серверийн алдаа!!! Веб мастерт хандана уу";
+      // return $e;
+    }
+
+  }
+
+  public function insertFoodSpent(Request $req)
+  {
+
+    $sym = DB::table("tb_sym")
+      ->where('symCode', '=', $req->symCode)->first();
+
+    try {
+
+      foreach ($req->insertData as $key => $value) {
+          $insertSpent = new LogFoodReserve;
+          $insertSpent->dangerID = $req->dangerID;
+          $insertSpent->provCode = $req->provCode;
+          $insertSpent->symCode = $req->symCode;
+          $insertSpent->productID = $value['prodID'];
+          $insertSpent->qnttRemain = $value['remainingQntt'];
+          $insertSpent->qnttUsed = $value['usedQntt'];
+          $insertSpent->measurement = "кг";
+          $insertSpent->totalKcalRemain = $value['remainingTotalKcal'];
+          $insertSpent->totalKcalUsed = $value['usedKcal'];
+          $insertSpent->date = $req->date;
+          $insertSpent->save();
+
+          $newReserve = (float)$value['remainingQntt'] - (float)$value['usedQntt'];
+          $newTotalKcal = (float)$value['remainingTotalKcal'] - (float)$value['usedKcal'];
+
+          // return $newTotalKcal.'  '.$value['remainingTotalKcal'].'  '.$value['usedKcal'];
+          DB::table("tb_food_reserve")
+            ->where("symID", '=', $sym->id)
+            ->where("productID", "=", $value['prodID'])->update(['mainQntt' => $newReserve, 'totalKcal' => $newTotalKcal]);
+
+      }
 
 
+
+      return "Амжилттай хадгаллаа.";
+
+
+    } catch (\Exception $e) {
+      return "Серверийн алдаа!!! Веб мастерт хандана уу";
+      // return $e;
+    }
+
+  }
 
 
 

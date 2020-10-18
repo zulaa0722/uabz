@@ -59,6 +59,8 @@ Route::get("/mongolia/Zavkhan", "mongolianMapsController@Zavkhan");
 //Hunsnii buteegdehuunii log ehelj bn
 Route::get("/log/foodReserve", "LogFoodReserveController@showHome");
 Route::post("/log/foodReserve/refresh", "LogFoodReserveController@getProductRemaingBySym");
+Route::post("/log/foodReserve/showRemainingProducts", "LogFoodReserveController@showRemainingProducts");
+Route::post("/log/foodReserve/insertFoodSpent", "LogFoodReserveController@insertFoodSpent");
 //hunsnii buteegdhuunii log duusch bn
 
 
@@ -108,7 +110,7 @@ Route::post("/sym/insert", "SymController@store");
 Route::post("/sym/edit", "SymController@update");
 Route::post("/sym/delete", "SymController@delete");
 Route::post("/sym/get/by/provID", "SymController@getSymByProvinceID");
-Route::post("/get/dangered/syms/by/provID", "SymController@getDangeredSymByProvID");
+Route::POST("/get/dangered/syms/by/provID", "SymController@getDangeredSymByProvID");
 
 
 Route::post("/declare/danger/by/sum", "DangerController@declareDangerBySum");
