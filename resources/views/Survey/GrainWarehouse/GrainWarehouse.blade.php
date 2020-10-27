@@ -107,7 +107,7 @@ cursor: pointer;
       }  },
             { data: "provName", name: "provName"},
             { data: "symName", name: "symName"},
-            { data: "firmName", name: "firmName"},
+            { data: "name", name: "name"},
             { data: "startDate", name: "startDate"},
             { data: "capacity", name: "capacity"},
             { data: "state", name: "state"},

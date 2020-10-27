@@ -48,7 +48,7 @@ class SrvyGrainWarehousesController extends Controller
       $insertGrainWarehouse = new GrainWarehouse;
       $insertGrainWarehouse->provID = $req->provID;
       $insertGrainWarehouse->symID = $req->symID;
-      $insertGrainWarehouse->firmName = $req->firmName;
+      $insertGrainWarehouse->name = $req->firmName;
       $insertGrainWarehouse->startDate = $req->startDate;
       $insertGrainWarehouse->capacity = $req->capacity;
       $insertGrainWarehouse->state = $req->state;
@@ -58,7 +58,6 @@ class SrvyGrainWarehousesController extends Controller
       return "Амжилттай хадгаллаа";
     }catch(\Exception $e){
       return "Серверийн алдаа!!! Веб мастерт хандана уу";
-      return $e;
     }
   }
 
@@ -68,7 +67,7 @@ class SrvyGrainWarehousesController extends Controller
       $updateGrainWarehouse = GrainWarehouse::find($req->rowID);
       $updateGrainWarehouse->provID = $req->provID;
       $updateGrainWarehouse->symID = $req->symID;
-      $updateGrainWarehouse->firmName = $req->firmName;
+      $updateGrainWarehouse->name = $req->firmName;
       $updateGrainWarehouse->startDate = $req->startDate;
       $updateGrainWarehouse->capacity = $req->capacity;
       $updateGrainWarehouse->state = $req->state;

@@ -26,7 +26,7 @@ $(document).ready(function(){
     $("#rowID").val(dataRow['id']);
     $("#eprovName").val(dataRow['provID']);
     $("#ecmbSymNew").val(dataRow['symID']);
-    $("#efirmName").val(dataRow['firmName']);
+    $("#efirmName").val(dataRow['name']);
     $("#estartDate").val(dataRow['startDate']);
     $("#ecapacity").val(dataRow['capacity']);
     $("#estate").val(dataRow['state']);
