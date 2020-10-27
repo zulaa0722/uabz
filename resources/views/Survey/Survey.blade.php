@@ -6,7 +6,7 @@
    <li><a href="{{url("/Survey/drinkingWater")}}">Ундны усны эх үүсвэрийн судалгаа</a></li>
    <li><a href="{{url("/Survey/foodTradeCenter")}}">Хүнсний худалдааны томоохон төв, захын судалгаа</a></li>
    <li><a href="{{url('/survey/food/ware/house')}}">Хүнсний агуулах зоорийн судалгаа</a></li>
-   <li><a href="javascript: void(0);">Тариалангийн агуулах, элеватор, зоорийн судалгаа</a></li>
+   <li><a href="{{url("/Survey/grainWarehouse")}}">Тариалангийн агуулах, элеватор, зоорийн судалгаа</a></li>
    <li><a href="{{url("/survey/food/factory")}}">Хүнсний үйлдвэрийн судалгаа</a></li>
    <li><a href="{{url("/salt/deposit/show")}}">Орон нутаг дахь давсны ордны судалгаа</a></li>
    {{-- <li><a href="javascript: void(0);">Тээврийн хэрэгслийн судалгаа</a></li>

@@ -1,15 +1,15 @@
-<div id="modalFoodTradeCenterEdit" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
+<div id="modalGrainWarehouseEdit" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
       {{-- modal-lg --}}
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title mt-0">Хүнсний худалдааны томоохон төв, захын судалгаа нэмэх</h5>
+                <h5 class="modal-title mt-0">ТАРИАЛАНГИЙН АГУУЛАХ, ЭЛЕВАТОР, ЗООРИЙН СУДАЛГАА ЗАСАХ</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-              <form id="frmFoodTradeCenterEdit" action="" method="post">
+              <form id="frmGrainWarehouseEdit" action="" method="post">
                 @csrf
                 <input type="hidden" name="rowID" id="rowID" value="">
                   <div class="form-group row">
@@ -70,7 +70,7 @@
 
                   </div>
                   <div class="modal-footer">
-                      <button type="submit" id="btnFoodTradeCenterUpdate" class="btn btn-primary">Хадгалах</button>
+                      <button type="submit" id="btnGrainWarehouseUpdate" class="btn btn-primary">Хадгалах</button>
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Хаах</button>
                   </div>
             </form>

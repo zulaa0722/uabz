@@ -219,6 +219,12 @@ Route::post("/survey/get/salt/deposits", "SrvyLocalSaltDepositsController@getSal
 Route::post("/survey/salt/deposit/new", "SrvyLocalSaltDepositsController@store");
 Route::post("/survey/salt/deposit/edit", "SrvyLocalSaltDepositsController@update");
 Route::post("/survey/salt/deposit/delete", "SrvyLocalSaltDepositsController@delete");
+
+Route::get("/Survey/grainWarehouse", "SrvyGrainWarehousesController@grainWarehouseShow");
+Route::post("/grainWarehouse", "SrvyGrainWarehousesController@getGrainWarehouseData");
+Route::post("/grainWarehouse/insert", "SrvyGrainWarehousesController@store");
+Route::post("/grainWarehouse/edit", "SrvyGrainWarehousesController@update");
+Route::post("/grainWarehouse/delete", "SrvyGrainWarehousesController@delete");
 //Survey end
 
 

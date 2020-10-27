@@ -253,12 +253,11 @@
                       </div>
 
                       <div class="clearfix"></div>
-                      <div class="form-group row border border-success rounded-left" style="">
-                        <div class="col-md-12">
+                      <div class="form-group row border border-success rounded-left d-none" style="" id="reserveDayDiv">
+                        <div class="col-md-12 text-center">
                           Нийт хоногийн нөөц
                         </div>
                         <div id="reserveDay" class="col-md-12 text-center text-success border border-success rounded-circle" style="font-size:45px;">
-                          56234
                         </div>
                         <div class="col-md-12 text-center">
                           Хоног

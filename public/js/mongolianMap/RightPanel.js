@@ -6,6 +6,8 @@ $(document).ready(function(){
       aimagName = $(this).attr('name');
       provCode = $(this).attr('id');
       $("#titleOfremainingDays").css('display', 'block');
+      $("#reserveDayDiv").removeClass('d-none');
+
       //alert(provCode);
       $.ajax({
         type: 'get',
@@ -21,7 +23,7 @@ $(document).ready(function(){
           $.each(response.bottomSide, function(key, val){
             div = div + '<div class="form-group row col-md-3" style="margin-right: 2px;">';
             div = div + '<button class="accordion col-md-12" style="cursor:default;"><div class="col-md-12"><label id="productName">'+val.product+'</label></div>';
-            if(val.leftDays > 2)
+            if(val.leftDays > 15)
               div = div + '<div class="col-md-12">Үлдсэн хоног: <label id="leftDays">'+val.leftDays+'</label></div>';
             else {
               div = div + '<div class="col-md-12">Үлдсэн хоног: <label id="leftDays" style="color:red;">'+val.leftDays+'</label></div>';
@@ -48,8 +50,8 @@ $(document).ready(function(){
               div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт Ккал:</td><td>'+parseInt(val.Kcal).toLocaleString()+'</td></tr>';
             }
             div = div + '</table>';
-            div = div + '<div class="col-md-12"><a href="javascript:showSub()">Орлуулах</a> &nbsp&nbsp&nbsp&nbsp ';
-            div = div + '<a href="javascript:showSub()">Нормоос хасах</a></div>';
+            // div = div + '<div class="col-md-12"><a href="javascript:showSub()">Орлуулах</a> &nbsp&nbsp&nbsp&nbsp ';
+            // div = div + '<a href="javascript:showSub()">Нормоос хасах</a></div>';
             div = div + '</div>';
 
             div = div + '</div>';
@@ -123,6 +125,7 @@ $(document).on("click", "path[data-toggle='tooltip']", function(){
     //alert($(this).attr('id') + 'lol');
     var symName = $(this).attr('name');
     $("#titleOfremainingDays").css('display', 'block');
+    $("#reserveDayDiv").removeClass('d-none');
     var sumID = $(this).attr('id')
     $.ajax({
       type: "get",
@@ -131,15 +134,17 @@ $(document).on("click", "path[data-toggle='tooltip']", function(){
         symCode: sumID
       },
       success:function(response){
-        var symNorm = '<a href="javascript:showNorm('+sumID+')">Олгож буй норм: '+response.rightSide.normName+'</a><br>';
-        symNorm = symNorm + '<a href="javascript:showNorm('+sumID+')">Нийт Ккал: '+response.rightSide.normKcal+' ккал</a>';
+        // console.log(response.rightSide.normName + ' is norm name');
+        var symNorm = '<a href="javascript:showNorm('+sumID+')" style="font-size:13px;">Олгож буй норм: '+response.rightSide.normName+'<br>';
+        symNorm = symNorm + 'Нийт Ккал: '+response.rightSide.normKcal+' ккал</a>';
+        $("#showSymNorm").html("");
         $("#showSymNorm").html(symNorm);
 
         var div = "";
         $.each(response.bottomSide, function(key, val){
           div = div + '<div class="form-group row col-md-3" style="margin-right: 2px;">';
           div = div + '<button class="accordion col-md-12" style="cursor:default;"><div class="col-md-12"><label id="productName">'+val.product+'</label></div>';
-          if(val.leftDays > 2)
+          if(val.leftDays > 15)
           //div = div + '<label style="color:red;">Section 2321</label>'
             div = div + '<div class="col-md-12">Үлдсэн хоног: <label id="leftDays">'+val.leftDays+'</label></div>';
           else {
@@ -166,8 +171,7 @@ $(document).on("click", "path[data-toggle='tooltip']", function(){
             div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт Ккал:</td><td>'+parseInt(val.Kcal).toLocaleString()+'</td></tr>';
           }
           div = div + '</table>';
-          div = div + '<div class="col-md-12"><a href="javascript:showSub()">Орлуулах</a> &nbsp&nbsp&nbsp&nbsp ';
-          div = div + '<a href="javascript:showSub()">Нормоос хасах</a></div>';
+          div = div + '<div class="col-md-12"><a href="javascript:showSub()">Норм солих</a></div>';
           div = div + '</div>';
 
           div = div + '</div>';

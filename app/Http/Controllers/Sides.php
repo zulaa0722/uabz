@@ -158,6 +158,10 @@ class Sides extends Controller
       }
 
     }
+
+
+
+    //Symiin infog avch bn
     public function getSymInfo(Request $req){
       try {
         $sym = DB::table("tb_sym")->where("symCode", "=", $req->symCode)->first();
@@ -275,8 +279,8 @@ class Sides extends Controller
         return $bothSides;
 
       } catch (\Exception $e) {
-        // return "Серверийн алдаа!!! Веб мастерт хандана уу";
-        return $e;
+        return "Серверийн алдаа!!! Веб мастерт хандана уу";
+        // return $e;
       }
     }
 
