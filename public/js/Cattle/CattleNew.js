@@ -21,8 +21,6 @@ function mainCode()
 
   if(isInsert == false){return;}
 
-  console.log($("#frmCattleNew").serialize());
-
   $.ajax({
     type:'post',
     url:cattleNew,

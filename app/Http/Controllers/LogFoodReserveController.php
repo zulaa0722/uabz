@@ -48,8 +48,9 @@ class LogFoodReserveController extends Controller
       $rowCount = 1;
       foreach ($nowProducts as $nowProd) {
           $datarow = [];
-          $datarow['number'] = $rowCount;
-          $datarow += ['date'=>$nowProd->date];
+          $datarow['id'] = $nowProd->id;
+          $datarow += ['number' => $rowCount];
+          $datarow += ['date' => $nowProd->date];
           foreach ($products as $product) {
             $proRow = $this->getRemainingFoodByDangerIdSumCodeDateProductID($req->dangerID, $req->symID, $nowProd->date, $product->id);
             if($proRow == null){
@@ -63,10 +64,10 @@ class LogFoodReserveController extends Controller
           array_push($remainingArray, $datarow);
           $rowCount++;
       }
+      // dd($remainingArray);
       return DataTables::of($remainingArray)
         ->make(true);
 
-      return $remainingArray;
 
     } catch (\Exception $e) {
       return "Серверийн алдаа!!! Веб мастерт хандана уу";
@@ -136,10 +137,7 @@ class LogFoodReserveController extends Controller
 
       }
 
-
-
       return "Амжилттай хадгаллаа.";
-
 
     } catch (\Exception $e) {
       return "Серверийн алдаа!!! Веб мастерт хандана уу";
@@ -148,6 +146,46 @@ class LogFoodReserveController extends Controller
 
   }
 
+  public function deleteFoodSpent(Request $req)
+  {
+    try {
+
+      $sym = DB::table("tb_sym")
+        ->where('symCode', '=', $req->symCode)->first();
+
+      $toDeleteProducts = DB::table('log_food_reserve')
+        ->where('dangerID','=', $req->dangerID)
+        ->where('symCode', '=', $req->symCode)
+        ->where('date', '=', $req->date)->get();
+
+      $reservedProducts = DB::table('tb_food_reserve')
+        ->where('symID', '=', $sym->id)->get();
+
+      foreach ($toDeleteProducts as $toDelProduct) {
+        foreach ($reservedProducts as $reserveProd) {
+          if($toDelProduct->productID == $reserveProd->productID)
+          {
+            // return $reserveProd->mainQntt.'  '.$toDelProduct->qnttUsed;
+            $up = FoodReserve::find($reserveProd->id);
+            $up->mainQntt = $reserveProd->mainQntt + $toDelProduct->qnttUsed;
+            $up->totalKcal = $reserveProd->totalKcal + $toDelProduct->totalKcalUsed;
+            $up->save();
+          }
+        }
+      }
+
+      // DB::table('log_food_reserve')
+      //   ->where('dangerID','=', $req->dangerID)
+      //   ->where('symCode', '=', $req->symCode)
+      //   ->where('date', '=', $req->date)
+      //   ->delete();
+
+      return "Aмжилттай устгалаа";
+    } catch (\Exception $e) {
+      return "Серверийн алдаа!!! Веб мастерт хандана уу";
+    }
+
+  }
 
 
 

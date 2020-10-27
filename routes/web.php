@@ -61,6 +61,8 @@ Route::get("/log/foodReserve", "LogFoodReserveController@showHome");
 Route::post("/log/foodReserve/refresh", "LogFoodReserveController@getProductRemaingBySym");
 Route::post("/log/foodReserve/showRemainingProducts", "LogFoodReserveController@showRemainingProducts");
 Route::post("/log/foodReserve/insertFoodSpent", "LogFoodReserveController@insertFoodSpent");
+Route::post("/log/foodReserve/deleteRemainingProducts", "LogFoodReserveController@deleteFoodSpent");
+
 //hunsnii buteegdhuunii log duusch bn
 
 

@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
   $("#cmbProv").change(function(){
 
     if($("#cmbProv").val() == "-1")
@@ -48,12 +49,20 @@ $(document).ready(function(){
           refresh($(this).val(), $("#cmbSym option:selected").attr('dangerid'));
         }
     });
+
+});
+
+$(document).on('click', '#remainingProducts tbody tr', function(){
+    var currow = $(this).closest('tr');
+    dataRow = $('#remainingProducts').DataTable().row(currow).data();
 });
 
 function refresh(symID, dangerID){
 
   $('#remainingProducts').dataTable().fnDestroy();
+
   cols = [
+    { data: "id", name: "id", visible: false},
     { data: "number", name: "number"},
     { data: "date", name: "date"}
   ];
@@ -109,4 +118,5 @@ function refresh(symID, dangerID){
      //  },
      "columns": cols
   });
+
 }

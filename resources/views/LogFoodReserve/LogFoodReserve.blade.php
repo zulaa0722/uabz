@@ -32,6 +32,7 @@
             <h4 class="text-center col-md-12">Гол нэрийн хүнсний бүтээгдэхүүний зарцуулалт</h4>
             <table post-url="{{url("/log/foodReserve/refresh")}}" id="remainingProducts" class="table table-striped wrap table-bordered" style="width: 100%;">
               <thead>
+                <th>id</th>
                 <th>№</th>
                 <th>Огноо</th>
                 @foreach ($products as $product)
@@ -45,7 +46,7 @@
             <div class="row col-md-12">
 
               <button class="btn btn-primary" type="button" id="btnShowSpentModal" urlProducts="{{url("/log/foodReserve/showRemainingProducts")}}">Зарцуулалт оруулах</button>
-              <button class="btn btn-danger" type="button" id="btnEditSpent">Устгах</button>
+              <button class="btn btn-danger" type="button" id="btnDeleteSpent" deleteSpentUrl="{{url("/log/foodReserve/deleteRemainingProducts")}}">Устгах</button>
 
             </div>
           </div>
@@ -64,9 +65,10 @@
   <script type="text/javascript" src="{{url("public/uaBCssJs/datatableJs/datatables.init.js")}}"></script>
   <script type="text/javascript">
     var cols1 = <?php echo json_encode($products); ?>;
+    var dataRow = "";
+
   </script>
 
   <script src="{{url("public/js/LogFoodReserve/log_ReserveShow.js")}}"></script>
   <script src="{{url("public/js/LogFoodReserve/log_ReserveEdit.js")}}"></script>
-  <script src="{{url("public/js/LogFoodReserve/log_ReserveAdd.js")}}"></script>
 @endsection

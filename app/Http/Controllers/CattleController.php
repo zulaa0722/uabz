@@ -38,7 +38,7 @@ class CattleController extends Controller
           return DataTables::of($cattles)
             ->make(true);
         }catch(\Exception $e){
-          return "Серверийн алдаа!!! Веб мастерт хандана уу".$e;
+          return "Серверийн алдаа!!! Веб мастерт хандана уу";
         }
     }
     public function store(Request $req)
@@ -50,7 +50,8 @@ class CattleController extends Controller
           $insertCattle->save();
           return "Амжилттай хадгаллаа";
         }catch(\Exception $e){
-          return $e;
+          return "Серверийн алдаа!!! Веб мастерт хандана уу";
+          // return $e;
         }
     }
 

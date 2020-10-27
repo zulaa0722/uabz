@@ -57,7 +57,7 @@ class FoodReserveController extends Controller
             $insertFoodReserve->productID = $value['productID'];
             $insertFoodReserve->mainQntt = $value['foodQntt'];
             $insertFoodReserve->totalKcal = $value['totalKcal'];
-            $insertFoodReserve->measurement = "тн";
+            $insertFoodReserve->measurement = "кг";
             $insertFoodReserve->save();
 
 
@@ -71,11 +71,11 @@ class FoodReserveController extends Controller
       }catch(\Exception $e){
         $arrayMsg = array(
             'status' => 'error',
-            'msg' => "Серверийн алдаа!!! Веб мастерт хандана уу"
-            // 'msg' => $e
+            // 'msg' => "Серверийн алдаа!!! Веб мастерт хандана уу"
+            'msg' => $e
 
         );
-        return $arrayMsg;
+        return $arrayMsg['msg'];
       }
     }
     public function delete(Request $req)
