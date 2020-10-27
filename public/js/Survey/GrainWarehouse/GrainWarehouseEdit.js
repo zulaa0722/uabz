@@ -25,7 +25,6 @@ $(document).ready(function(){
 
     $("#rowID").val(dataRow['id']);
     $("#eprovName").val(dataRow['provID']);
-
     $("#ecmbSymNew").val(dataRow['symID']);
     $("#efirmName").val(dataRow['firmName']);
     $("#estartDate").val(dataRow['startDate']);
@@ -35,10 +34,10 @@ $(document).ready(function(){
     $("#econtact").val(dataRow['contact']);
 
 
-    $("#modalFoodTradeCenterEdit").modal("show");
+    $("#modalGrainWarehouseEdit").modal("show");
   });
 
-  $("#btnFoodTradeCenterUpdate").click(function(e){
+  $("#btnGrainWarehouseUpdate").click(function(e){
       e.preventDefault();
       editCode();
   });
@@ -58,29 +57,23 @@ function editCode()
     isInsert = false;
   }
 
-
-  if($("#efirmName").val()==""){
-    alertify.error("Та заавал НЭР оруулана уу!!!");
-    isInsert = false;
-  }
   if($("#ecapacity").val()==""){
     alertify.error("Та заавал ХҮЧИН ЧАДАЛ оруулана уу!!!");
     isInsert = false;
   }
 
-
   if(isInsert == false){return;}
 
   $.ajax({
       type: 'post',
-      url: foodTradeCenterEditUrl,
-      data:$("#frmFoodTradeCenterEdit").serialize(),
+      url: grainWarehouseEdit,
+      data:$("#frmGrainWarehouseEdit").serialize(),
       success:function(response){
           alertify.alert(response);
-          populationTableRefresh();
+          grainWarehouseTableRefresh();
           emptyForm();
           dataRow = "";
-          $("#modalFoodTradeCenterEdit").modal("hide");
+          $("#modalGrainWarehouseEdit").modal("hide");
 
       },
       error: function(XMLHttpRequest, textStatus, errorThrown) {

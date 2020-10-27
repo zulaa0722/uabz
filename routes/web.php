@@ -200,6 +200,12 @@ Route::post("/getFoodTradeCenter", "SrvyFoodTradeCenterController@getFoodTradeCe
 Route::post("/foodTradeCenter/insert", "SrvyFoodTradeCenterController@store");
 Route::post("/foodTradeCenter/edit", "SrvyFoodTradeCenterController@update");
 Route::post("/foodTradeCenter/delete", "SrvyFoodTradeCenterController@delete");
+
+Route::get("/Survey/grainWarehouse", "SrvyGrainWarehousesController@grainWarehouseShow");
+Route::post("/grainWarehouse", "SrvyGrainWarehousesController@getGrainWarehouseData");
+Route::post("/grainWarehouse/insert", "SrvyGrainWarehousesController@store");
+Route::post("/grainWarehouse/edit", "SrvyGrainWarehousesController@update");
+Route::post("/grainWarehouse/delete", "SrvyGrainWarehousesController@delete");
 //Survey end
 
 
