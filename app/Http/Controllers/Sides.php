@@ -29,6 +29,7 @@ class Sides extends Controller
     public function getAimagInfo(Request $req)
     {
       try {
+        $year = Carbon::now()->year;
         $province = DB::table("tb_province")->where("provCode", "=", $req->provCode)->first();
 
         //tuhain aimgiin normiin id-iig avch bn
@@ -37,11 +38,13 @@ class Sides extends Controller
 
         //tuhain amgiin niit hun amiin too
         $totalPop = DB::table("tb_population")
-        ->where("provID", "=", $province->id)->sum("totalPop");
+        ->where("provID", "=", $province->id)
+        ->where("date","=",$year-1)->sum("totalPop");
 
         //tuhain amgiin jishsen hun amiin too
         $standardPop = DB::table("tb_population")
-          ->where("provID", "=", $province->id)->sum("standardPop");
+          ->where("provID", "=", $province->id)
+          ->where("date","=",$year-1)->sum("standardPop");
 
         //normiin kcal-iig tuhain aimgiin jishsen huneer urjuulj niit kcal-iig bodoj bn
         if($standardPop != 0)
@@ -56,11 +59,13 @@ class Sides extends Controller
 
         //aimgiin niit maliin too
         $totalCattle = DB::table("tb_cattle_qntt")
-          ->where("provID", "=", $province->id)->sum("cattQntt");
+          ->where("provID", "=", $province->id)
+          ->where("year","=",$year-1)->sum("cattQntt");
 
         //aimgiin niit maliin toog honin tolgoid shiljuulsen kg-iig ni avch bn
         $totalSheepKg = DB::table("tb_cattle_qntt")
-          ->where("provID", "=", $province->id)->sum("sheepKg");
+          ->where("provID", "=", $province->id)
+          ->where("year","=",$year-1)->sum("sheepKg");
 
         //maliin honin tolgoid shiljuulsen kg-iin niit kcal iig bodoh heseg
         $meat = DB::table("tb_food_products")
@@ -164,6 +169,7 @@ class Sides extends Controller
     //Symiin infog avch bn
     public function getSymInfo(Request $req){
       try {
+        $year = Carbon::now()->year;
         $sym = DB::table("tb_sym")->where("symCode", "=", $req->symCode)->first();
 
         //dd($req->symCode);
@@ -174,11 +180,13 @@ class Sides extends Controller
 
         //tuhain symiin niit hun amiin too
         $totalPop = DB::table("tb_population")
-          ->where("symID", "=", $sym->id)->sum("totalPop");
+          ->where("symID", "=", $sym->id)
+          ->where("date","=",$year-1)->sum("totalPop");
 
         //tuhain symiin jishsen hun amiin too
         $standardPop = DB::table("tb_population")
-          ->where("symID", "=", $sym->id)->sum("standardPop");
+          ->where("symID", "=", $sym->id)
+          ->where("date","=",$year-1)->sum("standardPop");
 
         //normiin kcal-iig tuhain symiin jishsen huneer urjuulj niit kcal-iig bodoj bn
         if($standardPop != 0)
@@ -193,10 +201,12 @@ class Sides extends Controller
 
         //symiin niit maliin too
         $totalCattle = DB::table("tb_cattle_qntt")
-          ->where("symID", "=", $sym->id)->sum("cattQntt");
+          ->where("symID", "=", $sym->id)
+          ->where("year","=",$year-1)->sum("cattQntt");
 
         $totalSheepKg = DB::table("tb_cattle_qntt")
-          ->where("symID", "=", $sym->id)->sum("sheepKg");
+          ->where("symID", "=", $sym->id)
+          ->where("year","=",$year-1)->sum("sheepKg");
 
         //maliin honin tolgoid shiljuulsen kg-iin niit kcal iig bodoh heseg
         $meat = DB::table("tb_food_products")
