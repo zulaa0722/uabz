@@ -31,6 +31,8 @@ class SubReserveController extends Controller
   public function showSubView()
   {
     try{
+      $year = Carbon::now()->year;
+
       //onts baidal zarlasan sumuudiig avch bn
       $dangerSymd = DB::table("tb_danger_sym")
         ->join('tb_danger', 'tb_danger.id', '=', 'tb_danger_sym.danger_id')
@@ -50,7 +52,8 @@ class SubReserveController extends Controller
 
         //tuhain symiin jishsen hun amiin too
         $standardPop = DB::table("tb_population")
-          ->where("symID", "=", $sym->id)->sum("standardPop");
+          ->where("symID", "=", $sym->id)
+          ->where("date", '=', $year-1)->sum("standardPop");
 
         foreach ($products as $product) {
           //tuhain sumiin nootsod bga hunsnii buteegdehuunuudiin hemjee
@@ -106,7 +109,7 @@ class SubReserveController extends Controller
   public function saveSubProducts(Request $req)
   {
     try {
-      
+
       foreach ($req->subs as $key => $value) {
           $insertSubReserve = new SubReserve;
           $insertSubReserve->provID = $req->provID;
@@ -194,6 +197,7 @@ class SubReserveController extends Controller
   {
     try{
       $symCount = 0;
+      $year = Carbon::now()->year;
       //onts baidal zarlasan sumuudiig avch bn
       $dangerSymd = DB::table("tb_danger_sym")
         ->join('tb_danger', 'tb_danger.id', '=', 'tb_danger_sym.danger_id')
@@ -213,7 +217,8 @@ class SubReserveController extends Controller
 
         //tuhain symiin jishsen hun amiin too
         $standardPop = DB::table("tb_population")
-          ->where("symID", "=", $sym->id)->sum("standardPop");
+          ->where("symID", "=", $sym->id)
+          ->where("date", "=", $year-1)->sum("standardPop");
 
         foreach ($products as $product) {
           //tuhain sumiin nootsod bga hunsnii buteegdehuunuudiin hemjee
