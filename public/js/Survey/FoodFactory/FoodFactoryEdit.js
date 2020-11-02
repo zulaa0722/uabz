@@ -25,19 +25,18 @@ $(document).ready(function(){
 
     $("#rowID").val(dataRow['id']);
     $("#eprovName").val(dataRow['provID']);
-    $("#ecmbSymNew").val(dataRow['symID']);
-    $("#efirmName").val(dataRow['name']);
-    $("#estartDate").val(dataRow['startDate']);
-    $("#ecapacity").val(dataRow['capacity']);
-    $("#estate").val(dataRow['state']);
+
+    $("#ename").val(dataRow['name']);
+    $("#eactivity").val(dataRow['activity']);
+    $("#ecapacity").val(dataRow['factoryCapacity']);
     $("#eresName").val(dataRow['resName']);
     $("#econtact").val(dataRow['contact']);
 
 
-    $("#modalGrainWarehouseEdit").modal("show");
+    $("#modalFoodFactoryEdit").modal("show");
   });
 
-  $("#btnGrainWarehouseUpdate").click(function(e){
+  $("#btnFoodFactoryUpdate").click(function(e){
       e.preventDefault();
       editCode();
   });
@@ -57,8 +56,24 @@ function editCode()
     isInsert = false;
   }
 
+  if($("#ename").val()==""){
+    alertify.error("Та заавал ХҮНСНИЙ ҮЙЛДВЭРИЙН НЭРЭЭ оруулна уу!!!");
+    isInsert = false;
+  }
+  if($("#eactivity").val()==""){
+    alertify.error("Та заавал ҮЙЛ АЖИЛЛАГААНЫ ЧИГЛЭЛЭЭ оруулна уу!!!");
+    isInsert = false;
+  }
   if($("#ecapacity").val()==""){
-    alertify.error("Та заавал ХҮЧИН ЧАДАЛ оруулана уу!!!");
+    alertify.error("Та заавал ҮЙЛДВЭРИЙН СУУРИЛАГДСАН ХҮЧИН ЧАДАЛ оруулна уу!!!");
+    isInsert = false;
+  }
+  if($("#eresName").val()==""){
+    alertify.error("Та заавал ХАРИУЦАХ ХҮНИЙ НЭР оруулна уу!!!");
+    isInsert = false;
+  }
+  if($("#econtact").val()==""){
+    alertify.error("Та заавал ХОЛБОО БАРИХ УТАС оруулна уу!!!");
     isInsert = false;
   }
 
@@ -66,15 +81,19 @@ function editCode()
 
   $.ajax({
       type: 'post',
-      url: grainWarehouseEdit,
-      data:$("#frmGrainWarehouseEdit").serialize(),
+      url: $("#btnFoodFactoryUpdate").attr('post-url'),
+      data:$("#frmFoodFactoryEdit").serialize(),
       success:function(response){
-          alertify.alert(response);
-          grainWarehouseTableRefresh();
+        if(response.status == 'success'){
+          alertify.alert(response.msg);
+          populationTableRefresh();
           emptyForm();
           dataRow = "";
-          $("#modalGrainWarehouseEdit").modal("hide");
-
+          $("#modalFoodFactoryEdit").modal("hide");
+        }
+        else{
+          alertify.error( response.msg);
+        }
       },
       error: function(XMLHttpRequest, textStatus, errorThrown) {
           alertify.error("Status: " + textStatus); alertify.error("Error: " + errorThrown);

@@ -25,8 +25,8 @@ $(document).ready(function(){
 
     $("#rowID").val(dataRow['id']);
     $("#eprovName").val(dataRow['provID']);
-    $("#ecmbSymNew").val(dataRow['symID']);
-    $("#efirmName").val(dataRow['name']);
+
+    $("#efirmName").val(dataRow['firmName']);
     $("#estartDate").val(dataRow['startDate']);
     $("#ecapacity").val(dataRow['capacity']);
     $("#estate").val(dataRow['state']);
@@ -34,10 +34,10 @@ $(document).ready(function(){
     $("#econtact").val(dataRow['contact']);
 
 
-    $("#modalGrainWarehouseEdit").modal("show");
+    $("#modalFoodWareHouseEdit").modal("show");
   });
 
-  $("#btnGrainWarehouseUpdate").click(function(e){
+  $("#btnFoodWareHouseUpdate").click(function(e){
       e.preventDefault();
       editCode();
   });
@@ -57,8 +57,28 @@ function editCode()
     isInsert = false;
   }
 
+  if($("#efirmName").val()==""){
+    alertify.error("Та заавал АЖ АХУЙН НЭГЖИЙН НЭРЭЭ оруулна уу!!!");
+    isInsert = false;
+  }
+  if($("#estartDate").val()==""){
+    alertify.error("Та заавал АШИГЛАЛТАНД ОРСОН ӨДРӨӨ оруулна уу!!!");
+    isInsert = false;
+  }
   if($("#ecapacity").val()==""){
-    alertify.error("Та заавал ХҮЧИН ЧАДАЛ оруулана уу!!!");
+    alertify.error("Та заавал ХҮЧИН ЧАДАЛ оруулна уу!!!");
+    isInsert = false;
+  }
+  if($("#estate").val()==""){
+    alertify.error("Та заавал ТӨЛӨВ оруулна уу!!!");
+    isInsert = false;
+  }
+  if($("#eresName").val()==""){
+    alertify.error("Та заавал ХАРИУЦАХ ХҮНИЙ НЭР оруулна уу!!!");
+    isInsert = false;
+  }
+  if($("#econtact").val()==""){
+    alertify.error("Та заавал ХОЛБОО БАРИХ УТАС оруулна уу!!!");
     isInsert = false;
   }
 
@@ -66,15 +86,19 @@ function editCode()
 
   $.ajax({
       type: 'post',
-      url: grainWarehouseEdit,
-      data:$("#frmGrainWarehouseEdit").serialize(),
+      url: $("#btnFoodWareHouseUpdate").attr('post-url'),
+      data:$("#frmFoodWareHouseEdit").serialize(),
       success:function(response){
-          alertify.alert(response);
-          grainWarehouseTableRefresh();
+        if(response.status == 'success'){
+          alertify.alert(response.msg);
+          populationTableRefresh();
           emptyForm();
           dataRow = "";
-          $("#modalGrainWarehouseEdit").modal("hide");
-
+          $("#modalDrinkingWaterEdit").modal("hide");
+        }
+        else{
+          alertify.error( response.msg);
+        }
       },
       error: function(XMLHttpRequest, textStatus, errorThrown) {
           alertify.error("Status: " + textStatus); alertify.error("Error: " + errorThrown);

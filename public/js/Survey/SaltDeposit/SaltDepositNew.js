@@ -1,10 +1,10 @@
 $(document).ready(function(){
     $("#btnAddModalOpen").click(function(){
-        $("#modalGrainWarehouseNew").modal("show");
+        $("#modalSaltDepositNew").modal("show");
     });
 
 
-    $("#btnGrainWarehouseAdd").click(function(e){
+    $("#btnSaltDepositAdd").click(function(e){
         e.preventDefault();
         mainCode();
     });
@@ -24,29 +24,47 @@ function mainCode()
     isInsert = false;
   }
 
-  if($("#firmName").val()==""){
-    alertify.error("Та заавал Аж ахуйн нэгжийн нэр оруулана уу!!!");
+  if($("#dpstName").val()==""){
+    alertify.error("Та заавал ОРДЫН НЭРЭЭ оруулна уу!!!");
     isInsert = false;
   }
-
-  if($("#capacity").val()==""){
-    alertify.error("Та заавал ХҮЧИН ЧАДАЛ оруулана уу!!!");
+  if($("#dpstReserve").val()==""){
+    alertify.error("Та заавал ОРДЫН НӨӨЦӨӨ оруулна уу!!!");
     isInsert = false;
   }
-
+  if($("#dpstState").val()==""){
+    alertify.error("Та заавал ОРДЫН ТӨЛӨВӨӨ оруулана уу!!!");
+    isInsert = false;
+  }
+  if($("#distance").val()==""){
+    alertify.error("Та заавал АЙМГИЙН ТӨВ ХҮРТЭЛХ КМ-ЭЭ оруулана уу!!!");
+    isInsert = false;
+  }
+  if($("#resName").val()==""){
+    alertify.error("Та заавал ХАРИУЦАХ ХҮНИЙ НЭР оруулана уу!!!");
+    isInsert = false;
+  }
+  if($("#contact").val()==""){
+    alertify.error("Та заавал ХОЛБОО БАРИХ УТАС оруулана уу!!!");
+    isInsert = false;
+  }
 
   if(isInsert == false){return;}
 
   $.ajax({
     type:'post',
-    url:grainWarehouseNew,
-    data:$("#frmGrainWarehouseNew").serialize(),
+    url:$("#btnSaltDepositAdd").attr('post-url'),
+    data:$("#frmSaltDepositNew").serialize(),
     success:function(response){
-      // console.log(response);
-        alertify.alert( response);
-        grainWarehouseTableRefresh();
-        emptyForm();
-        dataRow = "";
+        if(response.status == 'success'){
+          alertify.alert( response.msg);
+          populationTableRefresh();
+          emptyForm();
+          dataRow = "";
+        }
+        else{
+          alertify.error( response.msg);
+        }
     },
     error: function(jqXhr, json, errorThrown){// this are default for ajax errors
       var errors = jqXhr.responseJSON;
@@ -58,22 +76,24 @@ function mainCode()
     }
   });
 }
+
 function emptyForm()
 {
   $("#provName").val("-1");
   $("#cmbSymNew").val("-1");
-  $("#firmName").val("");
-  $("#startDate").val("");
-  $("#capacity").val("");
-  $("#state").val("");
+  $("#dpstName").val("");
+  $("#dpstReserve").val("");
+  $("#dpstState").val("");
+  $("#distance").val("");
   $("#resName").val("");
   $("#contact").val("");
 
 }
-function grainWarehouseTableRefresh()
+
+function populationTableRefresh()
 {
-  $('#GrainWarehouse').DataTable().destroy();
-  var table = $('#GrainWarehouse').DataTable({
+  $('#tableSaltDeposit').DataTable().destroy();
+  var table = $('#tableSaltDeposit').DataTable({
     "language": {
             "lengthMenu": "_MENU_ мөрөөр харах",
             "zeroRecords": "Хайлт илэрцгүй байна",
@@ -96,7 +116,7 @@ function grainWarehouseTableRefresh()
         "serverSide": true,
         "stateSave": true,
         "ajax":{
-                 "url": grainWarehouse,
+                 "url": $("#tableSaltDeposit").attr('post-url'),
                  "dataType": "json",
                  "type": "post",
                  "data":{
@@ -107,16 +127,16 @@ function grainWarehouseTableRefresh()
           { data: "id", name: "id",  render: function (data, type, row, meta) {
         return meta.row + meta.settings._iDisplayStart + 1;
     }  },
-          { data: "provName", name: "provName"},
-          { data: "symName", name: "symName"},
-          { data: "name", name: "name"},
-          { data: "startDate", name: "startDate"},
-          { data: "capacity", name: "capacity"},
-          { data: "state", name: "state"},
-          { data: "resName", name: "resName"},
-          { data: "contact", name: "contact"},
-          { data: "provID", name: "provID", visible:false},
-          { data: "symID", name: "symID", visible:false}
+        { data: "provName", name: "provName"},
+        { data: "symName", name: "symName"},
+        { data: "dpstName", name: "dpstName"},
+        { data: "dpstReserve", name: "dpstReserve"},
+        { data: "dpstState", name: "dpstState"},
+        { data: "distance", name: "distance"},
+        { data: "resName", name: "resName"},
+        { data: "contact", name: "contact"},
+        { data: "provID", name: "provID", visible:false},
+        { data: "symID", name: "symID", visible:false}
           ]
       }).ajax.reload();
 }

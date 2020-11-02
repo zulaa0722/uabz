@@ -1,10 +1,10 @@
 $(document).ready(function(){
     $("#btnAddModalOpen").click(function(){
-        $("#modalGrainWarehouseNew").modal("show");
+        $("#modalFoodWareHouseNew").modal("show");
     });
 
 
-    $("#btnGrainWarehouseAdd").click(function(e){
+    $("#btnFoodWareHouseAdd").click(function(e){
         e.preventDefault();
         mainCode();
     });
@@ -25,28 +25,46 @@ function mainCode()
   }
 
   if($("#firmName").val()==""){
-    alertify.error("Та заавал Аж ахуйн нэгжийн нэр оруулана уу!!!");
+    alertify.error("Та заавал АЖ АХУЙН НЭГЖИЙН НЭРЭЭ оруулна уу!!!");
     isInsert = false;
   }
-
+  if($("#startDate").val()==""){
+    alertify.error("Та заавал АШИГЛАЛТАНД ОРСОН ӨДРӨӨ оруулна уу!!!");
+    isInsert = false;
+  }
   if($("#capacity").val()==""){
-    alertify.error("Та заавал ХҮЧИН ЧАДАЛ оруулана уу!!!");
+    alertify.error("Та заавал БАГТААМЖ ХҮЧИН ЧАДАЛ оруулана уу!!!");
     isInsert = false;
   }
-
+  if($("#state").val()==""){
+    alertify.error("Та заавал ТӨЛӨВ оруулана уу!!!");
+    isInsert = false;
+  }
+  if($("#resName").val()==""){
+    alertify.error("Та заавал ХАРИУЦАХ ХҮНИЙ НЭР оруулана уу!!!");
+    isInsert = false;
+  }
+  if($("#contact").val()==""){
+    alertify.error("Та заавал ХОЛБОО БАРИХ УТАС оруулана уу!!!");
+    isInsert = false;
+  }
 
   if(isInsert == false){return;}
 
   $.ajax({
     type:'post',
-    url:grainWarehouseNew,
-    data:$("#frmGrainWarehouseNew").serialize(),
+    url:$("#btnFoodWareHouseAdd").attr('post-url'),
+    data:$("#frmFoodWareHouseNew").serialize(),
     success:function(response){
-      // console.log(response);
-        alertify.alert( response);
-        grainWarehouseTableRefresh();
-        emptyForm();
-        dataRow = "";
+        if(response.status == 'success'){
+          alertify.alert( response.msg);
+          populationTableRefresh();
+          emptyForm();
+          dataRow = "";
+        }
+        else{
+          alertify.error( response.msg);
+        }
     },
     error: function(jqXhr, json, errorThrown){// this are default for ajax errors
       var errors = jqXhr.responseJSON;
@@ -58,6 +76,7 @@ function mainCode()
     }
   });
 }
+
 function emptyForm()
 {
   $("#provName").val("-1");
@@ -70,10 +89,11 @@ function emptyForm()
   $("#contact").val("");
 
 }
-function grainWarehouseTableRefresh()
+
+function populationTableRefresh()
 {
-  $('#GrainWarehouse').DataTable().destroy();
-  var table = $('#GrainWarehouse').DataTable({
+  $('#tableFoodWareHouse').DataTable().destroy();
+  var table = $('#tableFoodWareHouse').DataTable({
     "language": {
             "lengthMenu": "_MENU_ мөрөөр харах",
             "zeroRecords": "Хайлт илэрцгүй байна",
@@ -96,7 +116,7 @@ function grainWarehouseTableRefresh()
         "serverSide": true,
         "stateSave": true,
         "ajax":{
-                 "url": grainWarehouse,
+                 "url": $("#tableFoodWareHouse").attr('post-url'),
                  "dataType": "json",
                  "type": "post",
                  "data":{
@@ -109,7 +129,7 @@ function grainWarehouseTableRefresh()
     }  },
           { data: "provName", name: "provName"},
           { data: "symName", name: "symName"},
-          { data: "name", name: "name"},
+          { data: "firmName", name: "firmName"},
           { data: "startDate", name: "startDate"},
           { data: "capacity", name: "capacity"},
           { data: "state", name: "state"},

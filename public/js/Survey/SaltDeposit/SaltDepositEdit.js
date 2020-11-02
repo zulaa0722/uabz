@@ -25,19 +25,19 @@ $(document).ready(function(){
 
     $("#rowID").val(dataRow['id']);
     $("#eprovName").val(dataRow['provID']);
-    $("#ecmbSymNew").val(dataRow['symID']);
-    $("#efirmName").val(dataRow['name']);
-    $("#estartDate").val(dataRow['startDate']);
-    $("#ecapacity").val(dataRow['capacity']);
-    $("#estate").val(dataRow['state']);
+
+    $("#edpstName").val(dataRow['dpstName']);
+    $("#edpstReserve").val(dataRow['dpstReserve']);
+    $("#edpstState").val(dataRow['dpstState']);
+    $("#edistance").val(dataRow['distance']);
     $("#eresName").val(dataRow['resName']);
     $("#econtact").val(dataRow['contact']);
 
 
-    $("#modalGrainWarehouseEdit").modal("show");
+    $("#modalSaltDepositEdit").modal("show");
   });
 
-  $("#btnGrainWarehouseUpdate").click(function(e){
+  $("#btnSaltDepositUpdate").click(function(e){
       e.preventDefault();
       editCode();
   });
@@ -57,8 +57,28 @@ function editCode()
     isInsert = false;
   }
 
-  if($("#ecapacity").val()==""){
-    alertify.error("Та заавал ХҮЧИН ЧАДАЛ оруулана уу!!!");
+  if($("#edpstName").val()==""){
+    alertify.error("Та заавал ОРДЫН НЭРЭЭ оруулна уу!!!");
+    isInsert = false;
+  }
+  if($("#edpstReserve").val()==""){
+    alertify.error("Та заавал ОРДЫН НӨӨЦӨӨ оруулна уу!!!");
+    isInsert = false;
+  }
+  if($("#edpstState").val()==""){
+    alertify.error("Та заавал ОРДЫН ТӨЛӨВӨӨ оруулна уу!!!");
+    isInsert = false;
+  }
+  if($("#edistance").val()==""){
+    alertify.error("Та заавал АЙМГИЙН ТӨВ ХҮРТЭЛХ КМ-ЭЭ оруулна уу!!!");
+    isInsert = false;
+  }
+  if($("#eresName").val()==""){
+    alertify.error("Та заавал ХАРИУЦАХ ХҮНИЙ НЭР оруулна уу!!!");
+    isInsert = false;
+  }
+  if($("#econtact").val()==""){
+    alertify.error("Та заавал ХОЛБОО БАРИХ УТАС оруулна уу!!!");
     isInsert = false;
   }
 
@@ -66,15 +86,19 @@ function editCode()
 
   $.ajax({
       type: 'post',
-      url: grainWarehouseEdit,
-      data:$("#frmGrainWarehouseEdit").serialize(),
+      url: $("#btnSaltDepositUpdate").attr('post-url'),
+      data:$("#frmSaltDepositEdit").serialize(),
       success:function(response){
-          alertify.alert(response);
-          grainWarehouseTableRefresh();
+        if(response.status == 'success'){
+          alertify.alert(response.msg);
+          populationTableRefresh();
           emptyForm();
           dataRow = "";
-          $("#modalGrainWarehouseEdit").modal("hide");
-
+          $("#modalFoodFactoryEdit").modal("hide");
+        }
+        else{
+          alertify.error( response.msg);
+        }
       },
       error: function(XMLHttpRequest, textStatus, errorThrown) {
           alertify.error("Status: " + textStatus); alertify.error("Error: " + errorThrown);

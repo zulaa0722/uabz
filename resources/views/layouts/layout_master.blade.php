@@ -216,10 +216,9 @@
             <li>
             <a href="javascript: void(0);" class="has-arrow waves-effect">
                 <i class="ti-pencil-alt"></i>
-                <span>Төлөвлөгөө</span>
+                <span>ТӨЛӨВЛӨГӨӨ</span>
             </a>
             <ul class="sub-menu" aria-expanded="false">
-                <li><a href="{{url("/org/show")}}">Товчилсон нэрийн тайлбар</a></li>
                 <li><a href="{{url("/axax/show")}}">Авч хэрэгжүүлэх арга хэмжээ</a></li>
             </ul>
             </li>
@@ -227,12 +226,13 @@
             <li>
             <a href="javascript: void(0);" class="has-arrow waves-effect">
                 <i class="ti-widget"></i>
-                <span>Туслах сан</span>
+                <span>ТУСЛАХ САН</span>
             </a>
             <ul class="sub-menu" aria-expanded="false">
                 <li><a href="{{url("/norm/show")}}">Хүнсний норм</a></li>
                 <li><a href="{{url("/status/show")}}">Төлөв</a></li>
                 <li><a href="{{url("/level/show")}}">Зэрэгүүд</a></li>
+                <li><a href="{{url("/org/show")}}">Товчилсон нэрийн тайлбар</a></li>
             </ul>
             </li>
 
@@ -240,7 +240,7 @@
             <li>
             <a href="javascript: void(0);" class="has-arrow waves-effect">
                 <i class="ti-user"></i>
-                <span>Админ хэрэглэгч</span>
+                <span>АДМИН ХЭРЭГЛЭГЧ</span>
             </a>
             <ul class="sub-menu" aria-expanded="false">
                 <li><a href="{{url("/register")}}">Админ хэрэглэгч нэмэх</a></li>

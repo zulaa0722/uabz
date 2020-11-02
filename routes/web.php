@@ -201,6 +201,25 @@ Route::post("/foodTradeCenter/insert", "SrvyFoodTradeCenterController@store");
 Route::post("/foodTradeCenter/edit", "SrvyFoodTradeCenterController@update");
 Route::post("/foodTradeCenter/delete", "SrvyFoodTradeCenterController@delete");
 
+Route::get("/survey/food/ware/house", "FoodWarehouseController@showFoodWareHouse");
+Route::post("/get/survey/food/ware/house", "FoodWarehouseController@getFoodWareHouse");
+Route::post("/survey/food/ware/house/new", "FoodWarehouseController@store");
+Route::post("/survey/food/ware/house/edit", "FoodWarehouseController@update");
+Route::post("/survey/food/ware/house/delete", "FoodWarehouseController@delete");
+
+
+Route::get("/survey/food/factory", "SrvyFoodFactoryController@showFoodFactory");
+Route::post("/survey/get/food/factory", "SrvyFoodFactoryController@getFoodFactory");
+Route::post("/survey/food/factory/new", "SrvyFoodFactoryController@store");
+Route::post("/survey/food/factory/edit", "SrvyFoodFactoryController@update");
+Route::post("/survey/food/factory/delete", "SrvyFoodFactoryController@delete");
+
+Route::get("/salt/deposit/show", "SrvyLocalSaltDepositsController@showSaltDeposit");
+Route::post("/survey/get/salt/deposits", "SrvyLocalSaltDepositsController@getSaltDeposit");
+Route::post("/survey/salt/deposit/new", "SrvyLocalSaltDepositsController@store");
+Route::post("/survey/salt/deposit/edit", "SrvyLocalSaltDepositsController@update");
+Route::post("/survey/salt/deposit/delete", "SrvyLocalSaltDepositsController@delete");
+
 Route::get("/Survey/grainWarehouse", "SrvyGrainWarehousesController@grainWarehouseShow");
 Route::post("/grainWarehouse", "SrvyGrainWarehousesController@getGrainWarehouseData");
 Route::post("/grainWarehouse/insert", "SrvyGrainWarehousesController@store");
