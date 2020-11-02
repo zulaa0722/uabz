@@ -172,8 +172,8 @@ $(document).on("click", "path[data-toggle='tooltip']", function(){
             div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт Ккал:</td><td>'+parseInt(val.Kcal).toLocaleString()+'</td></tr>';
           }
           div = div + '</table>';
-          div = div + '<div class="col-md-12"><a href="javascript:showChangeNorm()">Норм солих</a>&nbsp';
-          div = div + '<a href="javascript:showSub()">Орлуулах</a></div>';
+          // div = div + '<div class="col-md-12"><a href="javascript:showChangeNorm()">Норм солих</a>&nbsp';
+          // div = div + '<a href="javascript:showSub()">Орлуулах</a></div>';
           div = div + '</div>';
 
           div = div + '</div>';
@@ -197,7 +197,7 @@ function showChangeNorm()
 function showSub()
 {
   // $("")
-  alert("end orluulah buteegdhuun nemeh tsonh garch irne");
+  //alert("end orluulah buteegdhuun nemeh tsonh garch irne");
 }
 function showNorm(sumID)
 {

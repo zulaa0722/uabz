@@ -121,12 +121,39 @@ class SubReserveController extends Controller
           $insertSubReserve->mainQntt = $value['qntt'];
           $insertSubReserve->totalPrice = $value['totalPrice'];
           $insertSubReserve->subReseverDate = "";
-          $insertSubReserve->save();
+          // $insertSubReserve->save();
+
+          $sym = DB::table("tb_sym")
+          ->where("symCode", "=", $req->symID)->first();
+
+          $subID = $value['id'];
+          $prodID = DB::table("tb_sub_products")
+            ->where('id', '=', $subID)->first();
+
+          $oldQntt = DB::table('tb_food_reserve')
+            ->where('symID', '=', $sym->id)
+            ->where('productID', '=', $prodID->fProductID)
+            ->first();
+
+          $newReserve = $value['multiplier'] * $value['qntt'];
+          $newReserve = $newReserve + $oldQntt->mainQntt;
+
+          $foodProd = DB::table("tb_food_products")->where('id', '=', $prodID->fProductID)->first();
+          $foodProdKcal = $foodProd->foodTomCkal;
+          $foodQntt = $foodProd->foodQntt;
+          $newTotalKcal = $newReserve * $foodProdKcal / $foodQntt;
+
+          DB::table("tb_food_reserve")
+            ->where("symID", '=', $sym->id)
+            // ->where("productID", "=", $prodID->fProductID)->update(['mainQntt' => $newReserve]);
+            ->where("productID", "=", $prodID->fProductID)->update(['mainQntt' => $newReserve, 'totalKcal' => intval($newTotalKcal)]);
         }
+
+
         return "Амжилттай хадгаллаа.";
     } catch (\Exception $e) {
-      // return $e;
-      return "Серверийн алдаа!!! Веб мастерт хандана уу";
+      return $e;
+      // return "Серверийн алдаа!!! Веб мастерт хандана уу";
     }
   }
   public function editNorm(Request $req)

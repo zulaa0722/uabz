@@ -280,6 +280,8 @@ class Sides extends Controller
               );
             }
           }
+          $Kcal = 0;
+
         }
         $bothSides = array(
           "rightSide" => $rightSide,

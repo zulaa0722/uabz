@@ -130,9 +130,11 @@ $(document).ready(function(){
       },
 
       success: function(response){
-        alertify.alert(response, function(){
-          alertify.message('OK');
-        });
+        // alert("asdf");
+        console.log(response);
+        // alertify.alert(response, function(){
+        //   // alertify.message('OK');
+        // });
         $("#modalShowSub").modal("hide");
       }
     });
