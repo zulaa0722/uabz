@@ -18,6 +18,7 @@ $(document).ready(function(){
             provCode: provCode
         },
         success:function(response){
+          $("#divPopulation").removeClass('d-none');
           //Aimgiin medeelluudiig dood hesegt gargaj bn
           var div = "";
           $.each(response.bottomSide, function(key, val){

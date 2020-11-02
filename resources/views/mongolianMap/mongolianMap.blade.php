@@ -213,56 +213,59 @@
           <div class="col-xl-12">
               <div class="card">
                   <div class="card-body">
-                      <h4 class="card-title mb-12" id="changeName">Монгол Улсын хэмжээнд</h4>
-                      <div class="form-group row border border-success rounded-left" style="">
-                        <div class="col-md-12">
-                          Нийт хүн ам:
+                      <div class="d-none" id="divPopulation">
+                        <h4 class="card-title mb-12" id="changeName">Монгол Улсын хэмжээнд</h4>
+                        <div class="form-group row border border-success rounded-left" style="">
+                          <div class="col-md-12">
+                            Нийт хүн ам:
+                          </div>
+                          <div class="col-md-3">
+                            <img src="{{url('\public\images\icons\population.png')}}" width="35" alt="" style="padding-bottom:4px;">
+                          </div>
+                          <div id="totalPop" class="col-md-9 text-left" style="font-size:22px;">
+                            {{number_format($sumTotalPop)}}
+                          </div>
                         </div>
-                        <div class="col-md-3">
-                          <img src="{{url('\public\images\icons\population.png')}}" width="35" alt="" style="padding-bottom:4px;">
+
+                        <div class="clearfix"></div>
+                        <div class="form-group row border border-success rounded-left" style="">
+                          <div class="col-md-12">
+                            Жишсэн хүн ам:
+                          </div>
+                          <div class="col-md-3">
+                            <img src="{{url('\public\images\icons\standard.png')}}" width="35" alt="" style="padding-bottom:4px;">
+                          </div>
+                          <div id="standardPop" class="col-md-9 text-left" style="font-size:22px;">
+                            {{number_format($sumStandardPop)}}
+                          </div>
                         </div>
-                        <div id="totalPop" class="col-md-9 text-left" style="font-size:22px;">
-                          {{number_format($sumTotalPop)}}
+
+                        <div class="clearfix"></div>
+                        <div class="form-group row border border-success rounded-left" style="">
+                          <div class="col-md-12">
+                            Нийт малын тоо толгой:
+                          </div>
+                          <div class="col-md-3 col-xm-3">
+                            <img src="{{url('\public\images\icons\cattleIcon.png')}}" width="35" alt="" style="padding-bottom:4px;">
+                          </div>
+                          <div id="totalCattle" class="col-md-9 col-xm-9 text-left" style="font-size:22px;">
+                            {{number_format($sumCattQntt)}}
+                          </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+                        <div class="form-group row border border-success rounded-left d-none" style="" id="reserveDayDiv">
+                          <div class="col-md-12 text-center">
+                            Нийт хоногийн нөөц
+                          </div>
+                          <div id="reserveDay" class="col-md-12 text-center text-success border border-success rounded-circle" style="font-size:45px;">
+                          </div>
+                          <div class="col-md-12 text-center">
+                            Хоног
+                          </div>
                         </div>
                       </div>
 
-                      <div class="clearfix"></div>
-                      <div class="form-group row border border-success rounded-left" style="">
-                        <div class="col-md-12">
-                          Жишсэн хүн ам:
-                        </div>
-                        <div class="col-md-3">
-                          <img src="{{url('\public\images\icons\standard.png')}}" width="35" alt="" style="padding-bottom:4px;">
-                        </div>
-                        <div id="standardPop" class="col-md-9 text-left" style="font-size:22px;">
-                          {{number_format($sumStandardPop)}}
-                        </div>
-                      </div>
-
-                      <div class="clearfix"></div>
-                      <div class="form-group row border border-success rounded-left" style="">
-                        <div class="col-md-12">
-                          Нийт малын тоо толгой:
-                        </div>
-                        <div class="col-md-3 col-xm-3">
-                          <img src="{{url('\public\images\icons\cattleIcon.png')}}" width="35" alt="" style="padding-bottom:4px;">
-                        </div>
-                        <div id="totalCattle" class="col-md-9 col-xm-9 text-left" style="font-size:22px;">
-                          {{number_format($sumCattQntt)}}
-                        </div>
-                      </div>
-
-                      <div class="clearfix"></div>
-                      <div class="form-group row border border-success rounded-left d-none" style="" id="reserveDayDiv">
-                        <div class="col-md-12 text-center">
-                          Нийт хоногийн нөөц
-                        </div>
-                        <div id="reserveDay" class="col-md-12 text-center text-success border border-success rounded-circle" style="font-size:45px;">
-                        </div>
-                        <div class="col-md-12 text-center">
-                          Хоног
-                        </div>
-                      </div>
                       <div class="col-md-12" id="showSymNorm">
 
                       </div>

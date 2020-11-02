@@ -284,3 +284,13 @@ Route::get('/log/cattle/show', 'LogCattleController@showLogCattle');
 Route::post('/get/log/cattles', 'LogCattleController@getCattlesLogBySymCode');
 Route::post('/log/cattle/new', 'LogCattleController@storeCattleLog');
 // LOG CATTLE END
+
+
+Route::get('/directions', function() {
+
+    $url = urlencode ("http://maps.googleapis.com/maps/api/directions/json?origin=");
+
+    $json = json_decode(file_get_contents($url), true);
+
+    dd($json);
+});
