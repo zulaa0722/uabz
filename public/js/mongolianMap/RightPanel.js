@@ -36,7 +36,7 @@ $(document).ready(function(){
 
             if(val.isMeat === 1)
             {
-              div = div + '<tr style="border-bottom: 1px solid"><td></td><td>Хүнсний нөөц</td><td>Амьд мал</td></tr>';
+              div = div + '<tr style="border-bottom: 1px solid"><td></td><td>Хүнсний нөөц</td><td>Амьд малын жин</td></tr>';
               div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт үлдсэн /кг/:</td><td>'+parseInt(val.remaining).toLocaleString()+'</td><td>'+parseInt(val.totalCattleKg).toLocaleString()+'</td></tr>';
               div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт уураг /гр/:</td><td>'+parseInt(val.foodProtein).toLocaleString()+'</td><td>'+parseInt(val.totalCattleProtein).toLocaleString()+'</td></tr>';
               div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт өөх тос /гр/:</td><td>'+parseInt(val.foodFat).toLocaleString()+'</td><td>'+parseInt(val.totalCattleFat).toLocaleString()+'</td></tr>';
@@ -157,7 +157,7 @@ $(document).on("click", "path[data-toggle='tooltip']", function(){
 
           if(val.isMeat === 1)
           {
-            div = div + '<tr style="border-bottom: 1px solid"><td></td><td>Хүнсний нөөц</td><td>Амьд мал</td></tr>';
+            div = div + '<tr style="border-bottom: 1px solid"><td></td><td>Хүнсний нөөц</td><td>Амьд малын жин</td></tr>';
             div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт үлдсэн /кг/:</td><td>'+parseInt(val.remaining).toLocaleString()+'</td><td>'+parseInt(val.totalCattleKg).toLocaleString()+'</td></tr>';
             div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт уураг /гр/:</td><td>'+parseInt(val.foodProtein).toLocaleString()+'</td><td>'+parseInt(val.totalCattleProtein).toLocaleString()+'</td></tr>';
             div = div + '<tr style="border-bottom: 1px solid"><td style="text-align:left">Нийт нүүрс ус /гр/:</td><td>'+parseInt(val.foodCarbon).toLocaleString()+'</td><td>'+parseInt(val.totalCattleCarbon).toLocaleString()+'</td></tr>';

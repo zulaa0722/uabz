@@ -25,9 +25,12 @@
                         <td></td>
                       </tbody>
                     </table>
-                    <button class="btn btn-primary" type="button" name="button" id="btnAddModalOpen">Нэмэх</button>
-                    <button class="btn btn-warning" type="button" name="button" id="btnEditModalOpen">Засах</button>
-                    <button class="btn btn-danger" type="button" name="button" id="btnSymDelete">Устгах</button>
+                    @if (Auth::user()->permission != 2)
+                      <button class="btn btn-primary" type="button" name="button" id="btnAddModalOpen">Нэмэх</button>
+                      <button class="btn btn-warning" type="button" name="button" id="btnEditModalOpen">Засах</button>
+                      <button class="btn btn-danger" type="button" name="button" id="btnSymDelete">Устгах</button>
+
+                    @endif
                   </div>
                 </div>
             </div>

@@ -22,13 +22,10 @@ class SymController extends Controller
   public function symShow()
   {
     try{
-      if(Auth::user()->permission == 2){
-        return view("permission.permissionError");
-      }
-      else{
-        $Provinces = DB::table("tb_province")->get();
-        return view("Sym.Sym", compact("Provinces"));
-      }
+      $Provinces = DB::table("tb_province")
+        ->where('provCode', '=', Auth::user()->aimagCode)->get();
+      return view("Sym.Sym", compact("Provinces"));
+
     }catch(\Exception $e){
       return "Серверийн алдаа!!! Веб мастерт хандана уу";
     }
@@ -39,6 +36,7 @@ class SymController extends Controller
     try{
       $syms = DB::table("tb_sym")
         ->join("tb_province", "tb_sym.provID", "=", "tb_province.id")
+        ->where('tb_province.provCode', '=', Auth::user()->aimagCode)
         ->select("tb_sym.*", "tb_province.provName")->get();
       return DataTables::of($syms)
         ->make(true);

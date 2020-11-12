@@ -3,7 +3,7 @@
       {{-- modal-lg --}}
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title mt-0">Норм нэмэх</h5>
+                <h5 class="modal-title mt-0">Хүнсний цэс нэмэх</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -12,7 +12,7 @@
               <form id="frmSectorNew" action="" method="post">
                   <div class="row">
                     <div class="col-md-3">
-                        <label>Нормын нэр:</label>
+                        <label>Хүнсний цэсний нэр:</label>
                     </div>
                     <div class="col-md-3">
                         <input class="form-control" type="text" name="normName" id="txtNormName" value="">

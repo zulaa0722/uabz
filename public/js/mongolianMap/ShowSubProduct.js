@@ -131,10 +131,8 @@ $(document).ready(function(){
 
       success: function(response){
         // alert("asdf");
-        console.log(response);
-        // alertify.alert(response, function(){
-        //   // alertify.message('OK');
-        // });
+        // console.log(response);
+        alertify.alert(response);
         $("#modalShowSub").modal("hide");
       }
     });

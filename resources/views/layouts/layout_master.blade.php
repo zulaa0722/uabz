@@ -229,7 +229,7 @@
                 <span>ТУСЛАХ САН</span>
             </a>
             <ul class="sub-menu" aria-expanded="false">
-                <li><a href="{{url("/norm/show")}}">Хүнсний норм</a></li>
+                <li><a href="{{url("/norm/show")}}">Хүнсний цэс</a></li>
                 <li><a href="{{url("/status/show")}}">Төлөв</a></li>
                 <li><a href="{{url("/level/show")}}">Зэрэгүүд</a></li>
                 <li><a href="{{url("/org/show")}}">Товчилсон нэрийн тайлбар</a></li>

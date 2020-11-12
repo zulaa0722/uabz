@@ -22,13 +22,13 @@ class ProvinceController extends Controller
   public function provinceShow()
   {
     try{
-      if(Auth::user()->permission == 2){
-        return view("permission.permissionError");
-      }
-      else{
+      // if(Auth::user()->permission == 2){
+      //   return view("permission.permissionError");
+      // }
+      // else{
         $Secters = DB::table("tb_sectors")->get();
         return view("Province.Province", compact("Secters"));
-      }
+      // }
     }catch(\Exception $e){
       return "Серверийн алдаа!!! Веб мастерт хандана уу";
     }
@@ -39,6 +39,7 @@ class ProvinceController extends Controller
     try{
       $province = DB::table("tb_province")
         ->join("tb_sectors", "tb_province.sectorID", "=", "tb_sectors.id")
+        ->where('tb_province.provCode', '=', Auth::user()->aimagCode)
         ->select("tb_province.*", "tb_sectors.sectorName")->get();
       return DataTables::of($province)
         ->make(true);

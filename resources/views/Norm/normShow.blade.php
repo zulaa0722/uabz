@@ -6,11 +6,11 @@
 
       <div class="card">
         <div  class="card-body">
-              <h4 class="text-center">Аймаг сумдын хүнсний норм</h4>
+              <h4 class="text-center">Аймаг, сумдын хүнсний цэс</h4>
               <div class="form-group">
                 <div class="row">
                   <div class="col-md-2">
-                    <h6 class="text-right" style="margin-top:10px;"><strong>Нормоо сонгоно уу=></strong></h6>
+                    <h6 class="text-right" style="margin-top:10px;"><strong>Цэс сонгоно уу =></strong></h6>
                   </div>
                   <div class="col-md-3">
                     <select id="cmbNorms" class="form-control" name="">
@@ -29,8 +29,8 @@
                 <div class="row" style="margin-left:5px;">
                     <div class="text-right">
                       <br>
-                        <button class="btn btn-warning pull-right" type="button" name="button" id="btnEditModalOpen">Сонгосон норм засах</button>
-                        <button class="btn btn-danger pull-right" type="button" name="button" post-url="{{url('/norm/delete')}}" id="btnNormDelete">Сонгосон норм устгах</button>
+                        <button class="btn btn-warning pull-right" type="button" name="button" id="btnEditModalOpen">Сонгосон цэс засах</button>
+                        <button class="btn btn-danger pull-right" type="button" name="button" post-url="{{url('/norm/delete')}}" id="btnNormDelete">Сонгосон цэс устгах</button>
                     </div>
                 </div>
               </div>
@@ -46,7 +46,7 @@
                 <tbody>
                 </tbody>
               </table>
-              <button class="btn btn-primary" type="button" name="button" id="btnAddModalOpen">Шинэ норм нэмэх</button>
+              <button class="btn btn-primary" type="button" name="button" id="btnAddModalOpen">Шинэ цэс нэмэх</button>
 
           </div>
         </div>
