@@ -38,11 +38,18 @@ class ProvinceController extends Controller
   {
     try{
       $province = DB::table("tb_province")
-        ->join("tb_sectors", "tb_province.sectorID", "=", "tb_sectors.id")
-        ->where('tb_province.provCode', '=', Auth::user()->aimagCode)
-        ->select("tb_province.*", "tb_sectors.sectorName")->get();
-      return DataTables::of($province)
-        ->make(true);
+      ->join("tb_sectors", "tb_province.sectorID", "=", "tb_sectors.id")
+      ->select("tb_province.*", "tb_sectors.sectorName")->get();
+
+      if(Auth::user()->permission == 2)
+        {
+          $province = DB::table("tb_province")
+          ->join("tb_sectors", "tb_province.sectorID", "=", "tb_sectors.id")
+          ->where('tb_province.provCode', '=', Auth::user()->aimagCode)
+          ->select("tb_province.*", "tb_sectors.sectorName")->get();
+        }
+
+        return DataTables::of($province)->make(true);
     }catch(\Exception $e){
       return "Серверийн алдаа!!! Веб мастерт хандана уу";
     }

@@ -35,9 +35,16 @@ class SymController extends Controller
   {
     try{
       $syms = DB::table("tb_sym")
-        ->join("tb_province", "tb_sym.provID", "=", "tb_province.id")
-        ->where('tb_province.provCode', '=', Auth::user()->aimagCode)
-        ->select("tb_sym.*", "tb_province.provName")->get();
+      ->join("tb_province", "tb_sym.provID", "=", "tb_province.id")
+      ->select("tb_sym.*", "tb_province.provName")->get();
+
+      if(Auth::user()->permission == 2)
+        $syms = DB::table("tb_sym")
+          ->join("tb_province", "tb_sym.provID", "=", "tb_province.id")
+          ->where('tb_province.provCode', '=', Auth::user()->aimagCode)
+          ->select("tb_sym.*", "tb_province.provName")->get();
+
+
       return DataTables::of($syms)
         ->make(true);
     }catch(\Exception $e){
