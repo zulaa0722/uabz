@@ -13,7 +13,8 @@ $(document).ready(function(){
 function mainCode()
 {
   var isInsert = true;
-
+  var isInsert = true;
+  
   if($("#cattleName").val()==""){
     alertify.error("Та заавал МАЛЫН МАХНЫ ТӨРӨЛ бичнэ үү!!!");
     isInsert = false;
