@@ -69,6 +69,6 @@
 
   </script>
 
-  <script src="{{url("public/js/LogFoodReserve/log_ReserveShow.js")}}"></script>
-  <script src="{{url("public/js/LogFoodReserve/log_ReserveEdit.js")}}"></script>
+  <script src="{{url("public/js/logFoodReserve/log_ReserveShow.js")}}"></script>
+  <script src="{{url("public/js/logFoodReserve/log_ReserveEdit.js")}}"></script>
 @endsection
