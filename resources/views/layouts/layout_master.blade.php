@@ -8,7 +8,7 @@
             <meta content="Themesbrand" name="author" />
             <meta name="csrf-token" content="{{ csrf_token() }}">
             <!-- App favicon -->
-             <link rel="shortcut icon" href="{{url("public/images/uabz_icon.ico")}}">
+             <link rel="shortcut icon" href="{{url("public/images/UABZ2.ico")}}">
 
              <link href="{{url("public/uaBCssJs/sweet-alert/sweetalert2.min.css")}}" id="bootstrap-dark" rel="stylesheet" type="text/css" />
 
