@@ -27,55 +27,55 @@ class SumAndFoodReserveController extends Controller
 
     public function getSumsReserveDays(){
       // return view('layouts.mailto');
-        // try{
-        //   $now = Carbon::now();
-        //   $yearNow = $now->year - 1;
-        //   $sums = DB::table('tb_danger_sym')
-        //       ->join('tb_danger', 'tb_danger_sym.danger_id', '=', 'tb_danger.id')
-        //       ->join('tb_sym', 'tb_danger_sym.symID', '=', 'tb_sym.symCode')
-        //       ->where('tb_danger.status', '=', 1)
-        //       ->select('tb_danger_sym.*', 'tb_danger.status', 'tb_sym.id as symiinID', 'tb_sym.normID', 'tb_sym.symName')
-        //       ->get();
-        //
-        //   $foodProducts = FoodProducts::all();
-        //
-        //   $arr = [];
-        //   foreach ($sums as $sum) {
-        //
-        //       $foodDays = DB::table('tb_food_products')
-        //           ->select(
-        //               'tb_food_products.id as productID',
-        //               'tb_food_products.productName',
-        //               DB::raw("(SELECT tb_population.standardPop FROM tb_population WHERE tb_population.date = $yearNow AND tb_population.symID = $sum->symiinID LIMIT 0,1) as standartPop"),
-        //               DB::raw("(SELECT tb_norms.normCkal FROM tb_norms WHERE tb_norms.producID = tb_food_products.id LIMIT 0,1) as normKcal"),
-        //               DB::raw("(SELECT tb_food_reserve.totalKcal FROM tb_food_reserve WHERE tb_food_reserve.productID = tb_food_products.id AND tb_food_reserve.symID = $sum->symiinID LIMIT 0,1) as reserve")
-        //           )
-        //           ->get();
-        //
-        //       $minDays = 1000000;
-        //       foreach ($foodDays as $foodDay) {
-        //           if($foodDay->normKcal * $foodDay->standartPop == 0){
-        //               $days = 0;
-        //           }
-        //           else{
-        //               $days = $foodDay->reserve / ($foodDay->normKcal * $foodDay->standartPop);
-        //           }
-        //           if($days < $minDays){
-        //               $minDays = $days;
-        //           }
-        //       }
-        //
-        //
-        //       array_push($arr, array(
-        //           "id" => $sum->symID,
-        //           "days" => $minDays
-        //       ));
-        //   }
-        //   return json_encode($arr);
-        // }
-        // catch(\Exception $e){
-        //     return "Серверийн алдаа!!! Веб мастерт хандана уу";
-        // }
+        try{
+          $now = Carbon::now();
+          $yearNow = $now->year - 1;
+          $sums = DB::table('tb_danger_sym')
+              ->join('tb_danger', 'tb_danger_sym.danger_id', '=', 'tb_danger.id')
+              ->join('tb_sym', 'tb_danger_sym.symID', '=', 'tb_sym.symCode')
+              ->where('tb_danger.status', '=', 1)
+              ->select('tb_danger_sym.*', 'tb_danger.status', 'tb_sym.id as symiinID', 'tb_sym.normID', 'tb_sym.symName')
+              ->get();
+
+          $foodProducts = FoodProducts::all();
+
+          $arr = [];
+          foreach ($sums as $sum) {
+
+              $foodDays = DB::table('tb_food_products')
+                  ->select(
+                      'tb_food_products.id as productID',
+                      'tb_food_products.productName',
+                      DB::raw("(SELECT tb_population.standardPop FROM tb_population WHERE tb_population.date = $yearNow AND tb_population.symID = $sum->symiinID LIMIT 0,1) as standartPop"),
+                      DB::raw("(SELECT tb_norms.normCkal FROM tb_norms WHERE tb_norms.producID = tb_food_products.id LIMIT 0,1) as normKcal"),
+                      DB::raw("(SELECT tb_food_reserve.totalKcal FROM tb_food_reserve WHERE tb_food_reserve.productID = tb_food_products.id AND tb_food_reserve.symID = $sum->symiinID LIMIT 0,1) as reserve")
+                  )
+                  ->get();
+
+              $minDays = 1000000;
+              foreach ($foodDays as $foodDay) {
+                  if($foodDay->normKcal * $foodDay->standartPop == 0){
+                      $days = 0;
+                  }
+                  else{
+                      $days = $foodDay->reserve / ($foodDay->normKcal * $foodDay->standartPop);
+                  }
+                  if($days < $minDays){
+                      $minDays = $days;
+                  }
+              }
+
+
+              array_push($arr, array(
+                  "id" => $sum->symID,
+                  "days" => $minDays
+              ));
+          }
+          return json_encode($arr);
+        }
+        catch(\Exception $e){
+            return "Серверийн алдаа!!! Веб мастерт хандана уу";
+        }
     }
 
     public function minusNormFromReserve(){

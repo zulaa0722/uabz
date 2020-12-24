@@ -278,7 +278,7 @@
                       </button>
                       <div class="panel col-md-12" style="padding: 0px;">
                         <button style="margin-bottom:1px;" type="button" url="{{url("/log/foodReserve")}}" class="btn btn-secondary col-md-12" id="btnLogReserve" name="button">Хүнсний нөөц</button>
-                        <button type="button" url="{{url("/log/cattle/show")}}" class="btn btn-secondary col-md-12" id="btnCattleReserve" name="button">Малын тоо толгой</button>
+                        {{-- <button type="button" url="{{url("/log/cattle/show")}}" class="btn btn-secondary col-md-12" id="btnCattleReserve" name="button">Малын тоо толгой</button> --}}
                       </div>
 
                       <div id="chartContainer" class="col-md-12" style="padding: 0px; margin:0px;"></div>
